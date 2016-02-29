@@ -22,12 +22,16 @@ exports.precis = function(arg, bot, message) {
 	});
 }
 
+var errorFor = function(searchType, searchTerms) {
+	return "No " + searchType + " results for " + searchTerms;
+}
+
 exports.searchLodestone = function(arg, callback) {
-	var searchTerms = config.LODESTONE_SERVER + " " + arg;
-	customsearch.cse.list({ cx: config.LODESTONE_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
+	var searchTerms = arg;
+	customsearch.cse.list({ cx: config.LODESTONE_CX, q: config.LODESTONE_SERVER + " " + searchTerms, auth: config.API_KEY }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
-			callback(null);
+			callback(errorFor("Lodestone", searchTerms));
 		}
 		// Got the response from custom search
 		console.log('Lodestone results: ' + resp.searchInformation.formattedTotalResults);
@@ -35,7 +39,7 @@ exports.searchLodestone = function(arg, callback) {
 //			console.log(resp);
 			callback(resp.items[0].link);
 		} else {
-			callback(null);
+			callback(errorFor("Lodestone", searchTerms));
 		}
 	});
 }
@@ -44,10 +48,11 @@ var summarize = function(name, url, callback) {
 	var searchName = name;
 	summary.summarize(url, function(title, summary, failure) {
 		if (failure) {
+			// console.log("Failure to summarize");
 			callback(url);
 		} else {
-			var output = "";
-			// console.log("Got page back for name: " + searchName + " = title: " + title);
+			var output = errorFor("Wiki", searchName);
+			console.log("Got page back for name: " + searchName + " = title: " + title);
 			if (searchName === title) {
 				output = url + "\n";
 				var name;
@@ -68,17 +73,17 @@ exports.searchWiki = function(arg, callback) {
 	customsearch.cse.list({ cx: config.WIKI_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
-			callback(null);
+			callback(errorFor("Wiki", searchTerms));
 		}
 		// Got the response from custom search
 		console.log('Wiki results: ' + resp.searchInformation.formattedTotalResults);
 		if (resp.items && resp.items.length > 0) {
-//			console.log(resp);
+			// console.log(resp);
 
 			// callback(resp.items[0].link);
 			summarize(searchTerms, resp.items[0].link, callback);
 		} else {
-			callback(null);
+			callback(errorFor("Wiki", searchTerms));
 		}
 	});
 }
