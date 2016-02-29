@@ -40,19 +40,22 @@ exports.searchLodestone = function(arg, callback) {
 	});
 }
 
-var summarize = function(url, callback) {
+var summarize = function(name, url, callback) {
 	summary.summarize(url, function(title, summary, failure) {
 		if (failure) {
 			callback(url);
 		} else {
-			var output = url + "\n";
-			var name;
-		    for (name in summary) {
-		    	if (typeof summary[name] !== 'function') {
-		    		output += "\n";
-		    		output += summary[name];
-		    	}
-		    }
+			var output = "";
+			if (name === title) {
+				output = url + "\n";
+				var name;
+			    for (name in summary) {
+			    	if (typeof summary[name] !== 'function') {
+			    		output += "\n";
+			    		output += summary[name];
+			    	}
+			    }
+			} 			
 		    callback(output);
 		}
 	});
@@ -71,7 +74,7 @@ exports.searchWiki = function(arg, callback) {
 //			console.log(resp);
 
 			// callback(resp.items[0].link);
-			summarize(resp.items[0].link, callback);
+			summarize(searchTerms, resp.items[0].link, callback);
 		} else {
 			callback(null);
 		}
