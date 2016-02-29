@@ -23,7 +23,7 @@ exports.precis = function(arg, bot, message) {
 }
 
 exports.searchLodestone = function(arg, callback) {
-	searchTerms = config.LODESTONE_SERVER + " " + arg;
+	var searchTerms = config.LODESTONE_SERVER + " " + arg;
 	customsearch.cse.list({ cx: config.LODESTONE_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
@@ -41,12 +41,14 @@ exports.searchLodestone = function(arg, callback) {
 }
 
 var summarize = function(name, url, callback) {
+	var searchName = name;
 	summary.summarize(url, function(title, summary, failure) {
 		if (failure) {
 			callback(url);
 		} else {
 			var output = "";
-			if (name === title) {
+			// console.log("Got page back for name: " + searchName + " = title: " + title);
+			if (searchName === title) {
 				output = url + "\n";
 				var name;
 			    for (name in summary) {
@@ -62,7 +64,7 @@ var summarize = function(name, url, callback) {
 }
 
 exports.searchWiki = function(arg, callback) {
-	searchTerms = arg;
+	var searchTerms = arg;
 	customsearch.cse.list({ cx: config.WIKI_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
