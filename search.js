@@ -1,5 +1,6 @@
 var google = require('googleapis');
 var config = require('./config.js');
+var summary = require('node-sumuparticles');
 
 var customsearch = google.customsearch('v1');
 
@@ -39,6 +40,24 @@ exports.searchLodestone = function(arg, callback) {
 	});
 }
 
+var summarize = function(url, callback) {
+	summary.summarize(url, function(title, summary, failure) {
+		if (failure) {
+			callback(url);
+		} else {
+			var output = url + "\n";
+			var name;
+		    for (name in summary) {
+		    	if (typeof summary[name] !== 'function') {
+		    		output += "\n";
+		    		output += summary[name];
+		    	}
+		    }
+		    callback(output);
+		}
+	});
+}
+
 exports.searchWiki = function(arg, callback) {
 	searchTerms = arg;
 	customsearch.cse.list({ cx: config.WIKI_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
@@ -50,7 +69,9 @@ exports.searchWiki = function(arg, callback) {
 		console.log('Wiki results: ' + resp.searchInformation.formattedTotalResults);
 		if (resp.items && resp.items.length > 0) {
 //			console.log(resp);
-			callback(resp.items[0].link);
+
+			// callback(resp.items[0].link);
+			summarize(resp.items[0].link, callback);
 		} else {
 			callback(null);
 		}
