@@ -3,7 +3,7 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.4.0";
+const VERSION = "SINBot Version 0.4.1";
 
 var SINBot = new Discord.Client();
 
@@ -16,6 +16,18 @@ var enumerate = function(obj) {
 			console.log(key + ": " + obj[key]);
 		}
 	}
+}
+
+var messagebox;
+
+try{
+	messagebox = require("./messagebox.json");
+} catch(e) {
+	//no stored messages
+	messagebox = {};
+}
+function updateMessagebox(){
+	require("fs").writeFile("./messagebox.json",JSON.stringify(messagebox,null,2), null);
 }
 
 var compileArgs = function(args) {
@@ -98,7 +110,9 @@ var commands = {
 		usage: "[topic]",
 		help: 'Sets the topic for the channel. No topic removes the topic.',
 		process: function(args,bot,msg) {
-			bot.setChannelTopic(msg.channel,compileArgs(args));
+			bot.setChannelTopic(msg.channel,compileArgs(args), function(error) {
+				console.log("Channel topic result: " + error);
+			});
 		}
 	},
 	"msg": {
@@ -173,7 +187,7 @@ var commands = {
 	},
 	"precis": {
 		usage: "<name>",
-		help: "Generate a precis on someone.",
+		help: "Generate a precis on someone. We can generate 50 of these a day before Google stops us.",
 		process: function(args, bot, message) { search.precis(compileArgs(args), bot, message); }
 	},
 };
