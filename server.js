@@ -3,70 +3,177 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.3.2";
+const VERSION = "SINBot Version 0.3.3";
 
 var SINBot = new Discord.Client();
+
+var startTime = Date.now();
 
 var compileArgs = function(args) {
 	args.splice(0,1);
 	return args.join(" ");
 }
 
-var genCommand = function(fcnName, fcnHelp, fcnFunction) {
-	return {
-		name: fcnName,
-		help: fcnHelp,
-		func: fcnFunction
-	};
-}
-
-var simpleCommands = {}
-simpleCommands["!pat"] = genCommand("pat [name]", "Rough day? Comfort someone with this command.",
-	function(args, callback) { callback("There, there, " + compileArgs(args)); });
-simpleCommands["!roll"] = genCommand("roll [dice]", "Dice rolling command. Supports standard dice notation, including F-5/Fudge dice (e.g.: 4dF+2).",
-	function(args, callback) { callback(dice.rollDice(compileArgs(args))); });
-simpleCommands["!version"] = genCommand("version", "Display version information for this bot.", 
-	function(args, callback) { callback(VERSION); });
-simpleCommands["!help"] = genCommand("help", "Display help for this bot.", 
-	function(arg, callback) {
-		var output = "SINBot commands:";
-		var key;
-		for (key in simpleCommands) {
-			output += "\n\t!";
-			output += simpleCommands[key].name;
-			output += "\n\t\t\t";
-			output += simpleCommands[key].help;
+var commands = {
+	"ping": {
+		help: "Returns pong. Useful for determining if the bot is alive.",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, "Pong!"); }
+	},
+	"pat": {
+		usage: "<name>",
+		help: "Rough day? Comfort someone with this command.",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, "There, there, " + compileArgs(args)); }
+	},
+	"roll": {
+		usage: "<dice notation>",
+		help: "Dice rolling command. Supports standard dice notation, including F-5/Fudge dice (e.g.: 4dF+2).",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, dice.rollDice(compileArgs(args))); }
+	},
+	"version": {
+		help: "Display version information for this bot.",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, VERSION); }
+	},
+	"servers": {
+        help: "lists servers bot is connected to",
+        process: function(args, bot, msg) { bot.sendMessage(msg.channel,bot.servers); }
+    },
+    "channels": {
+        help: "lists channels bot is connected to",
+        process: function(args, bot, msg) { bot.sendMessage(msg.channel,bot.channels); }
+    },
+    "myid": {
+        help: "returns the user id of the sender",
+        process: function(args, bot, msg) { bot.sendMessage(msg.channel,msg.author.id); }
+    },
+    "say": {
+        usage: "<message>",
+        help: "bot says message",
+        process: function(args, bot,msg) { bot.sendMessage(msg.channel,compileArgs(args));}
+    },
+	"announce": {
+        usage: "<message>",
+        help: "bot says message with text to speech",
+        process: function(args, bot,msg) { bot.sendMessage(msg.channel,compileArgs(args),{tts:true});}
+    },
+    "userid": {
+		usage: "<user to get id of>",
+		help: "Returns the unique id of a user. This is useful for permissions.",
+		process: function(args,bot,msg) {
+			var suffix = compileArgs(args);
+			if(suffix){
+				var users = msg.channel.server.members.getAll("username",suffix);
+				if(users.length == 1){
+					bot.sendMessage(msg.channel, "The id of " + users[0] + " is " + users[0].id)
+				} else if(users.length > 1){
+					var response = "multiple users found:";
+					for(var i=0;i<users.length;i++){
+						var user = users[i];
+						response += "\nThe id of " + user + " is " + user.id;
+					}
+					bot.sendMessage(msg.channel,response);
+				} else {
+					bot.sendMessage(msg.channel,"No user " + suffix + " found!");
+				}
+			} else {
+				bot.sendMessage(msg.channel, "The id of " + msg.author + " is " + msg.author.id);
+			}
 		}
-		for (key in complexCommands) {
-			output += "\n\t!";
-			output += complexCommands[key].name;
-			output += "\n\t\t\t";
-			output += complexCommands[key].help;
+	},
+	"topic": {
+		usage: "[topic]",
+		help: 'Sets the topic for the channel. No topic removes the topic.',
+		process: function(args,bot,msg) {
+			bot.setChannelTopic(msg.channel,compileArgs(args));
 		}
-		callback(output);
-	});
-
-var complexCommands = {}
-complexCommands["!precis"] = genCommand("precis [name]", "Generate a precis on someone.",
-	function(args, bot, message) { search.precis(compileArgs(args), bot, message); });
+	},
+	"msg": {
+		usage: "<user> <message to leave user>",
+		help: "leaves a message for a user the next time they come online",
+		process: function(args,bot,msg) {
+			var user = args.shift();
+			var message = args.join(' ');
+			if(user.startsWith('<@')){
+				user = user.substr(2,user.length-3);
+			}
+			var target = msg.channel.server.members.get("id",user);
+			if(!target){
+				target = msg.channel.server.members.get("username",user);
+			}
+			messagebox[target.id] = {
+				channel: msg.channel.id,
+				content: target + ", " + msg.author + " said: " + message
+			};
+			updateMessagebox();
+			bot.sendMessage(msg.channel,"message saved.")
+		}
+	},
+	"uptime": {
+    	usage: "",
+		help: "returns the amount of time since the bot started",
+		process: function(args,bot,msg){
+			var now = Date.now();
+			var msec = now - startTime;
+			console.log("Uptime is " + msec + " milliseconds");
+			var days = Math.floor(msec / 1000 / 60 / 60 / 24);
+			msec -= days * 1000 * 60 * 60 * 24;
+			var hours = Math.floor(msec / 1000 / 60 / 60);
+			msec -= hours * 1000 * 60 * 60;
+			var mins = Math.floor(msec / 1000 / 60);
+			msec -= mins * 1000 * 60;
+			var secs = Math.floor(msec / 1000);
+			var timestr = "";
+			if(days > 0) {
+				timestr += days + " days ";
+			}
+			if(hours > 0) {
+				timestr += hours + " hours ";
+			}
+			if(mins > 0) {
+				timestr += mins + " minutes ";
+			}
+			if(secs > 0) {
+				timestr += secs + " seconds ";
+			}
+			bot.sendMessage(msg.channel,"Uptime: " + timestr);
+		}
+	},
+	"help": {
+		help: "Display help for this bot.",
+		process: function(args, bot, message) {
+			var output = VERSION + " commands:";
+			var key;
+			for (key in commands) {
+				output += "\n\t!";
+				output += key;
+				var usage = commands[key].usage;
+				if(usage){
+					output += " " + usage;
+				}
+				output += "\n\t\t\t";
+				output += commands[key].help;
+			}
+			// console.log(output);
+			bot.sendMessage(message.channel, output);
+		}
+	},
+	"precis": {
+		usage: "<name>",
+		help: "Generate a precis on someone.",
+		process: function(args, bot, message) { search.precis(compileArgs(args), bot, message); }
+	},
+};
 
 
 SINBot.on("message", function(message){
 	if (message.author !== SINBot.user) {
 		console.log("[" + SINBot.user + "] Got message from " + message.author + ": " + message);
 		if (message.content.startsWith("!")) {
+			messageContent = message.content.substr(1);
 			// First word is a command
-			var args = message.content.split(" ");
-			var command = simpleCommands[args[0]];
+			var args = messageContent.split(" ");
+			var command = commands[args[0]];
 			if (command) {
-				command.func(args, function(resp) {
-					SINBot.sendMessage(message.channel, resp);
-				});
-			} else {
-				command = complexCommands[args[0]];
-				if (command) {
-					command.func(args, SINBot, message);			
-				}
+				command.process(args, SINBot, message);
 			}
 		}
 	} 
