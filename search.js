@@ -22,8 +22,12 @@ exports.precis = function(arg, bot, message) {
 	});
 }
 
-var errorFor = function(searchType, searchTerms) {
-	return "No " + searchType + " results for " + searchTerms;
+var errorFor = function(searchType, searchTerms, error) {
+	var msg = "No " + searchType + " results for " + searchTerms;
+	if (error && error.errors && error.errors[0] && error.errors[0].message) {
+		msg += (" -- " + error.errors[0].message);
+	}
+	return msg;
 }
 
 exports.searchLodestone = function(arg, callback) {
@@ -31,11 +35,12 @@ exports.searchLodestone = function(arg, callback) {
 	customsearch.cse.list({ cx: config.LODESTONE_CX, q: config.LODESTONE_SERVER + " " + searchTerms, auth: config.API_KEY }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
-			callback(errorFor("Lodestone", searchTerms));
+			callback(errorFor("Lodestone", searchTerms, err));
+			return;
 		}
 		// Got the response from custom search
-		console.log('Lodestone results: ' + resp.searchInformation.formattedTotalResults);
-		if (resp.items && resp.items.length > 0) {
+		// console.log('Lodestone results: ' + resp.searchInformation.formattedTotalResults);
+		if (resp && resp.items && resp.items.length > 0) {
 //			console.log(resp);
 			callback(resp.items[0].link);
 		} else {
@@ -50,6 +55,7 @@ var summarize = function(name, url, callback) {
 		if (failure) {
 			// console.log("Failure to summarize");
 			callback(url);
+			return;
 		} else {
 			var output = errorFor("Wiki", searchName);
 			console.log("Got page back for name: " + searchName + " = title: " + title);
@@ -73,11 +79,12 @@ exports.searchWiki = function(arg, callback) {
 	customsearch.cse.list({ cx: config.WIKI_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
-			callback(errorFor("Wiki", searchTerms));
+			callback(errorFor("Wiki", searchTerms, err));
+			return;
 		}
 		// Got the response from custom search
-		console.log('Wiki results: ' + resp.searchInformation.formattedTotalResults);
-		if (resp.items && resp.items.length > 0) {
+		// console.log('Wiki results: ' + resp.searchInformation.formattedTotalResults);
+		if (resp && resp.items && resp.items.length > 0) {
 			// console.log(resp);
 
 			// callback(resp.items[0].link);

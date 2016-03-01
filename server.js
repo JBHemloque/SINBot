@@ -3,7 +3,7 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.3.4";
+const VERSION = "SINBot Version 0.4.0";
 
 var SINBot = new Discord.Client();
 
