@@ -3,11 +3,20 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.3.3";
+const VERSION = "SINBot Version 0.3.4";
 
 var SINBot = new Discord.Client();
 
 var startTime = Date.now();
+
+var enumerate = function(obj) {
+	var key;
+	for (key in obj) {
+		if (typeof obj[key] !== 'function') {
+			console.log(key + ": " + obj[key]);
+		}
+	}
+}
 
 var compileArgs = function(args) {
 	args.splice(0,1);
@@ -60,19 +69,25 @@ var commands = {
 		help: "Returns the unique id of a user. This is useful for permissions.",
 		process: function(args,bot,msg) {
 			var suffix = compileArgs(args);
+			console.log("userid [" + suffix + "]");
 			if(suffix){
-				var users = msg.channel.server.members.getAll("username",suffix);
-				if(users.length == 1){
-					bot.sendMessage(msg.channel, "The id of " + users[0] + " is " + users[0].id)
-				} else if(users.length > 1){
-					var response = "multiple users found:";
-					for(var i=0;i<users.length;i++){
-						var user = users[i];
-						response += "\nThe id of " + user + " is " + user.id;
+				var server = msg.channel.server;
+				if (server) {
+					var users = server.members.getAll("username",suffix);
+					if(users.length == 1){
+						bot.sendMessage(msg.channel, "The id of " + users[0] + " is " + users[0].id)
+					} else if(users.length > 1){
+						var response = "multiple users found:";
+						for(var i=0;i<users.length;i++){
+							var user = users[i];
+							response += "\nThe id of " + user + " is " + user.id;
+						}
+						bot.sendMessage(msg.channel,response);
+					} else {
+						bot.sendMessage(msg.channel,"No user " + suffix + " found!");
 					}
-					bot.sendMessage(msg.channel,response);
 				} else {
-					bot.sendMessage(msg.channel,"No user " + suffix + " found!");
+					bot.sendMessage(msg.channel, "userid can only be run from a server channel, not a private message.");
 				}
 			} else {
 				bot.sendMessage(msg.channel, "The id of " + msg.author + " is " + msg.author.id);
