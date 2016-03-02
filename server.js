@@ -3,7 +3,7 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.4.1";
+const VERSION = "SINBot Version 0.4.2";
 
 var SINBot = new Discord.Client();
 
@@ -206,6 +206,26 @@ SINBot.on("message", function(message){
 			}
 		}
 	} 
+});
+
+//Log user status changes
+SINBot.on("presence", function(user,status,gameId) {
+	//if(status === "online"){
+	//console.log("presence update");
+	// console.log(user+" went "+status);
+	//}
+	try{
+	if(status != 'offline'){
+		if(messagebox.hasOwnProperty(user.id)){
+			console.log("found message for " + user.id);
+			var message = messagebox[user.id];
+			var channel = bot.channels.get("id",message.channel);
+			delete messagebox[user.id];
+			updateMessagebox();
+			bot.sendMessage(channel,message.content);
+		}
+	}
+	}catch(e){}
 });
 
 SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
