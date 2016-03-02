@@ -3,7 +3,7 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.4.2";
+const VERSION = "SINBot Version 0.4.3";
 
 var SINBot = new Discord.Client();
 
@@ -200,11 +200,23 @@ SINBot.on("message", function(message){
 			messageContent = message.content.substr(1);
 			// First word is a command
 			var args = messageContent.split(" ");
-			var command = commands[args[0]];
-			if (command) {
-				command.process(args, SINBot, message);
+			var cmd = commands[args[0]];
+			if(cmd) {
+				try{
+					cmd.process(args, SINBot, message);
+				} catch(e){
+					if(Config.debug){
+						SINBot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
+					}
+				}
+			} else {
+				if(Config.respondToInvalid){
+					SINBot.sendMessage(message.channel, "Invalid command " + message.content);
+				}
 			}
-		}
+		} else if (message.author != SINBot.user && message.isMentioned(SINBot.user)) {
+                SINBot.sendMessage(message.channel,message.author + ", you called?");
+        }
 	} 
 });
 
