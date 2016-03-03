@@ -1,14 +1,14 @@
 {
   "name": "SINBot",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "Discord bot for the Final Fantasy XIV free company SIN",
   "main": "main.js",
   "dependencies": {
     "discord.io": "^1.8.1",
     "discord.js": "^6.0.0",
     "googleapis": "^2.1.7",
-    "underscore": "^1.8.3",
-    "node-sumuparticles": "^0.1.4"
+    "node-sumuparticles": "^0.1.4",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {},
   "scripts": {

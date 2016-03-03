@@ -3,7 +3,7 @@ var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
 
-const VERSION = "SINBot Version 0.4.3";
+const VERSION = "SINBot Version 0.5.0";
 
 var SINBot = new Discord.Client();
 
@@ -36,6 +36,10 @@ var compileArgs = function(args) {
 }
 
 var commands = {
+	"chortle": {
+		help: "Make 'em laugh...",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, "*chortle*!"); }
+	},
 	"ping": {
 		help: "Returns pong. Useful for determining if the bot is alive.",
 		process: function(args, bot, message) { bot.sendMessage(message.channel, "Pong!"); }
@@ -231,10 +235,10 @@ SINBot.on("presence", function(user,status,gameId) {
 		if(messagebox.hasOwnProperty(user.id)){
 			console.log("found message for " + user.id);
 			var message = messagebox[user.id];
-			var channel = bot.channels.get("id",message.channel);
+			var channel = SINBot.channels.get("id",message.channel);
 			delete messagebox[user.id];
 			updateMessagebox();
-			bot.sendMessage(channel,message.content);
+			SINBot.sendMessage(channel,message.content);
 		}
 	}
 	}catch(e){}
@@ -248,3 +252,16 @@ SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
 		console.log(VERSION + " logged in with token " + token);
 	}
 });
+
+var Bot = require('./trello.js')
+    ,bot = new Bot({
+        pollFrequency: 1000*60*1 //every minute
+        ,start: true
+        ,trello: {
+            boards: config.TRELLO_BOARDS
+            ,key: config.TRELLO_KEY
+            ,token: config.TRELLO_TOKEN
+            ,events: ['createCard','commentCard','addAttachmentToCard','updateCard','updateCheckItemStateOnCard']
+        }
+        ,discord: SINBot
+    });
