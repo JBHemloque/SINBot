@@ -2,8 +2,9 @@ var Discord = require("discord.js");
 var dice = require('./dice.js');
 var search = require('./search.js');
 var config = require('./config.js');
+var elizabot = require('./elizabot.js');
 
-const VERSION = "SINBot Version 0.5.0";
+const VERSION = "SINBot Version 0.6.0";
 
 var SINBot = new Discord.Client();
 
@@ -20,6 +21,8 @@ var enumerate = function(obj) {
 
 var messagebox;
 
+var elizaStarted = false;
+
 try{
 	messagebox = require("./messagebox.json");
 } catch(e) {
@@ -35,7 +38,38 @@ var compileArgs = function(args) {
 	return args.join(" ");
 }
 
+var startEliza = function(args, bot, message) {
+	if (elizaStarted) {
+		bot.sendMessage(message.channel, elizabot.bye());
+	}
+	bot.sendMessage(message.channel, elizabot.start());
+	elizaStarted = true;
+}
+
+var endEliza = function(args, bot, message) {
+	bot.sendMessage(message.channel, elizabot.bye());
+	elizaStarted = false;
+}
+
 var commands = {
+	"elizastart": {
+		help: "Start a new conversation",
+		process: function(args, bot, message) { startEliza(args, bot, message); }
+	},
+	"elizabye": {
+		help: "Done with your conversation with the bot",
+		process: function(args, bot, message) { endEliza(args, bot, message); }
+	},
+	"eliza": {
+		usage: "<anything - just talk>",
+		help: "Let's talk...",
+		process: function(args, bot, message) {
+			if (!elizaStarted) {
+				startEliza(args, bot, message);
+			}
+			bot.sendMessage(message.channel, elizabot.reply(compileArgs(args)));
+		}
+	},
 	"chortle": {
 		help: "Make 'em laugh...",
 		process: function(args, bot, message) { bot.sendMessage(message.channel, "*chortle*!"); }
@@ -214,7 +248,7 @@ SINBot.on("message", function(message){
 					}
 				}
 			} else {
-				if(Config.respondToInvalid){
+				if(config.respondToInvalid){
 					SINBot.sendMessage(message.channel, "Invalid command " + message.content);
 				}
 			}
