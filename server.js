@@ -4,7 +4,7 @@ var search = require('./search.js');
 var config = require('./config.js');
 var elizabot = require('./elizabot.js');
 
-const VERSION = "SINBot Version 0.6.0";
+const VERSION = "SINBot Version 0.6.1";
 
 var SINBot = new Discord.Client();
 
@@ -243,7 +243,7 @@ SINBot.on("message", function(message){
 				try{
 					cmd.process(args, SINBot, message);
 				} catch(e){
-					if(Config.debug){
+					if(config.debug){
 						SINBot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
 					}
 				}
