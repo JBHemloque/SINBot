@@ -45,3 +45,5 @@ To start the bot just run
 If you update the bot, please run `npm update` before starting it again. If you have
 issues with this, you can try deleting your node_modules folder and then running
 `npm install` again. Please see [Installation](#Installation).
+
+This bot includes code from GreenImp's JavaScript RPG dice roller: https://github.com/GreenImp/rpg-dice-roller
