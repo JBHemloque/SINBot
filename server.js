@@ -4,7 +4,7 @@ var search = require('./search.js');
 var config = require('./config.js');
 var elizabot = require('./elizabot.js');
 
-const VERSION = "SINBot Version 0.6.1";
+const VERSION = "SINBot Version 0.6.2";
 
 var SINBot = new Discord.Client();
 
@@ -69,6 +69,14 @@ var commands = {
 			}
 			bot.sendMessage(message.channel, elizabot.reply(compileArgs(args)));
 		}
+	},
+	"coffee": {
+		help: "We all want it. We all need it",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, "Oh, God, yes..."); }
+	},
+	"drpepper": {
+		help: "Venus wants it. Venus needs it",
+		process: function(args, bot, message) { bot.sendMessage(message.channel, "Yum!"); }
 	},
 	"chortle": {
 		help: "Make 'em laugh...",
