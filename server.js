@@ -89,10 +89,22 @@ var commands = {
     	process: function(args,bot,msg) {
     		var output = "User list:";
     		var users = msg.channel.server.members;
-    		// console.log("Got " + users.length + " users");
     		for (var i = 0; i < users.length; i += 1) {
-    			// console.log(users[i]);
     			output += "\n    " + users[i].username + " [" + users[i].id + "]";
+    		}
+    		bot.sendMessage(msg.channel,output);
+    	}
+    },
+    "adminlist": {
+    	help: "Returns a list of admins for this bot.",
+    	adminOnly: true,
+    	process: function(args,bot,msg) {
+    		var output = "Bot admin list:";
+    		var users = msg.channel.server.members;
+    		for (var i = 0; i < users.length; i += 1) {
+    			if (isAdmin(users[i].id)) {
+	    			output += "\n    " + users[i].username + " [" + users[i].id + "]";
+		    	}
     		}
     		bot.sendMessage(msg.channel,output);
     	}
@@ -195,23 +207,42 @@ var commands = {
 	"help": {
 		help: "Display help for this bot.",
 		process: function(args, bot, message) {
+			var includeAdmin = isAdmin(message.author.id);
 			var output = version + " commands:";
-			var key;
-			for (key in commands) {
-				output += "\n\t!";
-				output += key;
-				var usage = commands[key].usage;
-				if(usage){
-					output += " " + usage;
+			output += "\nBuilt-in:";
+			output += helpForCommands(commands, includeAdmin);
+			for (var i = 0; i < plugins.length; i++) {
+				if (plugins[i].plugin.commands) {
+					output += "\n" + plugins[i].name + ":";
+					output += helpForCommands(plugins[i].plugin.commands);
 				}
-				output += "\n\t\t\t";
-				output += commands[key].help;
 			}
-			// console.log(output);
 			bot.sendMessage(message.channel, output);
 		}
 	},
 };
+
+function helpForCommands(cmds, includeAdmin) {
+	var output = "";
+	var key;
+	for (key in cmds) {
+		var includeCommand = true;
+		if (cmds[key].hasOwnProperty("adminOnly") && cmds[key].adminOnly && (includeAdmin == false)) {
+			includeCommand = false;
+		}
+		if (includeCommand) {
+			output += "\n\t!";
+			output += key;
+			var usage = cmds[key].usage;
+			if(usage){
+				output += " " + usage;
+			}
+			output += "\n\t\t\t";
+			output += cmds[key].help;
+		}
+	}
+	return output;
+}
 
 function findCommand(command) {
 	var cmd = commands[command];

@@ -29,6 +29,8 @@ exports.findCommand = function(command) {
 	return commands[command];
 }
 
+exports.commands = commands;
+
 var elizaStarted = false;
 
 var startEliza = function(args, bot, message) {

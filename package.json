@@ -1,6 +1,6 @@
 {
   "name": "SINBot",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Discord bot for the Final Fantasy XIV free company SIN",
   "main": "main.js",
   "dependencies": {

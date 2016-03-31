@@ -16,6 +16,8 @@ exports.findCommand = function(command) {
   return commands[command];
 }
 
+exports.commands = commands;
+
 /**
 * Checks if the given val is a valid number
 *
