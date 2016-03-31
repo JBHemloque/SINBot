@@ -1,6 +1,6 @@
 {
   "name": "SINBot",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Discord bot for the Final Fantasy XIV free company SIN",
   "main": "main.js",
   "dependencies": {
@@ -11,7 +11,9 @@
     "underscore": "^1.8.3",
     "url": "^0.11.0",
     "trello-events": "^0.1.6",
-    "redis": "^2.4.2"
+    "redis": "^2.4.2",
+    "node-rest-client": "^1.8.0",
+    "async": "^2.0.0-rc.2"
   },
   "devDependencies": {},
   "scripts": {

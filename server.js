@@ -1,5 +1,6 @@
 'use strict';
 
+var async = require('async');
 var Discord = require("discord.js");
 var search = require('./plugins/search.js');
 var config = require('./config.js');
@@ -208,16 +209,33 @@ var commands = {
 		help: "Display help for this bot.",
 		process: function(args, bot, message) {
 			var includeAdmin = isAdmin(message.author.id);
+			var outputArray = [];
 			var output = version + " commands:";
 			output += "\nBuilt-in:";
 			output += helpForCommands(commands, includeAdmin);
+			var index = 0;
+			outputArray[index++] = output;
 			for (var i = 0; i < plugins.length; i++) {
 				if (plugins[i].plugin.commands) {
-					output += "\n" + plugins[i].name + ":";
+					output = plugins[i].name + ":";
 					output += helpForCommands(plugins[i].plugin.commands);
+					outputArray[index++] = output;
 				}
 			}
-			bot.sendMessage(message.channel, output);
+			index = 0;
+			async.forEachSeries(outputArray, function(output, callback) {
+				var cb = callback;
+				bot.sendMessage(message.channel, output, function(error, message) {
+					if (error) {
+						console.log(error);
+					}
+					cb();
+				})
+			}, function(err) {
+				if (err) {
+					console.log(err);
+				}
+			});
 		}
 	},
 };
