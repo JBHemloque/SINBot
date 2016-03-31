@@ -1,10 +1,12 @@
-var Discord = require("discord.js");
-var dice = require('./dice.js');
-var search = require('./search.js');
-var config = require('./config.js');
-var elizabot = require('./elizabot.js');
+'use strict';
 
-const VERSION = "SINBot Version 0.6.2";
+var Discord = require("discord.js");
+var search = require('./plugins/search.js');
+var config = require('./config.js');
+var elizabot = require('./plugins/elizabot.js');
+var utils = require('./utils.js');
+var package_json = require("./package.json");
+var version = package_json.name + " Version " + package_json.version;
 
 var SINBot = new Discord.Client();
 
@@ -21,8 +23,6 @@ var enumerate = function(obj) {
 
 var messagebox;
 
-var elizaStarted = false;
-
 try{
 	messagebox = require("./messagebox.json");
 } catch(e) {
@@ -33,97 +33,77 @@ function updateMessagebox(){
 	require("fs").writeFile("./messagebox.json",JSON.stringify(messagebox,null,2), null);
 }
 
-var compileArgs = function(args) {
-	args.splice(0,1);
-	return args.join(" ");
-}
+var compileArgs = utils.compileArgs;
 
-var startEliza = function(args, bot, message) {
-	if (elizaStarted) {
-		bot.sendMessage(message.channel, elizabot.bye());
-	}
-	bot.sendMessage(message.channel, elizabot.start());
-	elizaStarted = true;
-}
-
-var endEliza = function(args, bot, message) {
-	bot.sendMessage(message.channel, elizabot.bye());
-	elizaStarted = false;
+function isAdmin(id) {
+	return (config.ADMIN_IDS.indexOf(id) > -1);
 }
 
 var commands = {
-	"elizastart": {
-		help: "Start a new conversation",
-		process: function(args, bot, message) { startEliza(args, bot, message); }
-	},
-	"elizabye": {
-		help: "Done with your conversation with the bot",
-		process: function(args, bot, message) { endEliza(args, bot, message); }
-	},
-	"eliza": {
-		usage: "<anything - just talk>",
-		help: "Let's talk...",
-		process: function(args, bot, message) {
-			if (!elizaStarted) {
-				startEliza(args, bot, message);
-			}
-			bot.sendMessage(message.channel, elizabot.reply(compileArgs(args)));
-		}
-	},
-	"coffee": {
-		help: "We all want it. We all need it",
-		process: function(args, bot, message) { bot.sendMessage(message.channel, "Oh, God, yes..."); }
-	},
-	"drpepper": {
-		help: "Venus wants it. Venus needs it",
-		process: function(args, bot, message) { bot.sendMessage(message.channel, "Yum!"); }
-	},
-	"chortle": {
-		help: "Make 'em laugh...",
-		process: function(args, bot, message) { bot.sendMessage(message.channel, "*chortle*!"); }
-	},
 	"ping": {
 		help: "Returns pong. Useful for determining if the bot is alive.",
 		process: function(args, bot, message) { bot.sendMessage(message.channel, "Pong!"); }
 	},
-	"pat": {
-		usage: "<name>",
-		help: "Rough day? Comfort someone with this command.",
-		process: function(args, bot, message) { bot.sendMessage(message.channel, "There, there, " + compileArgs(args)); }
-	},
-	"roll": {
-		usage: "<dice notation>",
-		help: "Dice rolling command. Supports standard dice notation, including F-5/Fudge dice (e.g.: 4dF+2).",
-		process: function(args, bot, message) { bot.sendMessage(message.channel, dice.rollDice(compileArgs(args))); }
-	},
 	"version": {
 		help: "Display version information for this bot.",
-		process: function(args, bot, message) { bot.sendMessage(message.channel, VERSION); }
+		process: function(args, bot, message) { bot.sendMessage(message.channel, version); }
+	},
+	"plugins": {
+		help: "List the plugins loaded on this bot.",
+		adminOnly: true,
+		process: function(args, bot, message) {
+			var output = "Plugins:";
+			for (var i = 0; i < plugins.length; i++) {
+				output += "\n    *" + plugins[i].name;
+			}
+			bot.sendMessage(message.channel, output);
+		}
 	},
 	"servers": {
-        help: "lists servers bot is connected to",
+        help: "Lists servers bot is connected to.",
+		adminOnly: true,
         process: function(args, bot, msg) { bot.sendMessage(msg.channel,bot.servers); }
     },
     "channels": {
-        help: "lists channels bot is connected to",
+        help: "Lists channels bot is connected to.",
+		adminOnly: true,
         process: function(args, bot, msg) { bot.sendMessage(msg.channel,bot.channels); }
     },
     "myid": {
-        help: "returns the user id of the sender",
+        help: "Returns the user id of the sender.",
         process: function(args, bot, msg) { bot.sendMessage(msg.channel,msg.author.id); }
     },
     "say": {
         usage: "<message>",
-        help: "bot says message",
+        help: "Bot says message.",
         process: function(args, bot,msg) { bot.sendMessage(msg.channel,compileArgs(args));}
     },
 	"announce": {
         usage: "<message>",
-        help: "bot says message with text to speech",
+        help: "Bot says message with text to speech.",
         process: function(args, bot,msg) { bot.sendMessage(msg.channel,compileArgs(args),{tts:true});}
+    },
+    "userlist": {
+    	help: "Returns a list of users on this server. This is useful for permissions.",
+		adminOnly: true,
+    	process: function(args,bot,msg) {
+    		var output = "User list:";
+    		var users = msg.channel.server.members;
+    		// console.log("Got " + users.length + " users");
+    		for (var i = 0; i < users.length; i += 1) {
+    			// console.log(users[i]);
+    			output += "\n    " + users[i].username + " [" + users[i].id + "]";
+    		}
+    		bot.sendMessage(msg.channel,output);
+    	}
+    },
+    "isadmin": {
+    	help: "Returns true if the sender is a bot admin",
+    	process: function(args,bot,msg) { bot.sendMessage(msg.channel,isAdmin(msg.author.id)); }
     },
     "userid": {
 		usage: "<user to get id of>",
+		adminOnly: true,
 		help: "Returns the unique id of a user. This is useful for permissions.",
 		process: function(args,bot,msg) {
 			var suffix = compileArgs(args);
@@ -163,7 +143,7 @@ var commands = {
 	},
 	"msg": {
 		usage: "<user> <message to leave user>",
-		help: "leaves a message for a user the next time they come online",
+		help: "leaves a message for a user the next time they come online.",
 		process: function(args,bot,msg) {
 			var user = args.shift();
 			var message = args.join(' ');
@@ -184,7 +164,7 @@ var commands = {
 	},
 	"uptime": {
     	usage: "",
-		help: "returns the amount of time since the bot started",
+		help: "returns the amount of time since the bot started.",
 		process: function(args,bot,msg){
 			var now = Date.now();
 			var msec = now - startTime;
@@ -215,7 +195,7 @@ var commands = {
 	"help": {
 		help: "Display help for this bot.",
 		process: function(args, bot, message) {
-			var output = VERSION + " commands:";
+			var output = version + " commands:";
 			var key;
 			for (key in commands) {
 				output += "\n\t!";
@@ -231,28 +211,46 @@ var commands = {
 			bot.sendMessage(message.channel, output);
 		}
 	},
-	"precis": {
-		usage: "<name>",
-		help: "Generate a precis on someone. We can generate 50 of these a day before Google stops us.",
-		process: function(args, bot, message) { search.precis(compileArgs(args), bot, message); }
-	},
 };
 
+function findCommand(command) {
+	var cmd = commands[command];
+	if (cmd) {
+		return cmd;
+	}
+	for (var i = 0; i < plugins.length; i++) {
+		try {
+			// console.log("Trying " + plugins[i].name + ".findCommand(" + command + ")");
+			cmd = plugins[i].plugin.findCommand(command);
+			if (cmd) {
+				cmd.plugin = plugins[i];
+				return cmd;
+			}
+		} catch(e) {
+			console.log("Couldn't call findCommand() on plugin " + plugins[i].name);
+		}	
+	}
+	return null;
+}
 
 SINBot.on("message", function(message){
 	if (message.author !== SINBot.user) {
 		console.log("[" + SINBot.user + "] Got message from " + message.author + ": " + message);
-		if (message.content.startsWith("!")) {
-			messageContent = message.content.substr(1);
+		if (message.content.startsWith(config.COMMAND_PREFIX)) {
+			var messageContent = message.content.substr(config.COMMAND_PREFIX.length);
 			// First word is a command
 			var args = messageContent.split(" ");
-			var cmd = commands[args[0]];
+			var cmd = findCommand(args[0]);
 			if(cmd) {
-				try{
-					cmd.process(args, SINBot, message);
-				} catch(e){
-					if(config.debug){
-						SINBot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
+				if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && !isAdmin(message.author.id)) {
+					SINBot.sendMessage(message.channel, "Hey " + message.sender + ", you are not allowed to do that!");
+				} else {
+					try{
+						cmd.process(args, SINBot, message);
+					} catch(e){
+						if(config.debug){
+							SINBot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
+						}
 					}
 				}
 			} else {
@@ -291,19 +289,24 @@ SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
 		console.log("Error logging in: " + error);
 	}
 	if (token) {
-		console.log(VERSION + " logged in with token " + token);
+		console.log(version + " logged in with token " + token);
 	}
 });
 
-var Bot = require('./trello.js')
-    ,bot = new Bot({
-        pollFrequency: 1000*60*1 //every minute
-        ,start: true
-        ,trello: {
-            boards: config.TRELLO_BOARDS
-            ,key: config.TRELLO_KEY
-            ,token: config.TRELLO_TOKEN
-            ,events: ['createCard','commentCard','addAttachmentToCard','updateCard','updateCheckItemStateOnCard']
-        }
-        ,discord: SINBot
-    });
+var plugins = config.PLUGINS;
+for (var i = 0; i < plugins.length; i += 1) {
+	try {
+		plugins[i].plugin = require(plugins[i].path);
+		console.log("Loaded plugin " + plugins[i].name);
+	} catch(e) {
+		console.log("couldn't load " + plugins[i].name + "!\n"+e.stack);
+	}
+	try {
+		if (plugins[i].plugin.setup) {
+			// console.log("Running setup for " + plugins[i].name);
+			plugins[i].plugin.setup(plugins[i].config, SINBot);			
+		}
+	} catch(e) {
+		console.log("couldn't run setup for " + plugins[i].name + "!\n"+e.stack);
+	}
+};

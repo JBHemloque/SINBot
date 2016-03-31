@@ -1,30 +1,57 @@
+'use strict';
+
 const LOGIN = "LOGIN_HERE";
 const PASSWORD = "PASSWORD_HERE";
 
-const API_KEY = 'GOOGLE_CUSTOM_SEARCH_API_KEY';
-const LODESTONE_CX = 'LODESTONE_CUSTOM_SEARCH_CX';
-const LODESTONE_SERVER = "LODESTONE_SERVER_YOURE_ON";
-const WIKI_CX = 'RPC_WIKI_CUSTOM_SEARCH_CX';
+const COMMAND_PREFIX = "!_"
 
-const TRELLO_KEY = 'TRELLO_KEY';
-const TRELLO_TOKEN = 'TRELLO_TOKEN';
-const TRELLO_BOARDS = [
+const PLUGINS = [
 	{
-		id:'BOARD_ID',
-		channel:'#operations'
+		name: "Trello",
+		path: "./plugins/trello.js",
+		config: {
+			key: "TRELLO_KEY",
+			token: "TRELLO_TOKEN",
+			boards: [
+				{
+					id:'BOARD_ID',
+					channel:'#operations'
+				},
+				{
+					id:'BOARD_ID',
+					channel:'#operations'
+				}
+			]
+		}
 	},
 	{
-		id:'BOARD_ID',
-		channel:'#operations'
+		name: "Search",
+		path: "./plugins/search.js",
+		config: {
+			apikey: "GOOGLE_CUSTOM_SEARCH_API_KEY",
+			lodestone_cx: "LODESTONE_CUSTOM_SEARCH_CX",
+			lodestone_server: "LODESTONE_SERVER_YOURE_ON",
+			wiki_cx: "RPC_WIKI_CUSTOM_SEARCH_CX"
+		}
+	},
+	{
+		name: "Dice",
+		path: "./plugins/dice.js"
+	},
+	{
+		name: "Eliza",
+		path: "./plugins/eliza.js"
+	},
+	{
+		name: "Simple Commands",
+		path: "./plugins/simple.js"
 	}
 ];
 
+const ADMIN_IDS = ["LIST", "OF", "BOT", "ADMINS", "BY", "DISCORD", "USER_ID"];
+
 module.exports.LOGIN = LOGIN;
 module.exports.PASSWORD = PASSWORD;
-module.exports.API_KEY = API_KEY;
-module.exports.LODESTONE_CX = LODESTONE_CX;
-module.exports.LODESTONE_SERVER = LODESTONE_SERVER;
-module.exports.WIKI_CX = WIKI_CX;
-module.exports.TRELLO_KEY = TRELLO_KEY;
-module.exports.TRELLO_TOKEN = TRELLO_TOKEN;
-module.exports.TRELLO_BOARDS = TRELLO_BOARDS;
+module.exports.COMMAND_PREFIX = COMMAND_PREFIX;
+module.exports.PLUGINS = PLUGINS;
+module.exports.ADMIN_IDS = ADMIN_IDS;

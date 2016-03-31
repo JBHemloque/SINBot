@@ -1,20 +1,49 @@
+'use strict';
+
 var google = require('googleapis');
-var config = require('./config.js');
 var summary = require('node-sumuparticles');
 
 var customsearch = google.customsearch('v1');
 
+var utils = require('../utils.js');
 
+var config;
 
-exports.precis = function(arg, bot, message) {
+var enumerate = function(obj) {
+	var key;
+	for (key in obj) {
+		if (typeof obj[key] !== 'function') {
+			console.log(key + ": " + obj[key]);
+		}
+	}
+}
+
+var commands = {
+	"precis": {
+		usage: "<name>",
+		help: "Generate a precis on someone. We can generate 50 of these a day before Google stops us.",
+		process: function(args, bot, message) { 
+			precis(utils.compileArgs(args), bot, message); 
+		}
+	},
+};
+
+exports.findCommand = function(command) {
+	return commands[command];
+}
+
+exports.setup = function(c, bot) {
+	config = c;
+}
+
+var precis = function(arg, bot, message) {
 	// Lodestone first, then wiki
-	var that = this;
-	that.searchLodestone(arg, function(result) {
+	searchLodestone(arg, function(result) {
 		console.log("Got lodestone result: " + result);
 		if (result) {
 			bot.sendMessage(message.channel, result);
 		}
-		that.searchWiki(arg, function(result) {
+		searchWiki(arg, function(result) {
 			if (result) {
 				bot.sendMessage(message.channel, result);
 			}
@@ -30,9 +59,9 @@ var errorFor = function(searchType, searchTerms, error) {
 	return msg;
 }
 
-exports.searchLodestone = function(arg, callback) {
+var searchLodestone = function(arg, callback) {
 	var searchTerms = arg;
-	customsearch.cse.list({ cx: config.LODESTONE_CX, q: config.LODESTONE_SERVER + " " + searchTerms, auth: config.API_KEY }, function(err, resp) {
+	customsearch.cse.list({ cx: config.lodestone_cx, q: config.lodestone_server + " " + searchTerms, auth: config.apikey }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
 			callback(errorFor("Lodestone", searchTerms, err));
@@ -74,9 +103,9 @@ var summarize = function(name, url, callback) {
 	});
 }
 
-exports.searchWiki = function(arg, callback) {
+var searchWiki = function(arg, callback) {
 	var searchTerms = arg;
-	customsearch.cse.list({ cx: config.WIKI_CX, q: searchTerms, auth: config.API_KEY }, function(err, resp) {
+	customsearch.cse.list({ cx: config.wiki_cx, q: searchTerms, auth: config.apikey }, function(err, resp) {
 		if (err) {
 			console.log('An error occured', err);
 			callback(errorFor("Wiki", searchTerms, err));
