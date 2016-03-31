@@ -7,7 +7,7 @@ var config = require('./config.js');
 var elizabot = require('./plugins/elizabot.js');
 var utils = require('./utils.js');
 var package_json = require("./package.json");
-var version = package_json.name + " Version " + package_json.version;
+var version = config.NAME + " Version " + package_json.version;
 
 var SINBot = new Discord.Client();
 

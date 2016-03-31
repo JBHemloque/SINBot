@@ -1,5 +1,7 @@
 'use strict';
 
+const NAME = "SINBot";
+
 const LOGIN = "LOGIN_HERE";
 const PASSWORD = "PASSWORD_HERE";
 
@@ -45,11 +47,16 @@ const PLUGINS = [
 	{
 		name: "Simple Commands",
 		path: "./plugins/simple.js"
+	},
+	{
+		name: "EDSM Services",
+		path: "./plugins/edsm.js"
 	}
 ];
 
 const ADMIN_IDS = ["LIST", "OF", "BOT", "ADMINS", "BY", "DISCORD", "USER_ID"];
 
+module.exports.NAME = NAME;
 module.exports.LOGIN = LOGIN;
 module.exports.PASSWORD = PASSWORD;
 module.exports.COMMAND_PREFIX = COMMAND_PREFIX;
