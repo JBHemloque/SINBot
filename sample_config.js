@@ -1,6 +1,6 @@
 'use strict';
 
-const NAME = "SINBot";
+const NAME = "Public Name of your Bot";
 
 const LOGIN = "LOGIN_HERE";
 const PASSWORD = "PASSWORD_HERE";

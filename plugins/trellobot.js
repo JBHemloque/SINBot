@@ -3,8 +3,7 @@
 var fs = require('fs')
    ,Trello = require('trello-events');
 
-var cfg, trello, redis, discord, handlers;
-var mechanism = 'file';
+var cfg, trello, discord, handlers;
 
 module.exports = function(config){
 	this.config = cfg = config;
@@ -70,31 +69,10 @@ module.exports.prototype.getConfig = function(){
 	return this.config;
 };
 
-/*
-	handles the choice between redis and local files
-*/
 function bootstrap(callback){
 	//if we can find a file named "last.id" then use that to store the activity timeline bookmark
 	if (fs.existsSync('./last.id')){
 		callback( fs.readFileSync('./last.id').toString() );
-	}else{
-		//redis!
-		mechanism = 'redis';
-		if (process.env.REDISTOGO_URL) {
-			var rtg   = require('url').parse(process.env.REDISTOGO_URL);
-			redis = require('redis').createClient(rtg.port, rtg.hostname);
-			redis.auth(rtg.auth.split(':')[1]);
-		} else {
-			redis = require('redis').createClient();
-		}
-		redis.get('prevId', function(err, reply){
-			if (err){
-				console.error(err);
-				process.exit(1);
-			}
-			if (reply === null){ reply = 0; }
-			return callback(reply);
-		});
 	}
 }
 
@@ -190,16 +168,7 @@ function trunc(s){
 		return s.slice(0,199) + ' [...]';
 	return s;
 }
-function writePrevId(valu){
-	if (mechanism === 'file'){
-		fs.writeFileSync('./last.id', valu);
-	}else{
-		redis.set('prevId', valu, function(err){
-			if (err){
-				console.error('Error setting new value to redis\n-----------------------------');
-				console.error(err);
-				process.exit(1);
-			}
-		});
-	}
+function writePrevId(id){
+	fs.writeFileSync('./last.id', id);
+
 }

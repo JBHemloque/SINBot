@@ -7,6 +7,7 @@ var config = require('./config.js');
 var elizabot = require('./plugins/elizabot.js');
 var utils = require('./utils.js');
 var package_json = require("./package.json");
+var fs = require("fs");
 var version = config.NAME + " Version " + package_json.version;
 
 var SINBot = new Discord.Client();
@@ -23,6 +24,7 @@ var enumerate = function(obj) {
 }
 
 var messagebox;
+var aliases;
 
 try{
 	messagebox = require("./messagebox.json");
@@ -30,8 +32,15 @@ try{
 	//no stored messages
 	messagebox = {};
 }
+try{
+	aliases = require("./alias.json");
+} catch(e) {
+	//No aliases defined
+	aliases = {};
+}
+
 function updateMessagebox(){
-	require("fs").writeFile("./messagebox.json",JSON.stringify(messagebox,null,2), null);
+	fs.writeFile("./messagebox.json",JSON.stringify(messagebox,null,2), null);
 }
 
 var compileArgs = utils.compileArgs;
@@ -41,6 +50,42 @@ function isAdmin(id) {
 }
 
 var commands = {
+	"alias": {
+		usage: "<command> <text to display>",
+		adminOnly: true,
+		help: "Creates a command alias -- e.g. !ping can output Pong!",
+		process: function(args, bot, message) {
+			// Get rid of the command
+			args.shift();
+			var alias = args.shift();
+			var output = args.join(" ");
+			var command = findCommand(alias);
+			if (command) {
+				bot.sendMessage(message.channel, "Sorry, " + alias + " is a command.");
+			} else {
+				aliases[alias] = {alias: alias, output: output};
+				//now save the new alias
+				fs.writeFile("./alias.json",JSON.stringify(aliases,null,2), null);
+				bot.sendMessage(message.channel,"created alias " + alias);
+			}
+		}
+	},
+	"aliases": {
+		help: "Lists the aliases available.",
+		process: function(args, bot, message) {
+			var output = "Aliases:";
+			var hasAliases = false;
+			var key;
+			for (key in aliases) {
+				output += "\n\t" + key + " -> " + aliases[key].output;
+				hasAliases = true;
+			}
+			if (!hasAliases) {
+				output += " None"
+			}
+			bot.sendMessage(message.channel, output);
+		}
+	},
 	"ping": {
 		help: "Returns pong. Useful for determining if the bot is alive.",
 		process: function(args, bot, message) { bot.sendMessage(message.channel, "Pong!"); }
@@ -303,7 +348,10 @@ SINBot.on("message", function(message){
 					}
 				}
 			} else {
-				if(config.respondToInvalid){
+				cmd = aliases[args[0]];
+				if (cmd) {
+					SINBot.sendMessage(message.channel, cmd.output);
+				} else if(config.respondToInvalid){
 					SINBot.sendMessage(message.channel, "Invalid command " + message.content);
 				}
 			}
