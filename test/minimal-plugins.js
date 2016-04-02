@@ -2,7 +2,7 @@ var assert = require('assert');
 var plugin = require("../plugins/minimal.js");
 
 describe('minimal-plugin', function(){
-    it('should export a command object', function(){
+    it('should export a commands object', function(){
         assert(typeof(plugin.commands) == 'object');
     });
 

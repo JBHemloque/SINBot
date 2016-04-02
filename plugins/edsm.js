@@ -62,7 +62,7 @@ var commands = {
 			var output = "Supported stellar aliases:";
 			var hasAliases = false;
 			for (key in edsm.aliases) {
-				output += "\n    *" + edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
+				output += "\n\t" + edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
 				hasAliases = true;
 			}
 			if (!hasAliases) {
