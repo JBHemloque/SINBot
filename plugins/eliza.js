@@ -16,11 +16,10 @@ var commands = {
 		usage: "<anything - just talk>",
 		help: "Let's talk...",
 		process: function(args, bot, message) {
-			console.log("Got eliza command");
 			if (!elizaStarted) {
 				startEliza(args, bot, message);
 			}
-			bot.sendMessage(message.channel, elizabot.reply(utils.compireArgs(args)));
+			bot.sendMessage(message.channel, elizabot.reply(utils.compileArgs(args)));
 		}
 	},
 };

@@ -1,7 +1,6 @@
 'use strict';
 
 exports.reply = function (r) {
-	console.log("reply(" + r + ")");
 	if (this.bot == null) {
 		this.bot = new ElizaBot(false);
 	} 
