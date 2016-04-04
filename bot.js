@@ -389,12 +389,42 @@ function findCommand(command) {
 	return null;
 }
 
+function botShouldHandleCommand(bot, message) {
+	// If there's a command prefix, use that. Otherwise, only do this if the message
+	// starts with a mention of the bot.
+	if (config.COMMAND_PREFIX) {
+		return message.content.startsWith(config.COMMAND_PREFIX);
+	} else {
+		return message.content.startsWith("<@" + bot.user.id + ">");
+	}
+	return false;
+}
+
+var defaultCommandHandler = function(args, bot, message) {
+	if(config.respondToInvalid){
+		bot.sendMessage(message.channel, "Invalid command " + message.content);
+	} 
+}
+
+function getMessageArgs(message, stripCommand) {
+	var messageContent = message.content;
+	var stripFirstArg = true;
+	if (config.COMMAND_PREFIX) {
+		var messageContent = message.content.substr(config.COMMAND_PREFIX.length);
+		stripFirstArg = false;
+	}
+	// First word is a command
+	var args = messageContent.split(" ");
+	if (stripFirstArg && stripCommand) {
+		args.shift();
+	}
+	return args;
+}
+
 function procCommand(bot, message) {
 	if (message.author !== bot.user) {
-		if (message.content.startsWith(config.COMMAND_PREFIX)) {
-			var messageContent = message.content.substr(config.COMMAND_PREFIX.length);
-			// First word is a command
-			var args = messageContent.split(" ");
+		if (botShouldHandleCommand(bot, message)) {
+			var args = getMessageArgs(message, true);
 			var cmd = findCommand(args[0]);
 			if(cmd) {
 				if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && !isAdmin(message.author.id)) {
@@ -412,8 +442,8 @@ function procCommand(bot, message) {
 				cmd = aliases[args[0]];
 				if (cmd) {
 					bot.sendMessage(message.channel, cmd.output);
-				} else if(config.respondToInvalid){
-					bot.sendMessage(message.channel, "Invalid command " + message.content);
+				} else {
+					defaultCommandHandler(getMessageArgs(message, false), bot, message);
 				}
 			}
 		} else if (message.author != bot.user && message.isMentioned(bot.user)) {
@@ -442,7 +472,7 @@ function startBot(bot, cfg) {
 			plugins[i].plugin = require(plugins[i].path);
 			console.log("Loaded plugin " + plugins[i].name);
 		} catch(e) {
-			console.log("couldn't load " + plugins[i].name + "!\n"+e.stack);
+			console.log("Couldn't load " + plugins[i].name + "!\n"+e.stack);
 		}
 		try {
 			if (plugins[i].plugin.setup) {
@@ -450,7 +480,18 @@ function startBot(bot, cfg) {
 				plugins[i].plugin.setup(plugins[i].config, bot);			
 			}
 		} catch(e) {
-			console.log("couldn't run setup for " + plugins[i].name + "!\n"+e.stack);
+			console.log("Couldn't run setup for " + plugins[i].name + "!\n"+e.stack);
+		}
+		try {
+			if (plugins[i].defaultCommandHandler) {
+				var dch = plugins[i].plugin.findCommand(plugins[i].defaultCommandHandler);
+				if (dch) {
+					console.log("Setting default command handler to " + plugins[i].defaultCommandHandler);
+					defaultCommandHandler = dch.process;
+				}
+			}
+		} catch (e) {
+			console.log("Couldn't set default command handler for " + plugins[i].name + "!\n" + e.stack);
 		}
 	};
 }

@@ -60,7 +60,7 @@ describe('bot', function(){
     	assert(handledCommand == false);
     });
 
-    it('should ignore non-command messages starting with bang', function() {
+    it('should ignore non-command messages starting with bang with bang config', function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
     		handledCommand = true;
@@ -70,7 +70,7 @@ describe('bot', function(){
     	assert(handledCommand == false);
     });
 
-    it('should respond to calls for itself', function() {
+    it('should respond to calls for itself with bang config', function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
     		if (message == mocks.nonAdminUser.name + ", you called?") {
@@ -80,7 +80,7 @@ describe('bot', function(){
     	bot.startBot(client, mocks.makeConfig());
     	bot.procCommand(client, mocks.makeMessage("Hello, " + client.user.name + "!", mocks.nonAdminUser));
     	assert(handledCommand);
-    })
+    });
 
     it('should process ping', function() {
     	var handledCommand = false;

@@ -66,12 +66,20 @@ function makeClient(sendMessageCallback, plugins, setChannelTopicCallback) {
 }
 
 function makeConfig(plugins) {
+	return _makeConfig("!", plugins);
+}
+
+function makeDirectConfig(plugins) {
+	return _makeConfig(null, plugins);
+}
+
+function _makeConfig(prefix, plugins) {
 	if (!plugins) {
 		plugins = {};
 	}
 	return {
 		NAME: "Test Bot",
-		COMMAND_PREFIX: "!",
+		COMMAND_PREFIX: prefix,
 		PLUGINS: plugins,
 		ADMIN_IDS: [adminId]
 	};
