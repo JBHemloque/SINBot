@@ -18,6 +18,7 @@ function makeTextChannel(name) {
 	return {
 		name: name,
 		topic: "Test TextChannel",
+		isPrivate: false,
 		lastMessage: null,
 		messages: [],
 		toString: function() {
@@ -25,6 +26,21 @@ function makeTextChannel(name) {
 		},
 		server: makeServer([adminUser, nonAdminUser])
 	};
+}
+
+function makePMChannel(name, rec) {
+	return {
+		name: name,
+		topic: "Test PMChannel",
+		recipient: rec,
+		isPrivate: true,
+		lastMessage: null,
+		messages: [],
+		toString: function() {
+			return this.name;
+		},
+		server: makeServer([adminUser, nonAdminUser])
+	}; 
 }
 
 function makeUser(userName, userId) {
@@ -38,12 +54,12 @@ function makeUser(userName, userId) {
 	};
 }
 
-function makeMessage(message, user) {
+function _makeMessage(message, user, channel) {
 	if (!user) {
 		user = nonAdminUser;
 	}
 	return {
-		channel: makeTextChannel(),
+		channel: channel,
 		author: user,
 		content: message,
 		isMentioned: function(user) {
@@ -53,6 +69,17 @@ function makeMessage(message, user) {
 			return this.content;
 		}
 	};
+}
+
+function makeMessage(message, user) {
+	return _makeMessage(message, user, makeTextChannel());
+}
+
+function makePrivateMessage(message, user, recipient) {
+	if (!recipient) {
+		recipient = user;
+	}
+	return _makeMessage(message, user, makePMChannel("PM", recipient));
 }
 
 function makeClient(sendMessageCallback, plugins, setChannelTopicCallback) {
@@ -92,8 +119,10 @@ var nonAdminUser = makeUser("Non-admin user", nonAdminId);
 var adminUser = makeUser("Admin user", adminId);
 
 exports.makeMessage = makeMessage;
+exports.makePrivateMessage = makePrivateMessage;
 exports.makeClient = makeClient;
 exports.makeConfig = makeConfig;
+exports.makeDirectConfig = makeDirectConfig;
 exports.nonAdminId = nonAdminId;
 exports.adminId = adminId;
 exports.nonAdminUser = nonAdminUser;

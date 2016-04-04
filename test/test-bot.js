@@ -70,15 +70,16 @@ describe('bot', function(){
     	assert(handledCommand == false);
     });
 
-    it('should respond to calls for itself with bang config', function() {
+    it('should process commands via calls to itself', function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
-    		if (message == mocks.nonAdminUser.name + ", you called?") {
-    			handledCommand = true;
+    		if (message == "Pong!") {
+	    		handledCommand = true;
     		}
     	});
-    	bot.startBot(client, mocks.makeConfig());
-    	bot.procCommand(client, mocks.makeMessage("Hello, " + client.user.name + "!", mocks.nonAdminUser));
+    	bot.startBot(client, mocks.makeDirectConfig());
+    	var message = mocks.makePrivateMessage("ping", mocks.nonAdminUser, bot.user);
+    	bot.procCommand(client, message);
     	assert(handledCommand);
     });
 

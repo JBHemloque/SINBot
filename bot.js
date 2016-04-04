@@ -263,7 +263,6 @@ var commands = {
 			if (user) {
 				var message = args.join(' ');
 				if (message) {
-					console.log("Got a message: " + message);
 					if(user.startsWith('<@')){
 						user = user.substr(2,user.length-3);
 					}
@@ -392,12 +391,29 @@ function findCommand(command) {
 function botShouldHandleCommand(bot, message) {
 	// If there's a command prefix, use that. Otherwise, only do this if the message
 	// starts with a mention of the bot.
-	if (config.COMMAND_PREFIX) {
-		return message.content.startsWith(config.COMMAND_PREFIX);
-	} else {
-		return message.content.startsWith("<@" + bot.user.id + ">");
+	var result = {handleCommand: false};
+	var messageContent = message.content;
+	var stripFirstArg = false;
+	if (config.COMMAND_PREFIX) {		
+		if (message.content.startsWith(config.COMMAND_PREFIX)) {
+			result.handleCommand = true;
+			messageContent = message.content.substr(config.COMMAND_PREFIX.length);
+		}
+	} else if (message.content.startsWith("<@" + bot.user.id + ">")) {
+		stripFirstArg = true;
+		result.handleCommand = true;
+	} else if (message.channel.isPrivate) {
+		stripFirstArg = false;
+		result.handleCommand = true;
 	}
-	return false;
+	if (result.handleCommand) {
+		var args = messageContent.split(" ");
+		if (stripFirstArg) {
+			args.shift();
+		}
+		result.args = args;
+	}
+	return result;
 }
 
 var defaultCommandHandler = function(args, bot, message) {
@@ -406,32 +422,17 @@ var defaultCommandHandler = function(args, bot, message) {
 	} 
 }
 
-function getMessageArgs(message, stripCommand) {
-	var messageContent = message.content;
-	var stripFirstArg = true;
-	if (config.COMMAND_PREFIX) {
-		var messageContent = message.content.substr(config.COMMAND_PREFIX.length);
-		stripFirstArg = false;
-	}
-	// First word is a command
-	var args = messageContent.split(" ");
-	if (stripFirstArg && stripCommand) {
-		args.shift();
-	}
-	return args;
-}
-
 function procCommand(bot, message) {
 	if (message.author !== bot.user) {
-		if (botShouldHandleCommand(bot, message)) {
-			var args = getMessageArgs(message, true);
-			var cmd = findCommand(args[0]);
+		var res = botShouldHandleCommand(bot, message);
+		if (res.handleCommand) {
+			var cmd = findCommand(res.args[0]);
 			if(cmd) {
 				if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && !isAdmin(message.author.id)) {
 					bot.sendMessage(message.channel, "Hey " + message.sender + ", you are not allowed to do that!");
 				} else {
 					try{
-						cmd.process(args, bot, message);
+						cmd.process(res.args, bot, message);
 					} catch(e){
 						if(config.debug){
 							bot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
@@ -439,11 +440,11 @@ function procCommand(bot, message) {
 					}
 				}
 			} else {
-				cmd = aliases[args[0]];
+				cmd = aliases[res.args[0]];
 				if (cmd) {
 					bot.sendMessage(message.channel, cmd.output);
 				} else {
-					defaultCommandHandler(getMessageArgs(message, false), bot, message);
+					defaultCommandHandler(res.args, bot, message);
 				}
 			}
 		} else if (message.author != bot.user && message.isMentioned(bot.user)) {
@@ -466,6 +467,12 @@ function startBot(bot, cfg) {
 
 	version = config.NAME + " Version " + package_json.version;
 	plugins = config.PLUGINS;
+
+	// if (config.COMMAND_PREFIX) {
+	// 	console.log("Command prefix: " + config.COMMAND_PREFIX);
+	// } else {
+	// 	console.log("Starting in direct-mention mode...");
+	// }
 
 	for (var i = 0; i < plugins.length; i += 1) {
 		try {
