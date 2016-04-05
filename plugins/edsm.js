@@ -66,19 +66,26 @@ var commands = {
 		}		
 	},
 	"sysalias": {
-		usage: "<alias> -> <system>",
+		usage: "<alias> -> <system> [-> <optional expedition>]",
 		adminOnly: true,
 		help: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0",
 		process: function(args, bot, msg) {
 			var systems = utils.compileArgs(args).split("->");
-			if (systems.length == 2) {
+			if (systems.length >= 2) {
 				systems[0] = systems[0].trim();
 				systems[1] = systems[1].trim();
 				if ((systems[0].length > 0) && (systems[1].length > 0)) {
+					var output = "created system alias from " + systems[0] + " -> " + systems[1];
 					edsm.aliases[systems[0].toLowerCase()] = {alias: systems[0], system: systems[1]};
+					// Optional expedition
+					if (systems.length == 3) {
+						systems[2] = systems[2].trim();
+						edsm.aliases[systems[0].toLowerCase()].expedition = systems[2];
+						output += " for " + systems[2];
+					}
 					//now save the new alias
 					writeAliases();
-					bot.sendMessage(msg.channel,"created system alias from " + systems[0] + " -> " + systems[1]);
+					bot.sendMessage(msg.channel,output);
 				} else {
 					utils.displayUsage(bot,msg,this);
 				}

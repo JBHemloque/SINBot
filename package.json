@@ -1,6 +1,6 @@
 {
   "name": "SINBot",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Discord bot with plugins appropriate for Final Fantasy 14 and Elite Dangerous",
   "main": "main.js",
   "dependencies": {
