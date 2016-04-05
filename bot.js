@@ -99,17 +99,19 @@ var commands = {
 	"aliases": {
 		help: "Lists the aliases available.",
 		process: function(args, bot, message) {
-			var output = "Aliases:";
+			var i = 0;
+			var outputArray = [];
+			outputArray[i++] = "Aliases:";
 			var hasAliases = false;
 			var key;
 			for (key in aliases) {
-				output += "\n\t" + key + " -> " + aliases[key].output;
+				outputArray[i++] = "\n\t" + key + " -> " + aliases[key].output;
 				hasAliases = true;
 			}
 			if (!hasAliases) {
-				output += " None"
+				outputArray[0] += " None"
 			}
-			bot.sendMessage(message.channel, output);
+			utils.sendMessages(bot, message, outputArray);
 		}
 	},
 	"clear_alias": {
@@ -329,20 +331,7 @@ var commands = {
 					outputArray[index++] = output;
 				}
 			}
-			index = 0;
-			async.forEachSeries(outputArray, function(output, callback) {
-				var cb = callback;
-				bot.sendMessage(message.channel, output, function(error, message) {
-					if (error) {
-						console.log(error);
-					}
-					cb();
-				})
-			}, function(err) {
-				if (err) {
-					console.log(err);
-				}
-			});
+			utils.sendMessages(bot, message, outputArray);
 		}
 	},
 };
@@ -468,6 +457,11 @@ function startBot(bot, cfg) {
 	version = config.NAME + " Version " + package_json.version;
 	plugins = config.PLUGINS;
 
+	var botcfg = {
+		aliases: aliases,
+		writeAliases: writeAliases
+	};
+
 	// if (config.COMMAND_PREFIX) {
 	// 	console.log("Command prefix: " + config.COMMAND_PREFIX);
 	// } else {
@@ -484,7 +478,7 @@ function startBot(bot, cfg) {
 		try {
 			if (plugins[i].plugin.setup) {
 				// console.log("Running setup for " + plugins[i].name);
-				plugins[i].plugin.setup(plugins[i].config, bot);			
+				plugins[i].plugin.setup(plugins[i].config, bot, botcfg);			
 			}
 		} catch(e) {
 			console.log("Couldn't run setup for " + plugins[i].name + "!\n"+e.stack);
@@ -508,3 +502,5 @@ exports.plugins = plugins;
 exports.startBot = startBot;
 exports.procCommand = procCommand;
 exports.procPresence = procPresence;
+exports.aliases = aliases;
+exports.writeAliases = writeAliases;

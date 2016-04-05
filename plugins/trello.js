@@ -6,7 +6,7 @@ exports.findCommand = function(command) {
 	return null;
 }
 
-exports.setup = function(config, bot) {
+exports.setup = function(config, bot, botcfg) {
 	Bot = require('./trellobot.js')
     ,bot = new Bot({
         pollFrequency: 1000*60*1 //every minute
