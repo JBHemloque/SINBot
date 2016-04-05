@@ -3,6 +3,7 @@
 var utils = require('../utils.js');
 var edsm = require('./edsmbot.js');
 var fs = require("fs");
+var alphanum = require("../alphanum.js");
 
 var botcfg = null;
 
@@ -188,7 +189,7 @@ var commands = {
 				if (!hasAliases) {
 					aliasArray[i] += " None";
 				}
-				aliasArray.sort();
+				aliasArray.sort(alphanum.alphanumCase);
 
 				hasAliases = false;
 				i = 0;
@@ -202,7 +203,7 @@ var commands = {
 				if (!hasAliases) {
 					sysaliasArray[i] += " None";
 				}
-				sysaliasArray.sort();
+				sysaliasArray.sort(alphanum.alphanumCase);
 
 				i = 0;
 				outputArray[i++] = expedition;
@@ -242,9 +243,11 @@ var commands = {
 			// Generate a sorted array here
 			var explist = [];
 			for (key in expeditions) {
-				explist[i++] = expeditions[key];
+				if (typeof expeditions[key] != 'function') {
+					explist[i++] = expeditions[key];
+				}
 			}
-			explist.sort();
+			explist.sort(alphanum.alphanumCase);
 			i = 0;
 			outputArray[i++] = "Active expeditions:";
 			var hasExpeditions = false;

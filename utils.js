@@ -28,17 +28,3 @@ exports.sendMessages = function(bot, message, outputArray) {
 		}
 	});
 }
-
-// sort on values
-exports.srt = function(desc) {
-	return function(a,b){
-		return desc ? ~~(a < b) : ~~(a > b);
-	};
-}
-
-// sort on key values
-exports.keysrt = function(key,desc) {
-	return function(a,b){
-		return desc ? ~~(a[key] < b[key]) : ~~(a[key] > b[key]);
-	}
-}
