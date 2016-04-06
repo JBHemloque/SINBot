@@ -126,7 +126,7 @@ var commands = {
 	"expsa": {
 		usage: "<system alias> -> <expedition>",
 		adminOnly: true,
-		help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",
+		help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",		
 		process: function(args, bot, msg) {
 			var query = utils.compileArgs(args).split("->");
 			if (query.length == 2) {
@@ -149,21 +149,36 @@ var commands = {
 		}
 	},
 	"expa": {
-		usage: "<alias> -> <expedition>",
+		usage: "<alias> -> <expedition>[ -> <optional alias>]",
 		adminOnly: true,
 		help: "Assigns an alias to an expedition, allowing it to be grouped with the explist command.",
+		extendedhelp: "Assigns an alias to an expedition, allowing it to be grouped with the explist command. You can optionally include the full alias, allowing you to easily edit an alias attached to an expedition without having to reassign it to the expedition in another step.",
 		process: function(args, bot, msg) {
 			var query = utils.compileArgs(args).split("->");
-			if (query.length == 2) {
+			if (query.length >= 2) {
 				query[0] = query[0].trim();
 				query[1] = query[1].trim();
 				if ((query[0].length > 0) && (query[1].length > 0)) {
-					if (botcfg.aliases[query[0].toLowerCase()]) {
-						botcfg.aliases[query[0].toLowerCase()].expedition = query[1];
-						botcfg.writeAliases();
-						bot.sendMessage(msg.channel, "Assigned " + query[0] + " to " + query[1]);
+					// If there is a third arg, then go through the full create-alias path:
+					if (query.length == 3) {
+						var alias = botcfg.makeAlias(query[0], query[2].trim(), function(alias) {
+							alias.expedition = query[1];
+						});
+						if (alias.displayUsage) {
+							displayUsage(bot, msg, this);
+						} else if (alias.error) {
+							bot.sendMessage(msg.channel, alias.message);
+						} else {
+							bot.sendMessage(msg.channel,"Created alias " + alias.alias + " in expedition " + query[1]);
+						}
 					} else {
-						bot.sendMessage(msg.channel, query[0] + " is not in my records.")
+						if (botcfg.aliases[query[0].toLowerCase()]) {
+							botcfg.aliases[query[0].toLowerCase()].expedition = query[1];
+							botcfg.writeAliases();
+							bot.sendMessage(msg.channel, "Assigned " + query[0] + " to " + query[1]);
+						} else {
+							bot.sendMessage(msg.channel, query[0] + " is not in my records.")
+						}
 					}
 				} else {
 					utils.displayUsage(bot,msg,this);

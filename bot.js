@@ -63,16 +63,48 @@ function isAdmin(id) {
 	return (config.ADMIN_IDS.indexOf(id) > -1);
 }
 
-function makeAlias(args) {
+function makeAliasStruct(alias, output) {
+	return {alias: alias, output: output};
+}
+
+function makeAliasStructFromArgs(args) {
 	// Get rid of the command
 	args.shift();
 	var alias = args.shift();
 	var output = args.join(" ");
-	return {alias: alias, output: output};
+	return makeAliasStruct(alias, output);
 }
 
 function writeAliases() {
 	fs.writeFile("./alias.json",JSON.stringify(aliases,null,2), null);
+}
+
+function makeAliasFromArgs(args, addExtrasCallback) {
+	// Get rid of the command
+	args.shift();
+	var alias = args.shift();
+	var output = args.join(" ");
+	return makeAlias(alias, output, addExtrasCallback);
+}
+
+function makeAlias(alias, output, addExtrasCallback) {
+	var aliasStruct = makeAliasStruct(alias, output);
+	if (aliasStruct.alias && aliasStruct.output) {
+		var command = findCommand(aliasStruct.alias);
+		if (command) {
+			return {error: true, message: "Sorry, " + aliasStruct.alias + " is a command."};
+		} else {
+			if (addExtrasCallback) {
+				addExtrasCallback(aliasStruct);
+			}
+			aliases[aliasStruct.alias] = aliasStruct;
+			//now save the new alias
+			writeAliases();
+			return aliasStruct;
+		}
+	} else {
+		return {displayUsage: true};
+	}
 }
 
 var commands = {
@@ -82,19 +114,13 @@ var commands = {
 		help: "Creates a command alias -- e.g. !ping can output Pong!",
 		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered.",
 		process: function(args, bot, message) {
-			var alias = makeAlias(args);
-			if (alias.alias && alias.output) {
-				var command = findCommand(alias.alias);
-				if (command) {
-					bot.sendMessage(message.channel, "Sorry, " + alias.alias + " is a command.");
-				} else {
-					aliases[alias.alias] = alias;
-					//now save the new alias
-					writeAliases();
-					bot.sendMessage(message.channel,"Created alias " + alias.alias);
-				}
-			} else {
+			var alias = makeAliasFromArgs(args);
+			if (alias.displayUsage) {
 				displayUsage(bot, message, this);
+			} else if (alias.error) {
+				bot.sendMessage(message.channel, alias.message);
+			} else {
+				bot.sendMessage(message.channel,"Created alias " + alias.alias);
 			}
 		}
 	},
@@ -121,7 +147,7 @@ var commands = {
 		adminOnly: true,
 		help: "Deletes an alias.",
 		process: function(args, bot, message) {
-			var alias = makeAlias(args);
+			var alias = makeAliasStructFromArgs(args);
 			if(alias.alias) {
 				if (aliases[alias.alias]) {
 					delete aliases[alias.alias];
@@ -490,7 +516,8 @@ function startBot(bot, cfg) {
 
 	var botcfg = {
 		aliases: aliases,
-		writeAliases: writeAliases
+		writeAliases: writeAliases,
+		makeAlias: makeAlias
 	};
 
 	// if (config.COMMAND_PREFIX) {
@@ -534,4 +561,5 @@ exports.startBot = startBot;
 exports.procCommand = procCommand;
 exports.procPresence = procPresence;
 exports.aliases = aliases;
+exports.makeAlias = makeAlias;
 exports.writeAliases = writeAliases;
