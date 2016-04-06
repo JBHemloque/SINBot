@@ -54,6 +54,7 @@ function checkForMessages(bot, user) {
 			bot.sendMessage(message.channel,message.content);
 		}
 	}catch(e){
+		console.log("Error reading messagebox");
 		console.log(e);
 	}
 }
@@ -79,6 +80,7 @@ var commands = {
 		usage: "<command> <text to display>",
 		adminOnly: true,
 		help: "Creates a command alias -- e.g. !ping can output Pong!",
+		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered.",
 		process: function(args, bot, message) {
 			var alias = makeAlias(args);
 			if (alias.alias && alias.output) {
@@ -105,7 +107,7 @@ var commands = {
 			var hasAliases = false;
 			var key;
 			for (key in aliases) {
-				outputArray[i++] = "\n\t" + key + " -> " + aliases[key].output;
+				outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
 				hasAliases = true;
 			}
 			if (!hasAliases) {
@@ -315,50 +317,79 @@ var commands = {
 		}
 	},
 	"help": {
-		help: "Display help for this bot.",
+		usage: "[<command>]",
+		help: "Display help for this bot, or for specific commands, or plugins",
 		process: function(args, bot, message) {
-			var includeAdmin = isAdmin(message.author.id);
-			var outputArray = [];
-			var output = version + " commands:";
-			output += "\nBuilt-in:";
-			output += helpForCommands(commands, includeAdmin);
-			var index = 0;
-			outputArray[index++] = output;
-			for (var i = 0; i < plugins.length; i++) {
-				if (plugins[i].plugin.commands) {
-					output = plugins[i].name + ":";
-					output += helpForCommands(plugins[i].plugin.commands);
-					outputArray[index++] = output;
+			var command = compileArgs(args);
+			if (command) {
+				var output = command + " is not a valid command or plugin";
+				var cmd = findCommand(command);				
+				if (cmd) {
+					output = utils.bold(command);
+					if (cmd.usage) {
+						output += ("\t" + utils.italic(cmd.usage));
+					}
+					if (cmd.extendedhelp) {
+						output += ("\n\n" + cmd.extendedhelp);
+					} else {
+						output += ("\n\n" + cmd.help);
+					}
+				} else {
+					for (var i = 0; i < plugins.length; i++) {
+						if (plugins[i].name.toLowerCase() === command.toLowerCase()) {
+							output = helpForCommands(plugins[i].name, plugins[i].plugin.commands);
+						}
+					}
 				}
-			}
-			utils.sendMessages(bot, message, outputArray);
+				bot.sendMessage(message.channel, output);
+			} else {
+				var includeAdmin = isAdmin(message.author.id);
+				var outputArray = [];
+				var index = 0;
+				outputArray[index++] = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
+				for (var i = 0; i < plugins.length; i++) {
+					if (plugins[i].plugin.commands) {
+						outputArray[index++] = helpForCommands(plugins[i].name, plugins[i].plugin.commands);
+					}
+				}
+				utils.sendMessages(bot, message, outputArray);
+			}			
 		}
 	},
 };
 
-function helpForCommands(cmds, includeAdmin) {
-	var output = "";
+function dumpMessages(messageArray) {
+	console.log("Dumping message array:");
+	for (var i = 0; i < messageArray.length; i++) {
+		console.log("Message " + i + " (is a " + typeof messageArray[i] + "):");
+		console.log(messageArray[i]);
+	}
+}
+
+function helpForCommands(header, cmds, includeAdmin) {
+	var output = utils.bold(header) + ":";
 	var key;
 	for (key in cmds) {
 		var includeCommand = true;
-		if (cmds[key].hasOwnProperty("adminOnly") && cmds[key].adminOnly && (includeAdmin == false)) {
+		if (cmds[key.toLowerCase()].hasOwnProperty("adminOnly") && cmds[key].adminOnly && (includeAdmin == false)) {
 			includeCommand = false;
 		}
 		if (includeCommand) {
 			output += "\n\t!";
-			output += key;
-			var usage = cmds[key].usage;
+			output += utils.bold(key);
+			var usage = utils.italic(cmds[key.toLowerCase()].usage);
 			if(usage){
 				output += " " + usage;
 			}
 			output += "\n\t\t\t";
-			output += cmds[key].help;
+			output += cmds[key.toLowerCase()].help;
 		}
 	}
 	return output;
 }
 
 function findCommand(command) {
+	command = command.toLowerCase();
 	var cmd = commands[command];
 	if (cmd) {
 		return cmd;

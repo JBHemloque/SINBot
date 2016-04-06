@@ -14,7 +14,8 @@ function writeAliases() {
 var commands = {
 	"loc": {
 		usage: "<name>",
-		help: 'Gets the location of a commander',
+		help: 'Gets the location of a commander.',
+		extendedhelp: "Gets the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
 		process: function(args,bot,msg) {
 			if (args.length > 1) {
 				edsm.getPosition(utils.compileArgs(args), bot, msg);
@@ -25,7 +26,8 @@ var commands = {
 	},
 	"syscoords": {
 		usage: "<system>",
-		help: 'Gets the galactic coordinates of a system',
+		help: 'Gets the galactic coordinates of a system.',
+		extendedhelp: "Gets the galactic coordinates of a system. We use information from EDSM to do this. The system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
 		process: function(args,bot,msg) {
 			if (args.length > 1) {
 				edsm.getSystemCoords(utils.compileArgs(args), bot, msg);
@@ -36,7 +38,8 @@ var commands = {
 	},
 	"cmdrcoords": {
 		usage: "<name>",
-		help: "Gets the locatinon of a commander, including system coordinates, if they are available",
+		help: "Gets the location of a commander, including system coordinates, if they are available.",
+		extendedhelp: "Gets the location of a commander, including system coordinates. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public. In addition, the system they are in must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
 		process: function(args,bot,msg) {
 			if (args.length > 1) {
 				edsm.getCmdrCoords(utils.compileArgs(args), bot, msg);
@@ -47,7 +50,8 @@ var commands = {
 	},
 	"dist": {
 		usage: "<first> -> <second>",
-		help: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol",
+		help: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol.",
+		extendedhelp: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol. We use information from EDSM to do this. In order to be findable, a commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public. In addition, the system they are in must have coordinates in EDSM. Likewise, for distance calculations, a system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
 		process: function(args,bot,msg) {
 			var query = utils.compileArgs(args).split("->");
 			if (query.length <= 2) {
@@ -69,7 +73,8 @@ var commands = {
 	"sysalias": {
 		usage: "<alias> -> <system> [-> <optional expedition>]",
 		adminOnly: true,
-		help: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0",
+		help: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0.",
+		extendedhelp: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0 -- with an optional expedition. This is useful simply as a convenience. Many systems have several accepted designations (like Beagle Point, for instance, or RR Lyrae, which is another designation for HIP 95497).",
 		process: function(args, bot, msg) {
 			var systems = utils.compileArgs(args).split("->");
 			if (systems.length >= 2) {
@@ -101,14 +106,14 @@ var commands = {
 			var key;
 			var i = 0;
 			var outputArray = [];
-			outputArray[i++] = "Supported stellar aliases:";
+			outputArray[i++] = utils.bold("Supported stellar aliases:");
 			var hasAliases = false;
 			for (key in edsm.aliases) {
 				var output = "\t";
 				if (edsm.aliases[key].expedition) {
-					output += "[" + edsm.aliases[key].expedition + "] ";
+					output += "[" + utils.italic(edsm.aliases[key].expedition) + "] ";
 				}
-				output += edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
+				output += utils.bold(edsm.aliases[key].alias) + " -> " + edsm.aliases[key].system;
 				outputArray[i++] = output;
 				hasAliases = true;
 			}
@@ -181,8 +186,8 @@ var commands = {
 				var hasAliases = false;
 				var aliasArray = [];
 				for (key in botcfg.aliases) {
-					if (botcfg.aliases[key].expedition && botcfg.aliases[key].expedition === expedition) {
-						aliasArray[i++] = "\t" + botcfg.aliases[key].alias;
+					if (botcfg.aliases[key].expedition && botcfg.aliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
+						aliasArray[i++] = "\t" + utils.bold(botcfg.aliases[key].alias) + " -> " + utils.inBrief(botcfg.aliases[key].output);
 						hasAliases = true;
 					}
 				}
@@ -195,8 +200,8 @@ var commands = {
 				i = 0;
 				var sysaliasArray = [];
 				for (key in edsm.aliases) {
-					if (edsm.aliases[key].expedition && edsm.aliases[key].expedition === expedition) {
-						sysaliasArray[i++] = "\t" + edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
+					if (edsm.aliases[key].expedition && edsm.aliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
+						sysaliasArray[i++] = "\t" + utils.bold(edsm.aliases[key].alias) + " -> " + edsm.aliases[key].system;
 						hasAliases = true;
 					}				
 				}
@@ -206,13 +211,13 @@ var commands = {
 				sysaliasArray.sort(alphanum.alphanumCase);
 
 				i = 0;
-				outputArray[i++] = expedition;
-				outputArray[i++] = "Supported aliases:";
+				outputArray[i++] = utils.bold(expedition);
+				outputArray[i++] = utils.bold("\nSupported aliases:");
 				for (var key = 0; key < aliasArray.length; key++) {
 					outputArray[i++] = aliasArray[key];
 				}
 
-				outputArray[i++] = "Supported stellar aliases:";
+				outputArray[i++] = utils.bold("\nSupported stellar aliases:");
 				for (var key = 0; key < sysaliasArray.length; key++) {
 					outputArray[i++] = sysaliasArray[key];
 				}
@@ -232,12 +237,12 @@ var commands = {
 			var expeditions = [];
 			for (key in botcfg.aliases) {
 				if (botcfg.aliases[key].expedition) {
-					expeditions[botcfg.aliases[key].expedition] = botcfg.aliases[key].expedition;
+					expeditions[botcfg.aliases[key].expedition.toLowerCase()] = botcfg.aliases[key].expedition;
 				}
 			}
 			for (key in edsm.aliases) {
 				if (edsm.aliases[key].expedition) { 
-					expeditions[edsm.aliases[key].expedition] = edsm.aliases[key].expedition;
+					expeditions[edsm.aliases[key].expedition.toLowerCase()] = edsm.aliases[key].expedition;
 				}
 			}
 			// Generate a sorted array here
@@ -249,7 +254,7 @@ var commands = {
 			}
 			explist.sort(alphanum.alphanumCase);
 			i = 0;
-			outputArray[i++] = "Active expeditions:";
+			outputArray[i++] = utils.bold("Active expeditions:");
 			var hasExpeditions = false;
 			for (var key = 0; key < explist.length; key++) {
 				outputArray[i++] = "\t" + explist[key];

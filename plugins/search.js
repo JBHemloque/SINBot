@@ -22,6 +22,7 @@ var commands = {
 	"precis": {
 		usage: "<name>",
 		help: "Generate a precis on someone. We can generate 50 of these a day before Google stops us.",
+		extendedhelp: "A precis is a brief summary of a topic. Used in intelligence, a precis is also a brief document providing information about someone or something. This bot can generate a precis for a character by checking Lodestone and the RPC wiki.",
 		process: function(args, bot, message) { 
 			precis(utils.compileArgs(args), bot, message); 
 		}

@@ -7,10 +7,28 @@ exports.compileArgs = function(args) {
 	return args.join(" ");
 }
 
+exports.bold = function(text) { 
+	return "**" + text + "**";
+}
+
+exports.italic = function(text) {
+	return "*" + text + "*";
+}
+
 exports.displayUsage = function(bot, message, command) {
 	if (command.usage) {
 		bot.sendMessage(message.channel, "Usage: " + command.usage);
 	}
+}
+
+exports.inBrief = function(longstring) {
+	// Return only the first sentence in a long string, or the first line, whichever is shorter
+	var lines = longstring.split("\n");
+	var sentences = longstring.split(".");
+	if (sentences[0].length > lines[0].length) {
+		return lines[0];
+	}
+	return sentences[0];
 }
 
 exports.sendMessages = function(bot, message, outputArray) {
@@ -33,18 +51,23 @@ exports.sendMessages = function(bot, message, outputArray) {
 		}
 	}
 	compiledArray[i++] = buffer;
-	console.log("Compiled " + outputArray.length + " items into " + compiledArray.length);
 
 	async.forEachSeries(compiledArray, function(output, callback) {
 		var cb = callback;
-		bot.sendMessage(message.channel, output, function(error, message) {
-			if (error) {
-				console.log(error);
-			}
+		if (output) {
+			bot.sendMessage(message.channel, output, function(error, message) {
+				if (error) {
+					console.log("Error sending message");
+					console.log(error);
+				}
+				cb();
+			})
+		} else {
 			cb();
-		})
+		}
 	}, function(err) {
 		if (err) {
+			console.log("Error sending messages - forEachSeries error");
 			console.log(err);
 		}
 	});
