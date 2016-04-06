@@ -113,7 +113,7 @@ var commands = {
 				if (edsm.aliases[key].expedition) {
 					output += "[" + utils.italic(edsm.aliases[key].expedition) + "] ";
 				}
-				output += utils.bold(edsm.aliases[key].alias) + " -> " + edsm.aliases[key].system;
+				output += edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
 				outputArray[i++] = output;
 				hasAliases = true;
 			}
@@ -187,7 +187,7 @@ var commands = {
 				var aliasArray = [];
 				for (key in botcfg.aliases) {
 					if (botcfg.aliases[key].expedition && botcfg.aliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
-						aliasArray[i++] = "\t" + utils.bold(botcfg.aliases[key].alias) + " -> " + utils.inBrief(botcfg.aliases[key].output);
+						aliasArray[i++] = "\t" + botcfg.aliases[key].alias + " -> " + utils.inBrief(botcfg.aliases[key].output);
 						hasAliases = true;
 					}
 				}
@@ -201,7 +201,7 @@ var commands = {
 				var sysaliasArray = [];
 				for (key in edsm.aliases) {
 					if (edsm.aliases[key].expedition && edsm.aliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
-						sysaliasArray[i++] = "\t" + utils.bold(edsm.aliases[key].alias) + " -> " + edsm.aliases[key].system;
+						sysaliasArray[i++] = "\t" + edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
 						hasAliases = true;
 					}				
 				}
