@@ -21,14 +21,23 @@ exports.displayUsage = function(bot, message, command) {
 	}
 }
 
+function countSubstrings(str, substr) {
+	return str.split(substr).length-1;
+}
+
 exports.inBrief = function(longstring) {
 	// Return only the first sentence in a long string, or the first line, whichever is shorter
 	var lines = longstring.split("\n");
 	var sentences = longstring.split(".");
+	var ret = sentences[0];
 	if (sentences[0].length > lines[0].length) {
-		return lines[0];
+		ret = lines[0];
 	}
-	return sentences[0];
+	// Close off any markup. Ideally we'd do this the right way and parse it. For now, what we really care about is **
+	if (countSubstrings(ret, "**") % 2 == 1) {
+		ret += "**";
+	}
+	return ret;
 }
 
 exports.sendMessages = function(bot, message, outputArray) {
