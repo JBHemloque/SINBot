@@ -47,11 +47,12 @@ function updateMessagebox(){
 
 function checkForMessages(bot, user) {
 	try{
+		console.log("checkForMessages(bot, " + user + ")");
 		if(messagebox.hasOwnProperty(user.id)){
 			var message = messagebox[user.id];
 			delete messagebox[user.id];
 			updateMessagebox();
-			bot.sendMessage(message.channel,message.content);
+			bot.sendMessage(user, message.content);
 		}
 	}catch(e){
 		console.log("Error reading messagebox");
@@ -300,10 +301,16 @@ var commands = {
 					if(!target){
 						target = msg.channel.server.members.get("username",user);
 					}
-					messagebox[target.id] = {
+					var msgtext = target + ", " + msg.author + " left you a message";
+					if (msg.timestamp) {
+						msgtext += " at " + new Date(msg.timestamp).toUTCString();
+					}
+					msgtext += (":\n" + message);
+					var message = {
 						channel: msg.channel.id,
-						content: target + ", " + msg.author + " said: " + message
+						content: msgtext
 					};
+					messagebox[target.id] = message;
 					updateMessagebox();
 					bot.sendMessage(msg.channel,"message saved.");
 				} else {
