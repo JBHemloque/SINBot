@@ -55,6 +55,7 @@ var commands = {
 		process: function(args,bot,msg) {
 			var query = utils.compileArgs(args).split("->");
 			if (query.length <= 2) {
+				query[0] = query[0].trim();
 				if (query.length == 1) {
 					query[1] = "Sol";
 				} else {

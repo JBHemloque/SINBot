@@ -51,7 +51,6 @@ var _getPositionString = function(commander, data) {
 }
  
 var getPosition = function(commander, bot, message) {
-	console.log("getPosition(" + commander + ")");
 	_getSystem(commander, function(data) {
 		bot.sendMessage(message.channel, _getPositionString(commander, data));
 	});
