@@ -113,7 +113,7 @@ var commands = {
 		usage: "<command> <text to display>",
 		adminOnly: true,
 		help: "Creates a command alias -- e.g. !ping can output Pong!",
-		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered.",
+		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with __SENDER__, the name of the channel with __CHANNEL__, the name of the server with __SERVER__, and the channel topic with __CHANNEL_TOPIC__. Commands can be one word, and additional lines inserted into the output with __EXTRA__",
 		process: function(args, bot, message) {
 			var alias = makeAliasFromArgs(args);
 			if (alias.displayUsage) {
@@ -475,6 +475,18 @@ var defaultCommandHandler = function(args, bot, message) {
 	} 
 }
 
+var procAlias = function(bot, message, cmd, extra) {
+	// Do substitutions
+	// __SENDER__, __CHANNEL__, __SERVER__, __CHANNEL_TOPIC__
+	var output = cmd.output;
+	output = output.replace("__SENDER__", message.author);
+	output = output.replace("__CHANNEL__", message.channel);
+	output = output.replace("__SERVER__", message.server);
+	output = output.replace("__CHANNEL_TOPIC__", message.channel.topic);
+	output = output.replace("__EXTRA__", extra);
+	bot.sendMessage(message.channel, output);
+}
+
 function procCommand(bot, message) {
 	if (message.author !== bot.user) {
 		var res = botShouldHandleCommand(bot, message);
@@ -495,7 +507,7 @@ function procCommand(bot, message) {
 			} else {
 				cmd = aliases[res.args[0]];
 				if (cmd) {
-					bot.sendMessage(message.channel, cmd.output);
+					procAlias(bot, message, cmd, compileArgs(res.args));
 				} else {
 					defaultCommandHandler(res.args, bot, message);
 				}
