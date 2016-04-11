@@ -479,11 +479,11 @@ var procAlias = function(bot, message, cmd, extra) {
 	// Do substitutions
 	// __SENDER__, __CHANNEL__, __SERVER__, __CHANNEL_TOPIC__
 	var output = cmd.output;
-	output = output.replace("__SENDER__", message.author);
-	output = output.replace("__CHANNEL__", message.channel);
-	output = output.replace("__SERVER__", message.server);
-	output = output.replace("__CHANNEL_TOPIC__", message.channel.topic);
-	output = output.replace("__EXTRA__", extra);
+	output = output.replace(/__SENDER__/gi, message.author);
+	output = output.replace(/__CHANNEL__/gi, message.channel);
+	output = output.replace(/__SERVER__/gi, message.server);
+	output = output.replace(/__CHANNEL_TOPIC__/gi, message.channel.topic);
+	output = output.replace(/__EXTRA__/gi, extra);
 	bot.sendMessage(message.channel, output);
 }
 
