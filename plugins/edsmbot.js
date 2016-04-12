@@ -11,8 +11,37 @@ try{
 	aliases = {};
 }
 
+var cmdraliases = {};
+try{
+	// We're in the plugin directory, but this is written in the context of the server, one directory down...
+	cmdraliases = require("../cmdralias.json");
+} catch(e) {
+	//No aliases defined
+	cmdraliases = {};
+}
+
+var normalizeSystem = function(system) {
+	var key = system.toLowerCase();
+	if (aliases[key]) {
+		if (aliases[key].system) {
+			return aliases[key].system;
+		}
+	}
+	return system;
+}
+
+var normalizeCmdr = function(cmdr) {
+	var key = cmdr.toLowerCase();
+	if (cmdraliases[key]) {
+		if (cmdraliases[key].cmdr) {
+			return cmdraliases[key].cmdr;
+		}		
+	}
+	return cmdr;
+}
+
 var _getSystem = function(commander, callback) {
-	client.get("http://www.edsm.net/api-logs-v1/get-position?commanderName=" + commander, function (data, response) {
+	client.get("http://www.edsm.net/api-logs-v1/get-position?commanderName=" + normalizeCmdr(commander), function (data, response) {
 		try {
 			callback(data);
 		} catch(e) {
@@ -57,11 +86,7 @@ var getPosition = function(commander, bot, message) {
 }
 
 var _getSystemCoords = function(system, callback) {
-	var key = system.toLowerCase();
-	if (aliases[key]) {
-		system = aliases[key].system;
-	}
-	client.get("http://www.edsm.net/api-v1/system?systemName=" + system + "&coords=1", function (data, response) {		
+	client.get("http://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1", function (data, response) {		
 		if (data) {
 			if (!data.name) {
 				data = null;
@@ -147,7 +172,9 @@ var getCmdrCoords = function(commander, bot, message) {
 			if (data.system) {
 				_getSystemCoords(data.system, function(coords) {
 					if (coords) {
-						output += " " + _getCoordString(coords);
+						if (coords.coords) {
+							output += " " + _getCoordString(coords);
+						}
 					}
 					bot.sendMessage(message.channel, output);
 				});
@@ -192,3 +219,4 @@ exports.getSystemCoords = getSystemCoords;
 exports.getCmdrCoords = getCmdrCoords;
 exports.getDistance = getDistance;
 exports.aliases = aliases;
+exports.cmdraliases = cmdraliases;

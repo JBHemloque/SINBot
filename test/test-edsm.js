@@ -73,6 +73,12 @@ describe('edsm', function(){
     	assert(handleUsage("!dist foo ->", mocks.adminUser));
     });
 
+    it("should display usage for an incomplete cmdralias", function() {
+        assert(handleUsage("!cmdralias", mocks.adminUser));
+        assert(handleUsage("!cmdralias foo", mocks.adminUser));
+        assert(handleUsage("!cmdralias foo ->", mocks.adminUser));
+    });
+
     it("should display usage for an incomplete sysalias", function() {
     	assert(handleUsage("!sysalias", mocks.adminUser));
     	assert(handleUsage("!sysalias foo", mocks.adminUser));

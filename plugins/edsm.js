@@ -11,6 +11,10 @@ function writeAliases() {
 	fs.writeFile("./sysalias.json",JSON.stringify(edsm.aliases,null,2), null);
 }
 
+function writeCmdrAliases() {
+	fs.writeFile("./cmdralias.json",JSON.stringify(edsm.aliases,null,2), null);
+}
+
 var commands = {
 	"loc": {
 		usage: "<name>",
@@ -71,6 +75,59 @@ var commands = {
 			}
 		}		
 	},
+	"cmdralias": {
+		usage: "<alias> -> <commander> [-> <optional expedition>]",
+		adminOnly: true,
+		help: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel.",
+		extendedhelp: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel -- with an optional expedition. This is useful simply as a convenience.",
+		process: function(args, bot, msg) {
+			var systems = utils.compileArgs(args).split("->");
+			if (systems.length >= 2) {
+				systems[0] = systems[0].trim();
+				systems[1] = systems[1].trim();
+				if ((systems[0].length > 0) && (systems[1].length > 0)) {
+					var output = "created CMDR alias from " + systems[0] + " -> " + systems[1];
+					edsm.cmdraliases[systems[0].toLowerCase()] = {alias: systems[0], cmdr: systems[1]};
+					// Optional expedition
+					if (systems.length == 3) {
+						systems[2] = systems[2].trim();
+						edsm.aliases[systems[0].toLowerCase()].expedition = systems[2];
+						output += " for " + systems[2];
+					}
+					//now save the new alias
+					writeCmdrAliases();
+					bot.sendMessage(msg.channel,output);
+				} else {
+					utils.displayUsage(bot,msg,this);
+				}
+			} else {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
+	"cmdraliases": {
+		help: "Returns the list of supported CMDR aliases.",
+		process: function(args,bot,msg) {
+			var key;
+			var i = 0;
+			var outputArray = [];
+			outputArray[i++] = utils.bold("Supported CMDR aliases:");
+			var hasAliases = false;
+			for (key in edsm.cmdraliases) {
+				var output = "\t";
+				if (edsm.cmdraliases[key].expedition) {
+					output += "[" + utils.italic(edsm.cmdraliases[key].expedition) + "] ";
+				}
+				output += edsm.cmdraliases[key].alias + " -> " + edsm.cmdraliases[key].cmdr;
+				outputArray[i++] = output;
+				hasAliases = true;
+			}
+			if (!hasAliases) {
+				outputArray[0] += " None";
+			}
+			utils.sendMessages(bot,msg,outputArray);
+		}
+	},
 	"sysalias": {
 		usage: "<alias> -> <system> [-> <optional expedition>]",
 		adminOnly: true,
@@ -102,7 +159,7 @@ var commands = {
 		}
 	},
 	"sysaliases": {
-		help: "Returns the list of supported alias systems",
+		help: "Returns the list of supported alias systems.",
 		process: function(args,bot,msg) {
 			var key;
 			var i = 0;
@@ -195,7 +252,7 @@ var commands = {
 		process: function(args, bot, msg) {
 			if (args.length > 1) {
 				var expedition = utils.compileArgs(args).trim();
-				// Aliases first, then system aliases
+				// Aliases first, then cmdr aliases, then system aliases
 				var key;
 				var i = 0;
 				var outputArray = [];
@@ -211,6 +268,20 @@ var commands = {
 					aliasArray[i] += " None";
 				}
 				aliasArray.sort(alphanum.alphanumCase);
+
+				hasAliases = false;
+				i = 0;
+				var cmdrAliasArray = [];
+				for (key in edsm.cmdraliases) {
+					if (edsm.cmdraliases[key].expedition && edsm.cmdraliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
+						cmdrAliasArray[i++] = "\t" + edsm.cmdraliases[key].alias + " -> " + edsm.cmdraliases[key].cmdr;
+						hasAliases = true;
+					}				
+				}
+				if (!hasAliases) {
+					cmdrAliasArray[i] += " None";
+				}
+				cmdrAliasArray.sort(alphanum.alphanumCase);
 
 				hasAliases = false;
 				i = 0;
@@ -231,6 +302,11 @@ var commands = {
 				outputArray[i++] = utils.bold("\nSupported aliases:");
 				for (var key = 0; key < aliasArray.length; key++) {
 					outputArray[i++] = aliasArray[key];
+				}
+
+				outputArray[i++] = utils.bold("\nSupported CMDR aliases:");
+				for (var key = 0; key < cmdrAliasArray.length; key++) {
+					outputArray[i++] = cmdrAliasArray[key];
 				}
 
 				outputArray[i++] = utils.bold("\nSupported stellar aliases:");

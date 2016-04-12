@@ -96,7 +96,7 @@ function makeAlias(alias, output, addExtrasCallback) {
 			if (addExtrasCallback) {
 				addExtrasCallback(aliasStruct);
 			}
-			aliases[aliasStruct.alias] = aliasStruct;
+			aliases[aliasStruct.alias.toLowerCase()] = aliasStruct;
 			//now save the new alias
 			writeAliases();
 			return aliasStruct;
@@ -526,7 +526,7 @@ function procCommand(bot, message) {
 					}
 				}
 			} else {
-				cmd = aliases[res.args[0]];
+				cmd = aliases[res.args[0].toLowerCase()];
 				if (cmd) {
 					procAlias(bot, message, cmd, compileArgs(res.args));
 				} else {

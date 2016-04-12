@@ -95,6 +95,18 @@ describe('bot', function(){
     	assert(handledCommand);
     });
 
+    it('should process commands in a case-insensitive manner', function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "Pong!") {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeConfig());
+        bot.procCommand(client, mocks.makeMessage("!PING"));
+        assert(handledCommand);
+    });
+
     it('should return true for isadmin of an admin user', function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
@@ -281,6 +293,19 @@ describe('bot', function(){
     	bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser));
     	bot.procCommand(client, mocks.makeMessage("!foo"));
     	assert(handledCommand);
+    });
+
+    it("should treat aliases case-insensitively", function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "bar") {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeConfig());
+        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser));
+        bot.procCommand(client, mocks.makeMessage("!FOO"));
+        assert(handledCommand);
     });
 
     it("should allow an alias to use variables", function() {
