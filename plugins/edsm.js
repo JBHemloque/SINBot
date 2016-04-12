@@ -12,7 +12,7 @@ function writeAliases() {
 }
 
 function writeCmdrAliases() {
-	fs.writeFile("./cmdralias.json",JSON.stringify(edsm.aliases,null,2), null);
+	fs.writeFile("./cmdralias.json",JSON.stringify(edsm.cmdraliases,null,2), null);
 }
 
 var commands = {
@@ -339,7 +339,7 @@ var commands = {
 			}
 			for (key in edsm.cmdraliases) {
 				if (edsm.cmdraliases[key].expedition) { 
-					expeditions[edsm.aliases[key].expedition.toLowerCase()] = edsm.cmdraliases[key].expedition;
+					expeditions[edsm.cmdraliases[key].expedition.toLowerCase()] = edsm.cmdraliases[key].expedition;
 				}
 			}
 			// Generate a sorted array here
