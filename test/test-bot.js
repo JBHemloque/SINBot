@@ -335,6 +335,25 @@ describe('bot', function(){
     	assert(handledCommand);
     });
 
+    it("should display usage for an incomplete show_alias", function() {
+        assert(handleUsage("!show_alias"));
+    });
+
+    it("should allow an alias to be listed in show_alias", function() {
+        var lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "foo -> " + lorem) {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeConfig());
+        // Make the alias long
+        bot.procCommand(client, mocks.makeMessage("!alias foo " + lorem, mocks.adminUser));
+        bot.procCommand(client, mocks.makeMessage("!show_alias foo"));
+        assert(handledCommand);
+    });
+
     it("should display usage for an incomplete say", function() {
     	assert(handleUsage("!say"));
     });

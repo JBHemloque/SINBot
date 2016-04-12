@@ -108,7 +108,7 @@ function makeAlias(alias, output, addExtrasCallback) {
 
 var commands = {
 	"alias": {
-		usage: "<command> <text to display>",
+		usage: "<alias> <text to display>",
 		adminOnly: true,
 		help: "Creates a command alias -- e.g. !ping can output Pong!",
 		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
@@ -121,6 +121,23 @@ var commands = {
 			} else {
 				bot.sendMessage(message.channel,"Created alias " + alias.alias);
 			}
+		}
+	},
+	"show_alias": {
+		usage: "<alias>",
+		help: "Displays an alias.",
+		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%. This command shows the contents of an alias.",
+		process: function(args, bot, message) {
+			if (args.length > 1) {
+				var alias = aliases[args[1].toLowerCase()];
+				var output = args[1] + " is not an alias.";
+				if (alias) {
+					output = alias.alias + " -> " + alias.output; 
+				}
+				bot.sendMessage(message.channel, output);
+			} else {
+				displayUsage(bot, message, this);
+			}		
 		}
 	},
 	"aliases": {
