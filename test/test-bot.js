@@ -400,7 +400,7 @@ describe('bot', function(){
     it("should deliver a msg", function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
-    		if (message.includes(mocks.nonAdminUser + ", ") && message.includes("said: Hello!")) {
+    		if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nHello!")) {
     			handledCommand = true;
     		}
     	});
@@ -413,7 +413,7 @@ describe('bot', function(){
     it("should clear a msg after delivering it.", function() {
     	var count = 0;
     	var client = mocks.makeClient(function(channel, message) {
-    		if (message.includes(mocks.nonAdminUser + ", ") && message.includes("said: Hello!")) {
+    		if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nHello!")) {
     			count++;
     		}
     	});
