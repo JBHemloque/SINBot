@@ -59,6 +59,7 @@ function _makeMessage(message, user, channel) {
 		user = nonAdminUser;
 	}
 	return {
+		server: "A Server",
 		channel: channel,
 		author: user,
 		content: message,
@@ -72,7 +73,7 @@ function _makeMessage(message, user, channel) {
 }
 
 function makeMessage(message, user) {
-	return _makeMessage(message, user, makeTextChannel());
+	return _makeMessage(message, user, makeTextChannel("Text"));
 }
 
 function makePrivateMessage(message, user, recipient) {

@@ -111,7 +111,7 @@ var commands = {
 		usage: "<command> <text to display>",
 		adminOnly: true,
 		help: "Creates a command alias -- e.g. !ping can output Pong!",
-		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with __SENDER__, the name of the channel with __CHANNEL__, the name of the server with __SERVER__, and the channel topic with __CHANNEL_TOPIC__. Commands can be one word, and additional lines inserted into the output with __EXTRA__",
+		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
 		process: function(args, bot, message) {
 			var alias = makeAliasFromArgs(args);
 			if (alias.displayUsage) {
@@ -481,13 +481,13 @@ var defaultCommandHandler = function(args, bot, message) {
 
 var procAlias = function(bot, message, cmd, extra) {
 	// Do substitutions
-	// __SENDER__, __CHANNEL__, __SERVER__, __CHANNEL_TOPIC__
+	// %SENDER%, %CHANNEL%, %SERVER%, %CHANNEL_TOPIC%,%EXTRA%
 	var output = cmd.output;
-	output = output.replace(/__SENDER__/gi, message.author);
-	output = output.replace(/__CHANNEL__/gi, message.channel);
-	output = output.replace(/__SERVER__/gi, message.server);
-	output = output.replace(/__CHANNEL_TOPIC__/gi, message.channel.topic);
-	output = output.replace(/__EXTRA__/gi, extra);
+	output = output.replace(/%SENDER%/gi, message.author);
+	output = output.replace(/%CHANNEL%/gi, message.channel);
+	output = output.replace(/%SERVER%/gi, message.server);
+	output = output.replace(/%CHANNEL_TOPIC%/gi, message.channel.topic);
+	output = output.replace(/%EXTRA%/gi, extra);
 	bot.sendMessage(message.channel, output);
 }
 

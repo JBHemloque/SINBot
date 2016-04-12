@@ -283,6 +283,21 @@ describe('bot', function(){
     	assert(handledCommand);
     });
 
+    it("should allow an alias to use variables", function() {
+        // %SENDER%, %CHANNEL%, %SERVER%, %CHANNEL_TOPIC%,%EXTRA%
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            var expected = "Non-admin user Text, A Server -- Test TextChannel, here are some extras... here are some extras... A Server SERVER CHANNEL_TOPIC Test TextChannel Non-admin user here are some extras... foo Text";
+            if (message == expected) {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeConfig());
+        bot.procCommand(client, mocks.makeMessage("!alias foo %SENDER% %CHANNEL%, %SERVER% -- %CHANNEL_TOPIC%, %EXTRA% %EXTRA% %SERVER% SERVER CHANNEL_TOPIC %CHANNEL_TOPIC% %SENDER% %EXTRA% foo %CHANNEL%", mocks.adminUser));
+        bot.procCommand(client, mocks.makeMessage("!foo here are some extras..."));
+        assert(handledCommand);
+    });
+
     it("should allow an alias to be rewritten", function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
@@ -408,6 +423,22 @@ describe('bot', function(){
     	bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Hello!", mocks.adminUser));
     	bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser));
     	assert(handledCommand);
+    });
+
+    it("should deliver a msg via PM", function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            // This is a mock callback of sendMessage, so it hasn't set up the channel properly, yet.
+            // Instead, we'll simply look to see that the channel is the name of the user getting
+            // the message.
+            if (channel === mocks.nonAdminUser) {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeConfig());
+        bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Hello!", mocks.adminUser));
+        bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser));
+        assert(handledCommand);
     });
 
     it("should clear a msg after delivering it.", function() {
