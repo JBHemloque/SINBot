@@ -423,7 +423,10 @@ function helpForCommands(header, cmds, includeAdmin) {
 			includeCommand = false;
 		}
 		if (includeCommand) {
-			output += "\n\t!";
+			output += "\n\t";
+			if (config.COMMAND_PREFIX) {
+				output += config.COMMAND_PREFIX;
+			}
 			output += utils.bold(key);
 			var usage = utils.italic(cmds[key.toLowerCase()].usage);
 			if(usage){
