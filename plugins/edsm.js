@@ -91,7 +91,7 @@ var commands = {
 					// Optional expedition
 					if (systems.length == 3) {
 						systems[2] = systems[2].trim();
-						edsm.aliases[systems[0].toLowerCase()].expedition = systems[2];
+						edsm.cmdraliases[systems[0].toLowerCase()].expedition = systems[2];
 						output += " for " + systems[2];
 					}
 					//now save the new alias
@@ -335,6 +335,11 @@ var commands = {
 			for (key in edsm.aliases) {
 				if (edsm.aliases[key].expedition) { 
 					expeditions[edsm.aliases[key].expedition.toLowerCase()] = edsm.aliases[key].expedition;
+				}
+			}
+			for (key in edsm.cmdraliases) {
+				if (edsm.cmdraliases[key].expedition) { 
+					expeditions[edsm.aliases[key].expedition.toLowerCase()] = edsm.cmdraliases[key].expedition;
 				}
 			}
 			// Generate a sorted array here
