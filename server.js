@@ -3,6 +3,7 @@
 var bot = require('./bot.js');
 var Discord = require("discord.js");
 var config = require('./config.js');
+var utils = require('./utils.js');
 
 var SINBot = new Discord.Client();
 
@@ -17,7 +18,7 @@ SINBot.on("presence", function(user,status,gameId) {
 
 SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
 	if (error) {
-		console.log("Error logging in: " + error);
+		utils.logError("Error logging in: " + error);
 	}
 	if (token) {
 		console.log(version + " logged in with token " + token);

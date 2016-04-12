@@ -61,7 +61,7 @@ var _getSystemCoords = function(system, callback) {
 	if (aliases[key]) {
 		system = aliases[key].system;
 	}
-	client.get("http://www.edsm.net/api-v1/system?systemName=" + system + "&coords=1", function (data, response) {
+	client.get("http://www.edsm.net/api-v1/system?systemName=" + system + "&coords=1", function (data, response) {		
 		if (data) {
 			if (!data.name) {
 				data = null;
@@ -69,6 +69,7 @@ var _getSystemCoords = function(system, callback) {
 			callback(data);
 		}
 	}).on('error', function (err) {
+		console.log("Error");
 		callback(null);
 	});
 }
@@ -120,7 +121,11 @@ var getSystemCoords = function(system, bot, message) {
 	_getSystemCoords(system, function(coords) {
 		var output = "Sorry, " + system + " is not in EDSM";
 		if (coords) {
-			output = "System: " + coords.name + " " + _getCoordString(coords);
+			if (coords.coords) {
+				output = "System: " + coords.name + " " + _getCoordString(coords);
+			} else {
+				output = "Sorry, " + system + " doesn't have coordinates in EDSM";
+			}
 		}
 		bot.sendMessage(message.channel, output);
 	});

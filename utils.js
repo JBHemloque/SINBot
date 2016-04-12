@@ -66,8 +66,7 @@ exports.sendMessages = function(bot, message, outputArray) {
 		if (output) {
 			bot.sendMessage(message.channel, output, function(error, message) {
 				if (error) {
-					console.log("Error sending message");
-					console.log(error);
+					logError("Error sending message", e);
 				}
 				cb();
 			})
@@ -76,8 +75,29 @@ exports.sendMessages = function(bot, message, outputArray) {
 		}
 	}, function(err) {
 		if (err) {
-			console.log("Error sending messages - forEachSeries error");
-			console.log(err);
+			logError("Error sending messages - forEachSeries error", err);
 		}
 	});
+}
+
+exports.logError = function(header, error) {
+	var errors;
+	try{
+		errors = require("./errors.json");
+	} catch(e) {
+		//No aliases defined
+		errors = {};
+	}
+
+	var now = Date.now().toUTCString();
+	errors[now] = {
+		timestamp: now,
+		header: header,
+		error: error
+	};
+
+	fs.writeFile("./errors.json",JSON.stringify(errors,null,2), null);
+	console.log(now);
+	console.log(header);
+	console.log(error);
 }

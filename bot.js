@@ -47,7 +47,6 @@ function updateMessagebox(){
 
 function checkForMessages(bot, user) {
 	try{
-		console.log("checkForMessages(bot, " + user + ")");
 		if(messagebox.hasOwnProperty(user.id)){
 			var message = messagebox[user.id];
 			delete messagebox[user.id];
@@ -55,8 +54,7 @@ function checkForMessages(bot, user) {
 			bot.sendMessage(user, message.content);
 		}
 	}catch(e){
-		console.log("Error reading messagebox");
-		console.log(e);
+		utils.logError("Error reading messagebox", e);
 	}
 }
 
@@ -422,22 +420,24 @@ function helpForCommands(header, cmds, includeAdmin) {
 }
 
 function findCommand(command) {
-	command = command.toLowerCase();
-	var cmd = commands[command];
-	if (cmd) {
-		return cmd;
-	}
-	for (var i = 0; i < plugins.length; i++) {
-		try {
-			cmd = plugins[i].plugin.findCommand(command);
-			if (cmd) {
-				cmd.plugin = plugins[i];
-				return cmd;
-			}
-		} catch(e) {
-			console.log("Couldn't call findCommand() on plugin " + plugins[i].name);
-		}	
-	}
+	if (command) {
+		command = command.toLowerCase();
+		var cmd = commands[command];
+		if (cmd) {
+			return cmd;
+		}
+		for (var i = 0; i < plugins.length; i++) {
+			try {
+				cmd = plugins[i].plugin.findCommand(command);
+				if (cmd) {
+					cmd.plugin = plugins[i];
+					return cmd;
+				}
+			} catch(e) {
+				utils.logError("Couldn't call findCommand() on plugin " + plugins[i].name, e);
+			}	
+		}
+	}	
 	return null;
 }
 
@@ -554,7 +554,7 @@ function startBot(bot, cfg) {
 			plugins[i].plugin = require(plugins[i].path);
 			console.log("Loaded plugin " + plugins[i].name);
 		} catch(e) {
-			console.log("Couldn't load " + plugins[i].name + "!\n"+e.stack);
+			utils.logError("Couldn't load " + plugins[i].name, e);
 		}
 		try {
 			if (plugins[i].plugin.setup) {
@@ -562,7 +562,7 @@ function startBot(bot, cfg) {
 				plugins[i].plugin.setup(plugins[i].config, bot, botcfg);			
 			}
 		} catch(e) {
-			console.log("Couldn't run setup for " + plugins[i].name + "!\n"+e.stack);
+			utils.logError("Couldn't run setup for " + plugins[i].name, e);
 		}
 		try {
 			if (plugins[i].defaultCommandHandler) {
@@ -573,7 +573,7 @@ function startBot(bot, cfg) {
 				}
 			}
 		} catch (e) {
-			console.log("Couldn't set default command handler for " + plugins[i].name + "!\n" + e.stack);
+			utils.logError("Couldn't set default command handler for " + plugins[i].name, e);
 		}
 	};
 }
