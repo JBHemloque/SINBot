@@ -464,7 +464,11 @@ function botShouldHandleCommand(bot, message) {
 		if (stripFirstArg) {
 			args.shift();
 		}
-		result.args = args;
+		if (args) {
+			result.args = args;
+		} else {
+			result.handleCommand = false;
+		}
 	}
 	return result;
 }
