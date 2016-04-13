@@ -256,65 +256,68 @@ var commands = {
 				var key;
 				var i = 0;
 				var outputArray = [];
-				var hasAliases = false;
 				var aliasArray = [];
 				for (key in botcfg.aliases) {
 					if (botcfg.aliases[key].expedition && botcfg.aliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
 						aliasArray[i++] = "\t" + botcfg.aliases[key].alias + " -> " + utils.inBrief(botcfg.aliases[key].output);
-						hasAliases = true;
 					}
 				}
-				if (!hasAliases) {
-					aliasArray[i] += " None";
+				if (aliasArray.length > 0) {
+					aliasArray.sort(alphanum.alphanumCase);
 				}
-				aliasArray.sort(alphanum.alphanumCase);
 
-				hasAliases = false;
+
 				i = 0;
 				var cmdrAliasArray = [];
 				for (key in edsm.cmdraliases) {
 					if (edsm.cmdraliases[key].expedition && edsm.cmdraliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
 						cmdrAliasArray[i++] = "\t" + edsm.cmdraliases[key].alias + " -> " + edsm.cmdraliases[key].cmdr;
-						hasAliases = true;
 					}				
+				}				
+				if (cmdrAliasArray.length > 0) {
+					cmdrAliasArray.sort(alphanum.alphanumCase);
 				}
-				if (!hasAliases) {
-					cmdrAliasArray[i] += " None";
-				}
-				cmdrAliasArray.sort(alphanum.alphanumCase);
+				
 
-				hasAliases = false;
 				i = 0;
 				var sysaliasArray = [];
 				for (key in edsm.aliases) {
 					if (edsm.aliases[key].expedition && edsm.aliases[key].expedition.toLowerCase() === expedition.toLowerCase()) {
 						sysaliasArray[i++] = "\t" + edsm.aliases[key].alias + " -> " + edsm.aliases[key].system;
-						hasAliases = true;
 					}				
 				}
-				if (!hasAliases) {
-					sysaliasArray[i] += " None";
-				}
-				sysaliasArray.sort(alphanum.alphanumCase);
-
-				i = 0;
-				outputArray[i++] = utils.bold(expedition);
-				outputArray[i++] = utils.bold("\nSupported aliases:");
-				for (var key = 0; key < aliasArray.length; key++) {
-					outputArray[i++] = aliasArray[key];
+				if (sysaliasArray.length > 0) {
+					sysaliasArray.sort(alphanum.alphanumCase);
 				}
 
-				outputArray[i++] = utils.bold("\nSupported CMDR aliases:");
-				for (var key = 0; key < cmdrAliasArray.length; key++) {
-					outputArray[i++] = cmdrAliasArray[key];
-				}
+				if (aliasArray.length + cmdrAliasArray.length + sysaliasArray.length > 0) {
+					i = 0;
+					outputArray[i++] = utils.bold(expedition);
+					if (aliasArray.length > 0) {
+						outputArray[i++] = utils.bold("\nSupported aliases:");
+						for (var key = 0; key < aliasArray.length; key++) {
+							outputArray[i++] = aliasArray[key];
+						}
+					}
 
-				outputArray[i++] = utils.bold("\nSupported stellar aliases:");
-				for (var key = 0; key < sysaliasArray.length; key++) {
-					outputArray[i++] = sysaliasArray[key];
-				}
+					if (cmdrAliasArray.length > 0) {
+						outputArray[i++] = utils.bold("\nSupported CMDR aliases:");
+						for (var key = 0; key < cmdrAliasArray.length; key++) {
+							outputArray[i++] = cmdrAliasArray[key];
+						}
+					}
 
-				utils.sendMessages(bot,msg,outputArray);
+					if (sysaliasArray.length > 0) {
+						outputArray[i++] = utils.bold("\nSupported stellar aliases:");
+						for (var key = 0; key < sysaliasArray.length; key++) {
+							outputArray[i++] = sysaliasArray[key];
+						}
+					}
+
+					utils.sendMessages(bot,msg,outputArray);
+				} else {
+					bot.sendMessage(msg.channel, expedtition + " is an empty expedition");
+				}
 			} else {
 				utils.displayUsage(bot,msg,this);
 			}	
