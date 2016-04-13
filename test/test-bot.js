@@ -52,7 +52,6 @@ describe('bot', function(){
     it('should ignore non-command messages', function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
-    		console.log(message);
     		handledCommand = true;
     	});
     	bot.startBot(client, mocks.makeConfig());

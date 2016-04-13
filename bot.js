@@ -246,6 +246,16 @@ var commands = {
     		bot.sendMessage(msg.channel,output);
     	}
     },
+    "disconnect": {
+    	help: "Disconnects the bot from the server. It will immediately try to reconnect.",
+    	adminOnly: true,
+    	process: function(args, bot, msg) {
+    		bot.sendMessage(msg.channel, version + " is going down NOW!");
+    		bot.logout(function(err) {
+    			bot.sendMessage(msg.channel, "Error disconnecting: " + err);
+    		});
+    	}
+    },
     "adminlist": {
     	help: "Returns a list of admins for this bot.",
     	adminOnly: true,
@@ -368,7 +378,7 @@ var commands = {
 		usage: "[<command>]",
 		help: "Display help for this bot, or for specific commands, or plugins",
 		process: function(args, bot, message) {
-			var command = compileArgs(args);
+			var command = compileArgs(args).toLowerCase();
 			if (command) {
 				var output = command + " is not a valid command or plugin";
 				var cmd = findCommand(command);				
@@ -382,9 +392,11 @@ var commands = {
 					} else {
 						output += ("\n\n" + cmd.help);
 					}
+				} else if (command === "built-in") {
+					output = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
 				} else {
 					for (var i = 0; i < plugins.length; i++) {
-						if (plugins[i].name.toLowerCase() === command.toLowerCase()) {
+						if (plugins[i].name.toLowerCase() === command) {
 							output = helpForCommands(plugins[i].name, plugins[i].plugin.commands);
 						}
 					}
@@ -419,7 +431,8 @@ function helpForCommands(header, cmds, includeAdmin) {
 	var key;
 	for (key in cmds) {
 		var includeCommand = true;
-		if (cmds[key.toLowerCase()].hasOwnProperty("adminOnly") && cmds[key].adminOnly && (includeAdmin == false)) {
+		var cmd = cmds[key.toLowerCase()];
+		if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && (includeAdmin == false)) {
 			includeCommand = false;
 		}
 		if (includeCommand) {
@@ -428,9 +441,8 @@ function helpForCommands(header, cmds, includeAdmin) {
 				output += config.COMMAND_PREFIX;
 			}
 			output += utils.bold(key);
-			var usage = utils.italic(cmds[key.toLowerCase()].usage);
-			if(usage){
-				output += " " + usage;
+			if(cmd.usage){
+				output += " " + utils.italic(cmd.usage);
 			}
 			output += "\n\t\t\t";
 			output += cmds[key.toLowerCase()].help;

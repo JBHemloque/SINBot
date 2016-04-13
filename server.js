@@ -17,6 +17,7 @@ SINBot.on("presence", function(user,status,gameId) {
 });
 
 SINBot.on('disconnected', function() {
+	utils.logError("Disconnected", "Attempting restart...");
     startBot();
 });
 
