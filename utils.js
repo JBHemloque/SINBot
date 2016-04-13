@@ -1,6 +1,7 @@
 'use strict';
 
 var async = require('async');
+var fs = require('fs');
 
 exports.compileArgs = function(args) {
 	args.splice(0,1);
@@ -89,7 +90,7 @@ exports.logError = function(header, error) {
 		errors = {};
 	}
 
-	var now = Date.now().toUTCString();
+	var now = new Date().toLocaleString();
 	errors[now] = {
 		timestamp: now,
 		header: header,

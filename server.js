@@ -16,13 +16,28 @@ SINBot.on("presence", function(user,status,gameId) {
 	bot.procPresence(SINBot, user, status, gameId);
 });
 
-SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
-	if (error) {
-		utils.logError("Error logging in: " + error);
-	}
-	if (token) {
-		console.log(version + " logged in with token " + token);
-	}
+SINBot.on('disconnected', function() {
+    startBot();
 });
 
-bot.startBot(SINBot, config);
+// catch the uncaught errors that weren't wrapped in a domain or try catch statement
+// do not use this in modules, but only in applications, as otherwise we could have multiple of these bound
+process.on('uncaughtException', function(err) {
+    // handle the error safely
+    utils.logError("Uncaught exception", err);
+});
+
+function startBot() {
+	SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
+		if (error) {
+			utils.logError("Error logging in: " + error);
+		}
+		if (token) {
+			console.log(version + " logged in with token " + token);
+		}
+	});
+
+	bot.startBot(SINBot, config);
+}
+
+startBot();
