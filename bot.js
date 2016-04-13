@@ -584,7 +584,7 @@ function startBot(bot, cfg) {
 	for (var i = 0; i < plugins.length; i += 1) {
 		try {
 			plugins[i].plugin = require(plugins[i].path);
-			console.log("Loaded plugin " + plugins[i].name);
+			// console.log("Loaded plugin " + plugins[i].name);
 		} catch(e) {
 			utils.logError("Couldn't load " + plugins[i].name, e);
 		}
@@ -600,7 +600,7 @@ function startBot(bot, cfg) {
 			if (plugins[i].defaultCommandHandler) {
 				var dch = plugins[i].plugin.findCommand(plugins[i].defaultCommandHandler);
 				if (dch) {
-					console.log("Setting default command handler to " + plugins[i].defaultCommandHandler);
+					// console.log("Setting default command handler to " + plugins[i].defaultCommandHandler);
 					defaultCommandHandler = dch.process;
 				}
 			}

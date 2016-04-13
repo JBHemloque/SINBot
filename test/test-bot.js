@@ -130,6 +130,22 @@ describe('bot', function(){
     	assert(handledCommand);
     });
 
+    it("shouldn't let non-admin users call disconnect", function() {
+        assert(handleAdminCheck("!disconnect"));
+    });
+
+    it('should logout on disconnect', function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+        });
+        client.logout = function() {
+            handledCommand = true;
+        }
+        bot.startBot(client, mocks.makeConfig());
+        bot.procCommand(client, mocks.makeMessage("!disconnect", mocks.adminUser));
+        assert(handledCommand);
+    });
+
     it("shouldn't let non-admin users call adminlist", function() {
     	assert(handleAdminCheck("!adminlist"));
     });

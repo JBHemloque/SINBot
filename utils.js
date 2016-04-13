@@ -81,7 +81,7 @@ exports.sendMessages = function(bot, message, outputArray) {
 	});
 }
 
-exports.logError = function(header, error) {
+exports.logError = function(header, error, callback) {
 	var errors;
 	try{
 		errors = require("./errors.json");
@@ -91,14 +91,16 @@ exports.logError = function(header, error) {
 	}
 
 	var now = new Date().toLocaleString();
-	errors[now] = {
+	var err = {
 		timestamp: now,
 		header: header,
 		error: error
 	};
+	errors[now] = err;
 
 	fs.writeFile("./errors.json",JSON.stringify(errors,null,2), null);
 	console.log(now);
 	console.log(header);
 	console.log(error);
+	callback(err)
 }
