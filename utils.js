@@ -102,5 +102,7 @@ exports.logError = function(header, error, callback) {
 	console.log(now);
 	console.log(header);
 	console.log(error);
-	callback(err)
+	if (callback) {
+		callback(err);
+	}
 }

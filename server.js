@@ -21,12 +21,14 @@ SINBot.on('disconnected', function() {
     startBot();
 });
 
-// catch the uncaught errors that weren't wrapped in a domain or try catch statement
-// do not use this in modules, but only in applications, as otherwise we could have multiple of these bound
-process.on('uncaughtException', function(err) {
-    // handle the error safely
-    utils.logError("Uncaught exception", err);
-});
+if (!config.DEBUG) {
+	// catch the uncaught errors that weren't wrapped in a domain or try catch statement
+	// do not use this in modules, but only in applications, as otherwise we could have multiple of these bound
+	process.on('uncaughtException', function(err) {
+	    // handle the error safely
+	    utils.logError("Uncaught exception", err);
+	});
+}
 
 function startBot() {
 	SINBot.login(config.LOGIN, config.PASSWORD, function(error, token) {
