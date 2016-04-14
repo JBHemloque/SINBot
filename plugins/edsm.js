@@ -15,7 +15,82 @@ function writeCmdrAliases() {
 	fs.writeFile("./cmdralias.json",JSON.stringify(edsm.cmdraliases,null,2), null);
 }
 
+function _calcJumpRange(jumpRange, distSagA, distMax) {
+	var N = Math.floor(distMax / jumpRange);
+	var M = N * jumpRange;
+	return M - ((N/4) + (distSagA * 2));
+}
+
+function calcJumpRange(jumpRange, distSagA, distMax) {
+	if ((!distMax) || (distMax > 1000.0)) {
+		distMax = 1000.0;
+	} 
+
+	if (distSagA > 100.0) {
+		// Assume we've mistakenly gotten a distance in ly, not kly
+		distSagA /= 1000.0;
+	}
+
+	var estRange = _calcJumpRange(jumpRange, distSagA, distMax);
+	console.log("Est range: " + estRange);
+	if (estRange <= 0) {
+		return "Error: Calculation resulted in a negative distance. Please check your input.";
+	}
+	if (distMax < 1000) {
+		var maxRange = distMax;
+		while(true) {
+			distMax += jumpRange;
+			var improvement = _calcJumpRange(jumpRange, distSagA, distMax);
+			if (improvement > maxRange) {
+				break;
+				console.log("Breaking... too far!");
+			}
+			estRange = improvement;
+			console.log("Est range: " + estRange);
+		}
+	}
+	var marginOfError = estRange * 0.0055;
+	console.log("Margine of error: " + marginOfError);
+	var output = "Estimated plot range should be around **";
+	output += estRange.toFixed(2);
+	output += "ly** - check range *";
+	output += (estRange - marginOfError).toFixed(2);
+	output += " to ";
+	output += (estRange + marginOfError).toFixed(2);
+	output += " ly*";
+	return output;
+}
+
 var commands = {
+	"route": {
+		usage: "<JumpRange> <SgrA distance in kly> [optional max plot in ly]",
+		help: "Calculate optimal core routing distance.",
+		process: function(args, bot, msg) {
+			var displayUsage = true;
+			if ((args.length === 4) || (args.length === 3)) {
+				displayUsage = false;
+				var jumpRange = parseFloat(args[1]);
+				var distSagA = parseFloat(args[2]);
+				var distMax = undefined;
+				if (args.length === 4) {
+					distMax = parseFloat(args[3]);
+					if (distMax === NaN) {
+						displayUsage = true;
+					}
+				}
+				if ((jumpRange === NaN) || (distSagA === NaN)) {
+					displayUsage = true;
+				}
+				if (!displayUsage) {
+					bot.sendMessage(msg.channel, calcJumpRange(jumpRange, distSagA, distMax));
+				}
+			} 
+
+			if (displayUsage) {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
 	"loc": {
 		usage: "<name>",
 		help: 'Gets the location of a commander.',
