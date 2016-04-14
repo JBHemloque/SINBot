@@ -86,7 +86,6 @@ exports.logError = function(header, error, callback) {
 	try{
 		errors = require("./errors.json");
 	} catch(e) {
-		//No aliases defined
 		errors = {};
 	}
 

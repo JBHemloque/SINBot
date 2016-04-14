@@ -124,7 +124,7 @@ var _getSystemOrCmdrCoords = function(query, callback) {
 	_getSystemCoords(query, function(coords) {
 		if (coords) {
 			// console.log(query + " is a system");
-			callback(coords);
+			callback(coords, false);
 		} else {
 			_getCommanderCoords(query, function(coords) {
 				// if (coords) {
@@ -132,7 +132,7 @@ var _getSystemOrCmdrCoords = function(query, callback) {
 				// } else {
 				// 	console.log("Could not find " + query);
 				// }
-				callback(coords);
+				callback(coords, true);
 			});
 		}
 	});
@@ -185,22 +185,30 @@ var getCmdrCoords = function(commander, bot, message) {
 	});
 }
 
+function getNoCoordString(item, isCmdr) {
+	if (isCmdr) {
+		return item + " has shared their location, but we have no coordinates for it.";
+	} else {
+		return "We have no coordinates for " + item + "."
+	}
+}
+
 var getDistance = function(first, second, bot, message) {
 	// Each query item could be a system or a commander...
-	_getSystemOrCmdrCoords(first, function(firstCoords) {
+	_getSystemOrCmdrCoords(first, function(firstCoords, firstIsCmdr) {
 		if (firstCoords) {
-			_getSystemOrCmdrCoords(second, function(secondCoords) {
+			_getSystemOrCmdrCoords(second, function(secondCoords, secondIsCmdr) {
 				if (secondCoords) {
 					if (firstCoords.coords && secondCoords.coords) {
 						var dist = _calcDistance(firstCoords.coords, secondCoords.coords);
 						bot.sendMessage(message.channel, "Distance between " + first + " and " + second + " is " + dist.toFixed(2) + " ly");
 					} else {
-						var output = "Sorry, could not calculate the distance from " + first + " to " + second;
+						var output = "Sorry, could not calculate the distance from " + first + " to " + second + ".";
 						if (firstCoords.coords == undefined) {
-							output += "\n" + first + " has shared their location, but we have no coordinates for it";
+							output += "\n" + getNoCoordString(first, firstIsCmdr);
 						}
 						if (secondCoords.coords == undefined) {
-							output += "\n" + second + " has shared their location, but we have no coordinates for it";
+							output += "\n" + getNoCoordString(second, secondIsCmdr);
 						}
 						bot.sendMessage(message.channel, output);
 					}

@@ -25,6 +25,12 @@ var enumerate = function(obj) {
 	}
 }
 
+function debugLog(message) {
+	if (config.DEBUG) {
+		console.log(message);
+	}
+}
+
 var messagebox;
 var aliases;
 
@@ -524,6 +530,7 @@ var procAlias = function(bot, message, cmd, extra) {
 }
 
 function procCommand(bot, message) {
+	debugLog(message.author.name + ": " + message.content);
 	if (message.author !== bot.user) {
 		var res = botShouldHandleCommand(bot, message);
 		if (res.handleCommand) {
@@ -575,37 +582,47 @@ function startBot(bot, cfg) {
 		makeAlias: makeAlias
 	};
 
-	// if (config.COMMAND_PREFIX) {
-	// 	console.log("Command prefix: " + config.COMMAND_PREFIX);
-	// } else {
-	// 	console.log("Starting in direct-mention mode...");
-	// }
+	if (config.COMMAND_PREFIX) {
+		debugLog("Command prefix: " + config.COMMAND_PREFIX);
+	} else {
+		debugLog("Starting in direct-mention mode...");
+	}
 
 	for (var i = 0; i < plugins.length; i += 1) {
 		try {
 			plugins[i].plugin = require(plugins[i].path);
-			// console.log("Loaded plugin " + plugins[i].name);
+
+			debugLog("Loaded plugin " + plugins[i].name);
 		} catch(e) {
 			utils.logError("Couldn't load " + plugins[i].name, e);
+			if (config.DEBUG) {
+				throw e;
+			}
 		}
 		try {
 			if (plugins[i].plugin.setup) {
-				// console.log("Running setup for " + plugins[i].name);
+				debugLog("Running setup for " + plugins[i].name);
 				plugins[i].plugin.setup(plugins[i].config, bot, botcfg);			
 			}
 		} catch(e) {
 			utils.logError("Couldn't run setup for " + plugins[i].name, e);
+			if (config.DEBUG) {
+				throw e;
+			}
 		}
 		try {
 			if (plugins[i].defaultCommandHandler) {
 				var dch = plugins[i].plugin.findCommand(plugins[i].defaultCommandHandler);
 				if (dch) {
-					// console.log("Setting default command handler to " + plugins[i].defaultCommandHandler);
+					debugLog("Setting default command handler to " + plugins[i].defaultCommandHandler);
 					defaultCommandHandler = dch.process;
 				}
 			}
 		} catch (e) {
 			utils.logError("Couldn't set default command handler for " + plugins[i].name, e);
+			if (config.DEBUG) {
+				throw e;
+			}
 		}
 	};
 }
