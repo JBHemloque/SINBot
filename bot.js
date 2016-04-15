@@ -54,14 +54,41 @@ function updateMessagebox(){
 function checkForMessages(bot, user) {
 	try{
 		if(messagebox.hasOwnProperty(user.id)){
-			var message = messagebox[user.id];
+			var message = messagebox[user.id];		
+			var outputArray = [];
+			if (message.content) {
+				outputArray.push(message.content);
+			} else {
+				for (var i = 0; i < message.length; i++) {
+					outputArray.push(message[i].content);
+				}
+			}
+			utils.sendMessages(bot, user, outputArray);
 			delete messagebox[user.id];
 			updateMessagebox();
-			bot.sendMessage(user, message.content);
 		}
 	}catch(e){
 		utils.logError("Error reading messagebox", e);
+		throw e;
 	}
+}
+
+function addMessage(targetId, message) {
+	var msg = messagebox[targetId];
+	if (msg) {
+		// Ensure it's a new-style message
+		if (msg.content) {
+			// Old style message... Turn it into an array
+			var msgArray = [];
+			msgArray.push(msg);
+			msg = msgArray;
+		}
+	} else {
+		msg = [];
+	}
+	msg.push(message);
+	messagebox[targetId] = msg;
+	updateMessagebox();
 }
 
 function isAdmin(id) {
@@ -161,7 +188,7 @@ var commands = {
 			if (!hasAliases) {
 				outputArray[0] += " None"
 			}
-			utils.sendMessages(bot, message, outputArray);
+			utils.sendMessages(bot, message.channel, outputArray);
 		}
 	},
 	"clear_alias": {
@@ -340,9 +367,8 @@ var commands = {
 					var message = {
 						channel: msg.channel.id,
 						content: msgtext
-					};
-					messagebox[target.id] = message;
-					updateMessagebox();
+					};					
+					addMessage(target.id, message);
 					bot.sendMessage(msg.channel,"message saved.");
 				} else {
 					displayUsage(bot, msg, this);
@@ -418,7 +444,7 @@ var commands = {
 						outputArray[index++] = helpForCommands(plugins[i].name, plugins[i].plugin.commands);
 					}
 				}
-				utils.sendMessages(bot, message, outputArray);
+				utils.sendMessages(bot, message.channel, outputArray);
 			}			
 		}
 	},

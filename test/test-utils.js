@@ -89,7 +89,7 @@ describe('utils', function(){
     		}
     	});
     	bot.startBot(client, mocks.makeConfig());
-    	utils.sendMessages(client, mocks.makeMessage(""), messageArray);
+    	utils.sendMessages(client, mocks.makeMessage("").channel, messageArray);
     	assert(handledCommand);
     });
 
@@ -115,7 +115,7 @@ describe('utils', function(){
     		callback();
     	});
     	bot.startBot(client, mocks.makeConfig());
-    	utils.sendMessages(client, mocks.makeMessage(""), messageArray);
+    	utils.sendMessages(client, mocks.makeMessage("").channel, messageArray);
     	assert(handledCommand);
     });
 

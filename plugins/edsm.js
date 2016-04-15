@@ -32,7 +32,6 @@ function calcJumpRange(jumpRange, distSagA, distMax) {
 	}
 
 	var estRange = _calcJumpRange(jumpRange, distSagA, distMax);
-	console.log("Est range: " + estRange);
 	if (estRange <= 0) {
 		return "Error: Calculation resulted in a negative distance. Please check your input.";
 	}
@@ -43,14 +42,11 @@ function calcJumpRange(jumpRange, distSagA, distMax) {
 			var improvement = _calcJumpRange(jumpRange, distSagA, distMax);
 			if (improvement > maxRange) {
 				break;
-				console.log("Breaking... too far!");
 			}
 			estRange = improvement;
-			console.log("Est range: " + estRange);
 		}
 	}
 	var marginOfError = estRange * 0.0055;
-	console.log("Margine of error: " + marginOfError);
 	var output = "Estimated plot range should be around **";
 	output += estRange.toFixed(2);
 	output += "ly** - check range *";
@@ -200,7 +196,7 @@ var commands = {
 			if (!hasAliases) {
 				outputArray[0] += " None";
 			}
-			utils.sendMessages(bot,msg,outputArray);
+			utils.sendMessages(bot,msg.channel,outputArray);
 		}
 	},
 	"sysalias": {
@@ -253,7 +249,7 @@ var commands = {
 			if (!hasAliases) {
 				outputArray[0] += " None";
 			}
-			utils.sendMessages(bot,msg,outputArray);
+			utils.sendMessages(bot,msg.channel,outputArray);
 		}
 	},
 	"expsa": {
@@ -389,7 +385,7 @@ var commands = {
 						}
 					}
 
-					utils.sendMessages(bot,msg,outputArray);
+					utils.sendMessages(bot,msg.channel,outputArray);
 				} else {
 					bot.sendMessage(msg.channel, expedtition + " is an empty expedition");
 				}
@@ -438,7 +434,7 @@ var commands = {
 			if(!hasExpeditions) {
 				outputArray[0] += " None";
 			}
-			utils.sendMessages(bot,msg,outputArray);
+			utils.sendMessages(bot,msg.channel,outputArray);
 		}
 	}
 };

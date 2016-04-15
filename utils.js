@@ -41,7 +41,7 @@ exports.inBrief = function(longstring) {
 	return ret;
 }
 
-exports.sendMessages = function(bot, message, outputArray) {
+exports.sendMessages = function(bot, channel, outputArray) {
 	// We've got an array of messages, but we might be able to compile them together.
 	// Discord has a message size limit of about 2k, so we'll compile them together
 	// in chunks no bigger than 800 characters, for grins.
@@ -65,7 +65,7 @@ exports.sendMessages = function(bot, message, outputArray) {
 	async.forEachSeries(compiledArray, function(output, callback) {
 		var cb = callback;
 		if (output) {
-			bot.sendMessage(message.channel, output, function(error, message) {
+			bot.sendMessage(channel, output, function(error, message) {
 				if (error) {
 					logError("Error sending message", e);
 				}

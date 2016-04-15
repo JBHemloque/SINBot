@@ -513,4 +513,21 @@ describe('bot', function(){
     	bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser));
     	assert(count == 1);
     });
+
+    it("should handle multiple msgs.", function() {
+        var count = 0;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nHello!")) {
+                count++;
+            }
+            if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nFoo!")) {
+                count++;
+            }
+        });
+        bot.startBot(client, mocks.makeConfig());
+        bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Hello!", mocks.adminUser));
+        bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Foo!", mocks.adminUser));
+        bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser));
+        assert(count == 2);
+    });
 })

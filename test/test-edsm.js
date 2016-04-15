@@ -47,6 +47,10 @@ function handleAdminCheck(command) {
 	return handledCommand;
 }
 
+function createBot(client, bot) {
+    bot.startBot(client, mocks.makeConfig([{ name: "EDSM Commands", path: "./plugins/edsm.js" }]));
+}
+
 describe('edsm', function(){
     it('should export a commands object', function(){
         assert(typeof(bot.commands) == 'object');
@@ -99,5 +103,29 @@ describe('edsm', function(){
 
     it("should display usage for an incomplete explist", function() {
     	assert(handleUsage("!explist", mocks.adminUser));
+    });
+
+    it("should calculate a route properly", function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "Estimated plot range should be around **968.30ly** - check range *962.97 to 973.63 ly*") {
+                handledCommand = true;
+            }
+        });
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!route 33.06 8"));
+        assert(handledCommand);
+    });
+
+    it("should calculate a route properly with a max distance", function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "Estimated plot range should be around **976.41ly** - check range *971.04 to 981.78 ly*") {
+                handledCommand = true;
+            }
+        });
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!route 34.54 9 980"));
+        assert(handledCommand);
     });
 })

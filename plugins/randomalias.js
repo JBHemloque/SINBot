@@ -105,7 +105,7 @@ var commands = {
 					for (var j = 0; j < cat.length; j++) {
 						outputArray[i++] = "\t" + cat[j];
 					}
-					utils.sendMessages(bot,msg,outputArray);
+					utils.sendMessages(bot,msg.channel,outputArray);
 				} else {
 					bot.sendMessage(msg.channel, category + " is an empty category");
 				}
@@ -135,7 +135,7 @@ var commands = {
 			} else {
 				outputArray[0] += " None";
 			}
-			utils.sendMessages(bot,msg,outputArray);
+			utils.sendMessages(bot,msg.channel,outputArray);
 		}
 	},
 	"random": {
