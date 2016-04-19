@@ -4,6 +4,7 @@ var utils = require('../utils.js');
 var edsm = require('./edsmbot.js');
 var fs = require("fs");
 var alphanum = require("../alphanum.js");
+var _ = require("underscore");
 
 var botcfg = null;
 
@@ -150,21 +151,30 @@ var commands = {
 		usage: "<alias> -> <commander> [-> <optional expedition>]",
 		adminOnly: true,
 		help: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel.",
-		extendedhelp: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel -- with an optional expedition. This is useful simply as a convenience.",
+		extendedhelp: "Creates or updates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel -- with an optional expedition. This is useful simply as a convenience.",
 		process: function(args, bot, msg) {
 			var systems = utils.compileArgs(args).split("->");
 			if (systems.length >= 2) {
 				systems[0] = systems[0].trim();
 				systems[1] = systems[1].trim();
 				if ((systems[0].length > 0) && (systems[1].length > 0)) {
+					var key = systems[0].toLowerCase();
 					var output = "created CMDR alias from " + systems[0] + " -> " + systems[1];
-					edsm.cmdraliases[systems[0].toLowerCase()] = {alias: systems[0], cmdr: systems[1]};
+					var cmdralias = {alias: systems[0], cmdr: systems[1]}; 
+					var item = edsm.cmdraliases[key];
 					// Optional expedition
 					if (systems.length == 3) {
 						systems[2] = systems[2].trim();
-						edsm.cmdraliases[systems[0].toLowerCase()].expedition = systems[2];
+						cmdralias.expedition = systems[2];
 						output += " for " + systems[2];
 					}
+					if (item) {
+						_.extend(item, cmdralias);
+					} else {
+						item = cmdralias;
+					}
+					edsm.cmdraliases[key] = item;
+					
 					//now save the new alias
 					writeCmdrAliases();
 					bot.sendMessage(msg.channel,output);
@@ -173,6 +183,44 @@ var commands = {
 				}
 			} else {
 				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
+	"show_cmdralias": {
+		usage: "<alias>",
+		help: "Displays a CMDR alias.",
+		process: function(args, bot, message) {
+			if (args.length > 1) {
+				var alias = edsm.cmdraliases[args[1].toLowerCase()];
+				var output = args[1] + " is not a CMDR alias.";
+				if (alias) {
+					output = alias.alias + " -> " + alias.cmdr;
+					if (alias.expedition) {
+						output += " for " + alias.expedition;
+					} 
+				}
+				bot.sendMessage(message.channel, output);
+			} else {
+				displayUsage(bot, message, this);
+			}		
+		}
+	},
+	"clear_cmdralias": {
+		usage: "<alias>",
+		adminOnly: true,
+		help: "Deletes a CMDR alias.",
+		process: function(args, bot, message) {
+			var alias = args[1].toLowerCase();
+			if(alias) {
+				if (edsm.cmdraliases[alias]) {
+					delete edsm.cmdraliases[alias];
+					writeCmdrAliases();
+					bot.sendMessage(message.channel, "Deleted CMDR alias " + alias);
+				} else {
+					bot.sendMessage(message.channel, "Sorry, " + alias + " doesn't exist.");
+				}
+			} else {
+				displayUsage(bot, message, this);
 			}
 		}
 	},
@@ -210,14 +258,22 @@ var commands = {
 				systems[0] = systems[0].trim();
 				systems[1] = systems[1].trim();
 				if ((systems[0].length > 0) && (systems[1].length > 0)) {
+					var key = systems[0].toLowerCase();
 					var output = "created system alias from " + systems[0] + " -> " + systems[1];
-					edsm.aliases[systems[0].toLowerCase()] = {alias: systems[0], system: systems[1]};
+					var sysalias = {alias: systems[0], system: systems[1]};
+					var item = edsm.aliases[key];
 					// Optional expedition
 					if (systems.length == 3) {
 						systems[2] = systems[2].trim();
-						edsm.aliases[systems[0].toLowerCase()].expedition = systems[2];
+						sysalias.expedition = systems[2];
 						output += " for " + systems[2];
 					}
+					if (item) {
+						_.extend(item, sysalias);
+					} else {
+						item = sysalias;
+					}
+					edsm.aliases[key] = item;
 					//now save the new alias
 					writeAliases();
 					bot.sendMessage(msg.channel,output);
@@ -226,6 +282,47 @@ var commands = {
 				}
 			} else {
 				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
+	"show_sysalias": {
+		usage: "<alias>",
+		help: "Displays a system alias.",
+		process: function(args, bot, message) {
+			if (args.length > 1) {
+				var system = utils.compileArgs(args);
+				var output = system + " is not a system alias.";
+				if (system) {
+					var alias = edsm.aliases[system.toLowerCase()];
+					if (alias) {
+						output = alias.alias + " -> " + alias.system;
+						if (alias.expedition) {
+							output += " for " + alias.expedition;
+						}
+					}
+				}
+				bot.sendMessage(message.channel, output);
+			} else {
+				displayUsage(bot, message, this);
+			}		
+		}
+	},
+	"clear_sysalias": {
+		usage: "<alias>",
+		adminOnly: true,
+		help: "Deletes a CMDR alias.",
+		process: function(args, bot, message) {
+			var system = utils.compileArgs(args);
+			if(system) {
+				if (edsm.aliases[system.toLowerCase()]) {
+					delete edsm.aliases[system.toLowerCase()];
+					writeAliases();
+					bot.sendMessage(message.channel, "Deleted system alias " + system);
+				} else {
+					bot.sendMessage(message.channel, "Sorry, " + system + " doesn't exist.");
+				}
+			} else {
+				displayUsage(bot, message, this);
 			}
 		}
 	},

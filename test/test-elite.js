@@ -30,7 +30,7 @@ function handleUsage(command, user) {
 	    	console.log("Unexpected usage reply: " + message);
 	    }
 	});
-	bot.startBot(client, mocks.makeConfig([{ name: "EDSM Commands", path: "./plugins/edsm.js" }]));
+	bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
 	bot.procCommand(client, mocks.makeMessage(command, user));
 	return handledCommand;
 }
@@ -48,7 +48,7 @@ function handleAdminCheck(command) {
 }
 
 function createBot(client, bot) {
-    bot.startBot(client, mocks.makeConfig([{ name: "EDSM Commands", path: "./plugins/edsm.js" }]));
+    bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
 }
 
 describe('edsm', function(){

@@ -49,8 +49,8 @@ const PLUGINS = [
 		path: "./plugins/simple.js"
 	},
 	{
-		name: "EDSM Services",
-		path: "./plugins/edsm.js"
+		name: "Elite",
+		path: "./plugins/elite.js"
 	}
 ];
 

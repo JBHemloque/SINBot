@@ -7,6 +7,7 @@ var elizabot = require('./plugins/elizabot.js');
 var utils = require('./utils.js');
 var package_json = require("./package.json");
 var fs = require("fs");
+var _ = require("underscore");
 var version;
 
 var config;
@@ -129,7 +130,14 @@ function makeAlias(alias, output, addExtrasCallback) {
 			if (addExtrasCallback) {
 				addExtrasCallback(aliasStruct);
 			}
-			aliases[aliasStruct.alias.toLowerCase()] = aliasStruct;
+			var key = aliasStruct.alias.toLowerCase();
+			if (aliases[key]) {
+				var item = aliases[key];
+				_.extend(item, aliasStruct); 
+				aliases[key] = item;
+			} else {
+				aliases[key] = aliasStruct;
+			}			
 			//now save the new alias
 			writeAliases();
 			return aliasStruct;
@@ -144,7 +152,7 @@ var commands = {
 		usage: "<alias> <text to display>",
 		adminOnly: true,
 		help: "Creates a command alias -- e.g. !ping can output Pong!",
-		extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
+		extendedhelp: "An alias is a simple text substitution. It creates or updates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
 		process: function(args, bot, message) {
 			var alias = makeAliasFromArgs(args);
 			if (alias.displayUsage) {
