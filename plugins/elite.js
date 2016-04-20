@@ -72,14 +72,18 @@ function getRegionName(location) {
 
 function getRegionMap(location, callback) {
 	var region = getRegionName(location);
-	var key = region.toLowerCase();
 	if (region) {
-		regionjpg.fetchRegionMap(region.toLowerCase(), function() {
-			callback(regions[key]);
-		});
+		var key = region.toLowerCase();
+		if (region) {
+			regionjpg.fetchRegionMap(region.toLowerCase(), function() {
+				callback(regions[key]);
+			});
+		} else {
+			callback(undefined);
+		}
 	} else {
 		callback(undefined);
-	}	
+	}		
 }
 
 var commands = {
@@ -89,6 +93,7 @@ var commands = {
 		process: function(args, bot, msg) {
 			if (args.length > 1) {
 				var region = utils.compileArgs(args);
+				console.log("Looking for " + region);
 				getRegionMap(region, function(data) {
 					if (data) {
 						if (data.map) {							
