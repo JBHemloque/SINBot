@@ -8376,8 +8376,7 @@
       "y": 23.884533898305083,
       "z": 62484.51641949153
     },
-    "points": 118,
-    "map": "pyrie eurk.jpg"
+    "points": 118
   },
   "eodgorsts": {
     "region": "Eodgorsts",
@@ -9745,7 +9744,8 @@
       "y": -75.78727091165413,
       "z": 64899.30592105263
     },
-    "points": 1064
+    "points": 1064,
+    "map": "ceeckia.jpg"
   },
   "throepps": {
     "region": "Throepps",

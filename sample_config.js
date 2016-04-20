@@ -50,7 +50,10 @@ const PLUGINS = [
 	},
 	{
 		name: "Elite",
-		path: "./plugins/elite.js"
+		path: "./plugins/elite.js",
+		config: {
+			regionfont: "ArialBk"
+		}
 	}
 ];
 

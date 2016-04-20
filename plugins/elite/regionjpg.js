@@ -11,6 +11,8 @@ const KLY_TO_PIXEL = 1000 / 12.5;
 const X0 = 500;
 const Y0 = 875;
 
+var regionFont = "Wingdings";
+
 var generateRegionMap = function(key, callback) {
 	var x = regions[key].coords.x;
 	// coords.z is actually the y axis on our maps. Blame EDSM...
@@ -25,7 +27,7 @@ var generateRegionMap = function(key, callback) {
 	// convert Galaxy.jpg -fill white -stroke black -draw "circle Circle.x,Circle.y Circle.x+5,Circle.y+5" 
 	// -fill white -stroke black -font ArialBk -pointsize 20 -draw "text Circle.x+20,Circle.y+7 'Hello'" maps/REGION.jpg
 	imageMagick("./plugins/elite/Galaxy.jpg").fill("#ffffffff").stroke("#000000ff").drawCircle(x,y,x+5,y+5)
-				.font("ArialBk").fontSize(20).drawText(x+20,y+7,regions[key].region)
+				.font(regionFont).fontSize(20).drawText(x+20,y+7,regions[key].region)
 				.write("./plugins/elite/maps/" + key + ".jpg", function(err) {
 		if (err) {
 			console.log("Error doing conversion: ");
@@ -50,5 +52,10 @@ var fetchRegionMap = function(region, callback) {
 	}		
 }
 
+var setRegionFont = function(font) {
+	regionFont = font;
+}
+
+exports.setRegionFont = setRegionFont;
 exports.generateRegionMap = generateRegionMap;
 exports.fetchRegionMap = fetchRegionMap;

@@ -622,6 +622,11 @@ exports.setup = function(config, bot, botconfig) {
 	if (botconfig.edsm) {
 		edsm = botconfig.edsm;
 	}
+	if (config) {
+		if (config.regionfont) {
+			regionjpg.setRegionFont(config.regionfont);
+		}
+	}	
 }
 
 exports.commands = commands;
