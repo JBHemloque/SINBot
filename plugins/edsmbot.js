@@ -78,10 +78,22 @@ var _getPositionString = function(commander, data) {
 	}
 	return output;
 }
+
+var getPositionString = function(commander, callback) {
+	_getSystem(commander, function(data) {
+		var system = undefined;
+		if (data) {
+			if (data.system) {
+				system = data.system;
+			}
+		}
+		callback(_getPositionString(commander, data), system);
+	});
+}
  
 var getPosition = function(commander, bot, message) {
-	_getSystem(commander, function(data) {
-		bot.sendMessage(message.channel, _getPositionString(commander, data));
+	getPositionString(commander, function(data) {
+		bot.sendMessage(message.channel, data);
 	});
 }
 
@@ -223,6 +235,7 @@ var getDistance = function(first, second, bot, message) {
 }
 
 exports.getPosition = getPosition;
+exports.getPositionString = getPositionString;
 exports.getSystemCoords = getSystemCoords;
 exports.getCmdrCoords = getCmdrCoords;
 exports.getDistance = getDistance;

@@ -6,6 +6,9 @@ var fs = require("fs");
 var alphanum = require("../alphanum.js");
 var _ = require("underscore");
 
+var regions = require("./elite/regions.json");
+var regionjpg = require("./elite/regionjpg.js");
+
 var botcfg = null;
 
 function writeAliases() {
@@ -58,7 +61,51 @@ function calcJumpRange(jumpRange, distSagA, distMax) {
 	return output;
 }
 
+function getRegionName(location) {
+	var names = location.split(/ [a-z][a-z]-[a-z] /i);
+	var key = names[0].toLowerCase();
+	if (regions[key]) {
+		return regions[key].region;
+	}
+	return undefined;
+}
+
+function getRegionMap(location, callback) {
+	var region = getRegionName(location);
+	var key = region.toLowerCase();
+	if (region) {
+		regionjpg.fetchRegionMap(region.toLowerCase(), function() {
+			callback(regions[key]);
+		});
+	} else {
+		callback(undefined);
+	}	
+}
+
 var commands = {
+	"region": {
+		usage: "<region>",
+		help: "Shows where a region is in the galaxy",
+		process: function(args, bot, msg) {
+			if (args.length > 1) {
+				var region = utils.compileArgs(args);
+				getRegionMap(region, function(data) {
+					if (data) {
+						if (data.map) {							
+							bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, "Region " + data.region);
+							bot.sendMessage(msg.channel, "Region " + data.region);
+						} else {
+							bot.sendMessage(msg.channel, "Sorry, I have no map for region " + region);
+						}
+					} else {
+						bot.sendMessage(msg.channel, "Sorry, I have no information on region " + region);
+					}
+				});
+			} else {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
 	"route": {
 		usage: "<JumpRange> <SgrA distance in kly> [optional max plot in ly]",
 		help: "Calculate optimal core routing distance.",
@@ -84,6 +131,35 @@ var commands = {
 			} 
 
 			if (displayUsage) {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
+	"showloc": {
+		usage: "<name>",
+		help: 'Shows the location of a commander.',
+		extendedhelp: "Shows the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
+		process: function(args,bot,msg) {
+			if (args.length > 1) {
+				edsm.getPositionString(utils.compileArgs(args), function(posString, position) {
+					if (position) {
+						getRegionMap(position, function(data) {
+							if (data) {
+								if (data.map) {
+									bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, posString);
+									bot.sendMessage(msg.channel, posString);
+								} else {
+									bot.sendMessage(msg.channel, posString);
+								}
+							} else {
+								bot.sendMessage(msg.channel, posString);
+							}
+						});
+					} else {
+						bot.sendMessage(msg.channel, posString);
+					}				
+				});
+			} else {
 				utils.displayUsage(bot,msg,this);
 			}
 		}
