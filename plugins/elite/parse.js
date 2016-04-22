@@ -49,6 +49,6 @@ for (key in parsed) {
 
 console.log("Writing " + (regions-nonStandardCount).toString() + " regions and " + nonStandardCount + " non-standard regions...");
 
-fs.writeFile("../regions.json",JSON.stringify(compiled,null,2), null);
+fs.writeFile("./regions.json",JSON.stringify(compiled,null,2), null);
 
 console.log("Done!");
