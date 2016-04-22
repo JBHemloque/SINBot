@@ -86,30 +86,37 @@ function getRegionMap(location, callback) {
 	}		
 }
 
+function showRegion(args, bot, msg) {
+	if (args.length > 1) {
+		var region = utils.compileArgs(args);
+		console.log("Looking for " + region);
+		getRegionMap(region, function(data) {
+			if (data) {
+				if (data.map) {							
+					bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, "Region " + data.region);
+					bot.sendMessage(msg.channel, "Region " + data.region);
+				} else {
+					bot.sendMessage(msg.channel, "Sorry, I have no map for region " + region);
+				}
+			} else {
+				bot.sendMessage(msg.channel, "Sorry, I have no information on region " + region);
+			}
+		});
+	} else {
+		utils.displayUsage(bot,msg,this);
+	}
+}
+
 var commands = {
 	"region": {
 		usage: "<region>",
 		help: "Shows where a region is in the galaxy",
-		process: function(args, bot, msg) {
-			if (args.length > 1) {
-				var region = utils.compileArgs(args);
-				console.log("Looking for " + region);
-				getRegionMap(region, function(data) {
-					if (data) {
-						if (data.map) {							
-							bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, "Region " + data.region);
-							bot.sendMessage(msg.channel, "Region " + data.region);
-						} else {
-							bot.sendMessage(msg.channel, "Sorry, I have no map for region " + region);
-						}
-					} else {
-						bot.sendMessage(msg.channel, "Sorry, I have no information on region " + region);
-					}
-				});
-			} else {
-				utils.displayUsage(bot,msg,this);
-			}
-		}
+		process: showRegion
+	},
+	"show": {
+		usage: "<region or system>",
+		help: "Shows where a region or named system is in the galaxy",
+		process: showRegion
 	},
 	"route": {
 		usage: "<JumpRange> <SgrA distance in kly> [optional max plot in ly]",
