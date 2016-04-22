@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl http://www.edsm.net/dump/systemsWithCoordinates.json > systemsWithCoordinates.json
+node parse.js
+cp regions.json ../..
