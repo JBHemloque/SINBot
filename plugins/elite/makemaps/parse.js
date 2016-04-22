@@ -5,24 +5,26 @@ var rawsys = require("./systemsWithCoordinates.json");
 var parsed = {};
 var compiled = {};
 
+var nonStandardCount = 0;
 // Run through the systems and extract the region.
 console.log("Extracting region data...");
 for (var i = 0; i < rawsys.length; i++) {
 	// console.log(rawsys[i].name);
 	var names = rawsys[i].name.split(/ [a-z][a-z]-[a-z] /i);
 	// console.log(names);
-	if (names.length == 2) {
-		var key = names[0];
-		// procedural regions have the form of "blah blah AA-A blah", where " AA-A " represents a letter pattern
-		var coords = rawsys[i].coords;
-		var item = parsed[key];
-		if (item) {
-			item.push(coords);
-		} else {
-			item = [coords];
-		}
-		parsed[key] = item;
+	if (names.length === 1) {
+		nonStandardCount++;
 	}
+	var key = names[0];
+	// procedural regions have the form of "blah blah AA-A blah", where " AA-A " represents a letter pattern
+	var coords = rawsys[i].coords;
+	var item = parsed[key];
+	if (item) {
+		item.push(coords);
+	} else {
+		item = [coords];
+	}
+	parsed[key] = item;
 }
 
 // Work out an average coordinate for each region
@@ -45,7 +47,7 @@ for (key in parsed) {
 	regions++;
 }
 
-console.log("Writing " + regions + " regions...");
+console.log("Writing " + (regions-nonStandardCount).toString() + " regions and " + nonStandardCount + " non-standard regions...");
 
 fs.writeFile("../regions.json",JSON.stringify(compiled,null,2), null);
 
