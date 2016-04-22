@@ -93,13 +93,13 @@ function showRegion(args, bot, msg) {
 		getRegionMap(region, function(data) {
 			if (data) {
 				if (data.map) {							
-					bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, "Region " + data.region);
-					bot.sendMessage(msg.channel, "Region " + data.region);
+					bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, data.region);
+					bot.sendMessage(msg.channel, data.region);
 				} else {
-					bot.sendMessage(msg.channel, "Sorry, I have no map for region " + region);
+					bot.sendMessage(msg.channel, "Sorry, I have no map for " + region);
 				}
 			} else {
-				bot.sendMessage(msg.channel, "Sorry, I have no information on region " + region);
+				bot.sendMessage(msg.channel, "Sorry, I have no information on " + region);
 			}
 		});
 	} else {
