@@ -11,6 +11,8 @@ var regionjpg = require("./elite/regionjpg.js");
 
 var botcfg = null;
 
+var NEW_THRESHHOLD = (7 * 24 * 60 * 60 * 1000);
+
 function writeAliases() {
 	fs.writeFile("./sysalias.json",JSON.stringify(edsm.aliases,null,2), null);
 }
@@ -92,14 +94,22 @@ function showRegion(args, bot, msg) {
 		console.log("Looking for " + region);
 		getRegionMap(region, function(data) {
 			if (data) {
+				var regionString = region;
 				if (data.map) {							
 					bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, data.region);
-					bot.sendMessage(msg.channel, data.region);
+					regionString = data.region;
+					var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
+					var regionDate = new Date(data.date).getTime();
+					console.log("Comparing " + newRegionDate.toString() + " to " + regionDate.toString());
+					if (regionDate > newRegionDate) {
+						regionString += "\n*Newly trilaterated region: " + data.date + "*";
+					}
+					bot.sendMessage(msg.channel, regionString);
 				} else {
-					bot.sendMessage(msg.channel, "Sorry, I have no map for " + region);
+					bot.sendMessage(msg.channel, "Sorry, I have no map for " + regionString);
 				}
 			} else {
-				bot.sendMessage(msg.channel, "Sorry, I have no information on " + region);
+				bot.sendMessage(msg.channel, "Sorry, I have no information on " + regionString);
 			}
 		});
 	} else {

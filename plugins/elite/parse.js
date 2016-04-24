@@ -19,10 +19,15 @@ for (var i = 0; i < rawsys.length; i++) {
 	// procedural regions have the form of "blah blah AA-A blah", where " AA-A " represents a letter pattern
 	var coords = rawsys[i].coords;
 	var item = parsed[key];
+	var date = new Date(rawsys[i].date);
 	if (item) {
-		item.push(coords);
+		item.items.push(coords);
+		// Save the oldest date for this region
+		if (item.date > date) {
+			item.date = date;
+		}
 	} else {
-		item = [coords];
+		item = {items: [coords], date: date};
 	}
 	parsed[key] = item;
 }
@@ -35,15 +40,15 @@ for (key in parsed) {
 	var cx = 0;
 	var cy = 0;
 	var cz = 0;
-	for (var i = 0; i < item.length; i++) {
-		cx += item[i].x;
-		cy += item[i].y;
-		cz += item[i].z;
+	for (var i = 0; i < item.items.length; i++) {
+		cx += item.items[i].x;
+		cy += item.items[i].y;
+		cz += item.items[i].z;
 	}
-	cx /= item.length;
-	cy /= item.length;
-	cz /= item.length;
-	compiled[key.toLowerCase()] = {region: key, coords: {x: cx, y: cy, z: cz}, points: item.length};
+	cx /= item.items.length;
+	cy /= item.items.length;
+	cz /= item.items.length;
+	compiled[key.toLowerCase()] = {region: key, coords: {x: cx, y: cy, z: cz}, points: item.items.length, date: item.date};
 	regions++;
 }
 
