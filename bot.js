@@ -301,8 +301,9 @@ var commands = {
     	help: "Shuts down the bot.",
     	adminOnly: true,
     	process: function(args, bot, msg) {
-    		bot.sendMessage(msg.channel, version + " is going down NOW!");
-    		process.exit(0);
+    		bot.sendMessage(msg.channel, version + " is going down NOW!", function(error, message) {
+    			process.exit(0);
+    		});    		
     	}
     },
     "adminlist": {
