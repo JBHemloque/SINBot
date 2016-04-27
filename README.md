@@ -41,6 +41,8 @@ Before first run you will need to create a `config.js` file. The email and passw
 To start the bot just run
 `node server.js`.
 
+The bot doesn't include an uncaught exception handler, so I highly recommend running the bot with a process manager like pm2.
+
 # Updates
 If you update the bot, please run `npm update` before starting it again. If you have
 issues with this, you can try deleting your node_modules folder and then running
