@@ -146,6 +146,10 @@ describe('bot', function(){
         assert(handledCommand);
     });
 
+    it("shouldn't let non-admin users call exit", function() {
+        assert(handleAdminCheck("!exit"));
+    });
+
     it("shouldn't let non-admin users call adminlist", function() {
     	assert(handleAdminCheck("!adminlist"));
     });
