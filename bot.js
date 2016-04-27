@@ -297,6 +297,14 @@ var commands = {
     		});
     	}
     },
+    "exit": {
+    	help: "Shuts down the bot.",
+    	adminOnly: true,
+    	process: function(args, bot, msg) {
+    		bot.sendMessage(msg.channel, version + " is going down NOW!");
+    		process.exit(0);
+    	}
+    },
     "adminlist": {
     	help: "Returns a list of admins for this bot.",
     	adminOnly: true,
