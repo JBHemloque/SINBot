@@ -545,6 +545,10 @@ function botShouldHandleCommand(bot, message) {
 		if (stripFirstArg) {
 			args.shift();
 		}
+		// args[0] should be a command. Strip empty strings off until the first non-empty string
+		while (args.length > 0 && args[0] === "") {
+			args.shift();
+		}
 		if (args) {
 			result.args = args;
 		} else {

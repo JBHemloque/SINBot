@@ -5,7 +5,7 @@ var fs = require('fs');
 
 exports.compileArgs = function(args) {
 	args.splice(0,1);
-	return args.join(" ");
+	return args.join(" ").trim();
 }
 
 exports.bold = function(text) { 

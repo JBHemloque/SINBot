@@ -13,6 +13,52 @@ var botcfg = null;
 
 var NEW_THRESHHOLD = (7 * 24 * 60 * 60 * 1000);
 
+var densitySigmaArray = [ // in SI units of kg/m^3
+        {likelyType: "IW", densities: [1.06e+3, 1.84e+3, 2.62e+3, 3.40e+3]},
+        {likelyType: "RIW", densities: [2.25e+3, 2.82e+3, 3.38e+3, 3.95e+3]},
+        {likelyType: "RW", densities: [2.94e+3, 3.77e+3, 4.60e+3, 5.43e+3]},
+        {likelyType: "HMC", densities: [1.21e+3, 4.60e+3, 8.00e+3, 1.14e+4]},
+        {likelyType: "MR", densities: [1.47e+3, 7.99e+3, 1.45e+4, 2.10e+4]},
+        {likelyType: "WW", densities: [1.51e+3, 4.24e+3, 6.97e+3, 9.70e+3]},
+        {likelyType: "ELW", densities: [4.87e+3, 5.65e+3, 6.43e+3, 7.21e+3]},
+        {likelyType: "AW", densities: [4.23e+2, 3.50e+3, 6.59e+3, 9.67e+3]}
+];
+
+function handleGravity(planetMass, planetRadius) {
+	var G = 6.67e-11;
+	var earthMass = 5.98e24;
+	var earthRadius = 6367444.7;
+	var baseG = G * earthMass / (earthRadius * earthRadius);
+	var planetG = G * planetMass * earthMass / (planetRadius * planetRadius * 1e6);
+	var planetDensity = planetMass * earthMass / (4.0 / 3.0 * Math.PI * planetRadius * planetRadius * planetRadius) * 1e-9; // in SI units of kg/m^3
+	var planetM2Str = planetG.toFixed(2);
+	var planetGStr = (planetG / baseG).toFixed(2);
+	var planetDensityStr = planetDensity.toExponential(2);
+	var maybeTypes = [];
+	var likelyTypes = [];
+
+	for (var i = 0; i < densitySigmaArray.length; i++) {
+		var row = densitySigmaArray[i];
+		if (planetDensity > row.densities[1] && planetDensity < row.densities[2]) {
+			likelyTypes.push(row.likelyType);
+		} else if (planetDensity > row.densities[0] && planetDensity < row.densities[3]) {
+			maybeTypes.push(row.likelyType);
+		}
+	}
+	var densityString = "";
+	if (likelyTypes.length > 0) {
+		densityString += "\n**Likely**: " + likelyTypes.sort().join(", ");
+	}
+	if (maybeTypes.length > 0) {
+		densityString += "\n**Possible**: " + maybeTypes.sort().join(", ");
+	}
+
+	var ret = "The gravity for a planet with " + planetMass + " Earth masses and a radius of ";
+	ret += planetRadius + " km is **" + planetM2Str + "** m/s^2 or **" + planetGStr;
+	ret += "** g. It has a density of **" + planetDensityStr + "** kg/m^3." + densityString;
+	return ret;
+}
+
 function writeAliases() {
 	fs.writeFile("./sysalias.json",JSON.stringify(edsm.aliases,null,2), null);
 }
@@ -118,6 +164,24 @@ function showRegion(args, bot, msg) {
 }
 
 var commands = {
+	"g": {
+		usage: "<planet mass in earth masses> <planet radius in km>",
+		help: "Calculates surface gravity and likely planet types from a planet's mass and radius",
+		process: function(args, bot, msg) {
+			var displayUsage = true;
+			if (args.length === 3) {
+				var planetMass = +(args[1]);
+				var planetRadius = +(args[2]);
+				if(!isNaN(planetMass) && !isNaN(planetRadius)) {
+					displayUsage = false;
+					bot.sendMessage(msg.channel, handleGravity(planetMass, planetRadius));
+				}
+			}
+			if (displayUsage) {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
 	"region": {
 		usage: "<region>",
 		help: "Shows where a region is in the galaxy",
@@ -135,16 +199,16 @@ var commands = {
 			var displayUsage = true;
 			if ((args.length === 4) || (args.length === 3)) {
 				displayUsage = false;
-				var jumpRange = parseFloat(args[1]);
-				var distSagA = parseFloat(args[2]);
+				var jumpRange = +(args[1]);
+				var distSagA = +(args[2]);
 				var distMax = undefined;
 				if (args.length === 4) {
-					distMax = parseFloat(args[3]);
-					if (distMax === NaN) {
+					distMax = +(args[3]);
+					if (isNaN(distMax)) {
 						displayUsage = true;
 					}
 				}
-				if ((jumpRange === NaN) || (distSagA === NaN)) {
+				if (isNaN(jumpRange) || isNaN(distSagA)) {
 					displayUsage = true;
 				}
 				if (!displayUsage) {
