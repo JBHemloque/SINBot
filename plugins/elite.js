@@ -236,6 +236,7 @@ var commands = {
 									bot.sendMessage(msg.channel, posString);
 								}
 							} else {
+								posString += "\nNo map data exists for " + position + " yet...";
 								bot.sendMessage(msg.channel, posString);
 							}
 						});
