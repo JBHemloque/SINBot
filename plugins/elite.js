@@ -137,7 +137,6 @@ function getRegionMap(location, callback) {
 function showRegion(args, bot, msg) {
 	if (args.length > 1) {
 		var region = utils.compileArgs(args);
-		console.log("Looking for " + region);
 		getRegionMap(region, function(data) {
 			if (data) {
 				var regionString = region;
@@ -146,7 +145,6 @@ function showRegion(args, bot, msg) {
 					regionString = data.region;
 					var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
 					var regionDate = new Date(data.date).getTime();
-					console.log("Comparing " + newRegionDate.toString() + " to " + regionDate.toString());
 					if (regionDate > newRegionDate) {
 						regionString += "\n*Newly trilaterated region: " + data.date + "*";
 					}
