@@ -242,6 +242,26 @@ var commands = {
 		adminOnly: true,
         process: function(args, bot, msg) { bot.sendMessage(msg.channel,bot.servers); }
     },
+    "join-server": {
+    	usage: "<invite>",
+    	help: "Joins the server it's invited to.",
+    	adminOnly: true,
+    	process: function(args, bot, msg) {
+    		var invite = compileArgs(args);
+    		if (invite) {
+    			console.log(bot.joinServer(invite, function(error,server) {
+	    			if (error) {
+	    				bot.sendMessage(msg.channel, "Failed to join: " + error);
+	    			} else {
+	    				console.log("Joined server " + server);
+	    				bot.sendMessage(msg.channel, "Successfully joined " + server);
+	    			}
+	    		}));
+    		} else {
+    			displayUsage(bot, msg, this);
+    		}	
+    	}
+    },
     "channels": {
         help: "Lists channels bot is connected to.",
 		adminOnly: true,
@@ -259,7 +279,7 @@ var commands = {
         	if (message) {
         		bot.sendMessage(msg.channel,message);
         	} else {
-				displayUsage(bot, message, this);
+				displayUsage(bot, makeAliasStructFromArgs, this);
 			}        	
         }
     },
@@ -271,7 +291,7 @@ var commands = {
         	if (message) {
         		bot.sendMessage(msg.channel,message,{tts:true});
         	} else {
-				displayUsage(bot, message, this);
+				displayUsage(bot, msg, this);
 			}
         }
     },
