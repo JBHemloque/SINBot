@@ -41,16 +41,31 @@ exports.inBrief = function(longstring) {
 	return ret;
 }
 
-exports.sendMessages = function(bot, channel, outputArray) {
+const MESSAGE_LIMIT = 800
+
+exports.sendMessage = function(bot, channel, message) {
+	// If the message is too big, let's split it...
+	if (message.length > MESSAGE_LIMIT) {
+		sendMessages(bot, channel, message.split(/\r?\n/));
+	} else {
+		bot.sendMessage(channel, message, function(error, message) {
+			if (error) {
+				logError("Error sending message", e);
+			}
+		});
+	}
+}
+
+var sendMessages = function(bot, channel, outputArray) {
 	// We've got an array of messages, but we might be able to compile them together.
 	// Discord has a message size limit of about 2k, so we'll compile them together
-	// in chunks no bigger than 800 characters, for grins.
+	// in chunks no bigger than MESSAGE_LIMIT characters, for grins.
 	var compiledArray = [];
 	var i = 0;
 	var buffer = "";
 	for (var j = 0; j < outputArray.length; j++) {
 		if (typeof outputArray[j] != 'function') {
-			if (buffer.length + outputArray[j].length > 800) {
+			if (buffer.length + outputArray[j].length > MESSAGE_LIMIT) {
 				compiledArray[i++] = buffer;
 				buffer = "";
 			}
@@ -80,6 +95,7 @@ exports.sendMessages = function(bot, channel, outputArray) {
 		}
 	});
 }
+exports.sendMessages = sendMessages;
 
 exports.logError = function(header, error, callback) {
 	var errors;

@@ -48,7 +48,7 @@ var precis = function(arg, bot, message) {
 		}
 		searchWiki(arg, function(result) {
 			if (result) {
-				bot.sendMessage(message.channel, result);
+				utils.sendMessage(bot, message.channel, result);
 			}
 		});
 	});
@@ -100,7 +100,7 @@ var summarize = function(name, url, callback) {
 			    		output += summary[name];
 			    	}
 			    }
-			} 			
+			}		
 		    callback(output);
 		}
 	});
