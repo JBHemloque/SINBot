@@ -77,7 +77,7 @@ function bootstrap(callback){
 }
 
 function makeCardUrl(boardId, cardId) {
-	return 'https://trello.com/c/' + card_id + '/' + boardId;
+	return 'https://trello.com/c/' + cardId + '/' + boardId;
 }
 
 function makeBoardUrl(boardId) {
