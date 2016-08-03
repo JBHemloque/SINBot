@@ -76,14 +76,22 @@ function bootstrap(callback){
 	}
 }
 
+function makeCardUrl(boardId, cardId) {
+	return 'https://trello.com/c/' + card_id + '/' + boardId;
+}
+
+function makeBoardUrl(boardId) {
+	return 'https://trello.com/b/' + boardId;
+}
+
 handlers = {
 	createCard: function(event, boardId){
 		var card_name = event.data.card.name
 			,card_id = event.data.card.id
 			,card_id_short = event.data.card.idShort
-			,card_url = 'https://trello.com/card/' + card_id + '/' + boardId + '/' + card_id_short
+			,card_url = makeCardUrl(boardId, card_id)
 			,author = event.memberCreator.fullName
-			,board_url = 'https://trello.com/b/' + boardId
+			,board_url = makeBoardId(boardId)
 			,board_name = event.data.board.name
 			,msg = ':boom: ' + author + ' created card <' + card_url + '|' + sanitize(card_name) + '> on board <' + board_url + '|' + board_name + '>';
 		notify(cfg.trello.boardChannels[boardId], msg);
@@ -91,7 +99,7 @@ handlers = {
 	,commentCard: function(event, boardId){
 		var card_id_short = event.data.card.idShort
 			,card_id = event.data.card.id
-			,card_url = 'https://trello.com/card/' + card_id + '/' + boardId + '/' + card_id_short
+			,card_url = makeCardUrl(boardId, card_id)
 			,card_name = event.data.card.name
 			,author = event.memberCreator.fullName
 			,msg = ':speech_balloon: ' + author + ' commented on card <' + card_url + '|' + sanitize(card_name) + '>: ' + trunc(event.data.text);
@@ -100,7 +108,7 @@ handlers = {
 	,addAttachmentToCard: function(event, boardId){
 		var card_id_short = event.data.card.idShort
 			,card_id = event.data.card.id
-			,card_url = 'https://trello.com/card/' + card_id + '/' + boardId + '/' + card_id_short
+			,card_url = makeCardUrl(boardId, card_id)
 			,card_name = event.data.card.name
 			,author = event.memberCreator.fullName
 			,aurl = event.data.attachment.url;
@@ -115,7 +123,7 @@ handlers = {
 				,nameO,nameN
 				,card_id_short = event.data.card.idShort
 		      ,card_id = event.data.card.id
-		      ,card_url = 'https://trello.com/card/' + card_id + '/' + boardId + '/' + card_id_short
+		      ,card_url = makeCardUrl(boardId, card_id)
 		      ,card_name = event.data.card.name
 			   ,author = event.memberCreator.fullName;
 			trello.api.get('/1/list/' + oldId, function(err, resp){
@@ -133,7 +141,7 @@ handlers = {
 	,updateCheckItemStateOnCard: function(event, boardId){
 		var card_id_short = event.data.card.idShort
 			,card_id = event.data.card.id
-			,card_url = 'https://trello.com/card/' + card_id + '/' + boardId + '/' + card_id_short
+			,card_url = makeCardUrl(boardId, card_id)
 			,card_name = event.data.card.name
 			,author = event.memberCreator.fullName;
 		if (event.data.checkItem.state === 'complete'){
