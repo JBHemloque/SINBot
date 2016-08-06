@@ -16,12 +16,6 @@ exports.italic = function(text) {
 	return "*" + text + "*";
 }
 
-exports.displayUsage = function(bot, message, command) {
-	if (command.usage) {
-		bot.sendMessage(message.channel, "Usage: " + command.usage);
-	}
-}
-
 function countSubstrings(str, substr) {
 	return str.split(substr).length-1;
 }
@@ -55,6 +49,17 @@ exports.sendMessage = function(bot, channel, message) {
 		});
 	}
 }
+
+exports.sendMessage = sendMessage;
+
+// Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
+var pmOrSend = function(bot, command, pmIfSpam, user, channel, message) {
+	if (command.spammy && pmIfSpam) {
+		channel = user; // PM
+	}
+	sendMessage(bot, channel, message);
+}
+exports.pmOrSend = pmOrSend;
 
 var sendMessages = function(bot, channel, outputArray) {
 	// We've got an array of messages, but we might be able to compile them together.
@@ -96,6 +101,30 @@ var sendMessages = function(bot, channel, outputArray) {
 	});
 }
 exports.sendMessages = sendMessages;
+
+// Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
+var pmOrSendArray = function(bot, command, pmIfSpam, user, channel, messages) {
+	if (command.spammy && pmIfSpam) {
+		channel = user; // PM
+	}
+	sendMessages(bot, channel, messages, function(error, message) {
+		if (error) {
+			logError("Error sending message", e);
+		}
+	});	
+}
+exports.pmOrSendArray = pmOrSendArray;
+
+exports.displayUsage = function(bot, message, command) {
+	// Usage is always spammy
+	if (command.usage) {
+		var channel = message.channel;
+		if (config.SPAMMY_PM) {
+			channel = message.author;
+		}
+		bot.sendMessage(channel, "Usage: " + command.usage);
+	}
+}
 
 exports.logError = function(header, error, callback) {
 	var errors;

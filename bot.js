@@ -147,6 +147,20 @@ function makeAlias(alias, output, addExtrasCallback) {
 	}
 }
 
+//////////////////////////////////////////////////////////////
+//
+// Command structure:
+//
+// "name": {
+//		usage: "usage text",
+//		adminOnly: (boolean - optional)
+//		spammy: (boolean - optional - if true, the command will send the results via PM, if config.SPAMMY_PM is true)
+//		help: "help text" (optional)
+//		extendedhelp: "extended help text" (optional)
+//		process: function(args, bot, message)
+// }
+//////////////////////////////////////////////////////////////
+
 var commands = {
 	"alias": {
 		usage: "<alias> <text to display>",
