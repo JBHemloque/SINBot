@@ -2,6 +2,7 @@
 
 var async = require('async');
 var fs = require('fs');
+var config = require('./config.js');
 
 exports.compileArgs = function(args) {
 	args.splice(0,1);
@@ -37,7 +38,7 @@ exports.inBrief = function(longstring) {
 
 const MESSAGE_LIMIT = 800
 
-exports.sendMessage = function(bot, channel, message) {
+var sendMessage = function(bot, channel, message) {
 	// If the message is too big, let's split it...
 	if (message.length > MESSAGE_LIMIT) {
 		sendMessages(bot, channel, message.split(/\r?\n/));
@@ -49,7 +50,6 @@ exports.sendMessage = function(bot, channel, message) {
 		});
 	}
 }
-
 exports.sendMessage = sendMessage;
 
 // Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
