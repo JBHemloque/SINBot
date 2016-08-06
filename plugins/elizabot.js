@@ -4,21 +4,21 @@ exports.reply = function (r) {
 	if (this.bot == null) {
 		this.bot = new ElizaBot(false);
 	} 
-	return this.bot.transform(r);
+	return this.bot.transform(r).replace(" ?", "?");
 }
 
 exports.start = function () {
 	if (this.bot == null) {
 		this.bot = new ElizaBot(false);
 	}
-	return this.bot.getInitial();
+	return this.bot.getInitial().replace(" ?", "?");
 }
 
 exports.bye = function () {
 	if (this.bot == null) {
 		this.bot = new ElizaBot(false);
 	}
-	return this.bot.getFinal();
+	return this.bot.getFinal().replace(" ?", "?");
 }
 
 function ElizaBot(noRandomFlag) {
