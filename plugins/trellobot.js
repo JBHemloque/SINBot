@@ -91,7 +91,7 @@ handlers = {
 			,card_id_short = event.data.card.idShort
 			,card_url = makeCardUrl(boardId, card_id)
 			,author = event.memberCreator.fullName
-			,board_url = makeBoardId(boardId)
+			,board_url = makeBoardUrl(boardId)
 			,board_name = event.data.board.name
 			,msg = ':boom: ' + author + ' created card <' + card_url + '|' + sanitize(card_name) + '> on board <' + board_url + '|' + board_name + '>';
 		notify(cfg.trello.boardChannels[boardId], msg);
@@ -122,10 +122,10 @@ handlers = {
 				,newId = event.data.card.idList
 				,nameO,nameN
 				,card_id_short = event.data.card.idShort
-		      ,card_id = event.data.card.id
-		      ,card_url = makeCardUrl(boardId, card_id)
-		      ,card_name = event.data.card.name
-			   ,author = event.memberCreator.fullName;
+		    	,card_id = event.data.card.id
+		    	,card_url = makeCardUrl(boardId, card_id)
+		    	,card_name = event.data.card.name
+				,author = event.memberCreator.fullName;
 			trello.api.get('/1/list/' + oldId, function(err, resp){
 				if (err) throw err;
 				nameO = resp.name;
