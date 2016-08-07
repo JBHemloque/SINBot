@@ -316,6 +316,13 @@ function JaquesBot(noRandomFlag) {
                 "What if I had been (2) ?"
             ]]
         ]],
+        ["got", 0, [
+        	["* got a *", [
+        		"One (2) coming up!",
+        		"Right away!",
+        		"Here you go, one (2)."
+        	]]
+        ]],
         ["make", 0, [
         	["* make me a *", [
         		"One (2) coming up!",
