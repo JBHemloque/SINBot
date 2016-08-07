@@ -290,9 +290,9 @@ var commands = {
         usage: "<message>",
         help: "Bot says message.",
         process: function(args, bot, message) { 
-        	var message = compileArgs(args);
-        	if (message) {
-        		utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,message);
+        	var msg = compileArgs(args);
+        	if (msg) {
+        		utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,msg);
         	} else {
 				displayUsage(bot, makeAliasStructFromArgs, this);
 			}        	
