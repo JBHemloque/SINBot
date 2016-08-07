@@ -17,7 +17,7 @@ var commands = {
 		help: "I'm Jaques, your cyborg bartender. Let's talk...",
 		process: function(args, bot, message) {
 			if (!jaquesStarted) {
-				startjaques(args, bot, message);
+				jaquesStarted = true;
 			}
 			bot.sendMessage(message.channel, jaquesbot.reply(utils.compileArgs(args)));
 		}

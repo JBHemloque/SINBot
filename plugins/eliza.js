@@ -17,7 +17,7 @@ var commands = {
 		help: "Let's talk...",
 		process: function(args, bot, message) {
 			if (!elizaStarted) {
-				startEliza(args, bot, message);
+				elizaStarted = true;
 			}
 			bot.sendMessage(message.channel, elizabot.reply(utils.compileArgs(args)));
 		}
