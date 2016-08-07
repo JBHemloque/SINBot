@@ -595,6 +595,7 @@ function botShouldHandleCommand(bot, message) {
 }
 
 var defaultCommandHandler = function(args, bot, message) {
+	console.log("defaultCommandHandler(" + compileArgs(args) + ")");
 	if(config.respondToInvalid){
 		bot.sendMessage(message.channel, "Invalid command " + message.content);
 	} 
@@ -635,6 +636,9 @@ function procCommand(bot, message) {
 				if (cmd) {
 					procAlias(bot, message, cmd, compileArgs(res.args));
 				} else {
+					// We don't know what the command is, so we need to push the original command to the
+					// start, to account for the one that will be stripped later. Ew, I know.
+					res.args.unshift(res.args[0]);
 					defaultCommandHandler(res.args, bot, message);
 				}
 			}
