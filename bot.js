@@ -92,6 +92,21 @@ function addMessage(targetId, message) {
 	updateMessagebox();
 }
 
+function userMentioned(text, user) {
+	if (user) {
+		return ((text.startsWith('<@' + user + '>')) || (text.startsWith('<@!' + user + '>')));
+	}
+	return ((text.startsWith('<@')) || (text.startsWith('<@!')));
+}
+
+function stripUserDecorations(text) {
+	if (text.startsWith('<@!')) {
+		return text.substr(3,user.length-4);
+	} else {
+		return text.substr(2,user.length-3);
+	}
+}
+
 function isAdmin(id) {
 	return (config.ADMIN_IDS.indexOf(id) > -1);
 }
@@ -404,8 +419,8 @@ var commands = {
 			if (user) {
 				var msg = args.join(' ');
 				if (msg) {
-					if(user.startsWith('<@')){
-						user = user.substr(2,user.length-3);
+					if (userMentioned(user)) {
+						user = stripUserDecorations(user);
 					}
 					var target = message.channel.server.members.get("id",user);
 					if(!target){
@@ -564,12 +579,13 @@ function botShouldHandleCommand(bot, message) {
 	var result = {handleCommand: false};
 	var messageContent = message.content;
 	var stripFirstArg = false;
-	if (config.COMMAND_PREFIX) {		
+	if (config.COMMAND_PREFIX) {
 		if (message.content.startsWith(config.COMMAND_PREFIX)) {
 			result.handleCommand = true;
 			messageContent = message.content.substr(config.COMMAND_PREFIX.length);
 		}
-	} else if (message.content.startsWith("<@" + bot.user.id + ">")) {
+	// } else if (userMentioned(message.content, bot.user.id)) {
+	} else if (message.isMentioned(bot.user)) {
 		stripFirstArg = true;
 		result.handleCommand = true;
 	} else if (message.channel.isPrivate) {

@@ -64,7 +64,7 @@ function _makeMessage(message, user, channel) {
 		author: user,
 		content: message,
 		isMentioned: function(user) {
-			return message.includes(user.name);
+			return this.content.includes(user.id.toString());
 		},
 		toString: function() {
 			return this.content;

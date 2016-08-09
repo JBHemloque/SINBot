@@ -137,6 +137,7 @@ function getRegionMap(location, callback) {
 function showRegion(args, bot, msg) {
 	if (args.length > 1) {
 		var region = utils.compileArgs(args);
+		region = edsm.normalizeSystem(region);
 		getRegionMap(region, function(data) {
 			if (data) {
 				var regionString = region;
@@ -153,7 +154,7 @@ function showRegion(args, bot, msg) {
 					bot.sendMessage(msg.channel, "Sorry, I have no map for " + regionString);
 				}
 			} else {
-				bot.sendMessage(msg.channel, "Sorry, I have no information on " + regionString);
+				bot.sendMessage(msg.channel, "Sorry, I have no information on " + region);
 			}
 		});
 	} else {

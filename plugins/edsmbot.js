@@ -241,3 +241,4 @@ exports.getCmdrCoords = getCmdrCoords;
 exports.getDistance = getDistance;
 exports.aliases = aliases;
 exports.cmdraliases = cmdraliases;
+exports.normalizeSystem = normalizeSystem;

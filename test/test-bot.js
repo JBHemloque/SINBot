@@ -82,6 +82,30 @@ describe('bot', function(){
     	assert(handledCommand);
     });
 
+    it('should process commands via calls to itself when mentioned', function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "Pong!") {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeDirectConfig());
+        bot.procCommand(client, mocks.makeMessage("<@" + client.user.id + "> ping"));
+        assert(handledCommand);
+    });
+
+    it('should process commands via calls to itself when mentioned, even when renamed', function() {
+        var handledCommand = false;
+        var client = mocks.makeClient(function(channel, message) {
+            if (message == "Pong!") {
+                handledCommand = true;
+            }
+        });
+        bot.startBot(client, mocks.makeDirectConfig());
+        bot.procCommand(client, mocks.makeMessage("<@!" + client.user.id + "> ping"));
+        assert(handledCommand);
+    });
+
     it('should process ping', function() {
     	var handledCommand = false;
     	var client = mocks.makeClient(function(channel, message) {
