@@ -584,8 +584,7 @@ function botShouldHandleCommand(bot, message) {
 			result.handleCommand = true;
 			messageContent = message.content.substr(config.COMMAND_PREFIX.length);
 		}
-	// } else if (userMentioned(message.content, bot.user.id)) {
-	} else if (message.isMentioned(bot.user)) {
+	} else if (userMentioned(message.content, bot.user.id)) {
 		stripFirstArg = true;
 		result.handleCommand = true;
 	} else if (message.channel.isPrivate) {
@@ -611,7 +610,6 @@ function botShouldHandleCommand(bot, message) {
 }
 
 var defaultCommandHandler = function(args, bot, message) {
-	console.log("defaultCommandHandler(" + compileArgs(args) + ")");
 	if(config.respondToInvalid){
 		bot.sendMessage(message.channel, "Invalid command " + message.content);
 	} 
