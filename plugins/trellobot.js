@@ -44,7 +44,6 @@ module.exports = function(config){
 			.on('maxId', writePrevId)
 			.on('trelloError', function(err){
 				console.error(err);
-				process.exit(1);
 			});
 
 		if ( wantsEvent('createCard') || allEvents ){

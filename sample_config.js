@@ -9,6 +9,22 @@ const COMMAND_PREFIX = "!_"
 
 const PLUGINS = [
 	{
+		name: "RSS",
+		path: "./plugins/rss.js",
+		config: {
+			feeds: [
+				{
+					url:'FEED_URL',
+					channel:'#news'
+				},
+				{
+					url:'FEED_URL',
+					channel:'#news'
+				}
+			]
+		}
+	},
+	{
 		name: "Trello",
 		path: "./plugins/trello.js",
 		config: {
