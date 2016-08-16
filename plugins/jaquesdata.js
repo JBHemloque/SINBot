@@ -464,6 +464,11 @@ exports.keywords = [
     		"Right away!",
     	]]
     ]],
+    ["barkeep", 0, [
+        ["*", [
+            "Right away!"
+        ]]
+    ]],
     ["you", 0, [
         ["* you remind me of *", [
             "goto alike"
