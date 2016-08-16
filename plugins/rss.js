@@ -37,6 +37,7 @@ function pollFeeds() {
         fetch(feeds[i].url, feeds[i].server, feeds[i].channel);
     }
     setTimeout(pollFeeds, 1000*60*5); //every 5 minutes minute
+}
 
 function fetch(feed, server, channel) {
     // Define our streams
