@@ -270,7 +270,13 @@ var commands = {
 	"servers": {
         help: "Lists servers bot is connected to.",
 		adminOnly: true,
-        process: function(args, bot, message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,bot.servers); }
+        process: function(args, bot, message) { 
+        	var servers = [];
+        	for (var i = 0; i < bot.servers.length; i++) {
+        		servers.push(bot.servers[i].name + " [" + bot.servers[i].id + "]");
+        	}
+        	utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,servers); 
+        }
     },
     "join-server": {
     	usage: "<invite>",

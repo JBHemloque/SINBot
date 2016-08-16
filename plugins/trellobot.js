@@ -44,7 +44,6 @@ module.exports = function(config){
 			.on('maxId', writePrevId)
 			.on('trelloError', function(err){
 				console.error(err);
-				process.exit(1);
 			});
 
 		if ( wantsEvent('createCard') || allEvents ){
@@ -150,6 +149,7 @@ handlers = {
 		}
 	}
 };
+// @@TODO: Replace with utils.sendMessageToServerAndChannel(), so we can include a server in the config
 function notify(channel, msg){
 	if (channel.startsWith("#")) {
 		channel = channel.substr(1);
