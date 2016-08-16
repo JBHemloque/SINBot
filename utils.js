@@ -38,6 +38,28 @@ exports.inBrief = function(longstring) {
 
 const MESSAGE_LIMIT = 800
 
+var sendMessageToServerAndChannel = function(bot, server, channel, msg){
+    if (channel.startsWith("#")) {
+        channel = channel.substr(1);
+    }
+    var channels = bot.channels;
+    var ch = bot.channels.get("name",channel);
+    if (server) {
+        var svr = bot.servers.get("id", server);
+        if (svr) {
+            ch = svr.channels.get("name",channel);
+        }
+    }
+    
+    if (ch) {
+        console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
+        bot.sendMessage(ch.id, msg);
+    } else {
+        console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
+    }
+}
+exports.sendMessageToServerAndChannel = sendMessageToServerAndChannel;
+
 var sendMessage = function(bot, channel, message) {
 	// If the message is too big, let's split it...
 	if (message.length > MESSAGE_LIMIT) {

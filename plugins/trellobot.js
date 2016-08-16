@@ -149,6 +149,7 @@ handlers = {
 		}
 	}
 };
+// @@TODO: Replace with utils.sendMessageToServerAndChannel(), so we can include a server in the config
 function notify(channel, msg){
 	if (channel.startsWith("#")) {
 		channel = channel.substr(1);

@@ -4,12 +4,13 @@ var request = require('request');
 var FeedParser = require('feedparser');
 var Iconv = require('iconv').Iconv;
 var fs = require("fs");
+var utils = require("../utils");
 
 var feeds;
 var discord;
 
 var old_guids;
-const OLD_GUIDS_STORE = "./old_guids.json";
+const OLD_GUIDS_STORE = "./old_rss_guids.json";
 try{
     old_guids = require(OLD_GUIDS_STORE);
 } catch(e) {
@@ -28,17 +29,18 @@ exports.findCommand = function(command) {
 exports.setup = function(config, bot, botcfg) {
     discord = bot;
     feeds = config.feeds;
-    pollFeeds();
+    setTimeout(pollFeeds, 1000*10*1);
 }
 
 function pollFeeds() {
     for (var i = 0; i < feeds.length; i++) {
-        fetch(feeds[i].url, feeds[i].channel);
+        fetch(feeds[i].url, feeds[i].server, feeds[i].channel);
     }
-    setTimeout(pollFeeds, 1000*60*1); //every minute
+    // setTimeout(pollFeeds, 1000*60*1); //every minute
+    setTimeout(pollFeeds, 1000*10*1);
 }
 
-function fetch(feed, channel) {
+function fetch(feed, server, channel) {
     // Define our streams
     var req = request(feed, { timeout: 10000, pool: false });
     req.setMaxListeners(50);
@@ -69,7 +71,7 @@ function fetch(feed, channel) {
                     console.log("Skipping " + post.link + " because we know it.");
                 } else {
                     addGuid(guid);
-                    notify(channel, post.link);
+                    utils.sendMessageToServerAndChannel(discord, server, channel, post.link);
                 }
             } else {
                 console.log("Oops, no guid for this item: " + post.link);
@@ -111,18 +113,5 @@ function getParams(str) {
 function done(err) {
     if (err) {
         console.log(err, err.stack);
-    }
-}
-
-function notify(channel, msg){
-    if (channel.startsWith("#")) {
-        channel = channel.substr(1);
-    }
-    var ch = discord.channels.get("name",channel);
-    if (ch) {
-        console.log("notify(" + ch.name + " [" + ch.id + "], " + msg);
-        discord.sendMessage(ch.id, msg);
-    } else {
-        console.log("notify() couldn't find a channel called #" + channel);
     }
 }
