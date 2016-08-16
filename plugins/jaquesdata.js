@@ -357,6 +357,18 @@ exports.keywords = [
             "What if I had been (2) ?"
         ]]
     ]],
+    ["barkeep", 0, [
+        ["*", [
+            "Coming up!",
+            "Right away!"
+        ]]
+    ]],
+    ["bartender", 0, [
+        ["*", [
+            "Coming up!",
+            "Right away!"
+        ]]
+    ]],
     ["got", 0, [
     	["* got a *", haveADrink]
     ]],
