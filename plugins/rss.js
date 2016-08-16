@@ -68,9 +68,12 @@ function fetch(feed, server, channel) {
             if (guid) {
                 if (old_guids[guid]) {
                     console.log("Skipping " + post.link + " because we know it.");
-                } else {
-                    addGuid(guid);
-                    utils.sendMessageToServerAndChannel(discord, server, channel, post.link);
+                } else {                    
+                    utils.sendMessageToServerAndChannel(discord, server, channel, post.link, function(err, msg) {
+                        if (!err) {
+                            addGuid(guid);
+                        }
+                    });
                 }
             } else {
                 console.log("Oops, no guid for this item: " + post.link);

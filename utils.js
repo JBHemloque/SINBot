@@ -38,7 +38,7 @@ exports.inBrief = function(longstring) {
 
 const MESSAGE_LIMIT = 800
 
-var sendMessageToServerAndChannel = function(bot, server, channel, msg){
+var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback){
     if (channel.startsWith("#")) {
         channel = channel.substr(1);
     }
@@ -53,7 +53,7 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg){
     
     if (ch) {
         console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        bot.sendMessage(ch.id, msg);
+        bot.sendMessage(ch.id, msg, callback);
     } else {
         console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
