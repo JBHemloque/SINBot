@@ -1,25 +1,20 @@
 'use strict';
 
 var utils = require('../utils.js');
-var jaquesbot = require('./jaquesbot.js');
+var RiveScript = require("rivescript");
 
 var commands = {
-	"jaquesstart": {
-		help: "Jaques is your cyborg bartender. Have a drink!",
-		process: function(args, bot, message) { startjaques(args, bot, message); }
-	},
-	"jaquesbye": {
-		help: "It's closing time, you can't drink here...",
-		process: function(args, bot, message) { endjaques(args, bot, message); }
-	},
 	"jaques": {
 		usage: "<anything - just talk>",
-		help: "I'm Jaques, your cyborg bartender. Let's talk...",
+		help: "I'm Jaques, your cyborg bartender. Have a drink!",
 		process: function(args, bot, message) {
-			if (!jaquesStarted) {
-				startjaques(args, bot, message);
+			if (jaquesStarted) {				
+				// We'll scope everything per-user...
+				bot.sendMessage(message.channel, jaquesBot.reply(message.author.id.toString(), utils.compileArgs(args)));
+			} else {
+				bot.sendMessage(message.channel, "Sorry I'm still waking up...");
 			}
-			bot.sendMessage(message.channel, jaquesbot.reply(utils.compileArgs(args)));
+			
 		}
 	},
 };
@@ -32,15 +27,26 @@ exports.commands = commands;
 
 var jaquesStarted = false;
 
-var startjaques = function(args, bot, message) {
-	if (jaquesStarted) {
-		bot.sendMessage(message.channel, jaquesbot.bye());
-	}
-	bot.sendMessage(message.channel, jaquesbot.start());
-	jaquesStarted = true;
+var jaquesBot = new RiveScript();
+
+// Load a directory full of RiveScript documents (.rive files). This is for
+// Node.JS only: it doesn't work on the web!
+jaquesBot.loadDirectory("./plugins/jaques_rs", loading_done, loading_error);
+
+// All file loading operations are asynchronous, so you need handlers
+// to catch when they've finished. If you use loadDirectory (or loadFile
+// with multiple file names), the success function is called only when ALL
+// the files have finished loading.
+function loading_done (batch_num) {   
+    // Now the replies must be sorted!
+    jaquesBot.sortReplies();
+
+    console.log("Batch #" + batch_num + " has finished loading!");
+
+    jaquesStarted = true;
 }
 
-var endjaques = function(args, bot, message) {
-	bot.sendMessage(message.channel, jaquesbot.bye());
-	jaquesStarted = false;
+// It's good to catch errors too!
+function loading_error (error) {
+	utils.logError("Error when loading files: " + error, error);
 }

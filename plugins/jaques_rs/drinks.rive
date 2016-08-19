@@ -1,0 +1,46 @@
+! version = 2.0
+
+! array cocktails = 1921 tequila cream|20th century|7 and 7|a black jack|a gin and tonic|absinthe|advocaat|agent orange|agua de sevilla|agua de valencia|agua loca|aguaymanto sour|alabama slammer|alexander|amber moon|americano|amigo leite de onca|angel face|aperol spritz|apple martini|apple kneel|appletini|astro pop|aviation|b & b|b 52|baby guinness|bacardi|backdraft|bananarita|batida|batida caju|bay breeze|beer|bellini|between the sheets|bijou|bijou bloodhound|bishop|bitters|black and tan|black russian|black velvet|bloodhound|bloody aztec|bloody mary|blow job|blt cocktail|blue blazer|blue hawaii|blue lagoon|blueberry tea|bobby burns|boilermaker|bombo|bourbon lancer|brandy|brandy alexander|brandy daisy|brandy manhattan|brandy sour|brass monkey|breakfast martini|bronx|bronx gibson|brooklyn|brooklyn churchill|brut cocktail|bucks fizz|bull shot|bumbo|bumboo|bushwacker|buttery nipple|cachaca|caesar|caipirinha|caipiroska|caipivodka|caju amigo|calimocho|cape cod|caribou lou|carrot cake|casino|champagne|champagne cocktail|chi chi|chicago cocktail|chimayo cocktail|chocolate martini|churchill|cognac|cojito|collins|colombia|common market|corn n oil|corn n oil|corpse reviver #2|cosmopolitan|creme de violette|creme yvette|crusta|cuba libre|culto a la vida|curacao|curacao punch|cyprus brandy sour|daiquiri|daisy|dark and stormy|death in the afternoon|delilah|delilah wolfram|dirty mother|dirty white mother|duck fart|earthquake|el presidente|el toro loco|el toro loco patron and redbull|farnell|fish house punch|fix|fizz|fizzy apple cocktail|flaming dr pepper|flaming sambuca|flaming volcano|flip|flirtini|fluffy critter|four horsemen|four score|french 75|french connection|fuzzy navel|galliano|gibson|gimlet|gin|gin and tonic|gin buck|gin fizz|gin pahit|gin rickey|gin sour|ginza mary|glowtini|glogg|godfather|godmother|golden doublet|golden dream|gose|grand marnier|grasshopper|green russians|green vesper|greyhound|grog|gunfire|hangmans blood|hanky panky|harrogate nights|harvey wallbanger|havana cooler|hennchata|herbsaint|herbsaint frappe|hi fi|horses neck|hot buttered rum|hurricane|ice pick|incredible hulk|irish car bomb|irish coffee|jack and coke|jack rose|jacks shadow|jagertee|jamaican coffee|japanese slipper|jazmin sour|john collins|joker|juan collins|julep|jungle juice|jagerbomb|kalimotxo|kamikaze|kangaroo|karsk|kensington court special|kir|kir royal|kremlin colonel|leite de onça|lemon drop|lime rickey|link up|london fog|long island iced tea|lorraine|lynchburg lemonade|macua|macua|mai tai|mango sour|manhattan|manzana verde|margarita|marjorama|martini|matador|mauresque|michelada|michelada porchcrawler|mickey slim|midori|midori sour|mimosa|mint julep|missouri mule|mojito|moloko plus|monkey gland|moonwalk|moscow mule|mudslide|mulled wine|my fair lady|negroni|negus|nikolaschka|nixon|nuclear iced tea|oatmeal cookie|old etonian|old fashioned|old spanish|orange safari|orange tundra|orgasm|ouzini|ouzo|painkiller|pall mall|paloma|panama|paradise|paralyzer|parfait damour|pastis|patron and redbull|pegu|pimms cup|pimm's cup|pepperdraft|perroquet|pink gin|pink lady|pisco|pisco sour|piscola|pina colada|planters punch|polar bear|porchcrawler|porto flip|prince of wales|pucker up|punch|quentao|quentao rabo de galo|quick fuck|rabo de galo|ramos gin fizz|red lotus|red russian|redheaded slut|rickey|rioja libre|rob roy|rose kennedy cocktail|rossini|rourou|royal arrival|royal bermuda cocktail|royce|ruby dutchess|rum|rum swizzle|rusty nail|sake|sake bomb|salmiakki koskenkorva|salty dog|sambuca|sangria|savoy affair|savoy corpse reviver|sazerac|schnapps|screaming orgasm|screwdriver|sea breeze|seven and seven|sex on the beach|shandy|shandy snakebite|shirley temple|shirley temple black|shrub|sidecar|singapore sling|skittle bomb|slammer royale|sling|slippery nipple|smash|snakebite|snowball|sour|springbokkie|spritzer|st germain|staten island ferry|stinger|sundowner|tamagozake|tamango|tequila|tequila and tonic|tequila mockingbird|tequila slammer|tequila sour|tequila sunrise|terry|the blenheim|the goldeneye|the last word|the modernista|the monkey gland|the tj|three wise men|ti punch|tinto de verano|toddy|tokyo tea|tom and jerry|tom collins|tomate|torito tequila cocktail|triple sec|tschunk|two kids in a cup|u boot|vesper|vesper martini|vodka|vodka gimlet|vodka martini|vodka mcgovern|vodka sundowner|vodka sunrise|ward 8|wassa world|whiskey sour|whisky|whisky mac|white lady|white russian|wolfram|woo woo|yellow bird|yorsh|zombie|zurracapote|Writer's Tears Irish Whiskey
+
+! array fakecocktails = Romulan ale|Kanar|Pan galactic gargle blaster|Milk of the poppy|Minotaur energy drink|Soma|Elsinore beer|Duff beer|Slurm|Fizzy lifting drink|Uncle Jemima's down home pure mash liquor|Ambrosia|Miruvor|Ent draught|Moloko|Piso Mojado|Victory gin|Black Yukon Sucker Punch|Bloodwine|Glen McKenna scotch|Glengoolie scotch|Mudder’s milk|Screaming viking|Synthehol|Hefecrocken|Shangrilager|Bouncy bubbly beverage|Quafe|Nuka-cola|Raktajino|Tru Blood|Butterbeer|Samuel Jackson beer|Heisler beer|Joja cola
+
++ [barkeep][bartender][jaques] (make|give) me [a] (@cocktails) [please]
+- Here you go, enjoy your <star2>
+- One <star2> coming up!
+
++ (barkeep|bartender|jaques) (@cocktails) [please]
+- Here you go, enjoy your <star2>
+- One <star2> coming up!
+
++ (@cocktails) [please]
+- Here you go, enjoy your <star>
+- One <star> coming up!
+
++ [barkeep][bartender][jaques] (make|give) me [a] (@fake_cocktails) [please]
+- You realize <star2> isn't real, right?
+- You're a wizard, Harry!
+- Any other fictional drink you'd like?
+
++ (barkeep|bartender|jaques) (@fake_cocktails) [please]
+- You realize <star2> isn't real, right?
+- You're a wizard, Harry!
+- Any other fictional drink you'd like?
+
++ (@fake_cocktails) [please]
+- You realize <star> isn't real, right?
+- You're a wizard, Harry!
+- Any other fictional drink you'd like?
+
++ drink
+- Coming up!
+- Here you go
+- Right away!
+
++ drink inquiry
+- How do you do. What can I get you?
+- We've got a special on space brandy today!
+- You look down, friend. I've got a drink and a friendly ear for you.
+- Im here. Talk to me.
+- Have I ever told you the one about the mathematician who was convinced she'd discovered an irresistable aphrodisiac?
+- Top of the morning to you.
+- We've got a special today on the Jaques Quinentian Still.
