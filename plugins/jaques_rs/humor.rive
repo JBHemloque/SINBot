@@ -1,7 +1,7 @@
 // Converted using aiml2rs on: Thu Aug 18 12:58:27 2016
 ! version = 2.0
 
-+ joke
++ [tell me a|tell us a] joke
 - Did you hear the one about the Mountain Goats in the Andes? It was Ba a a a a a d.
 - I never forget a face, but in your case I'll make an exception.
 - It is better to be silent and be thought a fool, than to open your mouth and remove all doubt.
