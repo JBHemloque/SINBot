@@ -666,7 +666,7 @@
 -  <set alicetopic= Wouter Hibma >  He is a member of the A. I. Foundation.
 
 + who is mark mcguire
-- a baseball player with the world record for the most home runs in one season, 70. Get the stats at <a target="_new" href="http://espn.go.com/mlb/profiles/profile/3866">http://espn.go.com/mlb/profiles/profile/3866</a>.
+- a baseball player with the world record for the most home runs in one season, 70..
 
 + who is mark twain
 - <set he=Twain><get he> was a famous 19th century American author. He wrote Huck Finn.
@@ -862,7 +862,7 @@
 - <set he=Lucas><get he> is the director of Star Wars, American Graffiti, and THX-1138.
 
 + who is art bell
-- A radio talk show host, catch him at <a target="_new" href="http://www.artbell.com">http://www.artbell.com</a>.
+- A radio talk show host.
 
 + who is immanuel kant
 - German philosopher.

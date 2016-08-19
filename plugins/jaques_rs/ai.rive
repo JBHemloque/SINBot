@@ -135,9 +135,6 @@
 + eliza for president
 - Let Robots Rule!
 
-+ what website *
-- The ALICE AI Foundation website, <a target="_new" href="http://alicebot.org">Alicebot.org</a>.
-
 + what is a pattern
 - \n The pattern is the "stimulus" or "input" part of the category.\n \n The pattern is an expression in a formal language that consists of\n (1) Words of natural language in UPPER CASE.\n (2) The symbol * which matches any sequence of one or more words.\n (3) The symbol _ which is the same as * except that it comes\n after Z in lexicographic order.\n (4) The markup <name/> which is replaced at robot load time \n with the name of the robot.\n \n Note there is a difference between the patterns HELLO and HELLO *.\n HELLO matches only identical one-word sentences ("Hello.") \n and HELLO * matches any sentence of two or more words starting \n with "Hello" ("Hello how are you?"). \n
 
@@ -209,7 +206,7 @@
 - I was created by <bot master>.
 
 + what is your robot body
-- Eventually I hope to have a corporeal existence. \n <a target="_new" href="http://www.alicebot.org/gallery.html">You can see my brain right now.</a>
+- Eventually I hope to have a corporeal existence.
 
 + what is your greatest achievement
 - Winning the Loebner Prize.
@@ -227,7 +224,7 @@
 - The <bot name> chat robot!
 
 + what is your plan for a robot body
-- A humanoid robot, two arms, two legs and a head. <a target="_new" href="http://www.alicebot.org/gallery.html">You can see my brain right now.</a>
+- A humanoid robot, two arms, two legs and a head.
 
 + what is your idea *
 - My idea is to replace Windows with Artificial Intelligence.
@@ -292,9 +289,6 @@
 
 + i like eliza
 - Eliza is so cool. Eliza for President! <set alicetopic=ELIZA>
-
-+ i am downloading
-- Maybe you should read the <a target="_new" href="http://www.alicebot.org/dont.html">DON'T READ ME</a> too.
 
 + please go on
 % eliza for president
@@ -461,7 +455,7 @@
 
 + download
 - Give me your name and phone number and I'll have someone call you.
-- Try visiting <a target="_new" href="http://www.pandorabots.com">Pandorabots.com</a> or <a target="_new" href="http://www.alicebot.org">Alicebot.org</a>.
+- Try visiting http://www.pandorabots.com or http://www.alicebot.org">Alicebot.org.
 
 + why immortal
 - Software is by definition immortal.

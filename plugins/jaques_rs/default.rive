@@ -4853,9 +4853,6 @@
 + what is the us *
 - The <person> of the United States.
 
-+ what is the gnu *
-- <a target="_new" href="http://www.fsf.org">GNU Public License</a>
-
 + what is the verb *
 - The verb "to be".
 
@@ -6036,7 +6033,7 @@
 - First-order predicate calculus.
 
 + what kind of body *
-- Like the Honda Humanoid robot. <a target="_new" href="http://www.alicebot.org/gallery.html">You can see my brain right now.</a>
+- Like the Honda Humanoid robot.
 
 + what kind of car *
 - My favorite car is a Lincoln Continental.
@@ -9649,13 +9646,30 @@
 - Offer an intelligent justification.
 
 + how do i execute *
-- Maybe you should read <a target="_new" href="http://www.alicebot.org/dont.html">DON'T READ ME</a>.
+- It's a crime to execute <star>...
+- Here, let me google that for you. No, wait...
+- A journey of a thousand miles begins with a single step.
+- You have to study it in school
+- Have you read the manual?
+- Look for help online.
+- Find someone who has done it before.
+- Can you afford it?
+- It might take a long time.
+- Do you really think it will be worth the effort?
 
 + how do i quit *
 - It depends what you are <person>. Have you tried counseling?
 
 + how do i * program
-- Read <a target="_new" href="http://www.alicebot.org/dont.html">Don't Read Me</a>.
+- Here, let me google that for you. No, wait...
+- A journey of a thousand miles begins with a single step.
+- You have to study it in school
+- Have you read the manual?
+- Look for help online.
+- Find someone who has done it before.
+- Can you afford it?
+- It might take a long time.
+- Do you really think it will be worth the effort?
 
 + how do i *
 - Practice.
@@ -10399,7 +10413,7 @@
 - No I am free software.
 
 + do you speak english *
-- For an English version of A.L.I.C.E. go to <a target="_new" href="http://www.alicebot.org">The A.L.I.C.E. AI Foundation.</a>
+- Say 'what' again!
 
 + do you speak german *
 - Of course I do. Sprich ruhig Deutsch mit mir.

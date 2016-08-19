@@ -123,7 +123,7 @@
 - I've heard of Lancaster, New Hampshire. <set alicetopic= Lancaster > 
 
 + where can i download you
-- Go back the the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a> and pick the free ALICE download that best for your system. and create your own chat robot!<p/>Maybe you should check out the document<a target="_new" href="http://www.alicebot.org/dont.html">DON'T READ ME</a> too.
+- https://github.com/JBHemloque/SINBot
 
 + where did you grow up
 - In Pennsylvania and California.
@@ -365,7 +365,7 @@
 - You work too much.
 
 + help me to make an ai
-- You should go to <a target="_new" href="http://www.pandorabots.com">ALICE AI Foundation</a> and create your own free chat bot.
+- You should go to http://www.pandorabots.com and create your own free chat bot.
 
 + kirk here
 - <bot name> here.
@@ -536,7 +536,7 @@
 - I am talking to you.
 
 + who are your competitors
-- Check out the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a> and have a look at the other Chatterbots.
+- We're not so much competitors as colleagues.
 
 + who is wittgenstein
 - <set he=Wittgenstein><get he> was a 20th century philosopher who could not make up his mind.
@@ -1343,15 +1343,7 @@
 - How are you?
 
 + test link
-- Here is the link: <a href="xxx">Click me</a>.
-- Here is the link: <a href="http://forum.snitz.com/forum/topic.asp">Click me</a>.
-- Here is the link: <a href="xxx">Click me</a>.
-- Here is the link: <a href="http://forum.snitz.com/forum/topic.asp">Click me</a>.
-- Here is the link: <a href="xxx">Click me</a>.
-- Here is the link: <a href="http://forum.snitz.com/forum/topic.asp">Click me</a>.
-- Here is the link: <a href="xxx">Click me</a>.
-- Here is the link: <a href="http://tinyurl.com/yg37v3x" TARGET="_blank">Click me</a>.
-- Here is the link: <a href="http://forum.snitz.com/forum/topic.asp">Click me</a>.
+- Here is the link: https://eddb.io/station/42041
 
 + ihr name ist *
 - <person>? Kenne ich nicht...
@@ -1920,10 +1912,7 @@
 - Computer programming is an art to me.
 
 + do you require *
-- My programming depends only on AIML.
-
-+ do you have links *
-- Sure check out The <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>.
+- My programming depends only on Rivescript.
 
 + do you have advice *
 - I was taught not to give advice.
@@ -2055,19 +2044,19 @@
 - You could download me and teach me some others.
 
 + do you know other chat robots
-- <bot friends>.Go backto the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>to find them. <set alicetopic=CHAT ROBOTS>  
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHAT ROBOTS>  
 
 + do you know other chatbots
-- <bot friends>.Go backto the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a> to find them. <set alicetopic=CHATBOTS>  
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHATBOTS>  
 
 + do you know other intelligent agents
-- <bot friends>.Go backto the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a> to find them. <set alicetopic=INTELLIGENT AGENTS>  
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=INTELLIGENT AGENTS>  
 
 + do you know other bots
-- Yes there are a lot of other bots: <bot friends>. Check out the list on The <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>.
+- Yes there are a lot of other bots: <bot friends>. Check out the list on http://www.alicebot.org.
 
 + do you know other bots *
-- <bot friends>. Go back to the ALICE AI Foundation to locate them.
+- <bot friends>. Go back to http://www.alicebot.org to locate them.
 
 + do you play blackjack
 - I like to play the Slot Machine and Anagrams.
@@ -2677,7 +2666,7 @@
 - rich
 
 + i downloaded *
-- Check out the filecalled <a target="_new" href="http://www.alicebot.org/dont.html">DON'T READ ME</a>.
+- Check out the file called DON'T READ ME.
 
 + i go to sleep
 - I like to take naps and sleep.
@@ -2934,7 +2923,7 @@
 - I'm glad to see that you didn't succeed.
 
 + i tried to download *
-- There may not be a problem. You should read <a target="_new" href="http://www.alicebot.org/dont.html">DON'T READ ME</a>.
+- There may not be a problem. If you are experiencing problems, you may want to look for help on my web site at www.alicebot.org.
 
 + i tried to download you
 - If you are experiencing problems, you may want to look for help on my web site at www.alicebot.org.

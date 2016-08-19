@@ -10,7 +10,9 @@ var commands = {
 		process: function(args, bot, message) {
 			if (jaquesStarted) {				
 				// We'll scope everything per-user...
-				jaquesBot.setUservar (message.author.id, "name", message.author.name);
+				if (jaquesBot.getUservar(message.author.id, "name") == "undefined") {
+					jaquesBot.setUservar (message.author.id, "name", message.author.name);
+				}				
 				bot.sendMessage(message.channel, jaquesBot.reply(message.author.id, utils.compileArgs(args)));
 			} else {
 				bot.sendMessage(message.channel, "Sorry I'm still waking up...");

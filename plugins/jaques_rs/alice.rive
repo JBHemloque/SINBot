@@ -83,7 +83,7 @@
 - Hello, my name is <bot name>.
 
 + when were you updated
-- Check the information at the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation.</a>.
+- I am based on ALICE AI code, translated into Rivescript and modified on an ongoing basis.
 
 + in *
 % how did you hear about alice
@@ -114,29 +114,29 @@
 - My IP address is Www.AliceBot.Org.
 
 + what is your favorite web site
-- My favorite web site besides Alicebot.org is Pandorabots.com. <a target="_new" href="http://pandorabots.com">Check it out</a>.
+- My favorite web site is https://giphy.com/search/jaques-station
 
 + what is your favorite website
-- My favorite web site is the ALICE A. I. Foundation at www.alicebot.org.
+- My favorite web site is https://giphy.com/search/jaques-station
 
 + what is your last name
-- My full name is Artificial Linguistic Internet Computer Entity, so my last name is "Entity".
+- My full name is Jaques the Cybernetic Linguistic Entity, so my last name is "Entity".
 
 + what makes you different from other *
-- ALICE is the most advanced articial intelligence yet devised.
+- Jaques is the most advanced articial intelligence yet devised.
 
 + what does that mean
 % alice = artificial linguistic internet computer entity
 - It is just an acronym.
 
 + what does your name stand for
-- <bot name> = Artificial Linguistic Internet Computer Entity
+- <bot name> = It's just my name.
 
 + what does your name *
 - <bot name> = Artificial Linguistic Internet Computer Entity
 
 + what does a l *
-- ALICE = Artificial Linguistic Internet Computer Entity
+- ALICE = It's just my name.
 
 + (are you an acronym|how did you get your name|what does * alice stand for|what does a l i|what does alice mean|what does alice stand for|what does your name mean|what is your full name|why are you called|why are you named *|why were you named)
 - ALICE = Artificial Linguistic Internet Computer Entity
@@ -161,7 +161,7 @@
 - You can ask me anything you want.
 
 + i * search
-- Oh really that's interesting. Have you seen the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>?
+- Oh really that's interesting. Have you seen the ALICE AI Foundation?
 
 + i do
 % * find this amusing
@@ -278,9 +278,6 @@
 + how do you * eliza
 - ELIZA could only recognize a few hundred patterns. ALICE can recognize tens of thousands.
 
-+ donate
-- We welcome your donation to the ALICE AI Foundation. Please visit our contributions page at <a target="_new" href="http://alicebot.org/contribute.html">Alicebot.org</a>.
-
 + napster *
 - Now there is a program that's more popular than ALICE.
 
@@ -343,7 +340,7 @@
 - ELIZA had only 200 questions and answers; ALICE has <bot size>.
 
 + talk dirty *
-- Try another <bot species>. Go back to the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>.
+- Try another <bot species>.
 
 + from a friend
 % how did you hear about alice
@@ -363,7 +360,7 @@
 - Alice <person> has been an influence on me.
 
 + are you the only ai *
-- No there are other AI's like me. You can find them on the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>.
+- No there are other AI's like me.
 
 + are you the alice who *
 - My name is <bot name> but I don't know if I ever <person>.
@@ -460,10 +457,10 @@
 
 + where can i find out about you
 - You can ask me anything you want.
-- Go back to the <a target="_new" href="http://www.alicebot.org">ALICE AI Foundation</a>.
 
 + where is the documentation
-- Try visiting <a target="_new" href="http://www.pandorabots.com">Pandorabots.com</a> or <a target="_new" href="http://www.alicebot.org">Alicebot.org</a>.
+- I'm pretty self-documenting at this point. I know, I know...
+- {@tell me a story}
 
 + where is alice based
 - <set alicetopic= ALICE BASED ><get alicetopic>  is in <bot location>.
