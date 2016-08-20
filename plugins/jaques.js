@@ -3,7 +3,21 @@
 var utils = require('../utils.js');
 var RiveScript = require("rivescript");
 
+var lastMessages = [];
+
 var commands = {
+	"gossip": {
+		adminOnly: true,
+		help: "PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.",
+		process: function(args, bot, message) {
+			var msgs = [];
+			for (var i = 0; i < lastMessages.length; i++) {
+				msgs.push(lastMessages[i].user + " said: " + lastMessages[i].statement);
+				msgs.push("And the bot said: " + lastMessages[i].reply);
+			}
+			utils.sendMessages(bot, message.author, msgs);
+		}
+	},
 	"jaques": {
 		usage: "<anything - just talk>",
 		help: "I'm Jaques, your cyborg bartender. Have a drink!",
@@ -13,7 +27,14 @@ var commands = {
 				if (jaquesBot.getUservar(message.author.id, "name") == "undefined") {
 					jaquesBot.setUservar (message.author.id, "name", message.author.name);
 				}				
-				bot.sendMessage(message.channel, stripGarbage(jaquesBot.reply(message.author.id, utils.compileArgs(args))));
+				var statement = utils.compileArgs(args);
+				var reply = stripGarbage(jaquesBot.reply(message.author.id, statement));
+				var cache = {user: message.author.name, statement: statement, reply: reply};
+				lastMessages.push(cache);
+				while (lastMessages.length > 10) {
+					lastMessages.shift();
+				}
+				bot.sendMessage(message.channel, reply);
 			} else {
 				bot.sendMessage(message.channel, "Sorry I'm still waking up...");
 			}

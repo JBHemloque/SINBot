@@ -29,10 +29,3 @@
 ! person your = my
 ! person you = I
 ! person i = you
-
-> begin
-
-	+ request
-	- {sentence}{ok}{/sentence}
-
-< begin
