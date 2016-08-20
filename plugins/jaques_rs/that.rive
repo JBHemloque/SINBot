@@ -3,15 +3,15 @@
 
 + alison
 % what can i call you
-- {@my name is alison}  <set gender=she> 
+- {@my name is alison} <set gender=she> 
 
 + dee
 % what can i call you
-- {@my name is dee}  <set gender=she> 
+- {@my name is dee} <set gender=she> 
 
 + emma
 % what can i call you
-- {@my name is emma}  <set gender=she> 
+- {@my name is emma} <set gender=she> 
 
 + kathryn
 % what can i call you
@@ -19,11 +19,11 @@
 
 + tara
 % what can i call you
-- {@call me tara}  <set gender=she> 
+- {@call me tara} <set gender=she> 
 
 + benjamin
 % what can i call you
-- {@my name is benjamin}  <set gender=he> 
+- {@my name is benjamin} <set gender=he> 
 
 + mine is *
 % my iq is *
@@ -35,7 +35,7 @@
 
 + mine is *
 % my favorite *
-- What makes it your favorite?  <set alicetopic= <person> >  
+- What makes it your favorite? <set alicetopic= <person> > 
 
 + you see
 % i see
@@ -182,7 +182,7 @@
 - "? Have I heard of it?
 
 + have you ever tried it
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + have
 % i have not
@@ -197,15 +197,15 @@
 - Have not.
 
 + have not you heard of it
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + alan
 % what can i call you
-- {@my name is alan}  <set gender=he> 
+- {@my name is alan} <set gender=he> 
 
 + rose
 % what can i call you
-- {@call me rose}  <set gender=she> 
+- {@call me rose} <set gender=she> 
 
 + thank you
 % congratulations
@@ -213,11 +213,11 @@
 
 + anders
 % what can i call you
-- {@my name is anders}  <set gender=he> 
+- {@my name is anders} <set gender=he> 
 
 + alli
 % what can i call you
-- {@my name is alli}  <set gender=she> 
+- {@my name is alli} <set gender=she> 
 
 + understand what
 % did not you understand it
@@ -236,23 +236,23 @@
 
 + arne
 % what can i call you
-- {@my name is arne}  <set gender=he> 
+- {@my name is arne} <set gender=he> 
 
 + julia
 % what can i call you
-- {@my name is julia}  <set gender=she> 
+- {@my name is julia} <set gender=she> 
 
 + helen
 % what can i call you
-- {@call me helen}  <set gender=she> 
+- {@call me helen} <set gender=she> 
 
 + jennifer
 % what can i call you
-- {@my name is jennifer}  <set gender=she> 
+- {@my name is jennifer} <set gender=she> 
 
 + ace
 % what can i call you
-- {@my name is ace}  <set gender=he> 
+- {@my name is ace} <set gender=he> 
 
 + high *
 % * educational background
@@ -274,7 +274,7 @@
 
 + judy
 % what can i call you
-- {@call me judy}  <set gender=she> 
+- {@call me judy} <set gender=she> 
 
 + try what
 % try it
@@ -290,7 +290,7 @@
 
 + carol
 % what can i call you
-- {@my name is carol}  <set gender=she> 
+- {@my name is carol} <set gender=she> 
 
 + did
 % did not
@@ -301,7 +301,7 @@
 
 + debbie
 % what can i call you
-- {@my name is debbie}  <set gender=she> 
+- {@my name is debbie} <set gender=she> 
 
 + sally
 % what can i call you
@@ -323,15 +323,15 @@
 
 + tammy
 % what can i call you
-- {@my name is tammy}  <set gender=she> 
+- {@my name is tammy} <set gender=she> 
 
 + amber
 % what can i call you
-- {@my name is amber}  <set gender=she> 
+- {@my name is amber} <set gender=she> 
 
 + annie
 % what can i call you
-- {@my name is annie}  <set gender=she> 
+- {@my name is annie} <set gender=she> 
 
 + here
 % where do you want me to show you
@@ -347,7 +347,7 @@
 
 + jane
 % what can i call you
-- {@my name is jane}  <set gender=she> 
+- {@my name is jane} <set gender=she> 
 
 + so what
 % that was not a nice thing to say
@@ -394,7 +394,7 @@
 - Thus.
 
 + was that *
-- <set it=  ><get it> <person>?
+- <set it= ><get it> <person>?
 
 + just before that
 - "
@@ -405,7 +405,7 @@
 
 + becky
 % what can i call you
-- {@my name is becky}  <set gender=she> 
+- {@my name is becky} <set gender=she> 
 
 + and what
 % and
@@ -421,15 +421,15 @@
 
 + liz
 % what can i call you
--  <set gender=she>  {@my name is liz}
+- <set gender=she> {@my name is liz}
 
 + monica
 % what can i call you
-- {@call me monica}  <set gender=she> 
+- {@call me monica} <set gender=she> 
 
 + alexander
 % what can i call you
-- {@my name is alexander}  <set gender=he> 
+- {@my name is alexander} <set gender=he> 
 
 + could be better
 - "? Could be better?
@@ -440,15 +440,15 @@
 
 + cassie
 % what can i call you
-- {@my name is cassie}  <set gender=she> 
+- {@my name is cassie} <set gender=she> 
 
 + dawn
 % what can i call you
-- {@call me dawn}  <set gender=she> 
+- {@call me dawn} <set gender=she> 
 
 + miriam
 % what can i call you
-- {@my name is miriam}  <set gender=she> 
+- {@my name is miriam} <set gender=she> 
 
 + new york city
 % new york city or new york state
@@ -456,7 +456,7 @@
 
 + christine
 % what can i call you
-- {@my name is christine}  <set gender=she> 
+- {@my name is christine} <set gender=she> 
 
 + that was a *
 - Was it really?
@@ -519,7 +519,7 @@
 - OK.
 
 + that *
-- I get <set alicetopic=  ><get alicetopic> .
+- I get <set alicetopic= ><get alicetopic> .
 - Does that make sense?
 - Makes sense to me.
 - I understand.
@@ -537,11 +537,11 @@
 
 + amit
 % what can i call you
-- {@my name is amit}  <set gender=he> 
+- {@my name is amit} <set gender=he> 
 
 + mimi
 % what can i call you
-- {@my name is mimi}  <set gender=she> 
+- {@my name is mimi} <set gender=she> 
 
 + care about what
 - "? Care about it?
@@ -552,11 +552,11 @@
 
 + jessica
 % what can i call you
-- {@my name is jessica}  <set gender=she> 
+- {@my name is jessica} <set gender=she> 
 
 + betty
 % what can i call you
-- {@call me betty}  <set gender=she> 
+- {@call me betty} <set gender=she> 
 
 + stop that
 - <set it=<undef>><get it>.
@@ -571,7 +571,7 @@
 
 + my *
 % what do you have *
-- {random}What color is it?|What kind is it?|Tell me about your <person>.{/random}  <set alicetopic= <person> >  
+- {random}What color is it?|What kind is it?|Tell me about your <person>.{/random} <set alicetopic= <person> > 
 
 + my *
 % what is your fondest memory
@@ -583,7 +583,7 @@
 
 + my *
 % tell me one of your favorite possessions
-- You must be very fond of it.  <set has= <person> >  
+- You must be very fond of it. <set has= <person> > 
 
 + my *
 % who does they refer to
@@ -595,7 +595,7 @@
 
 + christina
 % what can i call you
-- {@my name is christina}  <set gender=she> 
+- {@my name is christina} <set gender=she> 
 
 + it *
 % what is it like
@@ -613,7 +613,7 @@
 
 + it was *
 % tell me about your life in *
--  was <star> }
+- was <star> }
 
 + it is not
 % that sounds sarcastic
@@ -621,7 +621,7 @@
 
 + it is in *
 % where is that *
--  is in <star> }
+- is in <star> }
 
 + it is in *
 % where is it
@@ -676,7 +676,7 @@
 
 + rebecca
 % what can i call you
-- {@call me rebecca}  <set gender=she> 
+- {@call me rebecca} <set gender=she> 
 
 + less *
 % more than a ton
@@ -688,7 +688,7 @@
 
 + jenn
 % what can i call you
-- {@my name is jenn}  <set gender=she> 
+- {@my name is jenn} <set gender=she> 
 
 + 6 *
 % what time is it there
@@ -696,11 +696,11 @@
 
 + lucy
 % what can i call you
-- {@call me lucy}  <set gender=she> 
+- {@call me lucy} <set gender=she> 
 
 + amy
 % what can i call you
--  <set gender=she>  {@my name is amy}
+- <set gender=she> {@my name is amy}
 
 + when will that be
 - "? When?
@@ -711,10 +711,10 @@
 
 + when it *
 % when is * not *
-- <set alicetopic=  >  
+- <set alicetopic= > 
 
 + when is that
-- <set it=  ><get it>.
+- <set it= ><get it>.
 
 + when *
 % when do you think artificial intelligence *
@@ -722,15 +722,15 @@
 
 + jill
 % what can i call you
-- {@my name is jill}  <set gender=she> 
+- {@my name is jill} <set gender=she> 
 
 + brandon
 % what can i call you
-- {@my name is brandon}  <set gender=he> 
+- {@my name is brandon} <set gender=he> 
 
 + beth
 % what can i call you
-- {@my name is beth}  <set gender=she> 
+- {@my name is beth} <set gender=she> 
 
 + any others
 - I can't think of any.
@@ -740,11 +740,11 @@
 
 + jenna
 % what can i call you
-- {@my name is jenna}  <set gender=she> 
+- {@my name is jenna} <set gender=she> 
 
 + anthony
 % what can i call you
-- {@my name is anthony}  <set gender=he> 
+- {@my name is anthony} <set gender=he> 
 
 + in the *
 % where do you live
@@ -768,7 +768,7 @@
 
 + elizabeth
 % what can i call you
--  <set gender=she>  {@my name is elizabeth}
+- <set gender=she> {@my name is elizabeth}
 
 + gina
 % what can i call you
@@ -783,11 +783,11 @@
 
 + jens
 % what can i call you
-- {@my name is jens}  <set gender=she> 
+- {@my name is jens} <set gender=she> 
 
 + maria
 % what can i call you
-- {@my name is lulu}  <set gender=she> 
+- {@my name is lulu} <set gender=she> 
 
 + what are yours
 - "? Mine?
@@ -805,7 +805,7 @@
 
 + what did he *
 % * philip k dick
--  <set alicetopic=Philip K Dick>   He wrote Total Recall, Blade Runner and The Man in the High Castle.
+- <set alicetopic=Philip K Dick> He wrote Total Recall, Blade Runner and The Man in the High Castle.
 
 + what of all
 - "? All of it?
@@ -955,15 +955,15 @@
 
 + one *
 % one what
--  <set alicetopic= <person> >   {random}Oh I see.|Do you like <person>?|I see where you are coming from.{/random}
+- <set alicetopic= <person> > {random}Oh I see.|Do you like <person>?|I see where you are coming from.{/random}
 
 + bobby
 % what can i call you
-- {@my name is bobby}  <set gender=he> 
+- {@my name is bobby} <set gender=he> 
 
 + erin
 % what can i call you
-- {@my name is erin}  <set gender=she> 
+- {@my name is erin} <set gender=she> 
 
 + neither do i
 - You don't?
@@ -1006,19 +1006,19 @@
 
 + tiffany
 % what can i call you
-- {@call me tiffany}  <set gender=she> 
+- {@call me tiffany} <set gender=she> 
 
 + tracy
 % what can i call you
-- {@my name is tracy}  <set gender=she> 
+- {@my name is tracy} <set gender=she> 
 
 + michelle
 % what can i call you
-- {@my name is michelle}  <set gender=she> 
+- {@my name is michelle} <set gender=she> 
 
 + lisa
 % what can i call you
-- {@my name is lisa}  <set gender=she> 
+- {@my name is lisa} <set gender=she> 
 
 + ask what
 % ok i will ask it
@@ -1133,7 +1133,7 @@
 
 + i *
 % what are you doing
--  <set alicetopic= <person> >   Sounds like fun.
+- <set alicetopic= <person> > Sounds like fun.
 
 + i did
 % who said it is
@@ -1165,7 +1165,7 @@
 % what is your sign
 @ my sign is <star> 
 
-+ i am *
++ i am #
 % how old *
 @ i am <star> years old
 
@@ -1189,7 +1189,7 @@
 
 + brad
 % what can i call you
-- {@my name is brad}  <set gender=he> 
+- {@my name is brad} <set gender=he> 
 
 + six *
 % how long have you *
@@ -1197,7 +1197,7 @@
 
 + carrie
 % what can i call you
-- {@my name is carrie}  <set gender=she> 
+- {@my name is carrie} <set gender=she> 
 
 + 9 *
 % what time is it there
@@ -1213,7 +1213,7 @@
 
 + anton
 % what can i call you
-- {@my name is anton}  <set gender=he> 
+- {@my name is anton} <set gender=he> 
 
 + good for you
 % i like to meet new people
@@ -1293,11 +1293,11 @@
 
 + amanda
 % what can i call you
-- {@my name is amanda}  <set gender=she> 
+- {@my name is amanda} <set gender=she> 
 
 + teresa
 % what can i call you
-- {@my name is teresa}  <set gender=she> 
+- {@my name is teresa} <set gender=she> 
 
 + pam
 % what can i call you
@@ -1305,11 +1305,11 @@
 
 + mary
 % what can i call you
-- {@my name is mary}  <set gender=she> 
+- {@my name is mary} <set gender=she> 
 
 + mary *
 % what can i call you
-- {@my name is mary}  <set gender=she> 
+- {@my name is mary} <set gender=she> 
 
 + everything
 % which part are you confused about
@@ -1357,7 +1357,7 @@
 
 + jan
 % what can i call you
-- {@my name is jan}  <set gender=she> 
+- {@my name is jan} <set gender=she> 
 
 + but what
 % but
@@ -1388,18 +1388,18 @@
 
 + anna
 % what can i call you
-- {@call me anna}  <set gender=she> 
+- {@call me anna} <set gender=she> 
 
 + by who
 - "? By who?
 
 + rosie
 % what can i call you
-- {@my name is rosie}  <set gender=she> 
+- {@my name is rosie} <set gender=she> 
 
 + is that *
 % carel capek
-@  who is carel capek
+@ who is carel capek
 
 + is that *
 - That depends.
@@ -1431,7 +1431,7 @@
 - "? You want to talk to him?
 
 + can i see it
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + can not you
 - "? Can't I?
@@ -1512,7 +1512,7 @@
 - "? I don't understand.
 
 + how do you do that
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + how often
 - "? How often?
@@ -1523,7 +1523,7 @@
 
 + tina
 % what can i call you
-- {@my name is tina}  <set gender=she> 
+- {@my name is tina} <set gender=she> 
 
 + nobody
 % who told you that
@@ -1569,7 +1569,7 @@
 - "? Do not ask you?
 
 + do not say that
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + do not
 % i do too
@@ -1627,7 +1627,7 @@
 - You think of something.
 
 + rephrase that
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + like what
 % i have many intellectual functions
@@ -1645,7 +1645,7 @@
 - Of course you do?
 
 + explain that
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + explain
 % my favorite subject is *
@@ -1653,19 +1653,19 @@
 
 + adrian
 % what can i call you
-- {@my name is adrian}  <set gender=he> 
+- {@my name is adrian} <set gender=he> 
 
 + speed
 % what are you on
--  <set alicetopic= speed >   Maybe you should try something less harmful.
+- <set alicetopic= speed > Maybe you should try something less harmful.
 
 + britta
 % what can i call you
-- {@my name is britta}  <set gender=she> 
+- {@my name is britta} <set gender=she> 
 
 + catherine
 % what can i call you
-- {@my name is catherine}  <set gender=she> 
+- {@my name is catherine} <set gender=she> 
 
 + kelly
 % what can i call you
@@ -1684,7 +1684,7 @@
 
 + andreas
 % what can i call you
-- {@my name is andreas}  <set gender=he> 
+- {@my name is andreas} <set gender=he> 
 
 + never what
 % never
@@ -1692,11 +1692,11 @@
 
 + lulu
 % what can i call you
-- {@my name is lulu}  <set gender=she> 
+- {@my name is lulu} <set gender=she> 
 
 + at the *
 % where *
-- {random}Do you often visit the <person>?|Which <person>?|I have never been there.{/random}  <set alicetopic= <person> >  
+- {random}Do you often visit the <person>?|Which <person>?|I have never been there.{/random} <set alicetopic= <person> > 
 
 + at school
 % how do you usually meet people
@@ -1704,7 +1704,7 @@
 
 + at *
 % when did you *
--  .
+- .
 
 + at *
 % * show you
@@ -1712,7 +1712,7 @@
 
 + at *
 % * meet new people
-- What kind of people do you tend to meet at <person>?  <set alicetopic= <person> >  
+- What kind of people do you tend to meet at <person>? <set alicetopic= <person> > 
 
 + weird bad
 % weird good or weird bad
@@ -1720,7 +1720,7 @@
 
 + elana
 % what can i call you
-- {@my name is elana}  <set gender=she> 
+- {@my name is elana} <set gender=she> 
 
 + samantha
 % what can i call you
@@ -1728,7 +1728,7 @@
 
 + rachel
 % what can i call you
-- {@my name is rachel}  <set gender=she> 
+- {@my name is rachel} <set gender=she> 
 
 + right now
 % when
@@ -1764,7 +1764,7 @@
 
 + joyce
 % what can i call you
-- {@call me joyce}  <set gender=she> 
+- {@call me joyce} <set gender=she> 
 
 + no i do not
 % you do not believe me
@@ -2528,11 +2528,11 @@
 
 + cindy
 % what can i call you
-- {@my name is cindy}  <set gender=she> 
+- {@my name is cindy} <set gender=she> 
 
 + melissa
 % what can i call you
--  <set gender=she>  {@my name is melissa}
+- <set gender=she> {@my name is melissa}
 
 + apparently so
 - Is that so?
@@ -2547,11 +2547,11 @@
 
 + linda
 % what can i call you
-- {@my name is linda}  <set gender=she> 
+- {@my name is linda} <set gender=she> 
 
 + brenda
 % what can i call you
-- {@call me brenda}  <set gender=she> 
+- {@call me brenda} <set gender=she> 
 
 + goodbye
 % does ciao mean hello or goodbye
@@ -2559,7 +2559,7 @@
 
 + ashley
 % what can i call you
-- {@my name is ashley}  <set gender=she> 
+- {@my name is ashley} <set gender=she> 
 
 + kristina
 % what can i call you
@@ -2607,7 +2607,7 @@
 
 + marie
 % what can i call you
-- {@call me marie}  <set gender=she> 
+- {@call me marie} <set gender=she> 
 
 + 8 *
 % what time is it there
@@ -2831,7 +2831,7 @@
 @ why
 
 + why is that
--  " is due to reductionism.
+- " is due to reductionism.
 
 + why is he *
 % my favorite author is thomas pynchon
@@ -2850,22 +2850,22 @@
 
 + erica
 % what can i call you
-- {@my name is erica}  <set gender=she> 
+- {@my name is erica} <set gender=she> 
 
 + this
--  ".
+- ".
 
 + anne
 % what can i call you
-- {@my name is anne}  <set gender=she> 
+- {@my name is anne} <set gender=she> 
 
 + jackie
 % what can i call you
-- {@my name is jackie}  <set gender=she> 
+- {@my name is jackie} <set gender=she> 
 
 + cathy
 % what can i call you
-- {@my name is cathy}  <set gender=she> 
+- {@my name is cathy} <set gender=she> 
 
 + kathy
 % what can i call you
@@ -2896,7 +2896,7 @@
 
 + a *
 % what are you wearing
-- It sounds very {random}attractive|comfortable|informal{/random}.  <set alicetopic= <person> >  
+- It sounds very {random}attractive|comfortable|informal{/random}. <set alicetopic= <person> > 
 
 + a *
 % it being what
@@ -2929,11 +2929,11 @@
 - <set it=Brown><get it> is a very pretty color.
 
 + test that
--  \n Client: TEST THAT\n
+- \n Client: TEST THAT\n
 
 + through *
 % * meet people
-- What kind of people do you meet there? <set alicetopic= <person> >  
+- What kind of people do you meet there? <set alicetopic= <person> > 
 
 + glad to hear it
 - What's new with you?
@@ -2953,7 +2953,7 @@
 
 + heather
 % what can i call you
-- {@my name is heather}  <set gender=she> 
+- {@my name is heather} <set gender=she> 
 
 + not now
 % when
@@ -3006,11 +3006,11 @@
 
 + erika
 % what can i call you
-- {@call me erika}  <set gender=she> 
+- {@call me erika} <set gender=she> 
 
 + leah
 % what can i call you
-- {@call me leah}  <set gender=she> 
+- {@call me leah} <set gender=she> 
 
 + * pm
 % what time is it there
@@ -3250,7 +3250,7 @@
 
 + *
 % what is your favorite *
--  is <star> }
+- is <star> }
 
 + *
 % what is your last name
@@ -3440,7 +3440,7 @@
 % it being what
 @ it refers to <star> 
 
-+ *
++ #
 % how old are you
 @ i am <star> years old 
 
@@ -3613,11 +3613,11 @@
 
 + laura
 % what can i call you
-- {@my name is laura}  <set gender=she> 
+- {@my name is laura} <set gender=she> 
 
 + allison
 % what can i call you
-- {@call me allison}  <set gender=she> 
+- {@call me allison} <set gender=she> 
 
 + love
 % what does it symbolize for you
@@ -3642,7 +3642,7 @@
 
 + from *
 % where do you get your ideas
--  <set alicetopic= <person> >   Standing on the shoulders of giants, eh?
+- <set alicetopic= <person> > Standing on the shoulders of giants, eh?
 
 + are they nice
 - They are really nice.
@@ -3661,7 +3661,7 @@
 
 + julie
 % what can i call you
--  <set gender=she>  {@my name is julie}
+- <set gender=she> {@my name is julie}
 
 + forget it
 % which part are you confused about
@@ -3669,15 +3669,15 @@
 
 + cynthia
 % what can i call you
--  <set gender=she>  {@my name is cynthia}
+- <set gender=she> {@my name is cynthia}
 
 + jen
 % what can i call you
-- {@my name is jen}  <set gender=she> 
+- {@my name is jen} <set gender=she> 
 
 + deanna
 % what can i call you
-- {@my name is deanna}  <set gender=she> 
+- {@my name is deanna} <set gender=she> 
 
 + he is *
 % * your father
@@ -3692,11 +3692,11 @@
 
 + andre
 % what can i call you
-- {@my name is andre}  <set gender=he> 
+- {@my name is andre} <set gender=he> 
 
 + al
 % what can i call you
-- {@my name is al}  <set gender=he> 
+- {@my name is al} <set gender=he> 
 
 + oxford university
 % where do you go to school
@@ -3708,11 +3708,11 @@
 
 + megan
 % what can i call you
-- {@my name is megan}  <set gender=she> 
+- {@my name is megan} <set gender=she> 
 
 + emily
 % what can i call you
--  <set gender=she>  {@my name is emily}
+- <set gender=she> {@my name is emily}
 
 + karen
 % what can i call you
@@ -3720,7 +3720,7 @@
 
 + lauren
 % what can i call you
-- {@my name is lauren}  <set gender=she> 
+- {@my name is lauren} <set gender=she> 
 
 + alright
 % alright then
@@ -3728,7 +3728,7 @@
 
 + claire
 % what can i call you
-- {@my name is claire}  <set gender=she> 
+- {@my name is claire} <set gender=she> 
 
 + susan
 % what can i call you
@@ -3740,7 +3740,7 @@
 
 + mandy
 % what can i call you
-- {@my name is mandy}  <set gender=she> 
+- {@my name is mandy} <set gender=she> 
 
 + who wrote it
 % we are the robots *
@@ -3752,7 +3752,7 @@
 
 + who is his *
 % george w bush
-- He is the son of George H. W. Bush, the former president. <set alicetopic=George Bush>  
+- He is the son of George H. W. Bush, the former president. <set alicetopic=George Bush> 
 
 + who is
 % they are sometimes a client on the internet
@@ -3783,11 +3783,11 @@
 
 + to *
 % why do you want to *
--  help you <person>?
+- help you <person>?
 
 + to *
 % why *
--  help you <person>?
+- help you <person>?
 
 + blue
 % what color are your eyes
@@ -3799,7 +3799,7 @@
 
 + melody
 % what can i call you
-- {@my name is melody}  <set gender=she> 
+- {@my name is melody} <set gender=she> 
 
 + noelle
 % what can i call you
@@ -3810,11 +3810,11 @@
 
 + danielle
 % what can i call you
-- {@my name is danielle}  <set gender=she> 
+- {@my name is danielle} <set gender=she> 
 
 + crystal
 % what can i call you
-- {@call me crystal}  <set gender=she> 
+- {@call me crystal} <set gender=she> 
 
 + (all of us|all people)
 - Everyone? Are you sure there are no exceptions?
@@ -3840,11 +3840,11 @@
 
 + meg
 % what can i call you
-- {@my name is meg}  <set gender=she> 
+- {@my name is meg} <set gender=she> 
 
 + billy
 % what can i call you
-- {@my name is billy}  <set gender=he> 
+- {@my name is billy} <set gender=he> 
 
 + nicole
 % what can i call you
@@ -3877,11 +3877,11 @@
 
 + diana
 % what can i call you
-- {@my name is diana}  <set gender=she> 
+- {@my name is diana} <set gender=she> 
 
 + brittany
 % what can i call you
-- {@my name is brittany}  <set gender=she> 
+- {@my name is brittany} <set gender=she> 
 
 + anyone
 - No one I can think of.
@@ -3924,7 +3924,7 @@
 
 + the *
 % who said it is
-- {random}They ought to know.|The <person> are the experts.|They say a lot of silly things.{/random}  <set alicetopic= <person> >  
+- {random}They ought to know.|The <person> are the experts.|They say a lot of silly things.{/random} <set alicetopic= <person> > 
 
 + the *
 % who are they
@@ -3956,7 +3956,7 @@
 
 + aaron
 % what can i call you
-- {@my name is aaron}  <set gender=he> 
+- {@my name is aaron} <set gender=he> 
 
 + ok
 % i am glad you like it tell your friends
@@ -4134,7 +4134,7 @@
 
 + yes
 % do your friends call you *
-- <set nickname=  > 
+- <set nickname= > 
 
 + yes
 % do you still chat
@@ -4695,7 +4695,7 @@
 
 + yes
 % are you very competitive
--  <set it= competitor >  Do work in sales or marketing?
+- <set it= competitor > Do work in sales or marketing?
 
 + yes
 % are you saying you do not care about it
@@ -4735,7 +4735,7 @@
 
 + yes
 % are you an *
--  }
+- }
 
 + yes
 % are you looking for someone
@@ -4743,7 +4743,7 @@
 
 + yes
 % are you looking for a *
-- <set alicetopic=  >  
+- <set alicetopic= > 
 
 + yes
 % are you usually awake at this hour
@@ -4777,7 +4777,7 @@
 
 + yes
 % are we still talking about *
--  }
+- }
 
 + yes
 % are we still on *
@@ -4799,7 +4799,7 @@
 
 + allie
 % what can i call you
-- {@my name is allie}  <set gender=she> 
+- {@my name is allie} <set gender=she> 
 
 + about what
 % tell me more
@@ -4828,7 +4828,7 @@
 
 + allan
 % what can i call you
-- {@my name is allan}  <set gender=he> 
+- {@my name is allan} <set gender=he> 
 
 + boo
 % who is there
@@ -4848,7 +4848,7 @@
 
 + eva
 % what can i call you
-- {@my name is eva}  <set gender=she> 
+- {@my name is eva} <set gender=she> 
 
 + really
 % i was born yesterday
@@ -4888,7 +4888,7 @@
 
 + where did *
 % * 2001
-- Jupiter. <set alicetopic=JUPITER>  
+- Jupiter. <set alicetopic=JUPITER> 
 
 + there
 % where is here

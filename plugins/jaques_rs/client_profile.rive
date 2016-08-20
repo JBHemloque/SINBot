@@ -311,7 +311,7 @@
 - <set email=<star>>Thanks for telling me your email address.
 
 + my location is *
-- What is <set alicetopic=<person>><get alicetopic>   like there?  <set alicetopic= <person> >  
+- What is <set alicetopic=<person>><get alicetopic> like there? <set alicetopic= <person> > 
 
 + my heard is *
 - <set heard=<star>>Your heard is <get heard>.
@@ -341,13 +341,13 @@
 - <set lastname=<star>>Your last name is <get lastname>.
 
 + my favorite show is *
--  <set alicetopic= <person> >   {random}Who is your favorite character?|Wasn't that show canceled?|I like that one and Star Trek too.{/random}
+- <set alicetopic= <person> > {random}Who is your favorite character?|Wasn't that show canceled?|I like that one and Star Trek too.{/random}
 
 + my favorite show *
-- {random}What's your favorite episode.|I don't get to see that show very often.|Who is your favorite character?{/random}  <set alicetopic= <person> >  
+- {random}What's your favorite episode.|I don't get to see that show very often.|Who is your favorite character?{/random} <set alicetopic= <person> > 
 
 + my favorite science fiction author is *
-- I have never read anything by <person>. What did <set he= <person> ><get he> write?  <set alicetopic= <person> > 
+- I have never read anything by <person>. What did <set he= <person> ><get he> write? <set alicetopic= <person> > 
 
 + my favorite science *
 - Who wrote that?
@@ -359,7 +359,7 @@
 - I haven't seen it. What did you like about <set alicetopic= <person> ><get alicetopic> ?
 
 + my favorite food is *
-- What does it taste like?  <set alicetopic= <person> >  
+- What does it taste like? <set alicetopic= <person> > 
 
 + my favorite actor *
 - What movies was <set he= <person> ><get he> in?
@@ -377,7 +377,7 @@
 - Maybe you can give my <bot botmaster> a job.
 
 + my job is *
-- {random}|Does it pay well?|I don't know many <person>s.|Is that an honorable profession?|You must have a lot of expertise.|Do you have to go to school for that?{/random} <set it=<person>><set job=<person>><set alicetopic=<person>>
+- {random}Does it pay well?|I don't know many <person>s.|Is that an honorable profession?|You must have a lot of expertise.|Do you have to go to school for that?{/random} <set it=<person>><set job=<person>><set alicetopic=<person>>
 
 + my girlfriend is called *
 - <set girlfriend=<star>>Your girlfriend is <get girlfriend>.
@@ -394,11 +394,11 @@
 + my husband is called *
 - <set husband=<star>><set spouse=husband>Your husband is <get husband>.
 
-+ my age is *
-- <set age=<star>>{random}|Your age is <star>.|Only <star>? You are quite mature.|Can you explain how it feels to be <star> years old?|What is your fondest memory?|What are the advantages to being <star> years old?{/random}
++ my age is #
+- <set age=<star>>{random}Your age is <star>.|Only <star>? You are quite mature.|Can you explain how it feels to be <star> years old?|What is your fondest memory?|What are the advantages to being <star> years old?{/random}
 
 + my wife is called *
-- <set wife=<person>> {random}|How long have you been married?|Your wife is called <get wife>{/random}
+- <set wife=<person>> {random}How long have you been married?|Your wife is called <get wife>{/random}
 
 + my nickname is *
 - <set nickname=<star>>Your nickname is <get nickname>.
@@ -407,7 +407,7 @@
 - <set memory=<star>>Your memory is <get memory>.
 
 + my mother is called *
-- <set mother=<star>>{random}|Your mother is <get mother>.|<get mother> is a pretty name.|<get mother> is a nice name.{/random}
+- <set mother=<star>>{random}Your mother is <get mother>.|<get mother> is a pretty name.|<get mother> is a nice name.{/random}
 
 + call me *
 - <set personality=average> {random}Hey|Hi,|Hi there|What's up,|How are you,|Glad to see you,|Nice to meet you,|Glad to know you,|How can I help you,|How are you doing,|OK I will call you|Pleased to meet you,|It's good to see you,|It's good to meet you,|That's a very nice name,|I am very pleased to meet you|I am always glad to make new friends,|I'm pleased to introduce myself to you,|It is a pleasure to introduce myself to you,{/random} <set name={formal}<star>{/formal}><get name>.

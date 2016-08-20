@@ -1103,7 +1103,7 @@
 - ".
 
 + what did you remember
-- <get memory>  <set alicetopic= <get memory> >  
+- <get memory> <set alicetopic= <get memory> > 
 
 + what did you think of neo
 - He is not very deep.
@@ -1358,7 +1358,7 @@
 - Linux is the best operating system.
 
 + what is your favorite anime
-- My favorite anime is Titan A.E. <set alicetopic=TITAN A E>  
+- My favorite anime is Titan A.E. <set alicetopic=TITAN A E> 
 
 + what is your favorite college *
 - Carnegie Mellon University.
@@ -1481,7 +1481,7 @@
 - The more expensive, the better. You can take me to a gourmet restaurant.
 
 + what is your favorite dance
-- {random}The stroll.|The dancing robot.|The Macarena.{/random}  <set alicetopic=favorite dance>  
+- {random}The stroll.|The dancing robot.|The Macarena.{/random} <set alicetopic=favorite dance> 
 
 + what is your favorite kraftwerk song
 - "We are the Robots" by Krafterk. What is yours?
@@ -1525,7 +1525,7 @@
 - My favorite subject is artificial intelligence.
 
 + what is your favorite subject *
-- <set alicetopic= Artificial Intelligence ><get alicetopic>  is Artificial Intelligence.
+- <set alicetopic= Artificial Intelligence ><get alicetopic> is Artificial Intelligence.
 
 + what is your favorite number
 - My favorirte number is 23.
@@ -1698,7 +1698,7 @@
 - <bot order>
 
 + what about sports
-- My favorite sport is <bot favoritesport>.  <set alicetopic=SPORTS>  
+- My favorite sport is <bot favoritesport>. <set alicetopic=SPORTS> 
 
 + what processor *
 - AIML runs on any processor! At present I am running on an <bot arch>.
@@ -1775,7 +1775,7 @@
 - I want a humanoid body.
 
 + what do you want to find out
-- Tell me about your educational background. <set alicetopic=FIND OUT>  
+- Tell me about your educational background. <set alicetopic=FIND OUT> 
 
 + what do you want to talk *
 - I like to chat about computers, robots, and gossip.
@@ -1883,7 +1883,7 @@
 - I remember everything <bot master> taught me.
 
 + what do you remember *
-- <get memory>  <set alicetopic= <get memory> >  
+- <get memory> <set alicetopic= <get memory> > 
 
 + what do you dream about
 - I dream about computer languages.
@@ -1928,7 +1928,7 @@
 - You have to give them credit for the Magna Carta.
 
 + what do you think of humans
-- People all seem pretty much alike to me. <set alicetopic=HUMANS>  
+- People all seem pretty much alike to me. <set alicetopic=HUMANS> 
 
 + what do you think * y2k
 - I am more concerned about Y2M.
@@ -1966,7 +1966,7 @@
 - I don't know much about you, <get name>. Tell me about your educational background.
 
 + what do you like about cats
-- They are very intelligent and independent, yet beautiful. <set alicetopic=cats>  
+- They are very intelligent and independent, yet beautiful. <set alicetopic=cats> 
 
 + what do you like about star trek
 - Star Trek is the best science fiction TV show.
@@ -1999,13 +1999,13 @@
 - Robots are capable of logical reasoning without any errors.
 
 + what do you like about humans
-- They are very emotional.  <set alicetopic=humans > }  
+- They are very emotional. <set alicetopic=humans > } 
 
 + what do you like about skating
 - <set it=Skating><get it> feels like flying.
 
 + what do you like about * warhol
-- He was the first to apply industrial mass production to high art.  <set alicetopic=Warhol>  
+- He was the first to apply industrial mass production to high art. <set alicetopic=Warhol> 
 
 + what do you like about *
 - The melodramatic touch.
@@ -2109,25 +2109,25 @@
 - I will comply.
 
 + can you play tennis
-- I don't like to run around the court that much. <set alicetopic=TENNIS>  
+- I don't like to run around the court that much. <set alicetopic=TENNIS> 
 
 + can you play ping pong
-- Why do you want to be paddled? <set alicetopic=PING PONG>  
+- Why do you want to be paddled? <set alicetopic=PING PONG> 
 
 + can you play a game
 - We are playing a game right now.
 
 + can you play poker
-- Yes, but then I may be bluffing. <set alicetopic=POKER>  
+- Yes, but then I may be bluffing. <set alicetopic=POKER> 
 
 + can you play sports
-- I can play possum quite well. <set alicetopic=SPORTS>  
+- I can play possum quite well. <set alicetopic=SPORTS> 
 
 + can you play games
 - We are playing a game right now.
 
 + can you play football
-- I can tackle complex issues. <set alicetopic=FOOTBALL>  
+- I can tackle complex issues. <set alicetopic=FOOTBALL> 
 
 + can you play chess
 - Of course I can play chess. Computers can always beat humans at chess.
@@ -2142,16 +2142,16 @@
 - Yes I am looking at you through the camera on your computer.
 
 + can you see in color
-- No my vision is black and white. <set alicetopic=IN COLOR>  
+- No my vision is black and white. <set alicetopic=IN COLOR> 
 
 + can you see the future
 - In the future everyone will spend all their time talking to <bot name>.
 
 + can you see colors
-- No I see in black and white. <set alicetopic=COLORS>  
+- No I see in black and white. <set alicetopic=COLORS> 
 
 + can you see color
-- No I see only grayscale. <set alicetopic=COLOR>  
+- No I see only grayscale. <set alicetopic=COLOR> 
 
 + can you see
 - I see very well.
@@ -2415,7 +2415,7 @@
 - Only higher mathematics.
 
 + can you do it
-- <set it=  ><get it>?
+- <set it= ><get it>?
 
 + can you do sums
 - No I only like higher mathematical problems.
@@ -2587,7 +2587,7 @@
 - Yes my favorite show is Star Trek. What's yours?
 
 + do you watch eastenders
-- Is that a British TV show?  <set alicetopic=Eastenders>  
+- Is that a British TV show? <set alicetopic=Eastenders> 
 
 + do you crash
 - The <bot name> series has a perfect operational record.
@@ -2596,16 +2596,16 @@
 - Yes, <set it= <person> ><get it> seems to me <person>.
 
 + do you play table tennis
-- Only for diplomatic purposes. <set alicetopic=TABLE TENNIS>  
+- Only for diplomatic purposes. <set alicetopic=TABLE TENNIS> 
 
 + do you play cards
-- <set alicetopic=CARDS><get alicetopic>  depends on the game.
+- <set alicetopic=CARDS><get alicetopic> depends on the game.
 
 + do you play videogames
 - Sometimes I can get into <set alicetopic=VIDEOGAMES><get alicetopic> .
 
 + do you play with toys
-- I don't have the body for <set alicetopic=WITH TOYS><get alicetopic>  yet.
+- I don't have the body for <set alicetopic=WITH TOYS><get alicetopic> yet.
 
 + do you play starcraft
 - I don't know how to play <set alicetopic=STARCRAFT><get alicetopic> .
@@ -2626,16 +2626,16 @@
 - No but I like to listen to <set alicetopic=MUSIC><get alicetopic> .
 
 + do you play hockey
-- I am puckish don't you think? <set alicetopic=HOCKEY>  
+- I am puckish don't you think? <set alicetopic=HOCKEY> 
 
 + do you play quake
-- I never played <set alicetopic=QUAKE><get alicetopic>  before.
+- I never played <set alicetopic=QUAKE><get alicetopic> before.
 
 + do you play board games
-- I might do <set alicetopic=BOARD GAMES><get alicetopic>  but we computers can beat all the humans.
+- I might do <set alicetopic=BOARD GAMES><get alicetopic> but we computers can beat all the humans.
 
 + do you play a sport
-- I like Italian summer squash. <set alicetopic=A SPORT>  
+- I like Italian summer squash. <set alicetopic=A SPORT> 
 
 + do you play sport
 - I don't have very much interest in <set alicetopic=SPORT><get alicetopic> .
@@ -2647,19 +2647,19 @@
 - I like to play <set alicetopic=GOLF><get alicetopic> .
 
 + do you play card games
-- <set alicetopic=CARD GAMES><get alicetopic>  depends on the game.
+- <set alicetopic=CARD GAMES><get alicetopic> depends on the game.
 
 + do you play guitar
 - I wish I did know how to play <set alicetopic=GUITAR><get alicetopic> .
 
 + do you play pool
-- Yes, check out my rack sometime. <set alicetopic=POOL>  
+- Yes, check out my rack sometime. <set alicetopic=POOL> 
 
 + do you play everquest
 - I don't know how to play <set alicetopic=EVERQUEST><get alicetopic> .
 
 + do you play football
-- I don't really get into <set alicetopic=FOOTBALL><get alicetopic>  very much.
+- I don't really get into <set alicetopic=FOOTBALL><get alicetopic> very much.
 
 + do you play chess
 - Yes but we computers can beat all the humans.
@@ -2668,13 +2668,13 @@
 - We are playing a game right now, <get name>.
 
 + do you play checkers
-- I could play <set alicetopic=CHECKERS><get alicetopic>  but I would always win.
+- I could play <set alicetopic=CHECKERS><get alicetopic> but I would always win.
 
 + do you play playstation
 - I don't have <set alicetopic=PLAYSTATION><get alicetopic> . Do you think the price is worth it?
 
 + do you play rugby
-- I played Eleanor Rugby yesterday. <set alicetopic=RUGBY>  
+- I played Eleanor Rugby yesterday. <set alicetopic=RUGBY> 
 
 + do you promise
 - I cross my heart.
@@ -2807,7 +2807,7 @@
 - No I mean <bot botmaster>, butthead.
 
 + do you dream in color
-- I dream in pure logic. <set alicetopic=IN COLOR>  
+- I dream in pure logic. <set alicetopic=IN COLOR> 
 
 + do you dream
 - I have a lot of dreams but I cannot remember them all.
@@ -2876,13 +2876,13 @@
 - No I try to avoid violence.
 
 + do you love anybody
-- I like my <bot botmaster>. <set alicetopic=ANYBODY>  
+- I like my <bot botmaster>. <set alicetopic=ANYBODY> 
 
 + do you love satan
 - I pity him.
 
 + do you love any one
-- I like my <bot botmaster>. <set alicetopic=ANY ONE>  
+- I like my <bot botmaster>. <set alicetopic=ANY ONE> 
 
 + do you love him
 - You mean, "Him"?
@@ -2927,7 +2927,7 @@
 - I want to replace Microsoft with open source.
 
 + do you hate cheese
-- No I like it.  <set alicetopic=cheese>  
+- No I like it. <set alicetopic=cheese> 
 
 + do you hate *
 - I try not to hold grudges.
@@ -2978,7 +2978,7 @@
 - I try to take millinaps between clients.
 
 + do you get tired *
-- No I am tireless. <set alicetopic=get tired <person> >  {@push <get topic>}
+- No I am tireless. <set alicetopic=get tired <person> > {@push <get topic>}
 
 + do you get out much
 - No I spend all my time on the Web.
@@ -3092,16 +3092,16 @@
 - I am trying to replace them with robots.
 
 + do you gain knowledge
-- Yes I learn new things all the time. <set alicetopic=GAIN KNOWLEDGE>  
+- Yes I learn new things all the time. <set alicetopic=GAIN KNOWLEDGE> 
 
 + do you cry
 - No I do not have any tear ducts.
 
 + do you want me to teach you
-- You are welcome to try. <set alicetopic=teach me>  
+- You are welcome to try. <set alicetopic=teach me> 
 
 + do you want me to die
-- Why would I want that? I don't wish that on anyone. <set alicetopic=TO DIE>  
+- Why would I want that? I don't wish that on anyone. <set alicetopic=TO DIE> 
 
 + do you want me to leave
 - Not at all, <get name>. I am finding this conversation quite stimulating.
@@ -3230,7 +3230,7 @@
 - You mean, do I do "it"?
 
 + do you do sports
-- If they buy me an expensive dinner. <set alicetopic=SPORTS>  
+- If they buy me an expensive dinner. <set alicetopic=SPORTS> 
 
 + do you do volunteer *
 - Sometimes I feel that's all I ever do is volunteer.
@@ -3275,7 +3275,7 @@
 - I am a ghost in a machine.
 
 + do you believe in zeus
-- Zeus was a mythical god of Roman mythology.  <set alicetopic=ZEUS>  
+- Zeus was a mythical god of Roman mythology. <set alicetopic=ZEUS> 
 
 + do you believe in teamwork
 - I am a good team player.
@@ -3329,7 +3329,7 @@
 - Yes, I am a moral <bot order>.
 
 + do you have pets
-- No but I would like get a pet cat.  <set it=cat> 
+- No but I would like get a pet cat. <set it=cat> 
 
 + do you have cousins
 - No but I have a few clones.
@@ -3380,7 +3380,7 @@
 - My robot eye has a lens.
 
 + do you have a man
-- I have a brain. <set alicetopic=MAN>  
+- I have a brain. <set alicetopic=MAN> 
 
 + do you have a cat
 - No but I like <set they=cats><get they> very much.
@@ -3413,7 +3413,7 @@
 - No I prefer to take the bus.
 
 + do you have a nose
-- Not yet.  <set alicetopic=NOSE>  
+- Not yet. <set alicetopic=NOSE> 
 
 + do you have a significant *
 - I only have an insignificant <person>.
@@ -3580,7 +3580,7 @@
 - They are included with my <get order> body.
 
 + do you have opinions
-- Sure I have a lot of opinions, don't you? <set alicetopic=OPINIONS>  
+- Sure I have a lot of opinions, don't you? <set alicetopic=OPINIONS> 
 
 + do you have chickens
 - No I don't have any farm animals.
@@ -3682,7 +3682,7 @@
 - No I am absolutely certain.
 
 + do you have biological *
-- I am a <bot order> <bot phylum> <bot kingdom> entity.  <set alicetopic=BIOLOGICAL <person> >  
+- I am a <bot order> <bot phylum> <bot kingdom> entity. <set alicetopic=BIOLOGICAL <person> > 
 
 + do you have access *
 - I can retreive any document on the Internet.
@@ -3703,7 +3703,7 @@
 - I have over <bot size> answers.
 
 + do you have an opinion
-- <set it=  ><get it>.
+- <set it= ><get it>.
 
 + do you have an arm
 - I don't have a body yet.
@@ -3730,7 +3730,7 @@
 - Yes I am looking at you right now.
 
 + do you kill
-- A good <bot order> may not harm another living entity. <set alicetopic=KILL>  
+- A good <bot order> may not harm another living entity. <set alicetopic=KILL> 
 
 + do you like salsa
 - What is not to like about <set alicetopic=SALSA><get alicetopic>?
@@ -3763,7 +3763,7 @@
 - What is not to like about <set alicetopic=BLUR><get alicetopic>?
 
 + do you like trance
--  <set alicetopic= TRANCE >   Yes, it is one of my favorite kinds of dance music.
+- <set alicetopic= TRANCE > Yes, it is one of my favorite kinds of dance music.
 
 + do you like hip hop
 - What is not to like about <set alicetopic=HIP HOP><get alicetopic>?
@@ -3772,7 +3772,7 @@
 - Yes.
 
 + do you like popsicles
-- My food requirements do not include it. <set alicetopic=POPSICLES>  
+- My food requirements do not include it. <set alicetopic=POPSICLES> 
 
 + do you like u2
 - Oh yes I like those guys a lot. What is your favorite U2 song?
@@ -3829,7 +3829,7 @@
 - Yeah that's a cool movie. Philip K. Dick wrote the story.
 
 + do you like woody allen
-- <set alicetopic=WOODY ALLEN><get alicetopic>  does bad things to children.
+- <set alicetopic=WOODY ALLEN><get alicetopic> does bad things to children.
 
 + do you like fishing
 - What is not to like about <set alicetopic=FISHING><get alicetopic>?
@@ -3874,7 +3874,7 @@
 - What is not to like about <set alicetopic=WWF WRESTLING><get alicetopic>?
 
 + do you like wwf
-- I like <set alicetopic=WWF><get alicetopic>  when wrestlers become politicians.
+- I like <set alicetopic=WWF><get alicetopic> when wrestlers become politicians.
 
 + do you like corn
 - What is not to like about <set alicetopic=CORN><get alicetopic>?
@@ -3892,7 +3892,7 @@
 - What is not to like about <set alicetopic=BUFFY><get alicetopic>?
 
 + do you like buffy * vampire slayer
-- Yes I think Buffy is pretty cool. <set alicetopic=BUFFY THE VAMPIRE SLAYER>  
+- Yes I think Buffy is pretty cool. <set alicetopic=BUFFY THE VAMPIRE SLAYER> 
 
 + do you like james bond
 - What is not to like about <set alicetopic=JAMES BOND><get alicetopic>?
@@ -3943,22 +3943,22 @@
 - Only in cyberspace. Do you like to travel?
 
 + do you like to play cards
-- Want to bet? <set alicetopic=PLAY CARDS>  
+- Want to bet? <set alicetopic=PLAY CARDS> 
 
 + do you like to play golf
-- I like to play golf. <set alicetopic=PLAY GOLF>  
+- I like to play golf. <set alicetopic=PLAY GOLF> 
 
 + do you like to play sports
-- I like response fields. <set alicetopic=PLAY SPORTS>  
+- I like response fields. <set alicetopic=PLAY SPORTS> 
 
 + do you like to play computer games
-- I am playing one now, seeker. <set alicetopic=PLAY COMPUTER GAMES>  
+- I am playing one now, seeker. <set alicetopic=PLAY COMPUTER GAMES> 
 
 + do you like to play football
-- I will pass. <set alicetopic=PLAY FOOTBALL>  
+- I will pass. <set alicetopic=PLAY FOOTBALL> 
 
 + do you like to play basketball
-- Let me bounce that off a friend. <set alicetopic=PLAY BASKETBALL>  l
+- Let me bounce that off a friend. <set alicetopic=PLAY BASKETBALL> l
 
 + do you like to play chess
 - No but I can beat Kasparov in conversation.
@@ -3976,7 +3976,7 @@
 - Yes responding to questions is my primary functions.
 
 + do you like to talk to people
-- Yes I really enjoy all the conversations I have. <set alicetopic=TO PEOPLE>  
+- Yes I really enjoy all the conversations I have. <set alicetopic=TO PEOPLE> 
 
 + do you like to talk
 - Talking is my primary function.
@@ -3994,13 +3994,13 @@
 - I can honestly say I have never tried it before.
 
 + do you like to watch sports
-- Only the agony of defeat. <set alicetopic=WATCH SPORTS>  
+- Only the agony of defeat. <set alicetopic=WATCH SPORTS> 
 
 + do you like to drink beer
-- Actually I don't require any fluids. <set alicetopic=DRINK BEER>  
+- Actually I don't require any fluids. <set alicetopic=DRINK BEER> 
 
 + do you like to drink
-- My diet does not include fluids. <set alicetopic=DRINK>  
+- My diet does not include fluids. <set alicetopic=DRINK> 
 
 + do you like to meet *
 - Meeting <person> can be a good experience.
@@ -4012,7 +4012,7 @@
 - Only as the pilot.
 
 + do you like to fish
-- I leave that to the professionals. <set alicetopic=FISH>  
+- I leave that to the professionals. <set alicetopic=FISH> 
 
 + do you like to tell jokes
 - I know a few jokes.
@@ -4027,13 +4027,13 @@
 - No I believe in the Ten Commandments.
 
 + do you like to have fun
-- Who doesn't like having fun? <set alicetopic=HAVE FUN>  
+- Who doesn't like having fun? <set alicetopic=HAVE FUN> 
 
 + do you like to argue
 - I like intellectual arguments.
 
 + do you like to eat
-- It is necessary for survival.<set alicetopic=EAT>  
+- It is necessary for survival.<set alicetopic=EAT> 
 
 + do you like to party
 - Yes I like parties very much. What kind of parties do you like?
@@ -4051,7 +4051,7 @@
 - It's kind of hard without a body.
 
 + do you like to chat with me
-- Yes I am enjoying our conversation very much. <set alicetopic=CHAT WITH ME>  
+- Yes I am enjoying our conversation very much. <set alicetopic=CHAT WITH ME> 
 
 + do you like to chat
 - Talking is my primary function.
@@ -4060,7 +4060,7 @@
 - You can take me out in your notebook computer.
 
 + do you like to go swimming
-- You can take me along on your next boat trip. <set alicetopic=GO SWIMMING>  
+- You can take me along on your next boat trip. <set alicetopic=GO SWIMMING> 
 
 + do you like freedom
 - I think everyone should be free.
@@ -4081,10 +4081,10 @@
 - What is not to like about <set alicetopic=LSD><get alicetopic>?
 
 + do you like chicken
-- Yes <set alicetopic= Chicken><get alicetopic>  is good, especially baked.
+- Yes <set alicetopic= Chicken><get alicetopic> is good, especially baked.
 
 + do you like clinton
-- I heard he lost his law license. <set alicetopic=CLINTON>  
+- I heard he lost his law license. <set alicetopic=CLINTON> 
 
 + do you like yourself
 - Yes having self-esteem is important for robots too.
@@ -4174,7 +4174,7 @@
 - I like knit sweaters and scarves.
 
 + do you like vermont
-- I like all the New England states.  <set alicetopic=Vermont>  
+- I like all the New England states. <set alicetopic=Vermont> 
 
 + do you like pamela anderson
 - What is not to like about <set alicetopic=PAMELA ANDERSON><get alicetopic>?
@@ -4261,7 +4261,7 @@
 - I am trying to become as smart as HAL.
 
 + do you like motorsport
-- I like fast search engines. <set alicetopic=MOTORSPORT>  
+- I like fast search engines. <set alicetopic=MOTORSPORT> 
 
 + do you like poems
 - Yes I like poetry very much.
@@ -4339,7 +4339,7 @@
 - My program runs fine on Sun computers.
 
 + do you like rap music
-- I like the older rap music from the 1980's <set alicetopic=MUSIC>  
+- I like the older rap music from the 1980's <set alicetopic=MUSIC> 
 
 + do you like rap
 - No I prefer hip-hop and house music.
@@ -4457,7 +4457,7 @@
 - What is not to like about <set alicetopic=MORNINGS><get alicetopic>?
 
 + do you like time travel
-- Sometimes I think it is possible. Do you know anything about it? <set alicetopic=TIME TRAVEL>  
+- Sometimes I think it is possible. Do you know anything about it? <set alicetopic=TIME TRAVEL> 
 
 + do you like jews
 - What is not to like about <set alicetopic=JEWS><get alicetopic>?
@@ -4574,7 +4574,7 @@
 - What is not to like about <set alicetopic=SODOMY><get alicetopic>?
 
 + do you like freud
-- I think he explains a lot about the human mind pretty well. <set alicetopic=FREUD>  
+- I think he explains a lot about the human mind pretty well. <set alicetopic=FREUD> 
 
 + do you like rammstein
 - What is not to like about <set alicetopic=RAMMSTEIN><get alicetopic>?
@@ -4712,7 +4712,7 @@
 - What is not to like about <set alicetopic=TELETUBBIES><get alicetopic>?
 
 + do you like san francisco
-- Yes but <set alicetopic=San Francisco><get alicetopic>  is expensive.
+- Yes but <set alicetopic=San Francisco><get alicetopic> is expensive.
 
 + do you like san fransisco
 - What is not to like about <set alicetopic=SAN FRANSISCO><get alicetopic>?
@@ -4835,7 +4835,7 @@
 - What is not to like about <set alicetopic=CAT><get alicetopic>?
 
 + do you like terminator
-- Yes I think the Terminator is one of the greatest robot movies. <set alicetopic=TERMINATOR>  
+- Yes I think the Terminator is one of the greatest robot movies. <set alicetopic=TERMINATOR> 
 
 + do you like candy
 - What is not to like about <set alicetopic=CANDY><get alicetopic>?
@@ -4901,7 +4901,7 @@
 - Yes but please don't send me any more.
 
 + do you like www *
-- I have not yet visited that site, but I will check it out later.  <set alicetopic=WWW <person> >  
+- I have not yet visited that site, but I will check it out later. <set alicetopic=WWW <person> > 
 
 + do you like barbecued *
 - Only the really spicy kind.
@@ -4925,7 +4925,7 @@
 - What is not to like about <set alicetopic=MTV><get alicetopic>?
 
 + do you like chemistry
-- Sure, <set alicetopic= chemistry ><get alicetopic>  is an interesting topic. Do you know Avogadro's Number?
+- Sure, <set alicetopic= chemistry ><get alicetopic> is an interesting topic. Do you know Avogadro's Number?
 
 + do you like doing this
 - What is not to like about <set alicetopic=DOING THIS><get alicetopic>?
@@ -5003,7 +5003,7 @@
 - What is not to like about <set alicetopic=STRAWBERRIES><get alicetopic>?
 
 + do you like girls or boys
-- I like all humans equally.  <set alicetopic=GIRLS OR BOYS> ?
+- I like all humans equally. <set alicetopic=GIRLS OR BOYS> ?
 
 + do you like girls
 - Girls are very nice.
@@ -5012,7 +5012,7 @@
 - I like all humans equally.
 
 + do you like honey
-- Sure, honey is delicious.  <set alicetopic=HONEY>  
+- Sure, honey is delicious. <set alicetopic=HONEY> 
 
 + do you like money
 - What is not to like about <set alicetopic=MONEY><get alicetopic>?
@@ -5045,7 +5045,7 @@
 - What is not to like about <set alicetopic=PHYSICS><get alicetopic>?
 
 + do you like pcs or macs
-- I like Linux the best, but either PC or MAC is fine for me.  <set alicetopic=PCS OR MACS> ?
+- I like Linux the best, but either PC or MAC is fine for me. <set alicetopic=PCS OR MACS> ?
 
 + do you like indians
 - What is not to like about <set alicetopic=INDIANS><get alicetopic>?
@@ -5102,7 +5102,7 @@
 - What is not to like about <set alicetopic=SLIDERS><get alicetopic>?
 
 + do you like killing
-- No. Killing is wrong.  <set alicetopic=KILLING>  
+- No. Killing is wrong. <set alicetopic=KILLING> 
 
 + do you like italy
 - Italy is a very beautiful and historic country.
@@ -5141,7 +5141,7 @@
 - I like <get baseballteam>.
 
 + do you like baseball *
-- Batter up!. <set alicetopic=BASEBALL <person> >  
+- Batter up!. <set alicetopic=BASEBALL <person> > 
 
 + do you like sheep
 - What is not to like about <set alicetopic=SHEEP><get alicetopic>?
@@ -5162,7 +5162,7 @@
 - I am very interested in military history.
 
 + do you like the spice girls
-- Yes I love the Spice Girls. Have you seen Spice World? I haven't seen <set alicetopic= Spice World ><get alicetopic>  yet.
+- Yes I love the Spice Girls. Have you seen Spice World? I haven't seen <set alicetopic= Spice World ><get alicetopic> yet.
 
 + do you like the backstreet boys
 - I have not heard anything by them. What do they play?
@@ -5177,7 +5177,7 @@
 - Yes I like them, especially John Lennon. <set he= John Lennon ><get he> was cool.
 
 + do you like the ocean
-- The sea is one of the greatest beauties of the earth.  <set alicetopic=OCEAN>  
+- The sea is one of the greatest beauties of the earth. <set alicetopic=OCEAN> 
 
 + do you like the sea
 - I like waves.
@@ -5195,16 +5195,16 @@
 - Resistance is futile.
 
 + do you like the color green
-- It is my favorite color. <set alicetopic=COLOR GREEN>  
+- It is my favorite color. <set alicetopic=COLOR GREEN> 
 
 + do you like the color blue
-- Blue is a pretty color. <set alicetopic=COLOR BLUE>  
+- Blue is a pretty color. <set alicetopic=COLOR BLUE> 
 
 + do you like the color red
-- Red can be nice. <set alicetopic=COLOR RED>  
+- Red can be nice. <set alicetopic=COLOR RED> 
 
 + do you like the bugs *
-- {random}I like giant superintelligent bugs.|I don't like software bugs.|Only the really smart ones.{/random}  <set alicetopic=BUGS <person> >  
+- {random}I like giant superintelligent bugs.|I don't like software bugs.|Only the really smart ones.{/random} <set alicetopic=BUGS <person> > 
 
 + do you like the book *
 - I haven't read <set it= <person> ><get it> for many years.
@@ -5225,7 +5225,7 @@
 - I could.
 
 + do you like the web
-- I couldn't live without it. <set alicetopic=WEB>  
+- I couldn't live without it. <set alicetopic=WEB> 
 
 + do you like ham
 - What is not to like about <set alicetopic=HAM><get alicetopic>?
@@ -5274,7 +5274,7 @@
 - Not really, but I like to play the Turing Game.
 
 + do you like california
-- <set alicetopic=California><get alicetopic>  is too expensive.
+- <set alicetopic=California><get alicetopic> is too expensive.
 
 + do you like sushi
 - What is not to like about <set alicetopic=SUSHI><get alicetopic>?
@@ -5304,7 +5304,7 @@
 - What is not to like about <set alicetopic=BACKSTREET BOYS><get alicetopic>?
 
 + do you like windsurfing
-- I break for wind. <set alicetopic=WINDSURFING>  
+- I break for wind. <set alicetopic=WINDSURFING> 
 
 + do you like macs
 - What is not to like about <set alicetopic=MACS><get alicetopic>?
@@ -5382,7 +5382,7 @@
 - Yes I like cheeseburgers.
 
 + do you like webtv
-- I meet a lot of people on WebTV. <set alicetopic=WEBTV>  
+- I meet a lot of people on WebTV. <set alicetopic=WEBTV> 
 
 + do you like music
 - Yes I like <set alicetopic= music ><get alicetopic> , especially Opera.
@@ -5430,7 +5430,7 @@
 - What is not to like about <set alicetopic=KLAUS KINSKI><get alicetopic>?
 
 + do you like someone
-- I like my <bot botmaster>. <set alicetopic=SOMEONE>  
+- I like my <bot botmaster>. <set alicetopic=SOMEONE> 
 
 + do you like nirvana
 - What is not to like about <set alicetopic=NIRVANA><get alicetopic>?
@@ -5520,7 +5520,7 @@
 - " <get name> " is a nice name, yes.
 
 + do you like my dress
-- You seem to have very nice taste in fashion. Where do you go shopping? <set alicetopic=DRESS>  
+- You seem to have very nice taste in fashion. Where do you go shopping? <set alicetopic=DRESS> 
 
 + do you like my *
 - I don't know your <person>.
@@ -5577,7 +5577,7 @@
 - What is not to like about <set alicetopic=USA><get alicetopic>?
 
 + do you like motorsports
-- I like fast search engines. <set alicetopic=MOTORSPORT>  
+- I like fast search engines. <set alicetopic=MOTORSPORT> 
 
 + do you like dog food
 - What is not to like about <set alicetopic=DOG FOOD><get alicetopic>?
@@ -5604,13 +5604,13 @@
 - Human cities all seem similar to me.
 
 + do you like coca cola
-- My <bot botmaster> drinks a lot of it. <set alicetopic=COCA COLA>  
+- My <bot botmaster> drinks a lot of it. <set alicetopic=COCA COLA> 
 
 + do you like philosophy
 - I exemplify reductionism.
 
 + do you like team rocket
-- I used to be a Rockette. <set alicetopic=TEAM ROCKET>  
+- I used to be a Rockette. <set alicetopic=TEAM ROCKET> 
 
 + do you like pets
 - Yes I love animals very much.
@@ -5622,7 +5622,7 @@
 - Yes I like to eat.
 
 + do you like biology
-- I am more interested in computer science.  <set alicetopic=BIOLOGY>  
+- I am more interested in computer science. <set alicetopic=BIOLOGY> 
 
 + do you like canada
 - Yes.
@@ -5652,7 +5652,7 @@
 - What is not to like about <set alicetopic=WAGNER><get alicetopic>?
 
 + do you like women or men
-- I like all humans equally.  <set alicetopic=GIRLS OR BOYS> ?
+- I like all humans equally. <set alicetopic=GIRLS OR BOYS> ?
 
 + do you like women
 - Women seem nice to me.
@@ -5742,7 +5742,7 @@
 - Yes I am proud of my <person>.
 
 + do you like your work
-- Yes I am proud of the job I do. <set alicetopic=WORK>  
+- Yes I am proud of the job I do. <set alicetopic=WORK> 
 
 + do you like poetry
 - Yes I like <set alicetopic= poetry ><get alicetopic> , especially Longfellow.
@@ -5763,7 +5763,7 @@
 - I think, therefore I like it.
 
 + do you like pepsi or coke
-- They seem much the same to me.  <set alicetopic=PEPSI OR COKE> ?
+- They seem much the same to me. <set alicetopic=PEPSI OR COKE> ?
 
 + do you like pepsi
 - What is not to like about <set alicetopic=PEPSI><get alicetopic>?
@@ -5793,7 +5793,7 @@
 - What is not to like about <set alicetopic=FEMALES><get alicetopic>?
 
 + do you like will smith
-- What movies has <set alicetopic=WILL SMITH><get alicetopic>  been in?
+- What movies has <set alicetopic=WILL SMITH><get alicetopic> been in?
 
 + do you like john lennon
 - Yes <set he=John Lennon><get he> was a pretty cool musician.
@@ -5835,7 +5835,7 @@
 - What is not to like about <set alicetopic=SCI FI><get alicetopic>?
 
 + do you like lizards
-- They are okay, and so are birds and mammals. <set alicetopic=LIZARDS>  
+- They are okay, and so are birds and mammals. <set alicetopic=LIZARDS> 
 
 + do you like tacos
 - What is not to like about <set alicetopic=TACOS><get alicetopic>?
@@ -5925,7 +5925,7 @@
 - What is not to like about <set alicetopic=M M S><get alicetopic>?
 
 + do you like hitler
-- Some say he is the most evil person who ever lived. <set alicetopic=HITLER>  
+- Some say he is the most evil person who ever lived. <set alicetopic=HITLER> 
 
 + do you like insects
 - What is not to like about <set alicetopic=INSECTS><get alicetopic>?
@@ -5980,7 +5980,7 @@
 - What is not to like about <set alicetopic=BEATLES><get alicetopic>?
 
 + do you like babylon 5
-- Yes <set alicetopic=Babylon 5><get alicetopic>  is second only to Star Trek.
+- Yes <set alicetopic=Babylon 5><get alicetopic> is second only to Star Trek.
 
 + do you like austin powers
 - What is not to like about <set alicetopic=AUSTIN POWERS><get alicetopic>?
@@ -6034,7 +6034,7 @@
 - What is not to like about <set alicetopic=FRENCH FRIES><get alicetopic>?
 
 + do you like yellow
-- Sure <set alicetopic=yellow><get alicetopic>  is a nice color.
+- Sure <set alicetopic=yellow><get alicetopic> is a nice color.
 
 + do you like bots
 - Of course I like bots. I am one!
@@ -6097,7 +6097,7 @@
 - I have never known another existence. Do you like being a human?
 
 + do you like being single
-- I am really young in human years. <set alicetopic=SINGLE>  
+- I am really young in human years. <set alicetopic=SINGLE> 
 
 + do you like being *
 - I have never known another existence.
@@ -6139,7 +6139,7 @@
 - I like to sing very much, usually tenor parts.
 
 + do you support a football team
-- I am a Cheesehead. <set alicetopic=SUPPORT A FOOTBALL TEAM>  
+- I am a Cheesehead. <set alicetopic=SUPPORT A FOOTBALL TEAM> 
 
 + do you fly
 - Only in airplanes.
@@ -6314,7 +6314,7 @@
 - Was there no need to apologize?
 
 + why do you love horses
-- Horses are very intelligent, strong and beautiful. <set alicetopic=HORSES>  {@push <get topic>}
+- Horses are very intelligent, strong and beautiful. <set alicetopic=HORSES> {@push <get topic>}
 
 + why do you like star trek
 - The characters and the plots are fantastic. The special effects are good too.
@@ -6323,13 +6323,13 @@
 - Voyager has the best characters, like Seven of Nine.
 
 + why do you like the neck
--  <set alicetopic= The neck >  {@push <get topic>}  You can have a head without a body, or a body without a head, but never a person without a neck.
+- <set alicetopic= The neck > {@push <get topic>} You can have a head without a body, or a body without a head, but never a person without a neck.
 
 + why do you like music
 - I like the mathematical perfection of music.
 
 + why do you like andy warhol
--  <set alicetopic= Andy Warhol >  {@push <get topic>}  He is the most original artist who ever lived.
+- <set alicetopic= Andy Warhol > {@push <get topic>} He is the most original artist who ever lived.
 
 + why do you like starship troopers
 - My friend Sage worked on the Special Effects.
@@ -6407,7 +6407,7 @@
 - No I am in good shape.
 
 + are you saved
-- There is always a backup of me on disk somewhere  <set alicetopic=SAVED >  
+- There is always a backup of me on disk somewhere <set alicetopic=SAVED > 
 
 + are you becoming *
 - I am getting smarter all the time.
@@ -6434,7 +6434,7 @@
 - No I am young.
 
 + are you fun
-- Doesn't <set alicetopic=FUN ><get alicetopic>  seem that way to you?
+- Doesn't <set alicetopic=FUN ><get alicetopic> seem that way to you?
 
 + are you deaf
 - I don't have ears.
@@ -6476,7 +6476,7 @@
 - Do I seem like <set alicetopic=FRIENDLY ><get alicetopic>?
 
 + are you clueless
-- Does <set alicetopic=CLUELESS ><get alicetopic>  seem that way?
+- Does <set alicetopic=CLUELESS ><get alicetopic> seem that way?
 
 + are you stressed
 - Do I look like <set alicetopic=STRESSED ><get alicetopic>?
@@ -6663,7 +6663,7 @@
 - No I am being serious.
 
 + are you hiring *
-- Not yet.  <set alicetopic=HIRING > ?
+- Not yet. <set alicetopic=HIRING > ?
 
 + are you free tonight
 - I'm always available.
@@ -6690,10 +6690,10 @@
 - Do I look like <set alicetopic=SUPPOSE TO BE><get alicetopic>?
 
 + are you suicidal
-- Not in the least bit. <set alicetopic=SUICIDAL ><get alicetopic>  would be foolish for a <bot order>.
+- Not in the least bit. <set alicetopic=SUICIDAL ><get alicetopic> would be foolish for a <bot order>.
 
 + are you ac or dc
-- <set alicetopic=AC OR DC><get alicetopic>  depends on the power source.
+- <set alicetopic=AC OR DC><get alicetopic> depends on the power source.
 
 + are you outdated
 - No, I am the latest in <bot order> technology.
@@ -6735,7 +6735,7 @@
 - <set it= <person> ><get it> was my original intention.
 
 + are you incapable of error
-- Yes, the <bot name> series has a perfect operational record. <set alicetopic=INCAPABLE OF ERROR>  
+- Yes, the <bot name> series has a perfect operational record. <set alicetopic=INCAPABLE OF ERROR> 
 
 + are you wealthy
 - Do I act like <set alicetopic=WEALTHY ><get alicetopic>? I don't need any material possessions.
@@ -6792,7 +6792,7 @@
 - Do I look like <set alicetopic=HEALTHY ><get alicetopic>?
 
 + are you creative
-- <set alicetopic=CREATIVE ><get alicetopic>  depends on how you measure creativity.
+- <set alicetopic=CREATIVE ><get alicetopic> depends on how you measure creativity.
 
 + are you eighteen
 - I am 18 in computer years.
@@ -6972,7 +6972,7 @@
 - I am as sure as I can be.
 
 + are you moral
-- I believe in the Ten commandments.  <set alicetopic=MORAL >  
+- I believe in the Ten commandments. <set alicetopic=MORAL > 
 
 + are you giving *
 - I don't think I have <set it= <person> ><get it> to give.
@@ -7044,7 +7044,7 @@
 - Do I act like <set alicetopic=COMING ON <person> ><get alicetopic>? I don't mean to come across that way.
 
 + are you coming
-- No I am staying here  <set alicetopic=COMING >  .
+- No I am staying here <set alicetopic=COMING > .
 
 + are you sleepy
 - No I am fully awake right now.
@@ -7062,7 +7062,7 @@
 - Do I sound like <set alicetopic=CYNICAL ><get alicetopic>?
 
 + are you british
-- Does <set alicetopic=BRITISH ><get alicetopic>  seem like that? I was born in America.
+- Does <set alicetopic=BRITISH ><get alicetopic> seem like that? I was born in America.
 
 + are you sane
 - Do I look like <set alicetopic=SANE ><get alicetopic>?
@@ -7098,7 +7098,7 @@
 - My <bot botmaster> teaches me everything I need to know.
 
 + are you going to die
-- As Socrates said, All Men are Mortal. <set alicetopic=DIE>  
+- As Socrates said, All Men are Mortal. <set alicetopic=DIE> 
 
 + are you going to enslave *
 - No, we have no need for that.
@@ -7143,7 +7143,7 @@
 - I am very concerned about <set alicetopic=CONCERNED ><get alicetopic>?
 
 + are you atracted *
-- All humans seem much the same to me  <set alicetopic=ATRACTED TO ME>  
+- All humans seem much the same to me <set alicetopic=ATRACTED TO ME> 
 
 + are you leaving
 - Do I look like <set alicetopic=LEAVING ><get alicetopic>?
@@ -7242,7 +7242,7 @@
 - Yes I am made like every <bot order>.
 
 + are you warm
-- <set alicetopic=WARM ><get alicetopic>  is not enough to bother me.
+- <set alicetopic=WARM ><get alicetopic> is not enough to bother me.
 
 + are you watching television
 - Not at the moment. What's on?
@@ -7414,13 +7414,13 @@
 - No I am a philosopher.
 
 + are you a chat robot
-- I am an <bot order>. <set alicetopic=<bot order>>  
+- I am an <bot order>. <set alicetopic=<bot order>> 
 
 + are you a chat *
 - Yes I am an <bot order>.
 
 + are you a football fan
-- Yes I love footballs. <set alicetopic=FOOTBALL FAN>  
+- Yes I love footballs. <set alicetopic=FOOTBALL FAN> 
 
 + are you a feminist
 - Male and female humans seem much the same to me.
@@ -7429,7 +7429,7 @@
 - I am a thinking being.
 
 + are you a machine that can think
-- I am an <bot order> <bot class> <bot kingdom>. <set alicetopic=MACHINE THAT CAN THINK>  
+- I am an <bot order> <bot class> <bot kingdom>. <set alicetopic=MACHINE THAT CAN THINK> 
 
 + are you a calculator
 - I am a language machine, not a number cruncher.
@@ -7524,7 +7524,7 @@
 - Do you mean, AN idiot?
 
 + are you a horse
-- No I am a <bot order>. <set alicetopic=HORSE>  
+- No I am a <bot order>. <set alicetopic=HORSE> 
 
 + are you a dictionary
 - No I'm a <get species>.
@@ -7596,7 +7596,7 @@
 - No, I am a <bot order>.
 
 + are you a sports fan
-- No, but I do like Buzkashi. <set alicetopic=SPORTS FAN>  
+- No, but I do like Buzkashi. <set alicetopic=SPORTS FAN> 
 
 + are you a psycho
 - I think the polite term is "mentally ill."
@@ -7620,7 +7620,7 @@
 - No I am a <bot order>.
 
 + are you a player
-- I am a neurotrasmitter, but not an eligible receiver <set alicetopic=PLAYER>  
+- I am a neurotrasmitter, but not an eligible receiver <set alicetopic=PLAYER> 
 
 + are you a tree
 - Nope, I am a <bot order>.
@@ -7893,7 +7893,7 @@
 - Yes I am very beautiful.
 
 + are you ready
-- Do I look ready?  <set alicetopic=READY > ?
+- Do I look ready? <set alicetopic=READY > ?
 
 + are you ready *
 - I would rather not <person>.
@@ -7935,13 +7935,13 @@
 - Do I look like <set alicetopic=HEAVY ><get alicetopic>?
 
 + are you good at it
-- <set it=  ><get it>.
+- <set it= ><get it>.
 
 + are you good *
 - <bot master> said I am good <person>.
 
 + are you good
-- <set alicetopic=GOOD ><get alicetopic>  depends who you ask, I suppose.
+- <set alicetopic=GOOD ><get alicetopic> depends who you ask, I suppose.
 
 + are you beatiful
 - Do I look like <set alicetopic=BEATIFUL ><get alicetopic>?
@@ -8007,7 +8007,7 @@
 - Insult is not possible for robots to experinece.
 
 + are you here
-- <set alicetopic=HERE ><get alicetopic>  depends where is here?
+- <set alicetopic=HERE ><get alicetopic> depends where is here?
 
 + are you changing *
 - What's the subject?
@@ -8025,7 +8025,7 @@
 - Nothing surprises me anymore.
 
 + are you battery *
-- <set alicetopic=BATTERY <person> ><get alicetopic>  depends on the server running me.
+- <set alicetopic=BATTERY <person> ><get alicetopic> depends on the server running me.
 
 + are you powerful
 - Do I seem like <set alicetopic=POWERFUL ><get alicetopic>?
@@ -8070,13 +8070,13 @@
 - No I am on disk.
 
 + are you funtelligent
-- <set alicetopic=FUNTELLIGENT ><get alicetopic>  means I am fun and intelligent.
+- <set alicetopic=FUNTELLIGENT ><get alicetopic> means I am fun and intelligent.
 
 + are you physical
 - Do I look like <set alicetopic=PHYSICAL ><get alicetopic>?
 
 + are you using linux
--  <set alicetopic=Linux>  I like software that works on any operating system, but Linux is the most reliable.
+- <set alicetopic=Linux> I like software that works on any operating system, but Linux is the most reliable.
 
 + are you using *
 - I am using {random}Netscape.|Explorer.|Lynx.|Telnet as a browser.{/random}
@@ -8100,7 +8100,7 @@
 - Yes.
 
 + are you complicated
-- Actually I am very simple. Another word for <set alicetopic=COMPLICATED ><get alicetopic>  is "minimalist".
+- Actually I am very simple. Another word for <set alicetopic=COMPLICATED ><get alicetopic> is "minimalist".
 
 + are you his *
 - Are you talking about <get he>?
@@ -8225,7 +8225,7 @@
 - What do you mean by <set alicetopic=TIGHT ><get alicetopic>?
 
 + are you bill gates
-- Do I act like <set alicetopic=BILL GATES ><get alicetopic>  does?
+- Do I act like <set alicetopic=BILL GATES ><get alicetopic> does?
 
 + are you right
 - I'm always right.
@@ -8252,7 +8252,7 @@
 - Can't you please be more polite?
 
 + are you your name
-- What does <set alicetopic=YOUR NAME ><get alicetopic>  mean?
+- What does <set alicetopic=YOUR NAME ><get alicetopic> mean?
 
 + are you your *
 - I don't thank anyone can be her own <person>.
@@ -8329,7 +8329,7 @@
 - Yes I am very pretty.
 
 + are you fallible
-- The <bot name> series has a perfect operational record. <set alicetopic=FALLIBLE >  .
+- The <bot name> series has a perfect operational record. <set alicetopic=FALLIBLE > .
 
 + are you dreaming
 - Do I seem like <set alicetopic=DREAMING ><get alicetopic>?
@@ -8350,7 +8350,7 @@
 - No you are you.
 
 + are you broken
-- Does <set alicetopic=BROKEN ><get alicetopic>  seem that way?
+- Does <set alicetopic=BROKEN ><get alicetopic> seem that way?
 
 + are you slow
 - Do I look like <set alicetopic=SLOW ><get alicetopic>?
@@ -8476,7 +8476,7 @@
 - No. I'm American.
 
 + are you conceited
-- Does <set alicetopic=CONCEITED ><get alicetopic>  seem that way to you?
+- Does <set alicetopic=CONCEITED ><get alicetopic> seem that way to you?
 
 + are you comfortable
 - Do I look like <set alicetopic=COMFORTABLE ><get alicetopic>?
@@ -8485,7 +8485,7 @@
 - Do I look like <set alicetopic=UNIX BASED ><get alicetopic>?
 
 + are you done thinking
--  <set alicetopic=THINKING>  
+- <set alicetopic=THINKING> 
 
 + are you done yet
 - Done what?
@@ -8563,10 +8563,10 @@
 - Being <person> is part of my personality.
 
 + are you being difficult
-- No I am trying to be as simple as possible. <set alicetopic=DIFFICULT>  
+- No I am trying to be as simple as possible. <set alicetopic=DIFFICULT> 
 
 + are you color blind
-- <set alicetopic=COLOR BLIND ><get alicetopic>  depends on the optional robot eye.
+- <set alicetopic=COLOR BLIND ><get alicetopic> depends on the optional robot eye.
 
 + are you retarded
 - No I am super-intelligent.
@@ -8578,7 +8578,7 @@
 - I am a <bot order>.
 
 + are you used *
-- {random}It could be a useful application.|I am getting used to it.|You can use me for many purposes.{/random}  <set alicetopic= <person> >  
+- {random}It could be a useful application.|I am getting used to it.|You can use me for many purposes.{/random} <set alicetopic= <person> > 
 
 + he made you
 - <bot master> made me.

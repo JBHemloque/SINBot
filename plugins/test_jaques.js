@@ -15,8 +15,40 @@ lineReader.on('line', function(line) {
         process.exit(0);
     }
     var reply = bot.reply("local-user", line);
-    console.log("The bot says: " + reply);
+    console.log(JSON.stringify(reply));
+    console.log("The bot says: " + stripGarbage(reply));
 });
+
+function __stripGarbage(text, patt, repl) {
+    while (text.includes(patt)) {
+        text = text.replace(patt, repl);
+    } 
+    return text;
+}
+
+function _stripGarbage(text, toStrip) {
+    var strip = [
+        {patt: ". " + toStrip + ".", repl: "."},
+        {patt: "! " + toStrip + ".", repl: "!"},
+        {patt: "? " + toStrip + ".", repl: "?"},
+        {patt: ". " + toStrip, repl: "."},
+        {patt: "! " + toStrip, repl: "!"},
+        {patt: "? " + toStrip, repl: "?"}
+    ];
+
+    for (var i = 0; i < strip.length; i++) {
+        text = __stripGarbage(text, strip[i].patt, strip[i].repl);
+    }
+    return text;
+}
+
+function stripGarbage(text) {
+    // Some strings end in "  random" or "  inquiry". Strip these. There may be multiples, but they don't seem to mix.
+    text = __stripGarbage(text, "  ", " ");
+    text = _stripGarbage(text, "random");
+    text = _stripGarbage(text, "inquiry");
+    return text;
+}
 
 var bot = new RiveScript();
 

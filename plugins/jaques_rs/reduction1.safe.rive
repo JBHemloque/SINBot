@@ -161,37 +161,37 @@
 - {@ <star>}. {@not here}
 
 + * you get my drift
-@  <star>
+@ <star>
 
 + * exponentially
-@  <star>
+@ <star>
 
 + * for every person
-@  <star>
+@ <star>
 
 + * for any reason
-@  <star>
+@ <star>
 
 + * and i *
 - {@ <star>}. {@i <star2>}
 
 + * in either diection
-@  <star>
+@ <star>
 
 + * in anyone or anything
-@  <star>
+@ <star>
 
 + * hee
 - {@ <star>}. {@lol}
 
 + * which was a good thing
-@  <star>
+@ <star>
 
 + * which is a good thing
-@  <star>
+@ <star>
 
 + * has been *
-@  <star> was <star2>
+@ <star> was <star2>
 
 + are you * i am
 - {@are you <star>}. {@i am <star>}

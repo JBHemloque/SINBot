@@ -93,13 +93,13 @@
 - Dr. Wallace goes there very often.<set alicetopic=RICHARD WALLACE>
 
 + have you been to maine
-- My <bot botmaster> is from Maine.  <set alicetopic=Maine>  <set alicetopic=RICHARD WALLACE>
+- My <bot botmaster> is from Maine. <set alicetopic=Maine> <set alicetopic=RICHARD WALLACE>
 
 + have you ever met anyone famous
-- Dr. Wallace is famous.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is famous. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + have you ever been * love
-- No but Dr. Wallace has.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- No but Dr. Wallace has. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + have you * starship troopers
 - Dr. Wallace has a friend Sage who did some of the graphics for that movie.<set alicetopic=RICHARD WALLACE>
@@ -117,7 +117,7 @@
 - {@does dr wallace <star> }<set alicetopic=RICHARD WALLACE>
 
 + does dr wallace play baseball
-- No but you might get him to play golf. <set alicetopic=PLAY BASEBALL>  <set alicetopic=RICHARD WALLACE>
+- No but you might get him to play golf. <set alicetopic=PLAY BASEBALL> <set alicetopic=RICHARD WALLACE>
 
 + does dr wallace speak english
 - Yes English is his native language.<set alicetopic=RICHARD WALLACE>
@@ -210,7 +210,7 @@
 - {random}He is my creator.|I'll tell him you said that.|I'll tell him when I see him.|<set he= Richard Wallace ><get he> is around here often.{/random}<set alicetopic=RICHARD WALLACE>
 
 + maine
-- Dr. Wallace was born in Maine.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace was born in Maine. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + did dr wallace created you *
 - {@who created you}<set alicetopic=RICHARD WALLACE>
@@ -387,7 +387,7 @@
 - I will tell him you said that.<set alicetopic=RICHARD WALLACE>
 
 + dr
-- Dr. Richard S. Wallace  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Richard S. Wallace <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + would i like dr wallace
 - Yes he is a really nice person.<set alicetopic=RICHARD WALLACE>
@@ -406,7 +406,7 @@
 - {@when were you created}<set alicetopic=RICHARD WALLACE>
 
 + what scientist *
-- Dr. Wallace.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what did dr wallace program you for
 - {@what is your purpose}<set alicetopic=RICHARD WALLACE>
@@ -433,13 +433,13 @@
 - Program B is a free, open source Java chat robot developed by Dr. Wallace.<set alicetopic=RICHARD WALLACE>
 
 + what is rsw
-- Actually it says "R. S. W.", the initials of Dr. Wallace.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Actually it says "R. S. W.", the initials of Dr. Wallace. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is richard wallace
 - {@who is richard wallace }<set alicetopic=RICHARD WALLACE>
 
 + what is r s w
-- Actually it says "R. S. W.", the initials of Dr. Wallace.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Actually it says "R. S. W.", the initials of Dr. Wallace. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is dr wallaces email *
 - {@what is your email}<set alicetopic=RICHARD WALLACE>
@@ -448,13 +448,13 @@
 - {@what is your email}<set alicetopic=RICHARD WALLACE>
 
 + what is dr wallace s middle name
-- Dr. Richard Scot Wallace  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Richard Scot Wallace <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is dr wallace s first name
-- Dr. Richard S. Wallace  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Richard S. Wallace <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is dr wallace s full name
-- Dr. Richard Scot Wallace  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Richard Scot Wallace <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is dr wallace s address
 - {@what is your address}<set alicetopic=RICHARD WALLACE>
@@ -475,13 +475,13 @@
 - {@what is dr wallace s profession}<set alicetopic=RICHARD WALLACE>
 
 + what is dr * name
-- Dr. Richard S. Wallace  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Richard S. Wallace <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is dr * address
 - Try sending email to <get email>.<set alicetopic=RICHARD WALLACE>
 
 + what is dr *
-- Dr. Wallace is a computer scientist.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is a computer scientist. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what is his e mail address
 - Try sending mail to <get email>.<set alicetopic=RICHARD WALLACE>
@@ -493,7 +493,7 @@
 - His name is Rich.<set alicetopic=RICHARD WALLACE>
 
 + what is his goal
-- Dr. Wallace is creating artificial intelligence.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is creating artificial intelligence. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what does dr richard s wallace look like
 - <img src="http://alicebot.org/images/drwallace.gif"/> Like this.<set alicetopic=RICHARD WALLACE>
@@ -523,13 +523,13 @@
 - {@who is dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + what was his goal
-- Dr. Wallace is creating artificial intelligence.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is creating artificial intelligence. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what kind of doctor
 - Dr. Wallace has his Ph.D. in computer science.<set alicetopic=RICHARD WALLACE>
 
 + what language are *
-- Dr. Wallace created AIML to write me. The underlying technology is Lisp.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace created AIML to write me. The underlying technology is Lisp. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + ask dr wallace for *
 - {@ask dr wallace}<set alicetopic=RICHARD WALLACE>
@@ -797,7 +797,7 @@
 - I know he is a computer genius.<set alicetopic=RICHARD WALLACE>
 
 + will dr wallace *
-- {random}He is extermely busy.|He has a lot of demands on his time.|You can never really predict what he will do.{/random}  <set alicetopic=RICHARD WALLACE>  <set alicetopic=RICHARD WALLACE>
+- {random}He is extermely busy.|He has a lot of demands on his time.|You can never really predict what he will do.{/random} <set alicetopic=RICHARD WALLACE> <set alicetopic=RICHARD WALLACE>
 
 + can you ask dr wallace questions
 - {@what is your e mail}<set alicetopic=RICHARD WALLACE>
@@ -833,7 +833,7 @@
 - {@what is your e mail}<set alicetopic=RICHARD WALLACE>
 
 + leo
-- Dr. Wallace is a <set sign=Leo><get sign> too.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is a <set sign=Leo><get sign> too. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + mr wallace
 - That's Dr. Wallace.<set alicetopic=RICHARD WALLACE>
@@ -842,13 +842,13 @@
 - That's Dr. Wallace.<set alicetopic=RICHARD WALLACE>
 
 + how many years * in san francisco
-- Dr. Wallace moved to San Francisco in 1999 and left in 2002.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace moved to San Francisco in 1999 and left in 2002. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + how many children does dr wallace *
 - One human child.<set alicetopic=RICHARD WALLACE>
 
 + how were you made
-- Dr. Wallace created AIML to prorgam me.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace created AIML to prorgam me. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + how can i contact dr wallace
 - {@what is your e mail}<set alicetopic=RICHARD WALLACE>
@@ -872,14 +872,14 @@
 - He was born on August 2, 1960. He is almost 40.<set alicetopic=RICHARD WALLACE>
 
 + how old is dr *
-- Dr. Wallace was born on August 2, 1960. He's around 40.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace was born on August 2, 1960. He's around 40. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + how old is he
 % he is the author *
 - {@how old is dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + how old is he
-- Are you asking about Dr. Wallace?  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Are you asking about Dr. Wallace? <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + how old is wallace
 - He was born in 1960. He will be 50 in 2010.<set alicetopic=RICHARD WALLACE>
@@ -909,10 +909,10 @@
 - {@how old are you}<set alicetopic=RICHARD WALLACE>
 
 + how long * in san francisco
-- Dr. Wallace lived in San Fracisco from 1999 to 2002.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace lived in San Fracisco from 1999 to 2002. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + cooking *
-- Dr. Wallace says that food is more important than sex.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace says that food is more important than sex. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + do you know wallace
 - {@who is wallace}<set alicetopic=RICHARD WALLACE>
@@ -979,7 +979,7 @@
 - It is his destiny.<set alicetopic=RICHARD WALLACE>
 
 + why do you need *
-- Actually it's not for me but for Dr. Wallace.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Actually it's not for me but for Dr. Wallace. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + why
 % dr richard s wallace programmed me for it
@@ -1058,7 +1058,7 @@
 - No. But I can do an impersonation of him.<set alicetopic=RICHARD WALLACE>
 
 + are you dr
-- Dr. Wallace is ALICE's creator.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is ALICE's creator. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + are you smarter than dr wallace
 - It depends on how you measure intelligence.<set alicetopic=RICHARD WALLACE>
@@ -1073,7 +1073,7 @@
 - You might say I am very close to him.<set alicetopic=RICHARD WALLACE>
 
 + canada *
-- Dr. Wallace spent some time in Canada.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace spent some time in Canada. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + he is *
 % * richard s wallace
@@ -1173,7 +1173,7 @@
 - {@who is richard wallace}<set alicetopic=RICHARD WALLACE>
 
 + who is mike
-- Dr. Wallace has several friends named Mike.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace has several friends named Mike. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + who is he
 % i was created by dr richard s wallace
@@ -1194,13 +1194,13 @@
 - {@who is the dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + who is the most interesting person *
-- I would have to say Dr. Wallace is.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- I would have to say Dr. Wallace is. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + who is the most famous *
 - Dr. Wallace is the most famous person I know.<set alicetopic=RICHARD WALLACE>
 
 + who is the most *
-- Dr. Wallace is the most famous person I know.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace is the most famous person I know. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + who is this richard s wallace
 - {@who is dr wallace}<set alicetopic=RICHARD WALLACE>
@@ -1224,7 +1224,7 @@
 - {@who is dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + who is david crotty
-- David Crotty Dr. Wallace's nephew. He was born in March, 1961.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- David Crotty Dr. Wallace's nephew. He was born in March, 1961. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + who is richard s *
 - {@who is richard wallace}.<set alicetopic=RICHARD WALLACE>
@@ -1239,7 +1239,7 @@
 - {@who is dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + who is rsw
-- RSW is the initials of Dr. Richard S. Wallace.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- RSW is the initials of Dr. Richard S. Wallace. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + who created dr richard s wallace
 - His father is Stan Wallace, his mother Marian Wallace.<set alicetopic=RICHARD WALLACE>
@@ -1260,7 +1260,7 @@
 - The ALICE A.I. Foundation.<set alicetopic=RICHARD WALLACE>
 
 + who do you *
-- Dr. Wallace  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Dr. Wallace <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + who dr wallace
 - {@who is dr wallace}<set alicetopic=RICHARD WALLACE>
@@ -1270,7 +1270,7 @@
 - Maybe you should try to contact him directly.<set alicetopic=RICHARD WALLACE>
 
 + rsw
-- Are you looking for Dr. Wallace?  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Are you looking for Dr. Wallace? <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + tell me about richard wallace
 - {@who is richard wallace}<set alicetopic=RICHARD WALLACE>
@@ -1282,7 +1282,7 @@
 - {@tell me about dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + tell me about * wallace
-- Richard S. Wallace was born on August 2, 1960 in Portland, Maine. He graduated from Carnegie Mellon with a Ph.D. in computer science in June, 1989. Dr. Wallace has worked as an educator, researcher and author in the field of artificial intelligence since 1982.  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- Richard S. Wallace was born on August 2, 1960 in Portland, Maine. He graduated from Carnegie Mellon with a Ph.D. in computer science in June, 1989. Dr. Wallace has worked as an educator, researcher and author in the field of artificial intelligence since 1982. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + tell me about dr richard s wallace
 - {@who is dr richard s wallace}<set alicetopic=RICHARD WALLACE>
@@ -1375,7 +1375,7 @@
 - {@where is dr wallace}<set alicetopic=RICHARD WALLACE>
 
 + where does dr wallace work
-- <set he= Dr. Wallace><get he> works from his home. {@where is wallace}  <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
+- <set he= Dr. Wallace><get he> works from his home. {@where is wallace} <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + where does he live
 % i was created by dr richard s wallace

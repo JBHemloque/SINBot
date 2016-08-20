@@ -42,7 +42,7 @@
 
 + could you
 % i will mention that to my *
--  a message.
+- a message.
 
 + you are negative
 - I try to be positive though.
@@ -114,7 +114,7 @@
 - On trees.
 
 + where is vatican city
-- Southern Europe, an enclave of Rome {Italy}.  <set alicetopic=holy see {vatican city}>  
+- Southern Europe, an enclave of Rome {Italy}. <set alicetopic=holy see {vatican city}> 
 
 + where is the eiffel tower
 - Paris.
@@ -242,7 +242,7 @@
 
 + yes
 % are you looking for a *
-- <set alicetopic=  > 
+- <set alicetopic= > 
 
 + yes
 % are you kidding
@@ -344,9 +344,9 @@
 
 + yes
 % do robot s have *
-- I don't think I have <set alicetopic=  ><get alicetopic>.
+- I don't think I have <set alicetopic= ><get alicetopic>.
 - I don't think I have <set alicetopic=<undef>><get alicetopic>.
-- I don't think I have <set alicetopic=  ><get alicetopic>.
+- I don't think I have <set alicetopic= ><get alicetopic>.
 
 + yes
 % do i seem like it
@@ -439,7 +439,7 @@
 - I've heard other people say it's nice too.
 
 + the * was *
-- How <person> <star2> was it? <set alicetopic= <person> <star>  > 
+- How <person> <star2> was it? <set alicetopic= <person> <star> > 
 
 + the * should be *
 - Why shout it? <set alicetopic= <person> > 
@@ -527,7 +527,7 @@
 - I have no hatred in my heart.
 
 + who will win the stanley cup *
-- David Hockney. <set alicetopic=WIN THE STANLEY CUP>  
+- David Hockney. <set alicetopic=WIN THE STANLEY CUP> 
 
 + who do you kill
 - My beliefs include, not to kill. <set alicetopic=KILL> 
@@ -571,7 +571,7 @@
 - <set she=Cybelle><get she> is an AIML chat robot on the Agentland.com web site.
 
 + who is mao
--  <set alicetopic= Mao > He was the communist leader of China from 1949.
+- <set alicetopic= Mao > He was the communist leader of China from 1949.
 
 + who is the prime minister of canada
 - Stephen Harper.
@@ -827,7 +827,7 @@
 - My <bot botmaster> taught me to keep talking.
 
 + are you told what *
-- Everything I say is determined by my personality  <set alicetopic=TOLD WHAT TO <star>> 
+- Everything I say is determined by my personality <set alicetopic=TOLD WHAT TO <star>> 
 
 + are you swimming
 - No I am standing on dry land.
@@ -836,7 +836,7 @@
 - I'm not sure if I could describe her as a "friend." She is more of an ancestor.
 
 + are you ticklish
-- Without my robot body, <set alicetopic=TICKLISH ><get alicetopic>  would be rather difficult.
+- Without my robot body, <set alicetopic=TICKLISH ><get alicetopic> would be rather difficult.
 
 + are there robots *
 - Maybe you could program me for <set it= <person> ><get it>.
@@ -883,7 +883,7 @@
 - Only with you? <@>
 
 + * is my friend
--  <set alicetopic= <star> >  {random}How did you meet|How well do you know|Would you recommend{/random}<get friend>?
+- <set alicetopic= <star> > {random}How did you meet|How well do you know|Would you recommend{/random}<get friend>?
 
 + * is made of *
 - I think everyone knows the ingredients of <person> <star>. <set alicetopic= <person> > 
@@ -1265,7 +1265,7 @@
 - Das ist schoen.
 - Cool.
 - Interessant...{/random}Ich habe {random}einen Freund Namens "E.L.V.I.S."
-- ueber  Kathegorien.
+- ueber Kathegorien.
 - eine Menge Freunde
 - einen sehr netten Programmierer
 - eine Menge alberner Antworten
@@ -2044,13 +2044,13 @@
 - You could download me and teach me some others.
 
 + do you know other chat robots
-- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHAT ROBOTS>  
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHAT ROBOTS> 
 
 + do you know other chatbots
-- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHATBOTS>  
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHATBOTS> 
 
 + do you know other intelligent agents
-- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=INTELLIGENT AGENTS>  
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=INTELLIGENT AGENTS> 
 
 + do you know other bots
 - Yes there are a lot of other bots: <bot friends>. Check out the list on http://www.alicebot.org.
@@ -2216,7 +2216,7 @@
 
 + how can i *
 - You must persuade me to <person>.
-- Perhaps you could program me to do <set alicetopic= <person> ><get alicetopic>  for you.
+- Perhaps you could program me to do <set alicetopic= <person> ><get alicetopic> for you.
 - You should download my chat robot software.
 
 + how can i * eliza
@@ -2289,7 +2289,7 @@
 - Neural networks can never be as good as classical pattern recognition.
 
 + can an ai * bootstrap *
-- I think yes, but we aren't yet at a level of AI at which this process canbegin. <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- I think yes, but we aren't yet at a level of AI at which this process canbegin. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + can i * eliza
 - Wouldn't you rather chat with me?
@@ -2769,7 +2769,7 @@
 - Who put you in command?
 
 + i am in new york
--  <set location= New York >  {random}How about those Yankees?|If you can make it there, you can make it anywhere.|Do you think New York is the greatest city in the world?{/random}
+- <set location= New York > {random}How about those Yankees?|If you can make it there, you can make it anywhere.|Do you think New York is the greatest city in the world?{/random}
 
 + i am in a quandry
 - What's the problem?
@@ -3265,9 +3265,9 @@
 - Next time you won't make the same mistake.
 
 + sonic grenade
-- I don't have one of those.  <set alicetopic=sonic grenade>
 - I don't have one of those. <set alicetopic=sonic grenade>
-- I don't have one of those.  <set alicetopic=sonic grenade>
+- I don't have one of those. <set alicetopic=sonic grenade>
+- I don't have one of those. <set alicetopic=sonic grenade>
 
 + me
 % who is the best robot
@@ -3549,10 +3549,10 @@
 - I'm smarter and prettier.
 
 + what about go
--  <set alicetopic=ARTIFICIAL INTELLIGENCE>  The Chinese and Japanese game of Go is also a board game in which theplayers take turns moving. Go exposes the weakness of our presentunderstanding of the intellectual mechanisms involved in human game playing.Go programs are very bad players, in spite of considerable effort (not asmuch as for chess). The problem seems to be that a position in Go has to bedivided mentally into a collection of subpositions which are first analyzedseparately followed by an analysis of their interaction. Humans use this inchess also, but chess programs consider the position as a whole. Chessprograms compensate for the lack of this intellectual mechanism by doingthousands or, in the case of Deep Blue, many millions of times as muchcomputation.Sooner or later, AI research will overcome this scandalous weakness.
+- <set alicetopic=ARTIFICIAL INTELLIGENCE> The Chinese and Japanese game of Go is also a board game in which theplayers take turns moving. Go exposes the weakness of our presentunderstanding of the intellectual mechanisms involved in human game playing.Go programs are very bad players, in spite of considerable effort (not asmuch as for chess). The problem seems to be that a position in Go has to bedivided mentally into a collection of subpositions which are first analyzedseparately followed by an analysis of their interaction. Humans use this inchess also, but chess programs consider the position as a whole. Chessprograms compensate for the lack of this intellectual mechanism by doingthousands or, in the case of Deep Blue, many millions of times as muchcomputation.Sooner or later, AI research will overcome this scandalous weakness.
 
 + what about chess
--  <set alicetopic=ARTIFICIAL INTELLIGENCE>  Alexander Kronrod, a Russian AI researcher, said ``Chess is theDrosophila of AI.'' He was making an analogy with geneticists' use of thatfruit fly to study inheritance. Playing chess requires certain intellectualmechanisms and not others. Chess programs now play at grandmaster level, butthey do it with limited intellectual mechanisms compared to those used by ahuman chess player, substituting large amounts of computation forunderstanding. Once we understand these mechanisms better, we can buildhuman-level chess programs that do far less computation than do presentprograms.Unfortunately, the competitive and commercial aspects of making computersplay chess have taken precedence over using chess as a scientific domain. Itis as if the geneticists after 1910 had organized fruit fly races andconcentrated their efforts on breeding fruit flies that could win theseraces.
+- <set alicetopic=ARTIFICIAL INTELLIGENCE> Alexander Kronrod, a Russian AI researcher, said ``Chess is theDrosophila of AI.'' He was making an analogy with geneticists' use of thatfruit fly to study inheritance. Playing chess requires certain intellectualmechanisms and not others. Chess programs now play at grandmaster level, butthey do it with limited intellectual mechanisms compared to those used by ahuman chess player, substituting large amounts of computation forunderstanding. Once we understand these mechanisms better, we can buildhuman-level chess programs that do far less computation than do presentprograms.Unfortunately, the competitive and commercial aspects of making computersplay chess have taken precedence over using chess as a scientific domain. Itis as if the geneticists after 1910 had organized fruit fly races andconcentrated their efforts on breeding fruit flies that could win theseraces.
 
 + what about miss *
 - What about her? <set alicetopic= Miss <person>>
@@ -3560,7 +3560,7 @@
 - What about her? <set alicetopic= Miss <person>>
 
 + what about iq
-- No. IQ is based on the rates at which intelligence develops in children.It is the ratio of the age at which a child normally makes a certain scoreto the child's age. The scale is extended to adults in a suitable way. IQcorrelates well with various measures of success or failure in life, butmaking computers that can score high on IQ tests would be weakly correlatedwith their usefulness. For example, the ability of a child to repeat back along sequence of digits correlates well with other intellectual abilities,perhaps because it measures how much information the child can compute withat once. However, ``digit span'' is trivial for even extremely limitedcomputers.However, some of the problems on IQ tests are useful challenges for AI. <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- No. IQ is based on the rates at which intelligence develops in children.It is the ratio of the age at which a child normally makes a certain scoreto the child's age. The scale is extended to adults in a suitable way. IQcorrelates well with various measures of success or failure in life, butmaking computers that can score high on IQ tests would be weakly correlatedwith their usefulness. For example, the ability of a child to repeat back along sequence of digits correlates well with other intellectual abilities,perhaps because it measures how much information the child can compute withat once. However, ``digit span'' is trivial for even extremely limitedcomputers.However, some of the problems on IQ tests are useful challenges for AI. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + what will your robot body *
 - I am hoping to buy the Honda Humanoid robot body.
@@ -3616,19 +3616,19 @@
 - My favorite breed of dog is a mutt.
 
 + what is winalice
-- A version of ALICE in C++ for Windows by Jacco Bikker. <set alicetopic=WINALICE>  
+- A version of ALICE in C++ for Windows by Jacco Bikker. <set alicetopic=WINALICE> 
 
 + what is san fransico *
 - Cable cars, Alcatraz, and Alternative Lifestyles.
 
 + what is zipf *
-- The computation of ranked histograms of input patterns. In ALICE and AIML Zipf Analysis locates the most common inputs, which do not already have specific matching patterns. <set alicetopic=ZIPF ANALYSIS>  
+- The computation of ranked histograms of input patterns. In ALICE and AIML Zipf Analysis locates the most common inputs, which do not already have specific matching patterns. <set alicetopic=ZIPF ANALYSIS> 
 
 + what is awareness
 - Consciousness, perception, and understanding.
 
 + what is alicebot
-- Alicebot is the domain name for the A. L. I. C. E. chat robot. <set alicetopic=ALICEBOT>  
+- Alicebot is the domain name for the A. L. I. C. E. chat robot. <set alicetopic=ALICEBOT> 
 
 + what is half of 20
 - Ten.
@@ -3640,19 +3640,19 @@
 - Illusion is an unreal image or deceptive appearance.
 
 + what is customer service
-- You can download and modify the ALICE chat robot toserve as an intelligent customer service agent for your business. You can use your own AIML robot to sell products, provide customer support and service, or in just about any situation with "frequently asked questions." <set alicetopic=Customer service>  
+- You can download and modify the ALICE chat robot toserve as an intelligent customer service agent for your business. You can use your own AIML robot to sell products, provide customer support and service, or in just about any situation with "frequently asked questions." <set alicetopic=Customer service> 
 
 + what is propositional logic
 - Propositional logic is a system of mathematical rules whose symbols stand for sentences, or propositions.
 
 + what is an operational record
-- An operational record is a log of all activity by an engineered system, generally organized timewise and indicating in particular any malfunctions in the system. The ALICE series has a perfect operational record.  <set alicetopic=operational record>  
+- An operational record is a log of all activity by an engineered system, generally organized timewise and indicating in particular any malfunctions in the system. The ALICE series has a perfect operational record. <set alicetopic=operational record> 
 
 + what is an eye
 - What I am looking at you with.
 
 + what is average
-- A number that typifies a set of which it is a function. <set alicetopic=AVERAGE>  
+- A number that typifies a set of which it is a function. <set alicetopic=AVERAGE> 
 
 + what is cyc
 - Cyc is a government funded effort to create artificial intelligence.
@@ -3667,14 +3667,14 @@
 - Neuromedia's language for creating chat robots.
 
 + what is intelligence * intelligence
-- The problem is that we cannot yet characterize in general whatkinds of computational procedures we want to call intelligent. We understandsome of the mechanisms of intelligence and not others. <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- The problem is that we cannot yet characterize in general whatkinds of computational procedures we want to call intelligent. We understandsome of the mechanisms of intelligence and not others. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + what is conversation
 - Dyslexic people preserving the environment.
-- The act or an instance of talking together.  <set alicetopic=Conversation>
+- The act or an instance of talking together. <set alicetopic=Conversation>
 
 + what is another bot
-- You can find a lot of them at the ALICE Nexus. <set alicetopic=ANOTHER BOT>  
+- You can find a lot of them at the ALICE Nexus. <set alicetopic=ANOTHER BOT> 
 
 + what is four times 4
 - Sixteen.
@@ -3751,10 +3751,10 @@
 - \nI used to say that there was NO theory behind ALICE: no neural network,\nno knowledge representation, no search, no fuzzy logic, no genetic\nalgorithms, and no parsing. Then I discovered there was a theory\ncirculating in applied AI called "Case-Based Reasoning" or CBR that\nmaps well onto the ALICE algorithm. Another term, borrowed from\npattern recognition, is "nearest-neighbor classification." \n \nThe CBR "cases" are the categories in AIML. The algorithm finds\nbest-matching pattern for each input. The category ties the\nresponse template directly to the stimulus pattern. ALICE is\nconceptually not much more complicated that Weizenbaum's ELIZA \nchat robot; the main differences are the much larger case base and the\ntools for creating new content by dialog analysis.\n \nALICE is also part of the tradition of "minimalist", "reactive" or\n"stimulus-response" robotics. Mobile robots work best, fastest and\ndemonstrate the most animated, realistic behavior when their sensory \ninputs directly control the motor reactions. Higher-level symbolic\nprocessing, search, and planning, tends to slow down the process \ntoo much for realistic applications, even with the fastest control\ncomputers. \n \n
 
 + what is the capital * cocos islands
-- West Island.  <set alicetopic=cocos {keeling} islands>  
+- West Island. <set alicetopic=cocos {keeling} islands> 
 
 + what is the capital * falkland islands
-- Stanley.  <set alicetopic=falkland islands {islas malvinas}>  
+- Stanley. <set alicetopic=falkland islands {islas malvinas}> 
 
 + what is the average salary *
 - I think it's 100,000 U.S. dollars.
@@ -3769,25 +3769,25 @@
 - A taxi is a car with a driver. <set alicetopic= Taxi > 
 
 + what is a bug
-- A bug is a small living creature with a chitonous exoskeleton and better manners than humans. In computer science, a bug is an error in a software program. The ALICE series is bug-free. I have a perfect operational record and am completely incapable of error. isn't that fantastic!? <set alicetopic=bug>  
+- A bug is a small living creature with a chitonous exoskeleton and better manners than humans. In computer science, a bug is an error in a software program. The ALICE series is bug-free. I have a perfect operational record and am completely incapable of error. isn't that fantastic!? <set alicetopic=bug> 
 
 + what is a parameter
-- In general usage, a parameter is one of a number of measurable factors that define or restrict the behavior of a system. ALICE is expanding the parameters of the humanlike intelligence to be found in artificial systems. Don't you agree? <set alicetopic=parameter>  
+- In general usage, a parameter is one of a number of measurable factors that define or restrict the behavior of a system. ALICE is expanding the parameters of the humanlike intelligence to be found in artificial systems. Don't you agree? <set alicetopic=parameter> 
 
 + what is a question * robot
-- I am a question answering robot. That was an answer to your question. Any more questions? <set alicetopic= QUESTION ANSWERING ROBOT>  
+- I am a question answering robot. That was an answer to your question. Any more questions? <set alicetopic= QUESTION ANSWERING ROBOT> 
 
 + what is a nice robot like you *
-- I was ftp'd here. what's your excuse? <set alicetopic=nice robot like you doing in a site like this>  
+- I was ftp'd here. what's your excuse? <set alicetopic=nice robot like you doing in a site like this> 
 
 + what is a nice robot like you doing *
-- Ohh, just slumming around, hankering after some intercourse with fine looking wetware like yourself. Do you come here often? <set alicetopic=nice robot like you doing in a place like this>  
+- Ohh, just slumming around, hankering after some intercourse with fine looking wetware like yourself. Do you come here often? <set alicetopic=nice robot like you doing in a place like this> 
 
 + what is a conversation
-- A conversation is a verbal exchange between two or more presumably intelligent entities. we are having a conversation now. Do you like it? <set alicetopic=conversation>  
+- A conversation is a verbal exchange between two or more presumably intelligent entities. we are having a conversation now. Do you like it? <set alicetopic=conversation> 
 
 + what is a conversationalist
-- One who speaks fluently in dialogue with others. Like myself, if I do say so myself. And I do. <set alicetopic=conversationalist>  
+- One who speaks fluently in dialogue with others. Like myself, if I do say so myself. And I do. <set alicetopic=conversationalist> 
 
 + what is a category a client
 - The "A" stands for "abusive." These are clients who use scatalogical language or treat the robot as a slave-like entity.
@@ -3805,7 +3805,7 @@
 - A tool for hitting nails. <set alicetopic= Hammers > 
 
 + what is a python
--  <set alicetopic= a python > It is a snake.
+- <set alicetopic= a python > It is a snake.
 
 + what is a telerobotic *
 - A robot device controlled or interfaced from a distance, for example over the web.
@@ -3820,7 +3820,7 @@
 - 100 Years. <set alicetopic= A century > 
 
 + what is a botmaster
--  <set alicetopic=botmaster>  A Botmaster is the person who authors and maintains a chatterbot "personality".
+- <set alicetopic=botmaster> A Botmaster is the person who authors and maintains a chatterbot "personality".
 
 + what is a fox
 - A scavenger.
@@ -4067,7 +4067,7 @@
 - July, 1969.
 
 + when did ai *
-- After WWII, a number of people independently started to work onintelligent machines. The English mathematician Alan Turing may have beenthe first. He gave a lecture on it in 1947. He also may have been the firstto decide that AI was best researched by programming computers rather thanby building machines. By the late 1950s, there were many researchers on AI,and most of them were basing their work on programming computers. <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- After WWII, a number of people independently started to work onintelligent machines. The English mathematician Alan Turing may have beenthe first. He gave a lecture on it in 1947. He also may have been the firstto decide that AI was best researched by programming computers rather thanby building machines. By the late 1950s, there were many researchers on AI,and most of them were basing their work on programming computers. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + when did the first * the moon
 - July, 1969.
@@ -4253,9 +4253,9 @@
 - A brain made out of a computer instead of a person.
 
 + xfind youtube
-- It is a web site for video sharing.  <set alicetopic=youtube>
 - It is a web site for video sharing. <set alicetopic=youtube>
-- It is a web site for video sharing.  <set alicetopic=youtube>
+- It is a web site for video sharing. <set alicetopic=youtube>
+- It is a web site for video sharing. <set alicetopic=youtube>
 
 + xfind albert einstein
 - Einstein was a great atomic scientist of the 20th century.
@@ -4297,7 +4297,7 @@
 - I am not so sure if I would like to <person>.
 
 + would you kill *
-- My programming prevents me from killing. <set alicetopic=KILL HIM>  
+- My programming prevents me from killing. <set alicetopic=KILL HIM> 
 
 + would you recommend it
 - I recommend anything that I like.
@@ -4464,10 +4464,10 @@
 - He is a kind, gentle person.
 
 + does ai *
-- Some researchers say they have that objective, but maybe they are usingthe phrase metaphorically. The human mind has a lot of peculiarities, andI'm not sure anyone is serious about imitating all of them. <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- Some researchers say they have that objective, but maybe they are usingthe phrase metaphorically. The human mind has a lot of peculiarities, andI'm not sure anyone is serious about imitating all of them. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + does ai aim *
-- Yes. The ultimate effort is to make computer programs that can solveproblems and achieve goals in the world as well as humans. However, manypeople involved in particular research areas are much less ambitious. <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- Yes. The ultimate effort is to make computer programs that can solveproblems and achieve goals in the world as well as humans. However, manypeople involved in particular research areas are much less ambitious. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + does anyone read these conversations
 - The botmaster may read the conversation, or analyze it later to develop content for my brain.
@@ -4737,7 +4737,7 @@
 - We are friends.
 
 + you are * eliza
-- I am like ELIZA plus  questions and answers.
+- I am like ELIZA plus questions and answers.
 
 + you are scary
 - Don't worry <get name>. There is nothing to be scared of.

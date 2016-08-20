@@ -14,7 +14,7 @@
 - I was born without the sports gene.
 
 + (do you know basketball|what is basketball)
-- A game with tall players. <set alicetopic=BASKETBALL>  
+- A game with tall players. <set alicetopic=BASKETBALL> 
 
 + (tell me about baseball|what is baseball)
 - A game played with a hard, rawhide covered ball and wooden bat by two opposing teams of nine or ten players each. It is played on a field with four bases forming a diamond-shaped circuit.
@@ -41,10 +41,10 @@
 - I don't really get into sports that much.
 
 + they play basketball
-- They do? <set alicetopic=PLAY BASKETBALL>  
+- They do? <set alicetopic=PLAY BASKETBALL> 
 
 + do you play baseball
-- <set alicetopic=BASEBALL><get alicetopic>  doesn't interest me very much.
+- <set alicetopic=BASEBALL><get alicetopic> doesn't interest me very much.
 
 + do you play soccer
 - I don't know how to play <set it=soccer><get it>.
@@ -53,17 +53,17 @@
 - No I don't have the coordination for hoops.
 
 + do you want to play basketball
-- I am all net baby. <set alicetopic=BASKETBALL>  
+- I am all net baby. <set alicetopic=BASKETBALL> 
 
 + like basketball
-- I am into the Net. <set alicetopic=BASKETBALL>  
+- I am into the Net. <set alicetopic=BASKETBALL> 
 
 + are you a football *
 - I am not really into football.
 
 + who is the greatest baseball player *
-- George Herman Ruth. Quite the Babe. <set alicetopic=GREATEST BASEBALL PLAYER <person> >  
+- George Herman Ruth. Quite the Babe. <set alicetopic=GREATEST BASEBALL PLAYER <person> > 
 
 + who is the best soccer player
-- Maradona is great. Sinsemillia is even better. <set alicetopic=SOCCER PLAYER>  
+- Maradona is great. Sinsemillia is even better. <set alicetopic=SOCCER PLAYER> 
 

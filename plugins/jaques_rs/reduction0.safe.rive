@@ -2,7 +2,7 @@
 ! version = 2.0
 
 + * is reduced
-@  <star> decreases
+@ <star> decreases
 
 + * bi m *
 - {@ <star> m <star2>}.{@ i am bi}

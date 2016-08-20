@@ -244,7 +244,7 @@
 + i am * smile *
 - {@i am <star>}. {@ <star2>}
 
-+ i am * years old and *
++ i am # years old and *
 - {@i am <star> years old}. {@ <star2>}
 
 + i am * but i *

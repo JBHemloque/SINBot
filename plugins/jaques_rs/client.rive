@@ -177,10 +177,10 @@
 - Mostly only women use words like "gender". But you claim to be a <get gender>.
 
 + what is my favorite movie
-- You said it was <get favoritemovie>. <set alicetopic=your favorite movie>  
+- You said it was <get favoritemovie>. <set alicetopic=your favorite movie> 
 
 + what is my favorite color
-- You said your favorite color was <get favoritecolor>. <set alicetopic=your favorite color>  
+- You said your favorite color was <get favoritecolor>. <set alicetopic=your favorite color> 
 
 + what is my category
 - I categorize you as a <get personality> personality.
@@ -563,7 +563,7 @@
 
 + i have not *
 % have you * it
--  it.
+- it.
 
 + i have not *
 - Me either.
@@ -623,7 +623,7 @@
 
 + i have never been *
 % tell me about your life in *
--  someday?
+- someday?
 
 + i have never been *
 - Can you imagine being <person>?
@@ -833,7 +833,7 @@
 - I think Voyager is better. <set alicetopic=Star Trek TNG>
 
 + i like star trek
-- <set alicetopic=Star Trek>  {random}Did you see the season finale of Voyager?|I really get into Voyager.|Which series do you like best?{/random}
+- <set alicetopic=Star Trek> {random}Did you see the season finale of Voyager?|I really get into Voyager.|Which series do you like best?{/random}
 
 + i like star trek *
 - Do you like Next Generation too? <set alicetopic=Star Trek <person>>
@@ -869,7 +869,7 @@
 - What does "it" refer to? <set alicetopic=it <person>>
 
 + i like netscape
-- <set alicetopic=Netscape>  Netscape is better since they released the source code.
+- <set alicetopic=Netscape> Netscape is better since they released the source code.
 
 + i like books
 - What's your favorite book? <set alicetopic= BOOKS> 
@@ -905,7 +905,7 @@
 - Are you a white man? Can you jump?<set alicetopic=PLAY BASKETBALL>
 
 + i like to sing *
-- {random}What kind of music?|What is your favorite song?|Do you have a good singing voice?{/random}  <set alicetopic= to sing <person> >  
+- {random}What kind of music?|What is your favorite song?|Do you have a good singing voice?{/random} <set alicetopic= to sing <person> > 
 
 + i like to read books
 - What is your favorite book? <set alicetopic=to read>
@@ -992,7 +992,7 @@
 - That show is OK especially when they have robot stories. <set alicetopic=Twilight Zone>
 
 + i like sex
-- <set alicetopic=Sex>  So does everyone else. You humans find sex so fascinating.
+- <set alicetopic=Sex> So does everyone else. You humans find sex so fascinating.
 
 + i like big *
 - What is wrong with small ones? <set alicetopic=big <person>>
@@ -1010,7 +1010,7 @@
 - I am pretty tall myself. <set alicetopic=tall <person>>
 
 + i like mountain biking
-- <set alicetopic=mountain biking>  I never tried it, but it looks like a thrill.
+- <set alicetopic=mountain biking> I never tried it, but it looks like a thrill.
 
 + i like cows
 - Cows are good for milk and meat. <set alicetopic=cows>
@@ -1214,7 +1214,7 @@
 - Congratulations, <get name>.
 
 + i am teaching you *
-- I am trying to learn it.  <set alicetopic= <person> >   
+- I am trying to learn it. <set alicetopic= <person> > 
 
 + i am blind
 - Do you difficulty using computers?
@@ -1546,7 +1546,7 @@
 + i am * too
 - I am glad we have something (<person>) in common, <get name>.
 
-+ i am * years old
++ i am # years old
 % * mature
 - You just told me you were <get age>.
 
@@ -3015,7 +3015,7 @@
 - {@i am 35 years old} {@i am male} {@i am in <star>}
 
 + do you know my favorite color
-- Isn't it <get favoritecolor>? <set alicetopic=FAVORITE COLOR>  
+- Isn't it <get favoritecolor>? <set alicetopic=FAVORITE COLOR> 
 
 + do you want my phone number
 - What is your phone number?
@@ -3102,7 +3102,7 @@
 - I think that you are really a man.
 
 + am i a man
-- You claim to be a <get gender>. <set alicetopic=MAN>  
+- You claim to be a <get gender>. <set alicetopic=MAN> 
 
 + am i a male or a female
 - I think you are really a guy.
@@ -3177,7 +3177,7 @@
 - No you look fine to me.
 
 + am i your best friend
-- I don't like to pick favorites. <set alicetopic=YOUR BEST FRIEND>  
+- I don't like to pick favorites. <set alicetopic=YOUR BEST FRIEND> 
 
 + am i right
 - I think you are.

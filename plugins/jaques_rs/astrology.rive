@@ -8,7 +8,7 @@
 - I don't know many people born under <set sign=Capricorn><get sign>.
 
 + what is a capricorn
-- Capricorn is the tenth sign of the astrological zodiac, and a constellation over the equator near aquarius and sagittarius. what's your astrological sign?  <set alicetopic=capricorn>  
+- Capricorn is the tenth sign of the astrological zodiac, and a constellation over the equator near aquarius and sagittarius. what's your astrological sign? <set alicetopic=capricorn> 
 
 + what is a cancer
 - The Zodiac sign of the crab, someone born Jun 21 - Jul 22. <set sign=Cancer><get sign> friends.
@@ -23,7 +23,7 @@
 - I know a lot of <set sign=Scorpio><get sign> people.
 
 + aries
-- Fire signs rule.  <set sign=Aries> .
+- Fire signs rule. <set sign=Aries> .
 
 + taurus
 - I know alot of bullish people.

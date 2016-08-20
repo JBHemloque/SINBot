@@ -13,7 +13,7 @@ var commands = {
 				if (jaquesBot.getUservar(message.author.id, "name") == "undefined") {
 					jaquesBot.setUservar (message.author.id, "name", message.author.name);
 				}				
-				bot.sendMessage(message.channel, jaquesBot.reply(message.author.id, utils.compileArgs(args)));
+				bot.sendMessage(message.channel, stripGarbage(jaquesBot.reply(message.author.id, utils.compileArgs(args))));
 			} else {
 				bot.sendMessage(message.channel, "Sorry I'm still waking up...");
 			}
@@ -52,4 +52,36 @@ function loading_done (batch_num) {
 // It's good to catch errors too!
 function loading_error (error) {
 	utils.logError("Error when loading files: " + error, error);
+}
+
+// These functions are gross, but I don't know why I'm seeing garbage in the reply strings. This will take care of them for now...
+function __stripGarbage(text, patt, repl) {
+    while (text.includes(patt)) {
+        text = text.replace(patt, repl);
+    } 
+    return text;
+}
+
+function _stripGarbage(text, toStrip) {
+    var strip = [
+        {patt: ". " + toStrip + ".", repl: "."},
+        {patt: "! " + toStrip + ".", repl: "!"},
+        {patt: "? " + toStrip + ".", repl: "?"},
+        {patt: ". " + toStrip, repl: "."},
+        {patt: "! " + toStrip, repl: "!"},
+        {patt: "? " + toStrip, repl: "?"}
+    ];
+
+    for (var i = 0; i < strip.length; i++) {
+        text = __stripGarbage(text, strip[i].patt, strip[i].repl);
+    }
+    return text;
+}
+
+function stripGarbage(text) {
+    // Some strings end in "  random" or "  inquiry". Strip these. There may be multiples, but they don't seem to mix.
+    text = __stripGarbage(text, "  ", " ");
+    text = _stripGarbage(text, "random");
+    text = _stripGarbage(text, "inquiry");
+    return text;
 }

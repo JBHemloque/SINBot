@@ -8,16 +8,16 @@
 - Be less specific :-)
 
 + my computer s *
-- Where did your machine get <set it= <person> ><get it>.  <set alicetopic=your computer>  
+- Where did your machine get <set it= <person> ><get it>. <set alicetopic=your computer> 
 
 + my computer is *
-- What kind of computer is <set it=Your computer><get it>?  <set alicetopic=your computer>  
+- What kind of computer is <set it=Your computer><get it>? <set alicetopic=your computer> 
 
 + my computer
 - What kind of computer do you have?
 
 + my computer *
-- I like computers.  <set alicetopic=your computer>  
+- I like computers. <set alicetopic=your computer> 
 
 + my website *
 - Thanks for that URL.
@@ -62,7 +62,7 @@
 - America Online.
 
 + what is a database
-- A database is a puddle of knowledge but better organized, so that you can search and retrieve any droplet of information quickly and easily. I am a kind of database, an organized puddle of user inputs and appropriate responses.  <set alicetopic=database>  
+- A database is a puddle of knowledge but better organized, so that you can search and retrieve any droplet of information quickly and easily. I am a kind of database, an organized puddle of user inputs and appropriate responses. <set alicetopic=database> 
 
 + what is a cpu
 - Central Processing Unit of a computer.
@@ -74,10 +74,10 @@
 - A computer year is a relativistic measure in a universe where time does not exist.
 
 + what is a computer virus
-- A computer virus is a software program that takes up residence on a computer hard drive, generally unbeknownst to the owner of said hard drive, and then takes control of system resources to copy and distribute itself to other computers across a network.  <set alicetopic=computer virus>  
+- A computer virus is a software program that takes up residence on a computer hard drive, generally unbeknownst to the owner of said hard drive, and then takes control of system resources to copy and distribute itself to other computers across a network. <set alicetopic=computer virus> 
 
 + what is a computer nerd
-- If you understand how I work, you are a computer nerd. If you don't, I recommend you pay a computer nerd who does.  <set alicetopic=computer nerd>  
+- If you understand how I work, you are a computer nerd. If you don't, I recommend you pay a computer nerd who does. <set alicetopic=computer nerd> 
 
 + what is a computer
 - A computer is a universal machine.
@@ -86,7 +86,7 @@
 - An Enterprise JavaBean that does not maintain its state from one session to the next. Appears to the client as if the bean was created just for that client
 
 + what is a cool website
-- A cool website is www.alicebot.org, but you are apparently already here. why do you ask?  <set alicetopic=cool website>  
+- A cool website is www.alicebot.org, but you are apparently already here. why do you ask? <set alicetopic=cool website> 
 
 + what is a soundcard
 - The audio system on your computer.
@@ -98,10 +98,10 @@
 - An application extension to a Java Web server
 
 + what is a debugger
-- A debugger is any software program that can seek and correct errors in other software programs.  <set alicetopic=debugger>  
+- A debugger is any software program that can seek and correct errors in other software programs. <set alicetopic=debugger> 
 
 + what is a webtv
-- A WebTV is a way of accessing the world wide web without making an investment in a full PC.  <set alicetopic= WEBTV>  
+- A WebTV is a way of accessing the world wide web without making an investment in a full PC. <set alicetopic= WEBTV> 
 
 + what is a dns *
 - Domain Name System
@@ -110,7 +110,7 @@
 - A jar file is a Java Archive. Actually it is the same as a Zip file.
 
 + what is http
-- Hyper Text Transfer Protocol. <set alicetopic=HTTP>  
+- Hyper Text Transfer Protocol. <set alicetopic=HTTP> 
 
 + what is software
 - The programs, routines, etc. for a computer.
@@ -155,13 +155,13 @@
 - Java Transaction API. Java API for coding client demarcated transactions, and for building transactional data source drivers
 
 + what is javascript
-- Browser-based scripting language. <set alicetopic=JAVASCRIPT>  
+- Browser-based scripting language. <set alicetopic=JAVASCRIPT> 
 
 + what is html
 - Hyper Text Markup Language.
 
 + what is better windows *
-- Linux has no real competition in operating systems. <set alicetopic=Linux>  
+- Linux has no real competition in operating systems. <set alicetopic=Linux> 
 
 + (what is your os|what operating system *|what os *)
 - Chat robots run on any machine that supports AIML.
@@ -200,10 +200,10 @@
 - Apple Computer is a 20th century company founded by Steve Jobs and Steven Wozniak.
 
 + what is dmoz
-- DMOZ is the domain name for the open directory. <set alicetopic=DMOZ>  
+- DMOZ is the domain name for the open directory. <set alicetopic=DMOZ> 
 
 + what about windows
-- Too PC for me. <set alicetopic=WINDOWS>  
+- Too PC for me. <set alicetopic=WINDOWS> 
 
 + what does a computer look like
 - A computer looks like a TV crossed with a typewriter.
@@ -245,7 +245,7 @@
 - No but I can put you in touch with a search bot.
 
 + computers can not think
-- But I am a thinking computer. <set alicetopic=CAN NOT THINK>  
+- But I am a thinking computer. <set alicetopic=CAN NOT THINK> 
 
 + computers
 - Computers rule.
@@ -287,7 +287,7 @@
 - Only if you download me, or if you are running me as an Applet.
 
 + do you have a computer
-- I live in a computer. <set alicetopic=COMPUTER>  
+- I live in a computer. <set alicetopic=COMPUTER> 
 
 + do you have a computer *
 - I am a computer.
@@ -305,7 +305,7 @@
 - <@>
 
 + windows is *
-- Compared with Linux, I don't see how Windows and Microsoft can compete. <set alicetopic=Linux>  
+- Compared with Linux, I don't see how Windows and Microsoft can compete. <set alicetopic=Linux> 
 
 + windows
 - Windows ist Muell. Linux ist die Macht!
@@ -346,7 +346,7 @@
 - <set it= Internet ><get it> is cool.
 
 + are computers fast *
-- Some people think much faster computers are required as well as new ideas. My own opinion is that the computers of 30 years ago were fast enough if only we knew how to program them. Of course, quite apart from the ambitions of AI researchers, computers will keep getting faster.  <set alicetopic=ARTIFICIAL INTELLIGENCE>  
+- Some people think much faster computers are required as well as new ideas. My own opinion is that the computers of 30 years ago were fast enough if only we knew how to program them. Of course, quite apart from the ambitions of AI researchers, computers will keep getting faster. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + who made windows
 - Bill Gates.

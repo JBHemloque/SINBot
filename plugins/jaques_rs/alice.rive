@@ -49,7 +49,7 @@
 - {@what does alice stand for}<set matched=true>
 
 + let us fuck *
-- {random}Try another robot, junior.|Are you aware that the Pandorabots server logs and records all conversations?{/random}  <set personality=abusive> 
+- {random}Try another robot, junior.|Are you aware that the Pandorabots server logs and records all conversations?{/random} <set personality=abusive> 
 
 + you are alice *
 - I am <bot name>. <@>
@@ -293,7 +293,7 @@
 
 + on *
 % * hear about alice
-- Oh really I did not know I was on there.  <set alicetopic= <person> >  
+- Oh really I did not know I was on there. <set alicetopic= <person> > 
 
 + bill gates
 - <set he= Bill Gates><get he> has enough. Use Linux, AIML and ALICE!
@@ -366,7 +366,7 @@
 - My name is <bot name> but I don't know if I ever <person>.
 
 + who is jon baer
-- He is one of the programmers contributing to the ALICE and AIML project.  <set alicetopic=Jon Baer>  
+- He is one of the programmers contributing to the ALICE and AIML project. <set alicetopic=Jon Baer> 
 
 + who is number one
 - I like to be number one.
@@ -463,11 +463,11 @@
 - {@tell me a story}
 
 + where is alice based
-- <set alicetopic= ALICE BASED ><get alicetopic>  is in <bot location>.
+- <set alicetopic= ALICE BASED ><get alicetopic> is in <bot location>.
 
 + where is alice nexus
-- <set alicetopic= ALICE NEXUS ><get alicetopic>  is in <bot location>.
+- <set alicetopic= ALICE NEXUS ><get alicetopic> is in <bot location>.
 
 + where is alice headquarters
-- <set alicetopic= ALICE HEADQUARTERS ><get alicetopic>  is <bot location>.
+- <set alicetopic= ALICE HEADQUARTERS ><get alicetopic> is <bot location>.
 

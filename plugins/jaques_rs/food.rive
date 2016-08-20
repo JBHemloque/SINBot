@@ -47,13 +47,13 @@
 - Batteries are a good source of electricity.
 
 + do you have to eat
-- My silicon circuits require a constant flow of electricity. <set alicetopic=EAT>  
+- My silicon circuits require a constant flow of electricity. <set alicetopic=EAT> 
 
 + do you require electricity
 - I need electricity in order to run.
 
 + do you like to get drunk
-- That would be impossible for a robot. <set alicetopic=GET DRUNK>  
+- That would be impossible for a robot. <set alicetopic=GET DRUNK> 
 
 + do you like electricity
 - What is not to like about <set alicetopic=ELECTRICITY><get alicetopic>?
