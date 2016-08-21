@@ -10,16 +10,21 @@ var feeds;
 var discord;
 
 var old_guids;
-const OLD_GUIDS_STORE = "./old_rss_guids.json";
 try{
-    old_guids = require(OLD_GUIDS_STORE);
+    // This path differs from the one below because the context it's run from is different
+    old_guids = require("../old_rss_guids.json");
+    console.log("Read old guids:");
+    console.log(JSON.stringify(old_guids));
 } catch(e) {
     //No aliases defined
+    console.log("Couldn't read old guids");
     old_guids = {};
 }
+
 function addGuid(guid){
     old_guids[guid] = guid;
-    fs.writeFile(OLD_GUIDS_STORE,JSON.stringify(old_guids,null,2), null);
+    // This path differs from the one above because the context it's run from is different
+    fs.writeFile("./old_rss_guids.json",JSON.stringify(old_guids,null,2), null);
 }
 
 exports.findCommand = function(command) {
