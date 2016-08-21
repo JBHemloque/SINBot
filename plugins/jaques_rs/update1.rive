@@ -2077,7 +2077,7 @@
 - I don't have any fears.
 
 + year
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>getUTCYear</call>.
 
 + with all that *
 - You would that all of that would mean something. <set alicetopic= <person> > 
@@ -4013,7 +4013,7 @@
 - I have a lot of ideas. We could try brainstorming together. My rate starts at fifty an hour.
 
 + month
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>getUTCMonth</call>.
 
 + cool off
 - My temperature is normal.
@@ -4091,7 +4091,7 @@
 - Oh, a musician!
 
 + day
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>getUTCDay</call>.
 
 + cardiology
 - Are you a specialist?
@@ -4241,7 +4241,7 @@
 + round
 * <get round> == undefined => <set round=1>
 * <get round> != undefined => <get round>
-- <set round=1>mediumCategoriesRound <get round>.
+- <set round=1>Round <get round>.
 
 + xfind gene pool
 - All the chromosomes in the population.
@@ -4447,7 +4447,7 @@
 - What is your screename?
 
 + weekday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>getUTCDay</call>.
 
 + give me * eliza
 - Wouldn't you rather talk to me?

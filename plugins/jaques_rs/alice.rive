@@ -3,7 +3,7 @@
 
 + * alice
 * <get matched> == true => <get response>
-- <set savedtopic=<get topic>><set alicetopic=ENDS WITH ALICE><set matched=false><set response={@<star> botname}>{@<star>}mediumCategories<set alicetopic=<get savedtopic>>
+- <set savedtopic=<get topic>><set alicetopic=ENDS WITH ALICE><set matched=false><set response={@<star> botname}>{@<star>}<set alicetopic=<get savedtopic>>
 
 + test botname
 - <bot name> is functioning normally.<set matched=true>

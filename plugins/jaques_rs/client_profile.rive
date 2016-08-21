@@ -4,7 +4,7 @@
 + my birthday
 * <get branch> == undefined => When is your birthday?
 * <get branch> == undefined => When is your birthday?
-- <set branch=<get birthday>><get birthday>mediumCategories
+- <set branch=<get birthday>><get birthday>
 
 + my birthplace
 - <get birthplace>.
@@ -49,7 +49,7 @@
 * <get gender> == undefined => I'd like to know your gender. 
 * <get gender> == undefined => You haven't told me your gender. 
 * <get gender> != undefined => You said you are <get gender>? 
-- I don't know. Are you a man or a woman?mediumCategories
+- I don't know. Are you a man or a woman?
 
 + my girlfriend
 - <get girlfriend>.
@@ -165,99 +165,99 @@
 + my birthplace
 * <get branch> == undefined => Where were you born?
 * <get branch> == undefined => Where were you born?
-- <set branch=<get birthplace>><get birthplace>mediumCategories
+- <set branch=<get birthplace>><get birthplace>
 
 + my favorite movie
 * <get branch> == undefined => What is your favorite movie?
 * <get branch> == undefined => What is your favorite movie?
-- <set branch=<get favoritemovie>><get favroitemovie>mediumCategories
+- <set branch=<get favoritemovie>><get favroitemovie>
 
 + my sister
 * <get branch> == undefined => Who is your sister?
 * <get branch> == undefined => Who is your sister?
-- <set branch=<get sister>><get sister>mediumCategories
+- <set branch=<get sister>><get sister>
 
 + my brother
 * <get branch> == undefined => Who is your brother?
 * <get branch> == undefined => Who is your brother?
-- <set branch=<get brother>><get brother>mediumCategories
+- <set branch=<get brother>><get brother>
 
 + my cat
 * <get branch> == undefined => What is your cat's name?
 * <get branch> == undefined => What is your cat's name?
-- <set branch=<get cat>><get cat>mediumCategories
+- <set branch=<get cat>><get cat>
 
 + my dog
 * <get branch> == undefined => What is your dog's name?
 * <get branch> == undefined => What is your dog's name?
-- <set branch=<get dog>><get dog>mediumCategories
+- <set branch=<get dog>><get dog>
 
 + my location
 * <get location> == undefined => I'd like to know your location. Where are you? 
 * <get location> == WHERE => You haven't told me where you are. Where are you? 
 * <get location> != undefined => You said you are in <get location>? 
-- I don't know. Where are you?mediumCategories
+- I don't know. Where are you?
 
 + my friend
 * <get friend> == undefined => I'd like to know about your friends. 
 * <get friend> == YOUR FRIEND => You haven't told me about your friends. 
 * <get friend> != undefined => Your friend <get friend>? 
-- {random}I don't know. Tell me the name of your friend.|How well do you know this person?{/random} mediumCategories
+- {random}I don't know. Tell me the name of your friend.|How well do you know this person?{/random} 
 
 + my oldest
 * <get oldest> == undefined => I'd like to know the oldest. 
 * <get oldest> == undefined => You haven't told me the oldest. 
 * <get oldest> != undefined => The oldest is <get oldest>. 
-- I don't know. Tell me the oldest.mediumCategories
+- I don't know. Tell me the oldest.
 
 + my age
 * <get age> == undefined => I'd like to know how old you are. 
 * <get age> == HOW MANY => You haven't told me your age. 
 * <get age> != undefined => You are <get age>? 
-- I don't know. How old are you?mediumCategories
+- I don't know. How old are you?
 
 + my favorite color
 * <get branch> == undefined => What is your favorite color?
 * <get branch> == undefined => What is your favorite color?
-- <set branch=<get favoritecolor>><get favroitecolor>mediumCategories
+- <set branch=<get favoritecolor>><get favroitecolor>
 
 + he has
 * <get hehas> == undefined => I'd like to know what he has. 
 * <get hehas> == A HEAD => A head. 
 * <get hehas> != undefined => You said <get hehas>? 
-- I don't know. What does he have??mediumCategories
+- I don't know. What does he have??
 
 + he likes
 * <get branch> == undefined => I'd like to know what he likes. 
 * <get branch> == HIMSELF => You haven't told me what he likes. 
 * <get branch> != undefined => You said <get helikes>? 
-- <set branch=<get helikes>>I don't know. What does he like?mediumCategories
+- <set branch=<get helikes>>I don't know. What does he like?
 
 + my son
 * <get branch> == undefined => Who is your son?
 * <get branch> == undefined => Who is your son?
-- <set branch=<get son>><get son>mediumCategories
+- <set branch=<get son>><get son>
 
 + my wife
 * <get branch> == undefined => Who is your wife?
 * <get branch> == undefined => Who is your wife?
-- <set branch=<get wife>><get wife>mediumCategories
+- <set branch=<get wife>><get wife>
 
 + my husband
 * <get branch> == undefined => Who is your husband?
 * <get branch> == undefined => Who is your husband?
-- <set branch=<get husband>><get husband>mediumCategories
+- <set branch=<get husband>><get husband>
 
 + my mother
 * <get branch> == undefined => I don't know who she is. Who is your mother?
 * <get branch> == undefined => I don't know who she is. Who is your mother?
-- <set branch=<get mother>>You said she was called <get mother>.mediumCategories
+- <set branch=<get mother>>You said she was called <get mother>.
 
 + my name
 * <get name> == undefined => I'd like to know your name. 
 * <get name> == JUDGE => I know you as Judge. 
 * <get name> != undefined => You said your name is <get name>? 
-- I don't know. What is your name?mediumCategories
+- I don't know. What is your name?
 
 + set predicates *
 - The meta Predicate is set.

@@ -79,11 +79,11 @@
 
 + is it *
 * <get it> == IT => It could be.
-- {@is <get it> <star>}mediumCategories
+- {@is <get it> <star>}
 
 + is he *
 * <get he> == HE => I think he is <person>. Why don't you ask him?
-- {@is <get he> <star>}mediumCategories
+- {@is <get he> <star>}
 
 + i felt *
 - What is that feeling like? {@i was <star>}
@@ -499,7 +499,7 @@
 - {@<star>} 
 
 + we will * then back away
-- {@we will <star>}{@we will back away}
+- {@we will <star>} {@we will back away}
 
 + (are you eldest *|do you have siblings|siblings)
 - {@brothers} {@sisters} 
@@ -511,7 +511,7 @@
 - {@can you learn} 
 
 + can you *
-- {@can you}{@ <star>}
+- {@can you} {@ <star>}
 
 + acknowledged that *
 - {@ yes}. {@ <star>}

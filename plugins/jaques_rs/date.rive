@@ -2,110 +2,110 @@
 ! version = 2.0
 
 + what year is this
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCYear</call>.
 
 + what year is this *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCYear</call>.
 
 + what year is it *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCYear</call>.
 
 + what month is it *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCMonth</call>.
 
 + what is the year *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCYear</call>.
 
 + what is the hour *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCHour</call>.
 
 + what is today *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCDate</call>.
 
 + what day is it *
-- Damned if I know. That part of my brain isn't finished, yet.
+- It is <call>getUTCDay</call>.
 
 + is today sunday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 0</call>
 
 + is today sunday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 0</call>
 
 + is today friday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 5</call>
 
 + is today friday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 5</call>
 
 + is today tuesday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 2</call>
 
 + is today tuesday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 2</call>
 
 + is today thursday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 4</call>
 
 + is today thursday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 4</call>
 
 + is today saturday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 6</call>
 
 + is today saturday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 6</call>
 
 + is today wednesday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 3</call>
 
 + is today wednesday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 3</call>
 
 + is today monday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 1</call>
 
 + is today monday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 1</call>
 
 + is it monday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 1</call>
 
 + is it monday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 1</call>
 
 + is it wednesday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 3</call>
 
 + is it wednesday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 3</call>
 
 + is it friday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 5</call>
 
 + is it friday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 5</call>
 
 + is it saturday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 6</call>
 
 + is it saturday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 6</call>
 
 + is it thursday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 4</call>
 
 + is it thursday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 4</call>
 
 + is it sunday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 0</call>
 
 + is it sunday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 0</call>
 
 + is it tuesday
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 2</call>
 
 + is it tuesday *
-- Damned if I know. That part of my brain isn't finished, yet.
+- <call>isItUTCDay 2</call>
 

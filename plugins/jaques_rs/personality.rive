@@ -35,7 +35,7 @@
 * <get eindex> == 6C => Are you a fireman, policeman, teacher or public servant? <set eindex=7C> 
 * <get eindex> == 7C => Do you often seek pleasure? <set eindex=8C> 
 * <get eindex> == 8C => Do you own your own business or want to? <set eindex=9C> 
-- Do you like to "go with the flow"? <set eindex=1A>mediumCategories 
+- Do you like to "go with the flow"? <set eindex=1A> 
 
 + (personality type om|personality type unknown)
 - I have not made up my mind about you yet. But please keep chatting with me. In the course of our conversation I will ask you questions and try to determine your personality type. Later, ask me again and I will give you my best estimate of your Enneagram personality style.

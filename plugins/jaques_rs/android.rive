@@ -36,7 +36,7 @@
 
 + lookup phonenumber *
 * <get numberfound> == true => The phone number is <get phonenumber>
-- I can't find the number you are looking for.mediumCategories
+- I can't find the number you are looking for.
 
 + starbucks
 - Searching for Starbucks near you.<oob><map>Starbucks</map></oob>
@@ -50,7 +50,7 @@
 + call mom
 * <get branch> == undefined => Who is your mother?
 * <get branch> == undefined => Who is your mother?
-- <set callstate=true><set callee={@propername mom}><set branch=<get mother>>{@call <get mother>}mediumCategories
+- <set callstate=true><set callee={@propername mom}><set branch=<get mother>>{@call <get mother>}
 
 + call *
 - <set callstate=true><set callee=<star>>I don't know who <person><star> is.
@@ -145,12 +145,12 @@
 + text my son *
 * <get branch> == undefined => Who is your son?
 * <get branch> == undefined => Who is your son?
-- <set branch=<get son>>{@text <get son> <star>}mediumCategories
+- <set branch=<get son>>{@text <get son> <star>}
 
 + call my son
 * <get branch> == undefined => Who is your son?
 * <get branch> == undefined => Who is your son?
-- <set branch=<get son>>{@call <get son>}mediumCategories
+- <set branch=<get son>>{@call <get son>}
 
 + *
 % who is your son
@@ -159,12 +159,12 @@
 + text my sister *
 * <get branch> == undefined => Who is your sister?
 * <get branch> == undefined => Who is your sister?
-- <set branch=<get sister>>{@text <get sister> <star>}mediumCategories
+- <set branch=<get sister>>{@text <get sister> <star>}
 
 + call my sister
 * <get branch> == undefined => Who is your sister?
 * <get branch> == undefined => Who is your sister?
-- <set branch=<get sister>>{@call <get sister>}mediumCategories
+- <set branch=<get sister>>{@call <get sister>}
 
 + *
 % who is your sister
@@ -173,12 +173,12 @@
 + text my brother *
 * <get branch> == undefined => Who is your brother?
 * <get branch> == undefined => Who is your brother?
-- <set branch=<get brother>>{@text <get brother> <star>}mediumCategories
+- <set branch=<get brother>>{@text <get brother> <star>}
 
 + call my brother
 * <get branch> == undefined => Who is your brother?
 * <get branch> == undefined => Who is your brother?
-- <set branch=<get brother>>{@call <get brother>}mediumCategories
+- <set branch=<get brother>>{@call <get brother>}
 
 + *
 % who is your brother
@@ -187,12 +187,12 @@
 + text my husband *
 * <get branch> == undefined => Who is your husband?
 * <get branch> == undefined => Who is your husband?
-- <set branch=<get husband>>{@text <get husband> <star>}mediumCategories
+- <set branch=<get husband>>{@text <get husband> <star>}
 
 + call my husband
 * <get branch> == undefined => Who is your husband?
 * <get branch> == undefined => Who is your husband?
-- <set branch=<get husband>>{@call <get husband>}mediumCategories
+- <set branch=<get husband>>{@call <get husband>}
 
 + *
 % who is your husband
@@ -201,12 +201,12 @@
 + text my boyfriend *
 * <get branch> == undefined => Who is your boyfriend?
 * <get branch> == undefined => Who is your boyfriend?
-- <set branch=<get boyfriend>>{@text <get boyfriend> <star>}mediumCategories
+- <set branch=<get boyfriend>>{@text <get boyfriend> <star>}
 
 + call my boyfriend
 * <get branch> == undefined => Who is your boyfriend?
 * <get branch> == undefined => Who is your boyfriend?
-- <set branch=<get boyfriend>>{@call <get boyfriend>}mediumCategories
+- <set branch=<get boyfriend>>{@call <get boyfriend>}
 
 + *
 % who is your boyfriend
@@ -215,12 +215,12 @@
 + text my girlfriend *
 * <get branch> == undefined => Who is your girlfriend?
 * <get branch> == undefined => Who is your girlfriend?
-- <set branch=<get girlfriend>>{@text <get girlfriend> <star>}mediumCategories
+- <set branch=<get girlfriend>>{@text <get girlfriend> <star>}
 
 + call my girlfriend
 * <get branch> == undefined => Who is your girlfriend?
 * <get branch> == undefined => Who is your girlfriend?
-- <set branch=<get girlfriend>>{@call <get girlfriend>}mediumCategories
+- <set branch=<get girlfriend>>{@call <get girlfriend>}
 
 + *
 % who is your girlfriend
@@ -229,10 +229,10 @@
 + text my daughter *
 * <get branch> == undefined => Who is your daughter?
 * <get branch> == undefined => Who is your daughter?
-- <set branch=<get daughter>>{@text <get daughter> <star>}mediumCategories
+- <set branch=<get daughter>>{@text <get daughter> <star>}
 
 + call my daughter
 * <get branch> == undefined => Who is your daughter?
 * <get branch> == undefined => Who is your daughter?
-- <set branch=<get daughter>>{@call <get daughter>}mediumCategories
+- <set branch=<get daughter>>{@call <get daughter>}
 

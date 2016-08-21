@@ -2,6 +2,7 @@
 
 var utils = require('../utils.js');
 var RiveScript = require("rivescript");
+var fs = require("fs");
 
 var lastMessages = [];
 
@@ -22,13 +23,10 @@ var commands = {
 		usage: "<anything - just talk>",
 		help: "I'm Jaques, your cyborg bartender. Have a drink!",
 		process: function(args, bot, message) {
-			if (jaquesStarted) {				
-				// We'll scope everything per-user...
-				if (jaquesBot.getUservar(message.author.id, "name") == "undefined") {
-					jaquesBot.setUservar (message.author.id, "name", message.author.name);
-				}				
+			if (jaquesStarted) {							
 				var statement = utils.compileArgs(args);
-				var reply = stripGarbage(jaquesBot.reply(message.author.id, statement));
+				var reply = getReply(jaquesBot, message.author.id, message.author.name, statement);
+				reply = stripGarbage(reply);
 				var cache = {user: message.author.name, statement: statement, reply: reply};
 				lastMessages.push(cache);
 				while (lastMessages.length > 10) {
@@ -73,6 +71,44 @@ function loading_done (batch_num) {
 // It's good to catch errors too!
 function loading_error (error) {
 	utils.logError("Error when loading files: " + error, error);
+}
+
+// The meat of the logic is in here. This function gets a reply from the bot,
+// and persists user data to disk as a local file named "./$USERNAME.json"
+// where $USERNAME is the username.
+function getReply(bot, userid, username, message) {
+    var filename = "./userdata/" + userid + ".json";
+
+    // See if the bot knows this user yet (in its current memory).
+    var userData = bot.getUservars(userid);
+    if (!userData) {
+        // See if a local file exists for stored user variables.
+        try {
+            var stats = fs.statSync(filename);
+            if (stats) {
+                var jsonText = fs.readFileSync(filename);
+                userData = JSON.parse(jsonText);
+                bot.setUservars(userid, userData);
+            }
+        } catch(e) {}
+    }
+
+    // Get a reply.
+    // We'll scope everything per-user...
+	if (bot.getUservar(userid, "name") == "undefined") {
+		bot.setUservar (userid, "name", username);
+	}
+    var reply = bot.reply(userid, message);
+
+    // Export user variables to disk.
+    userData = bot.getUservars(userid);
+    fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
+
+    return reply;
 }
 
 // These functions are gross, but I don't know why I'm seeing garbage in the reply strings. This will take care of them for now...

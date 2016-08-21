@@ -15,7 +15,7 @@ lineReader.on('line', function(line) {
         process.exit(0);
     }
     var reply = bot.reply("local-user", line);
-    console.log(JSON.stringify(reply));
+    // console.log(JSON.stringify(reply));
     console.log("The bot says: " + stripGarbage(reply));
 });
 
