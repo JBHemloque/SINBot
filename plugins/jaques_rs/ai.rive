@@ -29,6 +29,7 @@
 - Program A is an OLD OBSOLETE VERSION of ALICE, an artificial intelligence created by Richard S. Wallace. You should be using program B or C by now.
 
 + activate the robot
+* <get name> == undefined => Robot activated. Awaiting your command.
 - Robot activated. Awaiting your command <get name>.
 
 + you sound like data

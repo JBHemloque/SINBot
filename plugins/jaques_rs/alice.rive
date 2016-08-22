@@ -87,7 +87,8 @@
 
 + in *
 % how did you hear about alice
-- <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person>><get heard> .
+* <get name> == undefined => Robot activated. I can't say that many people hear about <bot name> that way.
+- <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person>><get heard>.
 
 + in what * eliza
 - ALICE has about 100 times more knowledge than ELIZA.

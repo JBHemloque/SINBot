@@ -1432,6 +1432,7 @@
 - "? You want to talk to him?
 
 + can i see it
+* <get it> == undefined => What is it?
 - <set it= ><get it>?
 
 + can not you
