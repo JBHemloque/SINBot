@@ -5,6 +5,7 @@ var RiveScript = require("rivescript");
 var fs = require("fs");
 
 var lastMessages = [];
+var undefinedMessages = [];
 
 var commands = {
 	"gossip": {
@@ -12,6 +13,11 @@ var commands = {
 		help: "PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.",
 		process: function(args, bot, message) {
 			var msgs = [];
+            for (var i = 0; i < undefinedMessages.length; i++) {
+                msgs.push(undefinedMessages[i].user + " said: " + undefinedMessages[i].statement);
+                msgs.push("And the bot said: " + undefinedMessages[i].reply);
+            }
+            undefinedMessages = [];
 			for (var i = 0; i < lastMessages.length; i++) {
 				msgs.push(lastMessages[i].user + " said: " + lastMessages[i].statement);
 				msgs.push("And the bot said: " + lastMessages[i].reply);
@@ -26,8 +32,11 @@ var commands = {
 			if (jaquesStarted) {							
 				var statement = utils.compileArgs(args);
 				var reply = getReply(jaquesBot, message.author.id, message.author.name, statement);
-				reply = stripGarbage(reply);
+				reply = stripGarbage(reply);                
 				var cache = {user: message.author.name, statement: statement, reply: reply};
+                if (reply.includes("undefined")) {
+                    undefinedMessages.push(cache);   
+                }
 				lastMessages.push(cache);
 				while (lastMessages.length > 10) {
 					lastMessages.shift();
