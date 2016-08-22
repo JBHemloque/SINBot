@@ -1,5 +1,10 @@
 ! version = 2.0
 
+> object getUTCTime javascript
+	var now = new Date();
+	return now.getUTCHours().toString() + ":" + now.getUTCMinutes().toString() + " IGT";
+< object 
+
 > object getUTCYear javascript
 	return new Date().getUTCFullYear().toString();
 < object 
@@ -13,7 +18,7 @@
 < object 
 
 > object getUTCHour javascript
-	return new Date().getUTCHour().toString() + " IGT";
+	return new Date().getUTCHours().toString() + " IGT";
 < object 
 
 > object getUTCDate javascript
