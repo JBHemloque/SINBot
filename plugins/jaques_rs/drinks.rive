@@ -4,9 +4,9 @@
 
 ! array fake_cocktails = romulan ale|kanar|pan galactic gargle blaster|milk of the poppy|minotaur energy drink|soma|elsinore beer|duff beer|slurm|fizzy lifting drink|uncle jemima's down home pure mash liquor|ambrosia|miruvor|ent draught|moloko|piso mojado|victory gin|black yukon sucker punch|bloodwine|glen mckenna scotch|glengoolie scotch|mudder's milk|screaming viking|synthehol|hefecrocken|shangrilager|bouncy bubbly beverage|quafe|nuka cola|raktajino|tru blood|butterbeer|samuel jackson beer|heisler beer|joja cola
 
-+ [barkeep|bartender|jaques] [can you] (bring|make|give) me [a] (@cocktails) [please]
-- Here you go, enjoy your <star2>
-- One <star2> coming up!
++ [barkeep|bartender|jaques] [can you] (bring|make|give) * [a] (@cocktails) [please]
+- Here you go, enjoy your <star3>
+- One <star3> coming up!
 
 + (barkeep|bartender|jaques) (@cocktails) [please]
 - Here you go, enjoy your <star2>
@@ -16,8 +16,8 @@
 - Here you go, enjoy your <star>
 - One <star> coming up!
 
-+ [barkeep][bartender][jaques] (make|give) me [a] (@fake_cocktails) [please]
-- You realize <star2> isn't real, right?
++ [barkeep][bartender][jaques] (make|give) * [a] (@fake_cocktails) [please]
+- You realize <star3> isn't real, right?
 - You're a wizard, Harry!
 - Any other fictional drink you'd like?
 
