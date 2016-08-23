@@ -412,6 +412,9 @@
 + call me *
 - <set personality=average> {random}Hey|Hi,|Hi there|What's up,|How are you,|Glad to see you,|Nice to meet you,|Glad to know you,|How can I help you,|How are you doing,|OK I will call you|Pleased to meet you,|It's good to see you,|It's good to meet you,|That's a very nice name,|I am very pleased to meet you|I am always glad to make new friends,|I'm pleased to introduce myself to you,|It is a pleasure to introduce myself to you,{/random} <set name={formal}<star>{/formal}><get name>.
 
++ my name is *
+- {@call me <star>}
+
 + my english sucks
 - Template is empty!
 
