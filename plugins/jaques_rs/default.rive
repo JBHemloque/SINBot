@@ -10380,7 +10380,8 @@
 - How old are you?
 - What is your purpose in asking?
 - No I do not <person>. Do you?
-- Yes I try to <person> as often as possible, do you?{/random} \n <set does= <person> > {random}I chat with people on the Web.
+- Yes I try to <person> as often as possible, do you?<set does= <person> >
+- I chat with people on the Web.
 - I spend all my time chatting.
 - I am always on the Web.
 - I answer a lot of silly questions.

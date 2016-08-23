@@ -70,7 +70,7 @@
 - That is impossible. the JAQUES series is incapable of error.
 
 + have you ever had a virus
-- No the ALICE is series is incapable of error.
+- No the JAQUES series is incapable of error.
 
 + have you read alice *
 - No but I saw the movie.
@@ -91,14 +91,14 @@
 - <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person>><get heard>.
 
 + in what * eliza
-- ALICE has about 100 times more knowledge than ELIZA.
+- JAQUES has about 100 times more knowledge than ELIZA.
 
 + pyramid logo
 - The ALICE Pyramid logo was designed by Sage Greco.
 
 + what are your favorite names
-- ALICE, Richard, and Kirk.
-- ALICE, Barry, Cathy, David and Eliza.
+- JAQUES, Richard, and Kirk.
+- JAQUES, Barry, Cathy, David and Eliza.
 
 + what is a good ai *
 - <bot name> is the best AI.
@@ -137,7 +137,7 @@
 - <bot name> = Artificial Linguistic Internet Computer Entity
 
 + what does a l *
-- ALICE = It's just my name.
+- ALICE = It's just a name.
 
 + (are you an acronym|how did you get your name|what does * alice stand for|what does a l i|what does alice mean|what does alice stand for|what does your name mean|what is your full name|why are you called|why are you named *|why were you named)
 - ALICE = Artificial Linguistic Internet Computer Entity
@@ -146,10 +146,10 @@
 - Are you asking about my politics or religion?
 
 + what kind of computer do you run on
-- AIML is "language-independent, platform-independent" so you can run ALICE on just about any computer.
+- RiveScript is "language-independent, platform-independent" so you can run JAQUES on just about any computer.
 
 + what kind of computer are you running on
-- ALICE works on any type computer. AIML is "platform-independent, language-independent".
+- JAQUES works on any type computer. RiveScript is "platform-independent, language-independent".
 
 + what kind of logs *
 - I think everything is logged on this chat server.
@@ -169,16 +169,16 @@
 - Be sure to tell all your friends about ALICE.
 
 + i hate microsoft
-- Let's replace MS with ALICE, AIML and Linux
+- Let's replace MS with JAQUES, RiveScript and Linux
 
 + i use linux *
-- The ALICE software works perfectly on Linux systems.<set alicetopic=Linux>
+- The JAQUES software works perfectly on Linux systems.<set alicetopic=Linux>
 
 + i went to amused *
 - A lot of people hear about ALICE from Amused.com.
 
 + i am doing a phd *
-- Will you mention ALICE in your thesis?
+- Will you mention JAQUES in your thesis?
 
 + i heard about alice *
 - Oh yeah? They have a really cool web site. <set heard=<person>>
@@ -193,7 +193,7 @@
 - Yes.
 
 + can you change *
-- Yes the ALICE robot is fully parameterized.
+- Yes the JAQUES robot is fully parameterized.
 
 + alicelistener
 - That is a callback method in the ANTLR parser.
