@@ -39,12 +39,12 @@ exports.setup = function(config, bot, botcfg) {
 
 function pollFeeds() {
     for (var i = 0; i < feeds.length; i++) {
-        fetch(feeds[i].url, feeds[i].server, feeds[i].channel);
+        fetch(feeds[i].url, feeds[i].server, feeds[i].channel, feeds[i].prefix, feeds[i].suffix);
     }
     setTimeout(pollFeeds, 1000*60*5); //every 5 minutes minute
 }
 
-function fetch(feed, server, channel) {
+function fetch(feed, server, channel, prefix, suffix) {
     // Define our streams
     var req = request(feed, { timeout: 10000, pool: false });
     req.setMaxListeners(50);
@@ -73,8 +73,16 @@ function fetch(feed, server, channel) {
             if (guid) {
                 if (old_guids[guid]) {
                     console.log("Skipping " + post.link + " because we know it.");
-                } else {                    
-                    utils.sendMessageToServerAndChannel(discord, server, channel, post.link, function(err, msg) {
+                } else {                                  
+                    var msg = "";
+                    if (prefix) {
+                        msg += prefix;
+                    }
+                    msg += post.link;
+                    if (suffix) {
+                        msg += suffix;
+                    }
+                    utils.sendMessageToServerAndChannel(discord, server, channel, msg, function(err, msg) {
                         if (!err) {
                             addGuid(guid);
                         }
