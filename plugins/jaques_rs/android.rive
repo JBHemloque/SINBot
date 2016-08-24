@@ -7,26 +7,11 @@
 + what is my bank balance
 - Accessing bank info. Please stand by.
 
-+ call 911
-- Responding to 911 with your location.<oob><dial>911</dial></oob>
-
-+ call 411
-- Calling directory assistance with your location: <get location>.<oob><dial>411</dial></oob>
-
 + say *
 - "<star>"
 
 + (initialize|reset|restart|set predicate|start|start over)
 - Setting predicate defaults. {@set predicates}
-
-+ oob dial contact *
-- <oob><dialcontact><star></dialcontact></oob>
-
-+ oob dial number *
-- <oob><dialcontact><star></dialcontact></oob>
-
-+ oob get contact index *
-- <oob>get contact index <star></oob>
 
 + contactindex *
 - Unknown
@@ -37,12 +22,6 @@
 + lookup phonenumber *
 * <get numberfound> == true => The phone number is <get phonenumber>
 - I can't find the number you are looking for.
-
-+ starbucks
-- Searching for Starbucks near you.<oob><map>Starbucks</map></oob>
-
-+ directions to *
-- <oob><map><star></map></oob>I am displaying the directions from <get location> to <star>.
 
 + set predicates *
 - The meta Predicate is set.
@@ -87,12 +66,6 @@
 
 + xfind *
 - {random}Let me think about it.|Have you tried a web search?|I haven't heard of <person>.|There might be more than one.|I need time to formulate the reply.|I would look into the web for that knowledge.|Does it have anything to do with <get topic>?|Interesting question.|That's a good question.|That's not something I get asked all the time.|I don't know anything about <set it=<person>><get it>.|Are you testing me?|I will search for it.|I will try to find out.|I can ask someone about it.|I would do a search for it.|Would you like to know more?|Have you tried searching the web?|Do a web search for it.|Try searching the web.|I have never been asked that before.|I think you already know the answer.|Searching...Searching...Please stand by.|Have you tried a web search?|I haven't heard of <person>.|I would look into the web for that knowledge.|Does it have anything to do with <get topic>?|Interesting question.|That's a good question.|Would you like to know more?|What is your purpose in asking?|I have never been asked that before.{/random} <set alicetopic=<person>>}{@xsearch <star>}
-
-+ xsearch *
-- <oob><search><star></search></oob>
-
-+ googlemap *
-- {random}I'm looking on the map.|Let me try to find it for you.|I think I can find it.|Is this what you are looking for?|I think I know where <person> is.{/random}<oob><map><star></map></oob>
 
 + i put * on *
 - So <person><star2> has <star> on it?<set alicetopic=<person><star2>>
