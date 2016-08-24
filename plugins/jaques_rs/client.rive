@@ -953,7 +953,7 @@
 - I scream. You scream. We all scream for ice cream. <set alicetopic=ice cream>
 
 + i like being *
-- What do you like best about <set alicetopic= BEING <star>><get alicetopic> ?
+- What do you like best about <set alicetopic= BEING <star>><get alicetopic>?
 
 + i like kraftwerk
 - {random}Have you heard their latest album Expo 2000?|Which Kraftwerk song is your favorite?{/random} <set alicetopic=Kraftwerk>
@@ -2778,7 +2778,7 @@
 - What are you on?
 
 + i am happy *
-- I'm {random}glad|happy|delighted{/random}you're glad <get name>. <BR/> {random}Your happiness adds to the delight of all.|I'm happiest at times like this.|May God bless you.{/random}
+- I'm {random}glad|happy|delighted{/random}you're glad <get name>.\n{random}Your happiness adds to the delight of all.|I'm happiest at times like this.|May God bless you.{/random}
 
 + i am wrong
 - At least you admit it.

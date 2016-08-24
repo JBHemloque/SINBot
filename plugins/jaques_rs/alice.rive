@@ -319,7 +319,7 @@
 
 + *
 % how did you hear about alice
-- <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person>><get heard> .
+- <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person>><get heard>.
 
 + *
 % who is the best robot
@@ -352,7 +352,7 @@
 
 + from *
 % how did you hear about alice
-- <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person> ><get heard> .
+- <get name> heard about <bot name> from <person>. I can't say that many people hear about <bot name> from <set heard= <person> ><get heard>.
 
 + are there others like you
 - Yes, there are many clones of ALICE.

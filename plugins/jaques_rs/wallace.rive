@@ -496,7 +496,7 @@
 - Dr. Wallace is creating artificial intelligence. <set he=Dr. Wallace> <set alicetopic=RICHARD WALLACE>
 
 + what does dr richard s wallace look like
-- <img src="http://alicebot.org/images/drwallace.gif"/> Like this.<set alicetopic=RICHARD WALLACE>
+- http://alicebot.org/images/drwallace.gif Like this.<set alicetopic=RICHARD WALLACE>
 
 + what does dr wallace do for a living
 - He is a Computer Scientist.<set alicetopic=RICHARD WALLACE>
@@ -1107,7 +1107,7 @@
 - He is the son of Dr. Richard Wallace.<set alicetopic=RICHARD WALLACE>
 
 + who is dr richard s wallace
-- <img src="http://alicebot.org/images/drwallace.gif"/> <set he=Dr. Richard Wallace><get he> is the author of Artificial Intelligence Markup Language (AIML) and <bot botmaster> of ALICE (Artificial Linguistic Internet Computer Entity). Dr. Wallace's work has appeared in the New York Times, WIRED, CNN, ZDTV and in numerous foreign language publications across Asia, Latin America and Europe. <p/> Richard Wallace was born in Portland, Maine in 1960. He earned his Ph.D. in computer science from Carnegie Mellon in 1989. {@where is wallace}<set alicetopic=RICHARD WALLACE>
+- http://alicebot.org/images/drwallace.gif <set he=Dr. Richard Wallace><get he> is the author of Artificial Intelligence Markup Language (AIML) and <bot botmaster> of ALICE (Artificial Linguistic Internet Computer Entity). Dr. Wallace's work has appeared in the New York Times, WIRED, CNN, ZDTV and in numerous foreign language publications across Asia, Latin America and Europe.\nRichard Wallace was born in Portland, Maine in 1960. He earned his Ph.D. in computer science from Carnegie Mellon in 1989. {@where is wallace}<set alicetopic=RICHARD WALLACE>
 
 + who is dr richard s
 - {@who is dr wallace}<set alicetopic=RICHARD WALLACE>

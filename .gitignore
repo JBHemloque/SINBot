@@ -1,5 +1,4 @@
 node_modules/**
-# These are a bunch of random files that are specific to my instance of the bot
 alias.json
 config.js
 errors.json
@@ -12,3 +11,4 @@ stagers
 testjaques
 sysalias.json
 userdata/**
+.DS_Store

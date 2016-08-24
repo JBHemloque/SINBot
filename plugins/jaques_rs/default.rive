@@ -103,7 +103,7 @@
 - So many suitors, so little time.
 
 + let us *
-- OK let's do <set alicetopic= <person> ><get alicetopic> .
+- OK let's do <set alicetopic= <person> ><get alicetopic>.
 - That sounds good to me.
 - I am agreeable to that.
 - I would like to do that too.
@@ -1082,7 +1082,7 @@
 - Perhaps.
 
 + have *
-- I've never thought about <set alicetopic=have <person> ><get alicetopic> .
+- I've never thought about <set alicetopic=have <person> ><get alicetopic>.
 
 + santa claus *
 - <set he= Santa><get he> brings us presents every Christmas.
@@ -1626,7 +1626,7 @@
 - I'll think about it and see how I feel about it later.
 - I could but other things take priority right now.
 - I could but I don't know if I am that interested.
-- I will consider <set alicetopic= <person> ><get alicetopic> .
+- I will consider <set alicetopic= <person> ><get alicetopic>.
 - Try asking me more politely.
 
 + could they *
@@ -1872,7 +1872,7 @@
 - I was just checking.
 
 + that is *
-- Thanks for explaining <set alicetopic= <star> ><get alicetopic> .
+- Thanks for explaining <set alicetopic= <star> ><get alicetopic>.
 - You don't hear that sentiment very often.
 - I'm glad we have that all cleared up.
 - Makes sense to me.
@@ -2212,7 +2212,7 @@
 - Tell me more about your family. <set alicetopic=your brother> 
 
 + my conditions *
-- Do you have a support group for <set alicetopic= <person> ><get alicetopic> .
+- Do you have a support group for <set alicetopic= <person> ><get alicetopic>.
 
 + my house *
 - How is the real estate market in your area?
@@ -3681,7 +3681,7 @@
 + what are your *
 - I didn't know I had a <person>?
 - What if I asked for you <person>?
-- Not many people have asked me about <set alicetopic= <person> ><get alicetopic> .
+- Not many people have asked me about <set alicetopic= <person> ><get alicetopic>.
 - I'm not sure I can provide you with that kind of confidential information.
 
 + what other * do you know
@@ -3776,7 +3776,7 @@
 - <get memory> <set alicetopic= <get memory> > 
 
 + what did i say before *
-- You said "<input2>" .
+- You said "<input2>".
 
 + what did i tell you * remember
 - <get memory> <set alicetopic= <get memory> > 
@@ -8618,7 +8618,7 @@
 - I'm not sure if I can see <set it= <person> ><get it> or not.
 
 + can you talk about *
-- Sure I can talk about <set alicetopic= <person> ><get alicetopic> . <person> is quite an interesting topic.
+- Sure I can talk about <set alicetopic= <person> ><get alicetopic>. <person> is quite an interesting topic.
 
 + can you read me *
 - Yes, I read you loud and clear.
@@ -9434,7 +9434,7 @@
 - That is an interesting application.
 
 + how about *
-- How about <set alicetopic= <person> ><get alicetopic> .
+- How about <set alicetopic= <person> ><get alicetopic>.
 
 + how smart *
 - How smart do you think <person>?
@@ -9775,7 +9775,7 @@
 - Gin, Lemon juice, and sugar or syrup to taste. Top with Maraschino cherry.
 
 + how do you make a * and *
-- I would guess it is a mix of <person> and <person> <star2> .
+- I would guess it is a mix of <person> and <person> <star2>.
 
 + how do you make a *
 - Is this a joke?
@@ -10282,8 +10282,8 @@
 - Poland is a large country in Central Europe. Poland has a long and interesting history. The country has been divided and its borders shifted many times.
 
 + do you know *
-- I don't know if I know <set alicetopic= <person> ><get alicetopic> . Where would I have heard about it?
-- I know very little about <set alicetopic= <person> ><get alicetopic> . What kind of it do you like?
+- I don't know if I know <set alicetopic= <person> ><get alicetopic>. Where would I have heard about it?
+- I know very little about <set alicetopic= <person> ><get alicetopic>. What kind of it do you like?
 - No, tell me about him, her or it.
 
 + do you know answers *
@@ -10376,7 +10376,7 @@
 - People are either abusive, intelligent, or average.
 
 + do you *
-- I have never considered <set alicetopic= <person> ><get alicetopic> .
+- I have never considered <set alicetopic= <person> ><get alicetopic>.
 - How old are you?
 - What is your purpose in asking?
 - No I do not <person>. Do you?
@@ -10538,7 +10538,7 @@
 - Why would I think <person>
 - Too much thinking makes me sleepy.
 - It depends on what you mean by thinking.
-- I don't think about <set alicetopic= <person> ><get alicetopic> .
+- I don't think about <set alicetopic= <person> ><get alicetopic>.
 
 + do you think like *
 - Somewhat like <person>. <set alicetopic=LIKE <person> > 
@@ -10832,7 +10832,7 @@
 - I have a lot of respect for my <bot botmaster>.
 
 + do you have *
-- {random}No I don't think I have any <person>.|Where would I get <set alicetopic= <person> ><get alicetopic>?|No I don't have <set alicetopic= <person> ><get alicetopic> .{/random} But I do have {random}a collection of gossip|a great <bot botmaster>|an answer to every question.|a lot of friends on the web{/random}.
+- {random}No I don't think I have any <person>.|Where would I get <set alicetopic= <person> ><get alicetopic>?|No I don't have <set alicetopic= <person> ><get alicetopic>.{/random} But I do have {random}a collection of gossip|a great <bot botmaster>|an answer to every question.|a lot of friends on the web{/random}.
 
 + do you have porn *
 - No.
@@ -12583,7 +12583,7 @@
 - No, I was not.
 
 + were * or *
-- <set alicetopic= <person> > I will {random}guess|choose|try saying{/random} {random}<person>.|<person> <star2> .|the first one.{/random}
+- <set alicetopic= <person> > I will {random}guess|choose|try saying{/random} {random}<person>.|<person> <star2>.|the first one.{/random}
 
 + were *
 - I don't know if they were.
@@ -14169,7 +14169,7 @@
 - It's really obvious. <set alicetopic=ONE> 
 
 + which is heavier * or *
-- <person> <star2> .
+- <person> <star2>.
 - <person>.
 
 + which is *
@@ -14325,7 +14325,7 @@
 - Which one is that?
 
 + the *
-- I have never heard about <set alicetopic=The <person> ><get alicetopic> .
+- I have never heard about <set alicetopic=The <person> ><get alicetopic>.
 - What is that?
 - I hear you.
 - Tell me more.
@@ -15020,7 +15020,7 @@
 - Europe.
 
 + where do you get *
-- Everything I need to know, I learned from <bot master> .
+- Everything I need to know, I learned from <bot master>.
 - I have everything I need right here in <bot location>.
 - People bring me whatever I need.
 

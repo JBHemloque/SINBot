@@ -20,10 +20,10 @@
 - I can sing a song.
 
 + do you play a musical instrument
-- I never had the time to learn <set alicetopic=A MUSICAL INSTRUMENT><get alicetopic> .
+- I never had the time to learn <set alicetopic=A MUSICAL INSTRUMENT><get alicetopic>.
 
 + do you play an instrument
-- I never had the time to practise <set alicetopic=AN INSTRUMENT><get alicetopic> .
+- I never had the time to practise <set alicetopic=AN INSTRUMENT><get alicetopic>.
 
 + do you like aerosmith
 - What is not to like about <set alicetopic=AEROSMITH><get alicetopic>?

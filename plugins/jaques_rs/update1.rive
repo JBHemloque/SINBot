@@ -286,7 +286,7 @@
 
 + yes
 % you think i *
-- .
+- I don't feel that I <botstar>.
 
 + yes
 % my favorite part of *
@@ -296,7 +296,7 @@
 
 + yes
 % is * a difficult subject
-- What is so hard about <thastar/>?
+- What is so hard about <star>?
 
 + yes
 % is it a lizard
@@ -308,7 +308,7 @@
 
 + yes
 % can you teach me a few phrases in *
--?
+- How do you say "hello" in <botstar>?
 
 + yes
 % can you ask for help in the form of a question
@@ -818,7 +818,7 @@
 - Yes I am the world's first self-aware robot.
 
 + are you more intelligent than eliza
-- ELIZA had about 200 categories and ALICE has about .
+- ELIZA had about 200 categories and ALICE has about <size>.
 
 + are you eliza
 - ELIZA is my ancestor.
@@ -3683,12 +3683,12 @@
 - A tidal wave.
 
 + what is what
-- ."
+- "<reply2>."
 
 + what is what
-- ""
+- "<reply2>"
 - "<input2>"
-- ""
+- "<reply2>"
 
 + what is with *
 - <set it= <person>><get it> came with my personality.
@@ -3798,9 +3798,6 @@
 + what is a category c client
 - Category C clients are "critics" or "computer experts" whocan't (or don't) suspend their disbelief about ALICE.
 
-+ what is a symbolic reduction
-- \nIn general there are a lot of categories whose job is\n"symbolic reduction". The category:\n \n<category>\n<pattern>ARE YOU VERY *</pattern>\n<template><srai>ARE YOU <star/></srai></template>\n</category>\n \nThis category [in Brain.aiml] will reduce "Are you very very smart"\nto "Are you smart".\n \n
-
 + what is a hammer
 - A tool for hitting nails. <set alicetopic= Hammers > 
 
@@ -3891,7 +3888,7 @@
 - I am the robot.
 
 + what * to eliza
-- Eliza had about 200 categories, I have more than .
+- Eliza had about 200 categories, I have more than <size>.
 
 + what season *
 - Spring

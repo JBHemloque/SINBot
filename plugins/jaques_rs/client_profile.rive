@@ -356,7 +356,7 @@
 - What films did <set he= <person> ><get he> direct?
 
 + my favorite movie is *
-- I haven't seen it. What did you like about <set alicetopic= <person> ><get alicetopic> ?
+- I haven't seen it. What did you like about <set alicetopic= <person> ><get alicetopic>?
 
 + my favorite food is *
 - What does it taste like? <set alicetopic= <person> > 

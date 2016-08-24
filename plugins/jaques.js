@@ -108,6 +108,10 @@ function getReply(bot, userid, username, message) {
 		bot.setUservar (userid, "name", username);
 	}
     var reply = bot.reply(userid, message);
+    // Rarely do we have a reply that looks like this: "}"
+    if (reply == "}") {
+        reply = "...";
+    }
 
     // Export user variables to disk.
     userData = bot.getUservars(userid);

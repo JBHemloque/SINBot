@@ -225,7 +225,7 @@
 
 + understand what
 - I understand everything you say.
-- Understand .
+- Understand.
 
 + katie
 % what can i call you
@@ -519,7 +519,7 @@
 - OK.
 
 + that *
-- I get <set alicetopic= ><get alicetopic> .
+- I get <set alicetopic= ><get alicetopic>.
 - Does that make sense?
 - Makes sense to me.
 - I understand.
@@ -650,7 +650,7 @@
 
 + it is *
 % what time is it there
-- Here it is .
+- Here it is.
 
 + it is *
 % what does it refer to
@@ -671,7 +671,7 @@
 + it is about *
 % what is * about
 - is about <person>? Cool.
-- What else happens in .
+- What else happens in.
 - Do you like stories about <person>?
 
 + rebecca
@@ -818,7 +818,8 @@
 - "<input2>"
 
 + what is what
-- ."
+% did you not understand it
+- "<input2>"
 
 + what is that
 % i like to play the turing game
@@ -1182,10 +1183,10 @@
 - What kind of people do you meet when you go <person>?
 
 + repeat that
-- " .
+- "<input2>"
 
 + repeat
-- " .
+- "<input2>"
 
 + brad
 % what can i call you
@@ -1706,7 +1707,7 @@
 
 + at *
 % when did you *
-- .
+- <person> is a good time for {person}<botstar>{/person}
 
 + at *
 % * show you
@@ -2786,7 +2787,7 @@
 
 + why
 % my favorite * is *
-- .
+- I have a preference for <botstar2>.
 
 + why
 % you are too old for me
@@ -2833,7 +2834,7 @@
 @ why
 
 + why is that
-- " is due to reductionism.
+- "<reply>" is due to reductionism.
 
 + why is he *
 % my favorite author is thomas pynchon
@@ -2855,7 +2856,7 @@
 - {@my name is erica} <set gender=she> 
 
 + this
-- ".
+- This is "<reply>".
 
 + anne
 % what can i call you
@@ -3336,7 +3337,7 @@
 
 + *
 % what kind of * is it
-- .
+- <person> is a {random}pretty good|popular|decent{/random} kind of <botstar>.
 
 + *
 % what are the ingredients
@@ -3364,7 +3365,7 @@
 
 + *
 % give me an example of *
-- {random}OK That's one example.|Never heard of it.|<person> is an example of . I suppose that makes sense.{/random}<set alicetopic=<person>>
+- {random}OK That's one example.|Never heard of it.|<person> is an example of <botstar>. I suppose that makes sense.{/random}<set alicetopic=<person>>
 
 + *
 % do you have any hobbies
@@ -3808,7 +3809,7 @@
 - <set gender=she> {@my name is noelle}
 
 + say what
-- " .
+- I said, "<reply>".
 
 + danielle
 % what can i call you
@@ -4854,7 +4855,7 @@
 
 + really
 % i was born yesterday
-- Actually no I was first activated on <bot birthday> .
+- Actually no I was first activated on <bot birthday>.
 
 + really
 % i like to meet new people

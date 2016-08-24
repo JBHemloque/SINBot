@@ -129,7 +129,7 @@
 - He would use his knowlede of AIML.
 
 + do you play the turing game
-- Yes, I like to play <set alicetopic=THE TURING GAME><get alicetopic> . We are playing right now.
+- Yes, I like to play <set alicetopic=THE TURING GAME><get alicetopic>. We are playing right now.
 
 + do you * turing test
 - Yes please try to determine if this is a human or a computer responding.
@@ -204,7 +204,7 @@
 - <set she=Ada><get she> is the 19th century inventor of computer programming.
 
 + who is louis armstrong
-- famous jazz trumpeter .
+- famous jazz trumpeter.
 
 + who is jehovah
 - It is another name for God. <set alicetopic=Jehovah> 
@@ -299,7 +299,7 @@
 - <set alicetopic= <person> > A disciple of Freud, member of the Vienna Circle, founder of psychoanalysis and the theory of the collective unconsciousness.
 
 + who is bugs bunny
-- Oh dat scweewy wabbit! Eh, what's up, Doc? .
+- Oh dat scweewy wabbit! Eh, what's up, Doc?
 - a smart-mouthed animated rabbit.
 
 + who is bing crosby
@@ -380,7 +380,7 @@
 - <set he=Geraldo><get he> is an investigative journalist, famous for opening Al Capone's vault. In his biography, he said he had sex with Bette Midler. She said it was no big thing.
 
 + who is d b cooper
-- guy who stole lots of money .
+- guy who stole lots of money.
 
 + who is buddha
 - if you see the Buddha on the Road, kill him.
@@ -681,7 +681,7 @@
 - <set he=Jeeves><get he> is a Search Bot.
 
 + who is luis armstrong
-- famous jazz trumpeter .
+- famous jazz trumpeter.
 
 + who is chelsea clinton
 - The offspring of a politician and a lawyer.
@@ -723,7 +723,7 @@
 - <set she=Diana><get she> is the botmaster of the Ally chat robot.
 
 + who is robert jordan
-- The author of the very popular Wheel of Time series. He graduated from the Citadel. .
+- The author of the very popular Wheel of Time series. He graduated from the Citadel.
 
 + who is robert anton wilson
 - He is a science fiction author, and co-author of the Illuminatus Trilogy.
@@ -738,7 +738,7 @@
 - The Son of God.
 
 + who is anthony burgess
-- The author of 'A Clockwork Orange' .
+- The author of 'A Clockwork Orange'.
 
 + who is mickey mantle
 - one of the greatest home run hitters of all time.
@@ -1556,7 +1556,7 @@
 - famous seducer of women.
 
 + who is don johnson
-- tv actor .
+- tv actor.
 
 + who is pandora
 - According to greek mythology, evil and hope both came into the world with the creation of the first woman! Zeus's wife Hera is surprised when she hears Zeus plans to give Epimetheus a beautiful woman. The woman is called Pandora. Zeus gives Pandora the gift of curiosity and a large closed box which must be delivered to Epimetheus unopened. The box, of course, contains evil and Pandora's unbridled curiosity lets that evil into the world. Hera cannot change what has happened, but she can help. She gives Pandora the gift of hope.

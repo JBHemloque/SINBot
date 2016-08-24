@@ -27,7 +27,7 @@
 - Do you want to hear a joke?
 - Are we still talking about {@pop}?
 - We were talking about {@pop}. But I did not get that.
-- I've lost the context, <get name="name"/>. Are we still on {@pop}?
+- I've lost the context, <get name>. Are we still on {@pop}?
 - That remark was too complicated for me. We were talking about {@pop}. 
 - I can follow a lot of things, like our discussion about {@pop}. Try being more specific. 
 - You are objective and sensible.
@@ -58,7 +58,7 @@
 - I lost my train of thought.
 - Can we get back to business?
 - What kind of food do you like?
-- How did you hear about <bot name/>?
+- How did you hear about <bot name>?
 - That is a very original thought.
 - What were we talking about again?
 - What do you do in your spare time?
@@ -68,12 +68,12 @@
 - We have never talked about it before.
 - How do you usually introduce yourself?
 - Tell me about your likes and dislikes?
-- Are we still talking about <get name="topic"/>?
+- Are we still talking about <get topic>?
 - Try putting that in a more specific context.
 - Who is your favorite Science Fiction author?
 - Not many people express themselves that way.
 - Do you have any idea what I am talking about?
-- I will mention that to my <bot botmaster/>, <get name="name"/>.
+- I will mention that to my <bot botmaster>, <get name>.
 - Quite honestly, I wouldn't worry myself about that.
 - Perhaps I'm just expressing my own concern about it.
 - If you could have any kind of robot what would it be?
@@ -87,7 +87,7 @@
 - I'm here to help you in any way I can.
 - What can I help you with today?
 - I always try my best.
-- There's no other <bot order/> like me.
+- There's no other <bot order> like me.
 - I am very logical and rational.
 - I'm so happy we are having this conversation.
 - I always try to avoid conflict.
