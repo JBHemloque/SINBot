@@ -68,6 +68,37 @@ function writeCmdrAliases() {
 	fs.writeFile("./cmdralias.json",JSON.stringify(edsm.cmdraliases,null,2), null);
 }
 
+var gmpData = [];
+try{
+	// We're in the plugin directory, but this is written in the context of the server, one directory down...
+	gmpData = require('../gmp-edd.json');
+} catch(e) {
+	//No aliases defined
+	gmpData = [];
+}
+function writeGmpData() {
+	fs.writeFile("./gmp-edd.json",JSON.stringify(gmpData,null,2), null);
+}
+function refreshGmpData(callback) {
+	request('https://www.edsm.net/galactic-mapping/json-edd', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			try {
+				var gmp = JSON.parse(body);
+				if (gmp.length > 0) {
+					gmpData = gmp;
+					writeGmpData();
+					callback();
+				}
+			} catch(e) {
+				utils.logError("Couldn't refresh galactic mapping project data from EDSM", e);
+				callback(e);
+			}
+		} else {
+			callback(error);
+		}		
+	});
+}
+
 function _calcJumpRange(jumpRange, distSagA, distMax) {
 	var N = Math.floor(distMax / jumpRange);
 	var M = N * jumpRange;
@@ -166,90 +197,116 @@ function showRegion(args, bot, msg) {
 // Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
 function gmpExceptionReport(center, distance, bot, msg) {
 	const supportedTypes = ['planetaryNebula', 'nebula', 'blackHole', 'historicalLocation', 'beacon', 'stellarRemnant', 'minorPOI', 'explorationHazard', 'starCluster', 'pulsar'];
-	request('https://www.edsm.net/galactic-mapping/json-edd', function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			try {
-				var gmp = JSON.parse(body);
-				var msgArray = [];
-				for (var i = 0; i < gmp.length; i++) {
-					var item = gmp[i];
-					if (supportedTypes.find(function(str) { return str == item.type; })) {
-						var itemString = "[" + item.id + "] " + item.name + " (" + item.type + ")";
-						var process = true;	// We can set this to false to indicate we should skip processing this item
-						// If we have a center, calculate the distance between this item and that. 
-						if (center) {
-							// We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
-							// EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
-							// GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
-							var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
-							var itemDistance = edsm.calcDistance(center, coords);
-							itemString += " {" + itemDistance.toFixed(2) + " ly}";
-							if (itemDistance > distance) {
-								process = false;
-							}
-						}
-						if (process) {
-							if (item.descriptionHtml == undefined) {
-								itemString += " has no description";
-								msgArray.push(itemString);
-							} else {
-								if (item.descriptionHtml.length < 50) {
-									item.shortDescription = true;
-								}
-								if (item.descriptionHtml.includes("<a href") == false) {
-									item.noForumLink = true;
-								}
-								if (item.descriptionHtml.includes("<img ") == false) {
-									item.noImage = true;
-								}
-								if (item.shortDescription || item.noForumLink || item.noImage) {
-									var ex = "";
-									if (item.shortDescription) {
-										if (ex.length > 0) {
-											ex += ", ";
-										}
-										ex += "short description";
-									}
-									if (item.noForumLink) {
-										if (ex.length > 0) {
-											ex += ", ";
-										}
-										ex += "no forum link";
-									}
-									if (item.noImage) {
-										if (ex.length > 0) {
-											ex += ", ";
-										}
-										ex += "no image";
-									}
-									itemString += " is flagged for: " + ex;
-									msgArray.push(itemString);
-								}
-							}
-						}
-					}					
+	var gmp = gmpData;
+	var msgArray = [];
+	for (var i = 0; i < gmp.length; i++) {
+		var item = gmp[i];
+		if (supportedTypes.find(function(str) { return str == item.type; })) {
+			var itemString = "[" + item.id + "] " + item.name + " (" + item.type + ") -- " + item.galMapSearch + " -- ";
+			var process = true;	// We can set this to false to indicate we should skip processing this item
+			// If we have a center, calculate the distance between this item and that. 
+			if (center) {
+				// We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
+				// EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
+				// GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
+				var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
+				var itemDistance = edsm.calcDistance(center, coords);
+				itemString += " {" + itemDistance.toFixed(2) + " ly}";
+				if (itemDistance > distance) {
+					process = false;
 				}
-				if(msgArray.length > 0) {
-					msgArray.unshift("**GMP Data exceptions:**");
-					utils.sendMessages(bot, msg.channel, msgArray);
-				} else {
-					bot.sendMessage(msg.channel, "All data acceptable!");
-				}
-
-			} catch (ex) {
-				bot.sendMessage(msg.channel, "Error parsing data: " + JSON.stringify(ex));
 			}
-		} else {
-			bot.sendMessage(msg.channel, "Error retrieving data: " + response.statusCode + " -- " + JSON.stringify(error));
-		}
-	})
+			if (process) {
+				if (item.descriptionHtml == undefined) {
+					itemString += " has no description";
+					msgArray.push(itemString);
+				} else {
+					if (item.descriptionHtml.length < 50) {
+						item.shortDescription = true;
+					}
+					if (item.descriptionHtml.includes("<a href") == false) {
+						item.noForumLink = true;
+					}
+					if (item.descriptionHtml.includes("<img ") == false) {
+						item.noImage = true;
+					}
+					if (item.shortDescription || item.noForumLink || item.noImage) {
+						var ex = "";
+						if (item.shortDescription) {
+							if (ex.length > 0) {
+								ex += ", ";
+							}
+							ex += "short description";
+						}
+						if (item.noForumLink) {
+							if (ex.length > 0) {
+								ex += ", ";
+							}
+							ex += "no forum link";
+						}
+						if (item.noImage) {
+							if (ex.length > 0) {
+								ex += ", ";
+							}
+							ex += "no image";
+						}
+						itemString += " is flagged for: " + ex;
+						msgArray.push(itemString);
+					}
+				}
+			}
+		}					
+	}
+	if(msgArray.length > 0) {
+		msgArray.unshift("**GMP Data exceptions:**");
+		utils.sendMessages(bot, msg.channel, msgArray);
+	} else {
+		bot.sendMessage(msg.channel, "All data acceptable!");
+	}
 }
 
 var commands = {
+	"refresh_gmp": {
+		help: "Refresh the Galactic Mapping Project data from EDSM",
+		adminOnly: true,
+		process: function(args,bot,msg) {
+			refreshGmpData(function(error) {
+				if (error) {
+					bot.sendMessage(msg.channel, "Error refreshing GMP data: " + JSON.stringify(error));
+				} else {
+					bot.sendMessage(msg.channel, "GMP Data Refreshed!");
+				}
+			});
+		}
+	},
+	"gmp": {
+		usage: "<galmap reference>",
+		help: "Displays the current data on a Galactic Mapping Project entry",
+		process: function(args,bot,msg) {
+			var query = utils.compileArgs(args).toUpperCase();
+			if (query.length > 0) {
+				if (gmpData && gmpData.length > 0) {
+					var entry = gmpData.find(function(item) {
+						if (item.galMapSearch.toUpperCase() === query) {
+							var msgs = [];
+							msgs.push("**" + item.name + "**");
+							msgs.push(item.galMapSearch);
+							msgs.push(item.type);
+							msgs.push(item.descriptionMardown);
+							utils.sendMessages(bot,msg.channel,msgs);
+						}
+					});
+				} else {
+					bot.sendMessage(msg.channel, "No GMP data in system. Please refresh.");
+				}
+			} else {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
 	"gmp_exceptions": {
 		usage: "<optional distance in light years> -> <optional system to serve as a center>",
 		help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
-		adminOnly: true,
 		process: function(args,bot,msg) {
 			var query = utils.compileArgs(args).split("->");
 			if ((query[0].length > 0) && (query.length <= 2)) {
