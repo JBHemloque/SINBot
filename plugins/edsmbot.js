@@ -242,3 +242,5 @@ exports.getDistance = getDistance;
 exports.aliases = aliases;
 exports.cmdraliases = cmdraliases;
 exports.normalizeSystem = normalizeSystem;
+exports.calcDistance = _calcDistance;
+exports.getSystemCoordsAsync = _getSystemCoords;

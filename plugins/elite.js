@@ -5,6 +5,7 @@ var edsm = require('./edsmbot.js');
 var fs = require("fs");
 var alphanum = require("../alphanum.js");
 var _ = require("underscore");
+var request = require('request');
 
 var regions = require("./elite/regions.json");
 var regionjpg = require("./elite/regionjpg.js");
@@ -162,7 +163,122 @@ function showRegion(args, bot, msg) {
 	}
 }
 
+// Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
+function gmpExceptionReport(center, distance, bot, msg) {
+	const supportedTypes = ['planetaryNebula', 'nebula', 'blackHole', 'historicalLocation', 'beacon', 'stellarRemnant', 'minorPOI', 'explorationHazard', 'starCluster', 'pulsar'];
+	request('https://www.edsm.net/galactic-mapping/json-edd', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			try {
+				var gmp = JSON.parse(body);
+				var msgArray = [];
+				for (var i = 0; i < gmp.length; i++) {
+					var item = gmp[i];
+					if (supportedTypes.find(function(str) { return str == item.type; })) {
+						var itemString = "[" + item.id + "] " + item.name + " (" + item.type + ")";
+						var process = true;	// We can set this to false to indicate we should skip processing this item
+						// If we have a center, calculate the distance between this item and that. 
+						if (center) {
+							// We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
+							// EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
+							// GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
+							var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
+							var itemDistance = edsm.calcDistance(center, coords);
+							itemString += " {" + itemDistance.toFixed(2) + " ly}";
+							if (itemDistance > distance) {
+								process = false;
+							}
+						}
+						if (process) {
+							if (item.descriptionHtml == undefined) {
+								itemString += " has no description";
+								msgArray.push(itemString);
+							} else {
+								if (item.descriptionHtml.length < 50) {
+									item.shortDescription = true;
+								}
+								if (item.descriptionHtml.includes("<a href") == false) {
+									item.noForumLink = true;
+								}
+								if (item.descriptionHtml.includes("<img ") == false) {
+									item.noImage = true;
+								}
+								if (item.shortDescription || item.noForumLink || item.noImage) {
+									var ex = "";
+									if (item.shortDescription) {
+										if (ex.length > 0) {
+											ex += ", ";
+										}
+										ex += "short description";
+									}
+									if (item.noForumLink) {
+										if (ex.length > 0) {
+											ex += ", ";
+										}
+										ex += "no forum link";
+									}
+									if (item.noImage) {
+										if (ex.length > 0) {
+											ex += ", ";
+										}
+										ex += "no image";
+									}
+									itemString += " is flagged for: " + ex;
+									msgArray.push(itemString);
+								}
+							}
+						}
+					}					
+				}
+				if(msgArray.length > 0) {
+					msgArray.unshift("**GMP Data exceptions:**");
+					utils.sendMessages(bot, msg.channel, msgArray);
+				} else {
+					bot.sendMessage(msg.channel, "All data acceptable!");
+				}
+
+			} catch (ex) {
+				bot.sendMessage(msg.channel, "Error parsing data: " + JSON.stringify(ex));
+			}
+		} else {
+			bot.sendMessage(msg.channel, "Error retrieving data: " + response.statusCode + " -- " + JSON.stringify(error));
+		}
+	})
+}
+
 var commands = {
+	"gmp_exceptions": {
+		usage: "<optional distance in light years> -> <optional system to serve as a center>",
+		help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
+		adminOnly: true,
+		process: function(args,bot,msg) {
+			var query = utils.compileArgs(args).split("->");
+			if ((query[0].length > 0) && (query.length <= 2)) {
+				query[0] = query[0].trim();
+				var dist = parseFloat(query[0]);
+				if (query.length == 1) {
+					query[1] = "Sol";
+				} else {
+					query[1] = query[1].trim();
+				}
+				// We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
+				if ((dist != NaN) && (query[1].length > 0)) {
+					// Radius report.
+					edsm.getSystemCoordsAsync(query[1], function(coords) {
+						if (coords && coords.coords) {
+							gmpExceptionReport(coords.coords, dist, bot, msg);
+						} else {
+							bot.sendMessage(msg.channel, "Could not get coordinates for " + query[1]);
+						}
+					});
+				} else {
+					utils.displayUsage(bot,msg,this);
+				}
+			} else {
+				// Do everything
+				gmpExceptionReport(undefined, undefined, bot, msg);
+			}
+		}
+	},
 	"g": {
 		usage: "<planet mass in earth masses> <planet radius in km>",
 		help: "Calculates surface gravity and likely planet types from a planet's mass and radius",
