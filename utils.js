@@ -74,12 +74,17 @@ var sendMessage = function(bot, channel, message) {
 }
 exports.sendMessage = sendMessage;
 
+var pmOrSendChannel = function(command, pmIfSpam, user, channel) {
+	if (command.spammy && pmIfSpam) {
+		return user; // PM
+	}
+	return channel;
+}
+exports.pmOrSendChannel = pmOrSendChannel;
+
 // Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
 var pmOrSend = function(bot, command, pmIfSpam, user, channel, message) {
-	if (command.spammy && pmIfSpam) {
-		channel = user; // PM
-	}
-	sendMessage(bot, channel, message);
+	sendMessage(bot, pmOrSendChannel(command, pmIfSpam, user, channel), message);
 }
 exports.pmOrSend = pmOrSend;
 
@@ -126,10 +131,7 @@ exports.sendMessages = sendMessages;
 
 // Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
 var pmOrSendArray = function(bot, command, pmIfSpam, user, channel, messages) {
-	if (command.spammy && pmIfSpam) {
-		channel = user; // PM
-	}
-	sendMessages(bot, channel, messages, function(error, message) {
+	sendMessages(bot, pmOrSendChannel(command, pmIfSpam, user, channel), messages, function(error, message) {
 		if (error) {
 			logError("Error sending message", e);
 		}

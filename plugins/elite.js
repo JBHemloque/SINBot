@@ -11,6 +11,7 @@ var regions = require("./elite/regions.json");
 var regionjpg = require("./elite/regionjpg.js");
 
 var botcfg = null;
+var pmIfSpam = false;
 
 var NEW_THRESHHOLD = (7 * 24 * 60 * 60 * 1000);
 
@@ -195,7 +196,7 @@ function showRegion(args, bot, msg) {
 }
 
 // Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
-function gmpExceptionReport(center, distance, bot, msg) {
+function gmpExceptionReport(center, distance, bot, channel) {
 	const supportedTypes = ['planetaryNebula', 'nebula', 'blackHole', 'historicalLocation', 'beacon', 'stellarRemnant', 'minorPOI', 'explorationHazard', 'starCluster', 'pulsar'];
 	var gmp = gmpData;
 	var msgArray = [];
@@ -259,9 +260,9 @@ function gmpExceptionReport(center, distance, bot, msg) {
 	}
 	if(msgArray.length > 0) {
 		msgArray.unshift("**GMP Data exceptions:**");
-		utils.sendMessages(bot, msg.channel, msgArray);
+		utils.sendMessages(bot, channel, msgArray);
 	} else {
-		bot.sendMessage(msg.channel, "All data acceptable!");
+		bot.sendMessage(channel, "All data acceptable!");
 	}
 }
 
@@ -306,8 +307,10 @@ var commands = {
 	},
 	"gmp_exceptions": {
 		usage: "<optional distance in light years> -> <optional system to serve as a center>",
+		spammy: true,
 		help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
 		process: function(args,bot,msg) {
+			var that = this;
 			var query = utils.compileArgs(args).split("->");
 			if ((query[0].length > 0) && (query.length <= 2)) {
 				query[0] = query[0].trim();
@@ -322,17 +325,17 @@ var commands = {
 					// Radius report.
 					edsm.getSystemCoordsAsync(query[1], function(coords) {
 						if (coords && coords.coords) {
-							gmpExceptionReport(coords.coords, dist, bot, msg);
+							gmpExceptionReport(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
 						} else {
-							bot.sendMessage(msg.channel, "Could not get coordinates for " + query[1]);
+							pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
 						}
 					});
 				} else {
-					utils.displayUsage(bot,msg,this);
+					utils.displayUsage(bot,msg,that);
 				}
 			} else {
 				// Do everything
-				gmpExceptionReport(undefined, undefined, bot, msg);
+				gmpExceptionReport(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
 			}
 		}
 	},
@@ -880,6 +883,9 @@ exports.setup = function(config, bot, botconfig) {
 	// For dependency injection
 	if (botconfig.edsm) {
 		edsm = botconfig.edsm;
+	}
+	if (botconfig.pmIfSpam) {
+		pmIfSpam = true;
 	}
 	if (config) {
 		if (config.regionfont) {

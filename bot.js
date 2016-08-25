@@ -686,7 +686,8 @@ function startBot(bot, cfg) {
 	var botcfg = {
 		aliases: aliases,
 		writeAliases: writeAliases,
-		makeAlias: makeAlias
+		makeAlias: makeAlias,
+		pmIfSpam: config.SPAMMY_PM
 	};
 
 	if (config.COMMAND_PREFIX) {
