@@ -266,6 +266,26 @@ function gmpExceptionReport(center, distance, bot, channel) {
 	}
 }
 
+function gmpItemMatch(item, query) {
+	try {
+		if (item.galMapSearch.toUpperCase().includes(query)) {
+			return true;
+		}
+	} catch (e) {
+		;
+		// console.log("Couldn't do the galmap search for [" + item.id + "]: " + e);
+	}
+	try {
+		if (item.name.toUpperCase().includes(query)) {
+			return true;
+		}
+	} catch (e) {
+		;
+		// console.log("Couldn't do the name search for [" + item.id + "]: " + e);
+	}
+	return false;
+}
+
 var commands = {
 	"refresh_gmp": {
 		help: "Refresh the Galactic Mapping Project data from EDSM",
@@ -287,16 +307,38 @@ var commands = {
 			var query = utils.compileArgs(args).toUpperCase();
 			if (query.length > 0) {
 				if (gmpData && gmpData.length > 0) {
-					var entry = gmpData.find(function(item) {
-						if ((item.galMapSearch.toUpperCase().includes(query)) || (item.name.toUpperCase().includes(query))) {
-							var msgs = [];
+					var msgs = [];
+					for (var i = 0; i < gmpData.length; i++) {
+						var item = gmpData[i];
+						if (gmpItemMatch(item, query)) {
 							msgs.push("**" + item.name + "**");
 							msgs.push(item.galMapSearch);
 							msgs.push(item.type);
 							msgs.push(item.descriptionMardown);
-							utils.sendMessages(bot,msg.channel,msgs);
 						}
-					});
+					}
+					console.log("Done!");
+					if (msgs.length > 0) {
+						utils.sendMessages(bot,msg.channel,msgs);
+					} else {
+						bot.sendMessage(msg.channel, "No GMP point of interest matches that query.");
+					}
+
+					// var entries = gmpData.filter(function(item) {
+					// 	return gmpItemMatch(item, query);
+					// });
+					// if (entries.length > 0) {
+					// 	var msgs = [];
+					// 	for (var i = 0; i < entries.length; i++) {
+					// 		msgs.push("**" + item.name + "**");
+					// 		msgs.push(item.galMapSearch);
+					// 		msgs.push(item.type);
+					// 		msgs.push(item.descriptionMardown);
+					// 	}
+					// 	utils.sendMessages(bot,msg.channel,msgs);
+					// } else {
+					// 	bot.sendMessage(msg.channel, "No GMP point of interest matches that query.");
+					// }
 				} else {
 					bot.sendMessage(msg.channel, "No GMP data in system. Please refresh.");
 				}
