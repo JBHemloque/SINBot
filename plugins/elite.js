@@ -288,7 +288,7 @@ var commands = {
 			if (query.length > 0) {
 				if (gmpData && gmpData.length > 0) {
 					var entry = gmpData.find(function(item) {
-						if ((item.galMapSearch.toUpperCase() === query) || (item.name.toUpperCase() === query)) {
+						if ((item.galMapSearch.toUpperCase().includes(query)) || (item.name.toUpperCase().includes(query))) {
 							var msgs = [];
 							msgs.push("**" + item.name + "**");
 							msgs.push(item.galMapSearch);
