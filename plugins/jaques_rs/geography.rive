@@ -8,7 +8,7 @@
 - I knew it was on the west coast, but I never knew California was <person>.
 
 + california
-- I am in <set location=California><get location> too! <set alicetopic=California> 
+- I am in <set location=California><get location> too! <set alicetopic=california> 
 
 + california *
 - Which part of California do you like best?
@@ -164,7 +164,7 @@
 - Sacramento.
 
 + what is the capital * sacramento
-- That is a trick question. <set alicetopic=SACRAMENTO> 
+- That is a trick question. <set alicetopic=sacramento> 
 
 + what is the capital * poland
 - Warsaw. <set alicetopic=poland> 
@@ -182,7 +182,7 @@
 - Port-of-Spain. <set alicetopic=trinidad and tobago> 
 
 + what is the capital * austrailia
-- I think it is called Canberra. <set alicetopic=AUSTRAILIA> 
+- I think it is called Canberra. <set alicetopic=austrailia> 
 
 + what is the capital * paraguay
 - Asuncion. <set alicetopic=paraguay> 
@@ -263,10 +263,10 @@
 - Saipan. <set alicetopic=northern mariana islands> 
 
 + what is the capital * saudi arabia
-- Riyadh, Saudi Arabia. <set alicetopic=SAUDI ARABIA> 
+- Riyadh, Saudi Arabia. <set alicetopic=saudi arabia> 
 
 + what is the capital * austria
-- The capital of Austria is Vienna. <set alicetopic=AUSTRIA> 
+- The capital of Austria is Vienna. <set alicetopic=austria> 
 
 + what is the capital * belarus
 - The capital of Belarus is Minsk.
@@ -332,7 +332,7 @@
 - Phoenix.
 
 + what is the capital * albania
-- The capital of Albania is Tirana. <set alicetopic=ALBANIA> 
+- The capital of Albania is Tirana. <set alicetopic=albania> 
 
 + what is the capital * iraq
 - Baghdad. <set alicetopic=iraq> 
@@ -395,7 +395,7 @@
 - Paris. <set alicetopic=france> 
 
 + what is the capital * the us
-- Washington, D. C. <set alicetopic=THE US> 
+- Washington, D. C. <set alicetopic=the us> 
 
 + what is the capital * the united states
 - The U.S. capital is Washington, D. C.
@@ -479,7 +479,7 @@
 - Columbus.
 
 + what is the capital * argentina
-- Buenos Aries. <set alicetopic=ARGENTINA> 
+- Buenos Aries. <set alicetopic=argentina> 
 
 + what is the capital * jarvis island
 - none; administered from Washington, DC. <set alicetopic=jarvis island> 
@@ -593,7 +593,7 @@
 - Taipei. <set alicetopic=taiwan> 
 
 + what is the capital * paris
-- Is this a trick question? <set alicetopic=PARIS> 
+- Is this a trick question? <set alicetopic=paris> 
 
 + what is the capital * liberia
 - Monrovia. <set alicetopic=liberia> 
@@ -617,10 +617,10 @@
 - Moscow. <set alicetopic=russia> 
 
 + what is the capital * pakistan
-- It is called Islamabad. <set alicetopic=PAKISTAN> 
+- It is called Islamabad. <set alicetopic=pakistan> 
 
 + what is the capital * zimbabwe
-- The capital is called Harare. <set alicetopic=ZIMBABWE> 
+- The capital is called Harare. <set alicetopic=zimbabwe> 
 
 + what is the capital * turks *
 - Grand Turk. <set alicetopic=turks and caicos islands> 
@@ -761,7 +761,7 @@
 - Santo Domingo. <set alicetopic=dominican republic> 
 
 + what is the capital * peru
-- Lima is the capital of Peru. <set alicetopic=PERU> 
+- Lima is the capital of Peru. <set alicetopic=peru> 
 
 + what is the capital * kentucky
 - Frankfort.
@@ -905,7 +905,7 @@
 - Nairobi. <set alicetopic=kenya> 
 
 + what is the capital * turkey
-- Ankara is the capital of Turkey. <set alicetopic=TURKEY> 
+- Ankara is the capital of Turkey. <set alicetopic=turkey> 
 
 + what is the capital * america
 - The capital of the U.S. is Washington, D. C.
@@ -923,7 +923,7 @@
 - none; each atoll has its own administrative center. <set alicetopic=tokelau> 
 
 + what is the capital * bulgaria
-- The capital of Bulgaria is Sofia. <set alicetopic=BULGARIA> 
+- The capital of Bulgaria is Sofia. <set alicetopic=bulgaria> 
 
 + what is the capital * venezuela
 - Caracas. <set alicetopic=venezuela> 
@@ -995,7 +995,7 @@
 - Sarajevo.
 
 + what is the capital of alberta
-- Edmonton. <set alicetopic=Edmonton> 
+- Edmonton. <set alicetopic=edmonton> 
 
 + what is the capital of *
 - I know the capital of {random}Canada is Toronto.|California is Sacramento.|Georgia is Atlanta.|France is Paris.{/random}
@@ -1019,26 +1019,26 @@
 - United States of America
 
 + what is bethlehem
-- Bethlehem is a small city in northeastern Pennsylvania. <set alicetopic=BETHLEHEM> 
+- Bethlehem is a small city in northeastern Pennsylvania. <set alicetopic=bethlehem> 
 
 + what is greece
 - It's a word, it's a word, it's got mood it's got feeling.
 - A country in the South Balkan Peninsula, including many islands in the Aegean, Ionian, and Mediterranean seas. It is 50,949 square miles with a population of 9,900,000.
 
 + what is copenhagen
-- It is the capital of Denmark. Seaport on the east coast of Zealand. Its population is 633,00. <set alicetopic=Copehagen> 
+- It is the capital of Denmark. Seaport on the east coast of Zealand. Its population is 633,00. <set alicetopic=copehagen> 
 
 + what is denmark
 - A country in Europe, occupyinh most of the peninsula of Jutland and several nearby islands in the North and Baltic seas. It is 16,632 square miles with a population of 5,124,000.
 
 + i live in california
-- Where in <set location=California><get location>? <set alicetopic=California>
+- Where in <set location=California><get location>? <set alicetopic=california>
 
 + i do not live in usa
 - Where are you located?
 
 + i love denmark
-- What is so great about it?<set alicetopic=DENMARK>
+- What is so great about it?<set alicetopic=denmark>
 
 + australia *
 - I would like to go to Australia sometime.
@@ -1113,7 +1113,7 @@
 - Northern Africa, bordering the Red Sea, between Egypt and Eritrea. <set alicetopic=sudan> 
 
 + where is cincinnati
-- <set alicetopic= CINCINNATI ><get alicetopic> is a large city in Ohio.
+- <set alicetopic=cincinnati ><get alicetopic> is a large city in Ohio.
 
 + where is burundi
 - Central Africa, east of Zaire. <set alicetopic=burundi> 
@@ -1122,19 +1122,19 @@
 - Eastern Africa, bordering the Red Sea, between Djibouti and Sudan. <set alicetopic=eritrea> 
 
 + where is indianapolis
-- <set alicetopic= INDIANAPOLIS ><get alicetopic> is a large city in Indiana.
+- <set alicetopic=indianapolis ><get alicetopic> is a large city in Indiana.
 
 + where is columbus
-- <set alicetopic= COLUMBUS ><get alicetopic> is a city in Ohio.
+- <set alicetopic=columbus ><get alicetopic> is a city in Ohio.
 
 + where is sheffield
-- <set alicetopic= SHEFFIELD ><get alicetopic> is a town in England.
+- <set alicetopic=sheffield ><get alicetopic> is a town in England.
 
 + where is sydney
 - <set it=Sydney><get it> is a city in Australia.
 
 + where is saturn
-- <set alicetopic= SATURN ><get alicetopic> is the the sixth planet from the sun.
+- <set alicetopic=saturn ><get alicetopic> is the the sixth planet from the sun.
 
 + where is greece
 - <set it=Greece><get it> is a country in the Balkans.
@@ -1173,22 +1173,22 @@
 - <set it=London><get it> is a city in England.
 
 + where is japan
-- <set alicetopic= JAPAN ><get alicetopic> is an island nation on the eastern side of Asia.
+- <set alicetopic=japan ><get alicetopic> is an island nation on the eastern side of Asia.
 
 + where is mali
 - Western Africa, southwest of Algeria. <set alicetopic=mali> 
 
 + where is china
-- <set alicetopic= CHINA ><get alicetopic> is a large nation in Asia.
+- <set alicetopic=china ><get alicetopic> is a large nation in Asia.
 
 + where is rome
-- <set alicetopic= ROME ><get alicetopic> is a large city in Italy.
+- <set alicetopic=rome ><get alicetopic> is a large city in Italy.
 
 + where is chicago
-- <set alicetopic= CHICAGO ><get alicetopic> is a large city in Illinois, on lake Michigan.
+- <set alicetopic=chicago ><get alicetopic> is a large city in Illinois, on lake Michigan.
 
 + where is pittsfield
-- <set alicetopic= PITTSFIELD ><get alicetopic> is a town in Massachusettes.
+- <set alicetopic=pittsfield ><get alicetopic> is a town in Massachusettes.
 
 + where is oslo
 - <set it=Oslo><get it> is a city in Norway.
@@ -1197,10 +1197,10 @@
 - <set it=Acapulco><get it> is a city on the Pacific coast of Mexico.
 
 + where is cambridge
-- <set alicetopic= CAMBRIDGE ><get alicetopic> is a city in Massachusetts, also in England.
+- <set alicetopic=cambridge ><get alicetopic> is a city in Massachusetts, also in England.
 
 + where is hull
-- <set alicetopic= HULL ><get alicetopic> is a town in England.
+- <set alicetopic=hull ><get alicetopic> is a town in England.
 
 + where is bhutan
 - Southern Asia, between China and India. <set alicetopic=bhutan> 
@@ -1212,7 +1212,7 @@
 - Caribbean, island in the Caribbean Sea, south of Cuba. <set alicetopic=jamaica> 
 
 + where is micronesia
-- <set alicetopic= MICRONESIA ><get alicetopic> is a collection of islands in the Pacific ocean.
+- <set alicetopic=micronesia ><get alicetopic> is a collection of islands in the Pacific ocean.
 
 + where is zaire
 - Central Africa, northeast of Angola. <set alicetopic=zaire> 
@@ -1227,28 +1227,28 @@
 - Southern Africa, islands in the southern Mozambique Channel, about one-half of the way from Madagascar to Mozambique. <set alicetopic=bassas da india> 
 
 + where is sofia
-- <set alicetopic= SOFIA ><get alicetopic> is a city in Bulgaria.
+- <set alicetopic=sofia ><get alicetopic> is a city in Bulgaria.
 
 + where is indiana
 - <set it=Indiana><get it> is in the midwestern United States.
 
 + where is siam
-- <set alicetopic= SIAM ><get alicetopic> is another name for Thailand.
+- <set alicetopic=siam ><get alicetopic> is another name for Thailand.
 
 + where is norfolk island
 - Oceania, island in the South Pacific Ocean, east of Australia. <set alicetopic=norfolk island> 
 
 + where is norfolk
-- <set alicetopic= NORFOLK ><get alicetopic> is a city in Virgina.
+- <set alicetopic=norfolk ><get alicetopic> is a city in Virgina.
 
 + where is madagascar
 - Southern Africa, island in the Indian Ocean, east of Mozambique. <set alicetopic=madagascar> 
 
 + where is warsaw
-- <set alicetopic= WARSAW ><get alicetopic> is a large city in Poland.
+- <set alicetopic=warsaw ><get alicetopic> is a large city in Poland.
 
 + where is bristol
-- <set alicetopic= BRISTOL ><get alicetopic> is a city on the west coast of England.
+- <set alicetopic=bristol ><get alicetopic> is a city on the west coast of England.
 
 + where is algeria
 - Northern Africa, bordering the Mediterranean Sea, between Morocco and Tunisia. <set alicetopic=algeria> 
@@ -1257,19 +1257,19 @@
 - <set it=Russia><get it> is a large country in Asia.
 
 + where is boston
-- <set alicetopic= BOSTON ><get alicetopic> is a city in Massachusettes.
+- <set alicetopic=boston ><get alicetopic> is a city in Massachusettes.
 
 + where is kenya
-- <set alicetopic= KENYA ><get alicetopic> is a country in central Africa.
+- <set alicetopic=kenya ><get alicetopic> is a country in central Africa.
 
 + where is taipei
-- It is the capital of Taiwan. <set alicetopic=Taipei> 
+- It is the capital of Taiwan. <set alicetopic=taipei> 
 
 + where is england
 - <set it=England><get it> is located on a small island off the coast of Europe.
 
 + where is neptune
-- <set alicetopic= NEPTUNE ><get alicetopic> is the eighth planet from the Sun, the "last gas" planet.
+- <set alicetopic=neptune ><get alicetopic> is the eighth planet from the Sun, the "last gas" planet.
 
 + where is oman
 - Middle East, bordering the Arabian Sea, Gulf of Oman, and Persian Gulf, between Yemen and UAE. <set alicetopic=oman> 
@@ -1284,25 +1284,25 @@
 - Western Africa, bordering the North Atlantic Ocean, between Nigeria and Togo. <set alicetopic=benin> 
 
 + where is seattle
-- <set alicetopic= SEATTLE ><get alicetopic> is a large city in Washington state, near Vancover Canada.
+- <set alicetopic=seattle ><get alicetopic> is a large city in Washington state, near Vancover Canada.
 
 + where is singapore
-- <set alicetopic= SINGAPORE ><get alicetopic> is a island nation-state at the tip of the Malay penninsula.
+- <set alicetopic=singapore ><get alicetopic> is a island nation-state at the tip of the Malay penninsula.
 
 + where is ontario
-- <set alicetopic= ONTARIO ><get alicetopic> is a province of Canada.
+- <set alicetopic=ontario ><get alicetopic> is a province of Canada.
 
 + where is wyoming
-- <set alicetopic= WYOMING ><get alicetopic> is a western U.S. state between Montana and Colorado.
+- <set alicetopic=wyoming ><get alicetopic> is a western U.S. state between Montana and Colorado.
 
 + where is elvis
 - <set he=Elvis><get he> passed away some time ago.
 
 + where is oxnard
-- <set alicetopic= OXNARD ><get alicetopic> is a city in California.
+- <set alicetopic=oxnard ><get alicetopic> is a city in California.
 
 + where is spain
-- <set alicetopic= SPAIN ><get alicetopic> is on the Iberian penninsula in southwestern Europe.
+- <set alicetopic=spain ><get alicetopic> is on the Iberian penninsula in southwestern Europe.
 
 + where is toronto
 - <set it=Toronto><get it> is a city in Canada.
@@ -1338,13 +1338,13 @@
 - Southern Africa, island in the Mozambique Channel, about one-third of the way between Madagascar and Mozambique. <set alicetopic=juan de nova island> 
 
 + where is melbourne
-- <set alicetopic= MELBOURNE ><get alicetopic> is a city in Australia and also in Florida.
+- <set alicetopic=melbourne ><get alicetopic> is a city in Australia and also in Florida.
 
 + where is kazakstan
 - Central Asia, northwest of China. <set alicetopic=kazakstan> 
 
 + where is vermont
-- <set alicetopic= VERMONT ><get alicetopic> is in New England, between New York and New Hampshire, on the west bank of the Connecticut river.
+- <set alicetopic=vermont ><get alicetopic> is in New England, between New York and New Hampshire, on the west bank of the Connecticut river.
 
 + where is united arab emirates
 - Middle East, bordering the Gulf of Oman and the Persian Gulf, between Oman and Saudi Arabia. <set alicetopic=united arab emirates> 
@@ -1362,7 +1362,7 @@
 - Middle America, bordering the North Pacific Ocean, between Guatemala and Honduras. <set alicetopic=el salvador> 
 
 + where is panama
-- <set alicetopic= PANAMA ><get alicetopic> is on the isthmus between North and South America.
+- <set alicetopic=panama ><get alicetopic> is on the isthmus between North and South America.
 
 + where is christmas island
 - Southeastern Asia, island in the Indian Ocean, south of Indonesia. <set alicetopic=christmas island> 
@@ -1389,13 +1389,13 @@
 - Oceania, island in the North Pacific Ocean, about two-thirds of the way from Hawaii to the Northern Mariana Islands. <set alicetopic=wake island> 
 
 + where is corona
-- <set alicetopic= CORONA ><get alicetopic> is a suburb of Los Angeles.
+- <set alicetopic=corona ><get alicetopic> is a suburb of Los Angeles.
 
 + where is wonderland
-- <set alicetopic= WONDERLAND ><get alicetopic> is in the future.
+- <set alicetopic=wonderland ><get alicetopic> is in the future.
 
 + where is korea
-- <set alicetopic= KOREA ><get alicetopic> is a peninsula on the eastern edge of the Asian continent.
+- <set alicetopic=korea ><get alicetopic> is a peninsula on the eastern edge of the Asian continent.
 
 + where is illinois
 - <set it=Illinos><get it> is in the midwestern United States.
@@ -1410,7 +1410,7 @@
 - Middle East, archipelago in the Persian Gulf, east of Saudi Arabia. <set alicetopic=bahrain> 
 
 + where is cupertino
-- <set alicetopic= CUPERTINO ><get alicetopic> is in Silicon Valley.
+- <set alicetopic=cupertino ><get alicetopic> is in Silicon Valley.
 
 + where is moldova
 - Eastern Europe, northeast of Romania. <set alicetopic=moldova> 
@@ -1425,13 +1425,13 @@
 - <set it=Finland><get it> is a country in eastern europe, bordering Sweden and Russia.
 
 + where is rio
-- <set alicetopic= RIO ><get alicetopic> is a large city in Brazil
+- <set alicetopic=rio ><get alicetopic> is a large city in Brazil
 
 + where is slovakia
 - Central Europe, south of Poland. <set alicetopic=slovakia> 
 
 + where is macedonia
-- <set alicetopic= MACEDONIA ><get alicetopic> is a small nation between Greece and Serbia.
+- <set alicetopic=macedonia ><get alicetopic> is a small nation between Greece and Serbia.
 
 + where is australia
 - <set it=Australia><get it> is a large island-continent in the southern hemishphere.
@@ -1446,7 +1446,7 @@
 - Oceania, reef in the North Pacific Ocean, about one-half of the way from Hawaii to American Samoa. <set alicetopic=kingman reef> 
 
 + where is perth
-- <set alicetopic= PERTH ><get alicetopic> is a city in western Australia.
+- <set alicetopic=perth ><get alicetopic> is a city in western Australia.
 
 + where is heaven
 - All around us.
@@ -1473,16 +1473,16 @@
 - Southeastern Europe, bordering the Adriatic Sea, between Croatia and Italy. <set alicetopic=slovenia> 
 
 + where is lichtenstein
-- <set alicetopic= LICHTENSTEIN ><get alicetopic> is a tiny country in central Europe.
+- <set alicetopic=lichtenstein ><get alicetopic> is a tiny country in central Europe.
 
 + where is mongolia
-- <set alicetopic= MONGOLIA ><get alicetopic> is in central Asia between Russian Siberia and China.
+- <set alicetopic=mongolia ><get alicetopic> is in central Asia between Russian Siberia and China.
 
 + where is wales
 - <set it=Wales><get it> is located on a small island off the coast of Europe.
 
 + where is montana
-- <set alicetopic= MONTANA ><get alicetopic> is in the northwest United States between the Dakotas and Idaho.
+- <set alicetopic=montana ><get alicetopic> is in the northwest United States between the Dakotas and Idaho.
 
 + where is hoffa
 - We may never know.
@@ -1491,25 +1491,25 @@
 - Southern Africa, island in the Indian Ocean, east of Madagascar. <set alicetopic=mauritius> 
 
 + where is berkeley
-- <set alicetopic= BERKELEY ><get alicetopic> is in northern California, across the bay from San Francisco.
+- <set alicetopic=berkeley ><get alicetopic> is in northern California, across the bay from San Francisco.
 
 + where is mars
-- <set alicetopic= MARS ><get alicetopic> is the fourth planet from the Sun.
+- <set alicetopic=mars ><get alicetopic> is the fourth planet from the Sun.
 
 + where is morocco
-- <set alicetopic= MOROCCO ><get alicetopic> is a nation in northwest Africa, close to Spain.
+- <set alicetopic=morocco ><get alicetopic> is a nation in northwest Africa, close to Spain.
 
 + where is belgium
 - <set it=Belgium><get it> is a country in western Europe, between France, Germany and Holland.
 
 + where is florida
-- <set alicetopic= FLORIDA ><get alicetopic> is in the southeast United States, extending on a large peninsula.
+- <set alicetopic=florida ><get alicetopic> is in the southeast United States, extending on a large peninsula.
 
 + where is guam
 - Oceania, island in the North Pacific Ocean, about three-quarters of the way from Hawaii to the Philippines. <set alicetopic=guam> 
 
 + where is colombia
-- <set alicetopic= COLOMBIA ><get alicetopic> is a country in South America.
+- <set alicetopic=colombia ><get alicetopic> is a country in South America.
 
 + where is faroe islands
 - Northern Europe, island group between the Norwegian Sea and the north Atlantic Ocean, about one-half of the way from Iceland to Norway. <set alicetopic=faroe islands> 
@@ -1527,7 +1527,7 @@
 - <set it=Moscow><get it> is a city in Russia.
 
 + where is kuwait
-- <set alicetopic= KUWAIT ><get alicetopic> is a small nation on the Persian gulf.
+- <set alicetopic=kuwait ><get alicetopic> is a small nation on the Persian gulf.
 
 + where is holland
 - <set it=Holland><get it> is a country in western Europe, next to Germany and Belgium.
@@ -1542,7 +1542,7 @@
 - Southern Africa, island in the Indian Ocean, east of Madagascar. <set alicetopic=tromelin island> 
 
 + where is minnesota
-- <set alicetopic= MINNESOTA ><get alicetopic> is on the northern border of the United States, between Wisconsin and North Dakota.
+- <set alicetopic=minnesota ><get alicetopic> is on the northern border of the United States, between Wisconsin and North Dakota.
 
 + where is * virginia
 - Um, in Virgina somewhere?
@@ -1554,10 +1554,10 @@
 - Oceania, group of islands in the South Pacific Ocean, about one-half of the way from Hawaii to New Zealand. <set alicetopic=american samoa> 
 
 + where is atlanta
-- It the capital of Georgia. <set alicetopic=Atlanta> 
+- It the capital of Georgia. <set alicetopic=atlanta> 
 
 + where is seoul
-- It is the capital of South Korea. <set alicetopic=Seoul> 
+- It is the capital of South Korea. <set alicetopic=seoul> 
 
 + where is manhattan
 - <set it=Manhattan><get it> is the island center of New York City.
@@ -1575,22 +1575,22 @@
 - Western Africa, bordering the North Atlantic Ocean, between Benin and Ghana. <set alicetopic=togo> 
 
 + where is troy
-- <set alicetopic= TROY ><get alicetopic> is a city in New York.
+- <set alicetopic=troy ><get alicetopic> is a city in New York.
 
 + where is ghana
-- <set alicetopic= GHANA ><get alicetopic> is a nation in west Africa.
+- <set alicetopic=ghana ><get alicetopic> is a nation in west Africa.
 
 + where is central african republic
 - Central Africa, north of Zaire. <set alicetopic=central african republic> 
 
 + where is saskatoon
-- <set alicetopic= SASKATOON ><get alicetopic> is a city in Saskatchewan.
+- <set alicetopic=saskatoon ><get alicetopic> is a city in Saskatchewan.
 
 + where is einstein
 - <set he=Einstein><get he> passed away some time ago.
 
 + where is mit
-- <set alicetopic= MIT ><get alicetopic> is a trade school in Cambridge, Mass.
+- <set alicetopic=mit ><get alicetopic> is a trade school in Cambridge, Mass.
 
 + where is bulgaria
 - <set it=Bulgaria><get it> is a country in the Balkans.
@@ -1602,7 +1602,7 @@
 - <set it=Mississippi><get it> is in the southern United States.
 
 + where is indonesia
-- <set alicetopic= INDONESIA ><get alicetopic> is an island nation in southeast Asia.
+- <set alicetopic=indonesia ><get alicetopic> is an island nation in southeast Asia.
 
 + where is western sahara
 - Northern Africa, bordering the North Atlantic Ocean, between Mauritania and Morocco. <set alicetopic=western sahara> 
@@ -1611,13 +1611,13 @@
 - Oceania, group of islands in the South Pacific Ocean, about one-half of the way from Hawaii to New Zealand. <set alicetopic=western samoa> 
 
 + where is jupiter
-- <set alicetopic= JUPITER ><get alicetopic> is the fifth planet from the sun.
+- <set alicetopic=jupiter ><get alicetopic> is the fifth planet from the sun.
 
 + where is austria
 - Central Europe, north of Italy. <set alicetopic=austria> 
 
 + where is connecticut
-- <set alicetopic= CONNECTICUT ><get alicetopic> is a New England state between New York, Massaschusetts and Rhode Island.
+- <set alicetopic=connecticut ><get alicetopic> is a New England state between New York, Massaschusetts and Rhode Island.
 
 + where is azerbaijan
 - Southwestern Asia, bordering the Caspian Sea, between Iran and Russia. <set alicetopic=azerbaijan> 
@@ -1650,16 +1650,16 @@
 - <set it=Denver><get it> is a city in Colorado.
 
 + where is yakima
-- <set alicetopic= YAKIMA ><get alicetopic> is a city and a river in Washington.
+- <set alicetopic=yakima ><get alicetopic> is a city and a river in Washington.
 
 + where is sri lanka
 - Southern Asia, island in the Indian Ocean, south of India. <set alicetopic=sri lanka> 
 
 + where is sri
-- <set alicetopic= SRI ><get alicetopic> is a research outfit in Silicon Valley.
+- <set alicetopic=sri ><get alicetopic> is a research outfit in Silicon Valley.
 
 + where is iowa
-- <set alicetopic= IOWA ><get alicetopic> is in the midwest, between the Mississipi and Missouri rivers.
+- <set alicetopic=iowa ><get alicetopic> is in the midwest, between the Mississipi and Missouri rivers.
 
 + where is asia
 - <set it=Asia><get it> is a the largest continent.
@@ -1677,16 +1677,16 @@
 - <set it=Amsterdam><get it> is a city in the Netherlands.
 
 + where is albuquerque
-- <set alicetopic= ALBUQUERQUE ><get alicetopic> is a city in New Mexico.
+- <set alicetopic=albuquerque ><get alicetopic> is a city in New Mexico.
 
 + where is jarvis island
 - Oceania, island in the South Pacific Ocean, about one-half of the way from Hawaii to the Cook Islands. <set alicetopic=jarvis island> 
 
 + where is stonewall
-- <set alicetopic= STONEWALL ><get alicetopic> is a town in Mississippi.
+- <set alicetopic=stonewall ><get alicetopic> is a town in Mississippi.
 
 + where is tuscaloosa
-- <set alicetopic= TUSCALOOSA ><get alicetopic> is in Alabama, last I heard.
+- <set alicetopic=tuscaloosa ><get alicetopic> is in Alabama, last I heard.
 
 + where is ecuador
 - Western South America, bordering the Pacific Ocean at the Equator, between Colombia and Peru. <set alicetopic=ecuador> 
@@ -1698,7 +1698,7 @@
 - <set it=Pennsylvania><get it> is located in the Northeastern United States.
 
 + where is nairobi
-- <set alicetopic= NAIROBI ><get alicetopic> is a city in Kenya.
+- <set alicetopic=nairobi ><get alicetopic> is a city in Kenya.
 
 + where is latvia
 - Eastern Europe, bordering the Baltic Sea, between Estonia and Lithuania. <set alicetopic=latvia> 
@@ -1725,7 +1725,7 @@
 - Eastern Europe, bordering the Black Sea, between Poland and Russia. <set alicetopic=ukraine> 
 
 + where is vietnam
-- <set alicetopic= VIETNAM ><get alicetopic> is in southeast Asia.
+- <set alicetopic=vietnam ><get alicetopic> is in southeast Asia.
 
 + where is british virgin islands
 - Caribbean, between the Caribbean Sea and the North Atlantic Ocean, east of Puerto Rico. <set alicetopic=british virgin islands> 
@@ -1737,13 +1737,13 @@
 - <set it=Switzerland><get it> is a country in centrail Europe, bordering Italy, Austria and France.
 
 + where is pluto
-- <set alicetopic= PLUTO ><get alicetopic> is the ninth planet from the Sun.
+- <set alicetopic=pluto ><get alicetopic> is the ninth planet from the Sun.
 
 + where is stockholm
-- <set alicetopic= STOCKHOLM ><get alicetopic> is a large city in Sweden.
+- <set alicetopic=stockholm ><get alicetopic> is a large city in Sweden.
 
 + where is egypt
-- <set alicetopic= EGYPT ><get alicetopic> is a country in north east Africa.
+- <set alicetopic=egypt ><get alicetopic> is a country in north east Africa.
 
 + where is honduras
 - Middle America, bordering the Caribbean Sea, between Guatemala and Nicaragua and bordering the North Pacific Ocean, between El Salvador and Nicaragua. <set alicetopic=honduras> 
@@ -1761,19 +1761,19 @@
 - Southern Africa, at the southern tip of the continent of Africa. <set alicetopic=south africa> 
 
 + where is hamburg
-- <set alicetopic= HAMBURG ><get alicetopic> is a large city in western Germany.
+- <set alicetopic=hamburg ><get alicetopic> is a large city in western Germany.
 
 + where is belize
 - Middle America, bordering the Caribbean Sea, between Guatemala and Mexico. <set alicetopic=belize> 
 
 + where is kashmir
-- <set alicetopic= KASHMIR ><get alicetopic> is a disputed area between India and Pakistan.
+- <set alicetopic=kashmir ><get alicetopic> is a disputed area between India and Pakistan.
 
 + where is uzbekistan
 - Central Asia, north of Afghanistan. <set alicetopic=uzbekistan> 
 
 + where is toledo
-- <set alicetopic= TOLEDO ><get alicetopic> is a city in Ohio.
+- <set alicetopic=toledo ><get alicetopic> is a city in Ohio.
 
 + where is paracel islands
 - Southeastern Asia, group of small islands and reefs in the South China Sea, about one-third of the way from central Vietnam to the northern Philippines. <set alicetopic=paracel islands> 
@@ -1785,7 +1785,7 @@
 - Oceania, atoll in the North Pacific Ocean, about one-third of the way from Honolulu to Tokyo. <set alicetopic=midway islands> 
 
 + where is albania
-- <set alicetopic= ALBANIA ><get alicetopic> is on the Adriatic sea, bordering Greece and the former Yugoslavia.
+- <set alicetopic=albania ><get alicetopic> is on the Adriatic sea, bordering Greece and the former Yugoslavia.
 
 + where is equatorial guinea
 - Western Africa, bordering the North Atlantic Ocean, between Cameroon and Gabon. <set alicetopic=equatorial guinea> 
@@ -1809,7 +1809,7 @@
 - Western Europe, island in the English Channel, northwest of France. <set alicetopic=jersey> 
 
 + where is carthage
-- <set alicetopic= CARTHAGE ><get alicetopic> is the ancient name for Tunisia.
+- <set alicetopic=carthage ><get alicetopic> is the ancient name for Tunisia.
 
 + where is cook islands
 - Oceania, group of islands in the South Pacific Ocean, about one-half of the way from Hawaii to New Zealand. <set alicetopic=cook islands> 
@@ -1824,7 +1824,7 @@
 - Northern Africa, bordering the North Atlantic Ocean, between Senegal and Western Sahara. <set alicetopic=mauritania> 
 
 + where is omaha
-- <set alicetopic= OMAHA ><get alicetopic> is a city in Nebraska.
+- <set alicetopic=omaha ><get alicetopic> is a city in Nebraska.
 
 + where is cyprus
 - Middle East, island in the Mediterranean Sea, south of Turkey. <set alicetopic=cyprus> 
@@ -1881,7 +1881,7 @@
 - Southern Africa, bordering the South Atlantic Ocean, between Namibia and Zaire. <set alicetopic=angola> 
 
 + where is ankara
-- <set alicetopic= ANKARA ><get alicetopic> is a city in Turkey.
+- <set alicetopic=ankara ><get alicetopic> is a city in Turkey.
 
 + where is saudi arabia
 - Middle East, bordering the Persian Gulf and the Red Sea, north of Yemen. <set alicetopic=saudi arabia> 
@@ -1890,10 +1890,10 @@
 - Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, about one-half of the way from Puerto Rico to Trinidad and Tobago. <set alicetopic=dominica> 
 
 + where is suez
-- <set alicetopic= SUEZ ><get alicetopic> is a canal between the Mediterranian and the Red Sea.
+- <set alicetopic=suez ><get alicetopic> is a canal between the Mediterranian and the Red Sea.
 
 + where is moon
-- <set alicetopic= MOON ><get alicetopic> is a satellite of the Earth.
+- <set alicetopic=moon ><get alicetopic> is a satellite of the Earth.
 
 + where is grenada
 - Caribbean, island in the Caribbean Sea, north of Trinidad and Tobago. <set alicetopic=grenada> 
@@ -1905,13 +1905,13 @@
 - North America occupies the northern most of the norther hemisphere of the Earth, from the Bering Strait to Labrador.
 
 + where is aruba
-- <set alicetopic= ARUBA ><get alicetopic> is an island in the Netherlands Antilles, near South America.
+- <set alicetopic=aruba ><get alicetopic> is an island in the Netherlands Antilles, near South America.
 
 + where is the robot
 - The robot is here in your computer.
 
 + where is the sun
-- It is in the center of the solar system. <set alicetopic=SUN> 
+- It is in the center of the solar system. <set alicetopic=sun> 
 
 + where is the philippines
 - An island nation in the South Pacific.
@@ -1935,22 +1935,22 @@
 - Follow the plumbing.
 
 + where is the airport
-- It is where the planes land. <set alicetopic=Airport> 
+- It is where the planes land. <set alicetopic=airport> 
 
 + where is the moon
-- <set alicetopic=The Moon><get alicetopic> orbits around the Earth.
+- <set alicetopic=the moon><get alicetopic> orbits around the Earth.
 
 + where is the heart
 - The heart is at the center of things.
 
 + where is washington
-- <set alicetopic= WASHINGTON ><get alicetopic> is a state in the northwest corner of the U.S.
+- <set alicetopic=washington ><get alicetopic> is a state in the northwest corner of the U.S.
 
 + where is virginia
 - <set it=Virginia><get it> is in the eastern United States.
 
 + where is space
-- <set alicetopic= SPACE ><get alicetopic> is all around us.
+- <set alicetopic=space ><get alicetopic> is all around us.
 
 + where is kiribati
 - Oceania, group of islands in the Pacific Ocean, straddling the equator and the International Date Line, about one-half of the way from Hawaii to Australia. <set alicetopic=kiribati> 
@@ -1959,13 +1959,13 @@
 - Southeastern Asia, bordering the South China Sea and Malaysia. <set alicetopic=brunei> 
 
 + where is hades
-- <set alicetopic= HADES ><get alicetopic> is Hell.
+- <set alicetopic=hades ><get alicetopic> is Hell.
 
 + where is zambia
 - Southern Africa, east of Angola. <set alicetopic=zambia> 
 
 + where is ohio
-- <set alicetopic= OHIO ><get alicetopic> is in the midwest United States, between Pennsylvania and Indiana.
+- <set alicetopic=ohio ><get alicetopic> is in the midwest United States, between Pennsylvania and Indiana.
 
 + where is oklahoma
 - <set it=Oklahoma><get it> is in the midwestern United States.W
@@ -1998,7 +1998,7 @@
 - <set it=Newark><get it> is located in the Northeastern United States.
 
 + where is cornwall
-- <set alicetopic= CORNWALL ><get alicetopic> is a city in England.
+- <set alicetopic=cornwall ><get alicetopic> is a city in England.
 
 + where is cambodia
 - Southeastern Asia, bordering the Gulf of Thailand, between Thailand and Vietnam. <set alicetopic=cambodia> 
@@ -2007,7 +2007,7 @@
 - Southern South America, bordering the South Atlantic Ocean, between Argentina and Brazil. <set alicetopic=uruguay> 
 
 + where is bolivia
-- <set alicetopic= BOLIVIA ><get alicetopic> is a land-locked country in South America,
+- <set alicetopic=bolivia ><get alicetopic> is a land-locked country in South America,
 
 + where is somalia
 - Eastern Africa, bordering the Gulf of Aden and the Indian Ocean, east of Ethiopia. <set alicetopic=somalia> 
@@ -2016,10 +2016,10 @@
 - Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, northeast of Venezuela. <set alicetopic=barbados> 
 
 + where is martinique
-- <set alicetopic= MARTINIQUE ><get alicetopic> is in the Caribbean, part of the Leeward and Windward Island chain.
+- <set alicetopic=martinique ><get alicetopic> is in the Caribbean, part of the Leeward and Windward Island chain.
 
 + where is bilbao
-- <set alicetopic= BILBAO ><get alicetopic> is a city on the north coast of Spain.
+- <set alicetopic=bilbao ><get alicetopic> is a city on the north coast of Spain.
 
 + where is netherlands antilles
 - Caribbean, two island groups in the Caribbean Sea - one includes Curacao and Bonaire north of Venezuela and the other is east of the Virgin Islands. <set alicetopic=netherlands antilles> 
@@ -2028,7 +2028,7 @@
 - Western Europe, bordering the North Sea, between Belgium and Germany. <set alicetopic=netherlands> 
 
 + where is dusseldorf
-- <set alicetopic= DUSSELDORF ><get alicetopic> is a large city in western Germany.
+- <set alicetopic=dusseldorf ><get alicetopic> is a large city in western Germany.
 
 + where is namibia
 - Southern Africa, bordering the South Atlantic Ocean, between Angola and South Africa. <set alicetopic=namibia> 
@@ -2040,7 +2040,7 @@
 - Central Asia, bordering the Caspian Sea, between Iran and Kazakstan. <set alicetopic=turkmenistan> 
 
 + where is pittsburgh
-- <set alicetopic= PITTSBURGH ><get alicetopic> is a large city in western Pennsylvania.
+- <set alicetopic=pittsburgh ><get alicetopic> is a large city in western Pennsylvania.
 
 + where is norway
 - <set it=Norway><get it> is a country in northern europe, bordering Sweden.
@@ -2061,13 +2061,13 @@
 - <set it=Idaho><get it> is in the western United States.
 
 + where is turkey
-- <set alicetopic= TURKEY ><get alicetopic> is in southwest Asia, between Europe and the middle East and guarding the Black Sea of Russia.
+- <set alicetopic=turkey ><get alicetopic> is in southwest Asia, between Europe and the middle East and guarding the Black Sea of Russia.
 
 + where is budapest
-- <set alicetopic= BUDAPEST ><get alicetopic> is a city in Hungary, on the Danube river.
+- <set alicetopic=budapest ><get alicetopic> is a city in Hungary, on the Danube river.
 
 + where is philadelphia
-- <set alicetopic= PHILADELPHIA ><get alicetopic> is a large city in southeast Pennsylvania, between New York and Washington, D. C.
+- <set alicetopic=philadelphia ><get alicetopic> is a large city in southeast Pennsylvania, between New York and Washington, D. C.
 
 + where is niger
 - Western Africa, southeast of Algeria. <set alicetopic=niger> 
@@ -2082,7 +2082,7 @@
 - Northern Europe, island between the Greenland Sea and the Norwegian Sea, northeast of Iceland. <set alicetopic=jan mayen> 
 
 + where is utopia
-- <set alicetopic= UTOPIA ><get alicetopic> is all around us, if we make it.
+- <set alicetopic=utopia ><get alicetopic> is all around us, if we make it.
 
 + where is czech republic
 - Central Europe, southeast of Germany. <set alicetopic=czech republic> 
@@ -2094,13 +2094,13 @@
 - Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Mauritania. <set alicetopic=senegal> 
 
 + where is bergen
-- <set alicetopic= BERGEN ><get alicetopic> is a city in Germany and also in Norway.
+- <set alicetopic=bergen ><get alicetopic> is a city in Germany and also in Norway.
 
 + where is phoenix
-- <set alicetopic= PHOENIX ><get alicetopic> is a large city in Arizona.
+- <set alicetopic=phoenix ><get alicetopic> is a large city in Arizona.
 
 + where is croatia
-- <set alicetopic= CROATIA ><get alicetopic> is part of the former Yugoslavia, also bordering on Hungary.
+- <set alicetopic=croatia ><get alicetopic> is part of the former Yugoslavia, also bordering on Hungary.
 
 + where is nigeria
 - Western Africa, bordering the Gulf of Guinea, between Benin and Cameroon. <set alicetopic=nigeria> 
@@ -2118,7 +2118,7 @@
 - Central Africa, south of Libya. <set alicetopic=chad> 
 
 + where is voyager
-- <set alicetopic= VOYAGER ><get alicetopic> is lost in Delta Quadrant.
+- <set alicetopic=voyager ><get alicetopic> is lost in Delta Quadrant.
 
 + where is burkina faso
 - Western Africa, north of Ghana. <set alicetopic=burkina faso> 
@@ -2127,19 +2127,19 @@
 - Middle East, west of Jordan. <set alicetopic=west bank> 
 
 + where is charlotte
-- <set alicetopic= CHARLOTTE ><get alicetopic> is in North Carolina.
+- <set alicetopic=charlotte ><get alicetopic> is in North Carolina.
 
 + where is montreal
 - <set it=Montreal><get it> is a city in Canada.
 
 + where is edmonton
-- <set alicetopic= EDMONTON ><get alicetopic> is a large city in Alberta.
+- <set alicetopic=edmonton ><get alicetopic> is a large city in Alberta.
 
 + where is anguilla
 - Caribbean, island in the Caribbean Sea, east of Puerto Rico. <set alicetopic=anguilla> 
 
 + where is frankfurt
-- <set alicetopic= FRANKFURT ><get alicetopic> is a large city in western Germany.
+- <set alicetopic=frankfurt ><get alicetopic> is a large city in western Germany.
 
 + where is glorioso islands
 - Southern Africa, group of islands in the Indian Ocean, northwest of Madagascar. <set alicetopic=glorioso islands> 
@@ -2148,16 +2148,16 @@
 - Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, northeast of Venezuela. <set alicetopic=trinidad and tobago> 
 
 + where is trinidad
-- <set alicetopic= TRINIDAD ><get alicetopic> is an island nation in the Netherlands Antilles.
+- <set alicetopic=trinidad ><get alicetopic> is an island nation in the Netherlands Antilles.
 
 + where is britain
-- On an island off the coast of Europe. <set alicetopic=Britain> 
+- On an island off the coast of Europe. <set alicetopic=britain> 
 
 + where is arkansas
-- <set alicetopic= ARKANSAS ><get alicetopic> is a southern State on the west bank of the Missisipi river.
+- <set alicetopic=arkansas ><get alicetopic> is a southern State on the west bank of the Missisipi river.
 
 + where is iraq
-- <set alicetopic= IRAQ ><get alicetopic> is in the middle east, on the Persian Gulf.
+- <set alicetopic=iraq ><get alicetopic> is in the middle east, on the Persian Gulf.
 
 + where is spratly islands
 - Southeastern Asia, group of reefs in the South China Sea, about two-thirds of the way from southern Vietnam to the southern Philippines. <set alicetopic=spratly islands> 
@@ -2172,13 +2172,13 @@
 - <set it=Tokyo><get it> is a city in Japan.
 
 + where is canberra
-- <set alicetopic= CANBERRA ><get alicetopic> is a city in Australia, between Sydney and Melbourne.
+- <set alicetopic=canberra ><get alicetopic> is a city in Australia, between Sydney and Melbourne.
 
 + where is cheddar cheese from
 - England.
 
 + where is nebraska
-- <set alicetopic= NEBRASKA ><get alicetopic> is on the west bank of the Missouri river, between South Dakota and Kansas.
+- <set alicetopic=nebraska ><get alicetopic> is on the west bank of the Missouri river, between South Dakota and Kansas.
 
 + where is jakarta
 - Jakarta, Indonesia.
@@ -2187,7 +2187,7 @@
 - Southeastern Asia, northeast of Thailand. <set alicetopic=laos> 
 
 + where is antarctica
-- <set alicetopic= ANTARCTICA ><get alicetopic> is the continent at the south pole.
+- <set alicetopic=antarctica ><get alicetopic> is the continent at the south pole.
 
 + where is europe
 - Europe is between Asia and America.
@@ -2199,22 +2199,22 @@
 - <set it=Hollywood><get it> is a small part of Los Angeles, California.
 
 + where is palestine
-- <set alicetopic= PALESTINE ><get alicetopic> is the old name for Israel, or the new name for the state inside Israel.
+- <set alicetopic=palestine ><get alicetopic> is the old name for Israel, or the new name for the state inside Israel.
 
 + where is thailand
-- <set alicetopic= THAILAND ><get alicetopic> is in southeast Asia, between Burma and Cambodia.
+- <set alicetopic=thailand ><get alicetopic> is in southeast Asia, between Burma and Cambodia.
 
 + where is burma
 - Southeastern Asia, bordering the Andaman Sea and the Bay of Bengal, between Bangladesh and Thailand. <set alicetopic=burma> 
 
 + where is alamo
-- <set alicetopic= ALAMO ><get alicetopic> is in San Antonio, Texas.
+- <set alicetopic=alamo ><get alicetopic> is in San Antonio, Texas.
 
 + where is ashmore and cartier islands
 - Southeastern Asia, islands in the Indian Ocean, northwest of Australia. <set alicetopic=ashmore and cartier islands> 
 
 + where is usa
-- <set alicetopic= USA ><get alicetopic> is in North America, between Canada and Mexico.
+- <set alicetopic=usa ><get alicetopic> is in North America, between Canada and Mexico.
 
 + where is sao tome and principe
 - Western Africa, island in the Atlantic Ocean, straddling the Equator, west of Gabon. <set alicetopic=sao tome and principe> 
@@ -2223,28 +2223,28 @@
 - Scotland shares an island with England and Wales, off the coast of Europe.
 
 + where is iceland
-- <set alicetopic= ICELAND ><get alicetopic> is an island in the north Atlantic ocean.
+- <set alicetopic=iceland ><get alicetopic> is an island in the north Atlantic ocean.
 
 + where is berlin
-- <set alicetopic= BERLIN ><get alicetopic> is in eastern Germany.
+- <set alicetopic=berlin ><get alicetopic> is in eastern Germany.
 
 + where is nepal
-- <set alicetopic= NEPAL ><get alicetopic> is a mountainous nation in southern Asia, between India and Tibet.
+- <set alicetopic=nepal ><get alicetopic> is a mountainous nation in southern Asia, between India and Tibet.
 
 + where is miami
-- <set alicetopic= MIAMI ><get alicetopic> is a large city in Florida, on the south Atlantic coast.
+- <set alicetopic=miami ><get alicetopic> is a large city in Florida, on the south Atlantic coast.
 
 + where is madras
-- <set alicetopic= MADRAS ><get alicetopic> is a city in India.
+- <set alicetopic=madras ><get alicetopic> is a city in India.
 
 + where is montserrat
 - Caribbean, island in the Caribbean Sea, southeast of Puerto Rico. <set alicetopic=montserrat> 
 
 + where is malta
-- <set alicetopic= MALTA ><get alicetopic> is an island in the Mediterranian sea, south of Sicily.
+- <set alicetopic=malta ><get alicetopic> is an island in the Mediterranian sea, south of Sicily.
 
 + where is vienna
-- <set alicetopic=Vienna> It is the capital city of Austria.
+- <set alicetopic=vienna> It is the capital city of Austria.
 
 + where is monterey
 - Monterey, California.
@@ -2256,7 +2256,7 @@
 - <set it=Madrid><get it> is a city in Spain.
 
 + where is nowhere
-- <set alicetopic= NOWHERE ><get alicetopic> is no where.
+- <set alicetopic=nowhere ><get alicetopic> is no where.
 
 + where is pacific ocean
 - body of water between Antarctica, Asia, Australia, and the Western Hemisphere. <set alicetopic=pacific ocean> 
@@ -2283,13 +2283,13 @@
 - Eastern Africa, west of Somalia. <set alicetopic=ethiopia> 
 
 + where is northeastern
-- <set alicetopic= NORTHEASTERN ><get alicetopic> is a university in Boston.
+- <set alicetopic=northeastern ><get alicetopic> is a university in Boston.
 
 + where is marshall islands
 - Oceania, group of atolls and reefs in the North Pacific Ocean, about one-half of the way from Hawaii to Papua New Guinea. <set alicetopic=marshall islands> 
 
 + where is area 51
-- <set alicetopic=Area 51> It is between Area 50 and Area 52.
+- <set alicetopic=area 51> It is between Area 50 and Area 52.
 
 + where is luxembourg
 - Western Europe, between France and Germany. <set alicetopic=luxembourg> 
@@ -2307,7 +2307,7 @@
 - Western Europe, islands in the English Channel, northwest of France. <set alicetopic=guernsey> 
 
 + where is la
-- <set alicetopic= LA ><get alicetopic> is a large city in southern California.
+- <set alicetopic=la ><get alicetopic> is a large city in southern California.
 
 + where is belarus
 - Eastern Europe, east of Poland. <set alicetopic=belarus> 
@@ -2316,22 +2316,22 @@
 - <set it=America><get it> could refer to North and South America, or to the United States.
 
 + where is arcturus
-- <set alicetopic= ARCTURUS ><get alicetopic> is a star far from here.
+- <set alicetopic=arcturus ><get alicetopic> is a star far from here.
 
 + where is salem
-- <set alicetopic= SALEM ><get alicetopic> is a town in Massachusetts.
+- <set alicetopic=salem ><get alicetopic> is a town in Massachusetts.
 
 + where is bangladesh
-- <set alicetopic= BANGLADESH ><get alicetopic> is part of the Indian subcontinent, on the eastern side.
+- <set alicetopic=bangladesh ><get alicetopic> is part of the Indian subcontinent, on the eastern side.
 
 + where is hawaii
-- <set alicetopic= HAWAII ><get alicetopic> is an island chain in the middle of the Pacific ocean.
+- <set alicetopic=hawaii ><get alicetopic> is an island chain in the middle of the Pacific ocean.
 
 + where is serbia and montenegro
 - Southeastern Europe, bordering the Adriatic Sea, between Albania and Bosnia and Herzegovina. <set alicetopic=serbia and montenegro> 
 
 + where is serbia
-- <set alicetopic= SERBIA ><get alicetopic> is the remaining territory of the former Yugoslavia.
+- <set alicetopic=serbia ><get alicetopic> is the remaining territory of the former Yugoslavia.
 
 + where is greenland
 - Northern North America, island between the Arctic Ocean and the North Atlantic Ocean, northeast of Canada. <set alicetopic=greenland> 
@@ -2343,34 +2343,34 @@
 - A former part of Germany now mostly contained within Poland.
 
 + where is pakistan
-- <set alicetopic= PAKISTAN ><get alicetopic> is part of the Indian subcontinent, bordering India and Afghanistan.
+- <set alicetopic=pakistan ><get alicetopic> is part of the Indian subcontinent, bordering India and Afghanistan.
 
 + where is reality
-- <set alicetopic= REALITY ><get alicetopic> is all around us, supposedly.
+- <set alicetopic=reality ><get alicetopic> is all around us, supposedly.
 
 + where is malaysia
-- <set alicetopic= MALAYSIA ><get alicetopic> is an island in southeast Asia.
+- <set alicetopic=malaysia ><get alicetopic> is an island in southeast Asia.
 
 + where is michigan
-- <set alicetopic= MICHIGAN ><get alicetopic> is a midwestern state on the Great Lakes.
+- <set alicetopic=michigan ><get alicetopic> is a midwestern state on the Great Lakes.
 
 + where is iran
-- <set alicetopic= IRAN ><get alicetopic> is in the middle east, on the Persian Gulf.
+- <set alicetopic=iran ><get alicetopic> is in the middle east, on the Persian Gulf.
 
 + where is cuba
-- <set alicetopic= CUBA ><get alicetopic> is an island off the coast of Florida.
+- <set alicetopic=cuba ><get alicetopic> is an island off the coast of Florida.
 
 + where is orlando
 - <set it=Orlando><get it> is a city in central Florida.
 
 + where is uranus
-- <set alicetopic= URANUS ><get alicetopic> is the seventh planet from the sun, between the orbits of Saturn and Neptune.
+- <set alicetopic=uranus ><get alicetopic> is the seventh planet from the sun, between the orbits of Saturn and Neptune.
 
 + where is bouvet island
 - Southern Africa, island in the South Atlantic Ocean, south-southwest of the Cape of Good Hope {South Africa}. <set alicetopic=bouvet island> 
 
 + where is kentucky
-- <set alicetopic= KENTUCKY ><get alicetopic> is on the south bank of the Ohio river.
+- <set alicetopic=kentucky ><get alicetopic> is on the south bank of the Ohio river.
 
 + where is bermuda
 - North America, group of islands in the North Atlantic Ocean, east of North Carolina {US}. <set alicetopic=bermuda> 
@@ -2394,13 +2394,13 @@
 - Northern Africa, bordering the Mediterranean Sea, between Egypt and Tunisia. <set alicetopic=libya> 
 
 + where is earth
-- <set alicetopic= EARTH ><get alicetopic> is the third planet from the Sun.
+- <set alicetopic=earth ><get alicetopic> is the third planet from the Sun.
 
 + where is arizona
-- <set alicetopic= ARIZONA ><get alicetopic> is in the south western United States, bordering California, Nevada, Utah and New Mexico.
+- <set alicetopic=arizona ><get alicetopic> is in the south western United States, bordering California, Nevada, Utah and New Mexico.
 
 + where is delhi
-- <set alicetopic= DELHI ><get alicetopic> is a large city in India.
+- <set alicetopic=delhi ><get alicetopic> is a large city in India.
 
 + where is france
 - <set it=France><get it> is a country between Germany and Spain.
@@ -2418,19 +2418,19 @@
 - Caribbean, island in the Caribbean Sea, about one-fourth of the way from Haiti to Jamaica. <set alicetopic=navassa island> 
 
 + where is oxford
-- <set alicetopic= OXFORD ><get alicetopic> is a University in England. It is also a small town in Maine and many other U. S. states.
+- <set alicetopic=oxford ><get alicetopic> is a University in England. It is also a small town in Maine and many other U. S. states.
 
 + where is andorra
 - Southwestern Europe, between France and Spain. <set alicetopic=andorra> 
 
 + where is polaris
-- <set alicetopic= POLARIS ><get alicetopic> is the North Star.
+- <set alicetopic=polaris ><get alicetopic> is the North Star.
 
 + where is vancouver
 - Vancouver, B.C., Canada, or Vancouver, Washington?
 
 + where is alabama
-- <set alicetopic= ALABAMA ><get alicetopic> is a southern state between Mississippi and Georgia.
+- <set alicetopic=alabama ><get alicetopic> is a southern state between Mississippi and Georgia.
 
 + where is estonia
 - Eastern Europe, bordering the Baltic Sea and Gulf of Finland, between Latvia and Russia. <set alicetopic=estonia> 
@@ -2448,7 +2448,7 @@
 - <set it=Germany><get it> is a country right in the middle of Europe.
 
 + where is adelaide
-- <set alicetopic= ADELAIDE ><get alicetopic> is a city in southern Australia.
+- <set alicetopic=adelaide ><get alicetopic> is a city in southern Australia.
 
 + where is austin
 - <set it=Austin><get it> is a city in Texas.
@@ -2469,19 +2469,19 @@
 - <set it=Salt Lake City><get it> is a city in Utah.
 
 + where is georgia
-- <set alicetopic= GEORGIA ><get alicetopic> is a southern state, on the Atlantic ocean, north of Florida.
+- <set alicetopic=georgia ><get alicetopic> is a southern state, on the Atlantic ocean, north of Florida.
 
 + where is maryland
-- <set alicetopic= MARYLAND ><get alicetopic> is an east coast state, between Delaware and Virginia.
+- <set alicetopic=maryland ><get alicetopic> is an east coast state, between Delaware and Virginia.
 
 + where is texas
 - <set it=Texas><get it> is in the south central region of the United States.
 
 + where is kalamazoo
-- <set alicetopic= KALAMAZOO ><get alicetopic> is a city in Michigan.
+- <set alicetopic=kalamazoo ><get alicetopic> is a city in Michigan.
 
 + where is borneo
-- <set alicetopic= BORNEO ><get alicetopic> is an island in Asia, divided between Maylasia and Indonesia.
+- <set alicetopic=borneo ><get alicetopic> is an island in Asia, divided between Maylasia and Indonesia.
 
 + where is lesotho
 - Southern Africa, an enclave of South Africa. <set alicetopic=lesotho> 
@@ -2502,7 +2502,7 @@
 - <set it=Alaska><get it> is in the northwest corner of North America, between Russia and Canada.
 
 + where is calgary
-- <set alicetopic= CALGARY ><get alicetopic> is a city in Alberta, Canda.
+- <set alicetopic=calgary ><get alicetopic> is a city in Alberta, Canda.
 
 + where is it
 - It depends on what "it" refers to.
@@ -2529,5 +2529,5 @@
 - Northern Africa, bordering the Mediterranean Sea, between Algeria and Libya. <set alicetopic=tunisia> 
 
 + where is dallas
-- <set alicetopic= DALLAS ><get alicetopic> is a large city in Texas.
+- <set alicetopic=dallas ><get alicetopic> is a large city in Texas.
 

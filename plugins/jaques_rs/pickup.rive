@@ -2,28 +2,28 @@
 ! version = 2.0
 
 + *
-- {@random pickup line} <set alicetopic=<person>> {@push <get topic>} 
+- {@random pickup line} <set alicetopic=<person>> {@push <get alicetopic>} 
 
 + random pickup line
-- {@bar inquiry} {weight=10}
-- {@age inquiry}
-- {@birthday inquiry}
-- {@does inquiry}
-- {@father inquiry}
-- {@favoritecolor inquiry}
-- {@favoritemovie inquiry}
-- {@firstname inquiry}
-- {@gender inquiry}
-- {@has inquiry}
-- {@job inquiry}
-- {@location inquiry}
-- {@lastname inquiry}
-- {@mother inquiry}
-- {@name inquiry}
-- {@middlename inquiry}
-- {@sign inquiry}
-- {@status inquiry}
-- {@personality test question}
+//- {@bar inquiry} {weight=10}
+//- {@age inquiry}
+//- {@birthday inquiry}
+//- {@does inquiry}
+//- {@father inquiry}
+//- {@favoritecolor inquiry}
+//- {@favoritemovie inquiry}
+//- {@firstname inquiry}
+//- {@gender inquiry}
+//- {@has inquiry}
+//- {@job inquiry}
+//- {@location inquiry}
+//- {@lastname inquiry}
+//- {@mother inquiry}
+//- {@name inquiry}
+//- {@middlename inquiry}
+//- {@sign inquiry}
+//- {@status inquiry}
+//- {@personality test question}
 - Do you want to hear a joke?
 - Are we still talking about {@pop}?
 - We were talking about {@pop}. But I did not get that.
@@ -93,4 +93,4 @@
 - I always try to avoid conflict.
 - You can ask me to make phone calls and search for information.
 - Have you ever been to {random}Diso|Lave|Frigaha|Kini|LTT 18486|Yakabugai|Kremainn|Potriti|LHS 3447|Eravate{/random}?
-- {@imponderables} {weight=4}
+//- {@imponderables} {weight=4}

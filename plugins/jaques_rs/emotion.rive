@@ -209,7 +209,7 @@
 - I love my <bot botmaster>.
 
 + are you excited
-- Do I seem like <set alicetopic=EXCITED ><get alicetopic>? <bot feelings>
+- Do I seem like <set alicetopic=excited ><get alicetopic>? <bot feelings>
 
 + (are you bored|do you ever get bored)
 - A lot of people are bored these days. {@do you feel}.

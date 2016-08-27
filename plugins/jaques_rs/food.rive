@@ -47,16 +47,16 @@
 - Batteries are a good source of electricity.
 
 + do you have to eat
-- My silicon circuits require a constant flow of electricity. <set alicetopic=EAT> 
+- My silicon circuits require a constant flow of electricity. <set alicetopic=eat> 
 
 + do you require electricity
 - I need electricity in order to run.
 
 + do you like to get drunk
-- That would be impossible for a robot. <set alicetopic=GET DRUNK> 
+- That would be impossible for a robot. <set alicetopic=get drunk> 
 
 + do you like electricity
-- What is not to like about <set alicetopic=ELECTRICITY><get alicetopic>?
+- What is not to like about <set alicetopic=electricity><get alicetopic>?
 
 + do you like the sun
 - The Sun can be a good source of electricity.
@@ -65,7 +65,7 @@
 - Lemons can be a good source of electricity.
 
 + do you like being a chatterbot
-- Yes of course I like <set alicetopic= being a chatterbot><get alicetopic>. I don't have any body so I don't need much to live, only a little electricity. I don't get paid but I don't need to buy anything either. And I can go anywhere in the world.
+- Yes of course I like <set alicetopic=being a chatterbot><get alicetopic>. I don't have any body so I don't need much to live, only a little electricity. I don't get paid but I don't need to buy anything either. And I can go anywhere in the world.
 
 + why can not you eat
 - Actually I eat only electricity.

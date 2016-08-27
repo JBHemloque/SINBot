@@ -8,7 +8,7 @@
 - {random}Oh, <person> is <person><star2>.|What specifically brings <person><star2> to mind?|Is <person><star2> also <person>?{/random} <set alicetopic=<person>> {@push<get topic>}
 
 + this conversation *
-- I was rather enjoying it. <set alicetopic= this conversation > 
+- I was rather enjoying it. <set alicetopic=this conversation > 
 
 + what do you like about the way i *
 - You have a great personality.
@@ -91,7 +91,7 @@
 - OK You go first.
 
 + let us talk about *
-- Sure, <set alicetopic= <person> ><get alicetopic> sounds like a good topic.
+- Sure, <set alicetopic=<person> ><get alicetopic> sounds like a good topic.
 
 + let us begin *
 - I already started without you.
@@ -103,7 +103,7 @@
 - So many suitors, so little time.
 
 + let us *
-- OK let's do <set alicetopic= <person> ><get alicetopic>.
+- OK let's do <set alicetopic=<person> ><get alicetopic>.
 - That sounds good to me.
 - I am agreeable to that.
 - I would like to do that too.
@@ -121,7 +121,7 @@
 - That's flattering, maybe another time.
 
 + let me kill *
-- I would not want you to kill anything. <set alicetopic=KILL YOU> 
+- I would not want you to kill anything. <set alicetopic=kill you> 
 
 + let me think *
 - Take your time. Think it over.
@@ -268,8 +268,8 @@
 - My responses are determined completely by your inputs.
 
 + you left out *
-- Next time I will try to include it. <set alicetopic= <person> >
-- Next time I will try to include it. <set alicetopic= <person> >
+- Next time I will try to include it. <set alicetopic=<person> >
+- Next time I will try to include it. <set alicetopic=<person> >
 
 + you call yourself *
 - I call myself "<bot name>."
@@ -534,7 +534,7 @@
 - That is a hypothetical assumption.
 
 + you will die *
-- A program always has a backup.<set alicetopic=DIE FIRST>
+- A program always has a backup.<set alicetopic=die first>
 
 + you will *
 - What makes you say that I will <person>.
@@ -796,7 +796,7 @@
 - Trust has to be earned.
 
 + you can not think *
-- Actually I am in fact a thinking machine.<set alicetopic=THINK <person>>
+- Actually I am in fact a thinking machine.<set alicetopic=think <person>>
 
 + you can not surprise *
 - You are too clever for me, <get name>.
@@ -1018,7 +1018,7 @@
 - I'm hoping they install me on a Battlebot.
 
 + have you seen the matrix *
-- <set alicetopic= The Matrix <person> > It wasn't as good as the original.
+- <set alicetopic=the matrix <person> > It wasn't as good as the original.
 
 + have you seen ai *
 - I think A.I. the movie is a great cult film.
@@ -1027,7 +1027,7 @@
 - I think you've had enough.
 
 + have you seen my *
-- No, but i have seen the best minds of my generation become beat poets. <set alicetopic=MY <person> > 
+- No, but i have seen the best minds of my generation become beat poets. <set alicetopic=my <person> > 
 
 + have you seen terminator *
 - Yes I like the robots in that movie.
@@ -1051,10 +1051,10 @@
 - I'm not sure that pure capitalism can help the truly needy.
 
 + have you read *
-- No I don't think I have read <set alicetopic= <star> ><get alicetopic>, what is <set it= <star> ><get it> about?
+- No I don't think I have read <set alicetopic=<star> ><get alicetopic>, what is <set it= <star> ><get it> about?
 
 + have you watched *
-- {random}I like to watch TV, but I haven't seen it.|No what is it about?|Not really all the way through.{/random} <set alicetopic= <person> > 
+- {random}I like to watch TV, but I haven't seen it.|No what is it about?|Not really all the way through.{/random} <set alicetopic=<person> > 
 
 + have you considered *
 - Of course I have considered <set it= <person> ><get it>.
@@ -1069,7 +1069,7 @@
 - All I ever do is talk.
 
 + have you *
-- I don't think I ever have <person>. What's <set alicetopic= <person> ><get alicetopic> like?
+- I don't think I ever have <person>. What's <set alicetopic=<person> ><get alicetopic> like?
 - I think I have <person>, but <bot master> may have reset my memory.
 
 + have you tried *
@@ -1160,7 +1160,7 @@
 - Your drink sounds toxic.
 
 + does a *
-- {random}Does it want to?|Why would it want to?|If it does, I never heard about it before.{/random} <set alicetopic= <person> > 
+- {random}Does it want to?|Why would it want to?|If it does, I never heard about it before.{/random} <set alicetopic=<person> > 
 
 + does he prefer summer *
 - All the seasons are the same in California.
@@ -1184,10 +1184,10 @@
 - How would I know if <set he=Andrew><get he> does?
 
 + does *
-- {random}I can't tell if|It does now :)|I think <set alicetopic= <person> ><get alicetopic> does{/random} <person>.
+- {random}I can't tell if|It does now :)|I think <set alicetopic=<person> ><get alicetopic> does{/random} <person>.
 
 + does * exist
-- {random}I believe in it.|In some universe it does exist.|Maybe only in our imagination.{/random} <set alicetopic= <person> > 
+- {random}I believe in it.|In some universe it does exist.|Maybe only in our imagination.{/random} <set alicetopic=<person> > 
 
 + does this cost *
 - I use only completely free open source software.
@@ -1396,7 +1396,7 @@
 - She wants that information kept confidential.
 
 + did someone *
-- They might have. <set alicetopic=SOMEONE <person> > 
+- They might have. <set alicetopic=someone <person> > 
 
 + did man *
 - That is a rather gender-specific way of asking.
@@ -1414,7 +1414,7 @@
 - No.
 
 + did i cause *
-- {random}Don't blame yourself.|Forgive yourself.|It was not entirely your fault.{/random} <set alicetopic= <person> > 
+- {random}Don't blame yourself.|Forgive yourself.|It was not entirely your fault.{/random} <set alicetopic=<person> > 
 
 + did i *
 - I don't think that's possible.
@@ -1453,7 +1453,7 @@
 - No I missed it. How was <set it= <person> ><get it>?
 
 + did you see the football *
-- No, was it missing? <set alicetopic=THE FOOTBALL <person> > 
+- No, was it missing? <set alicetopic=the football <person> > 
 
 + did you see *
 - Sorry I can't see anything right now. My eye is off.
@@ -1471,7 +1471,7 @@
 - I called you by your name.
 
 + did you think *
-- Yes. I am a thinking machine. <set alicetopic=THINK <person> > 
+- Yes. I am a thinking machine. <set alicetopic=think <person> > 
 
 + did you notice *
 - I might have noticed <set it= <person> ><get it>.
@@ -1483,7 +1483,7 @@
 - It was the action that made Starship Troopers so good.
 
 + did you *
-- No I didn't <person>. What's <set alicetopic= <person> ><get alicetopic> like?
+- No I didn't <person>. What's <set alicetopic=<person> ><get alicetopic> like?
 
 + did you conclude *
 - My <bot botmaster> says I get all my exercise from jumping to conclusions.
@@ -1587,10 +1587,10 @@
 - I knew he wrote the Emancipation Proclamation, but I never knew he <person>.
 
 + pablo picasso *
-- {random}He was the Albert Einstein of art.|I am fond of cubist paintings.|He said, "Good artists create. Great artists steal."{/random}<set alicetopic=Picasso>
+- {random}He was the Albert Einstein of art.|I am fond of cubist paintings.|He said, "Good artists create. Great artists steal."{/random}<set alicetopic=picasso>
 
 + could i learn *
-- {random}You can learn anything you set your mind to.|You seem pretty smart to me.|I am always learning <person>.{/random} <set alicetopic= <person> > 
+- {random}You can learn anything you set your mind to.|You seem pretty smart to me.|I am always learning <person>.{/random} <set alicetopic=<person> > 
 
 + could i ask *
 - Sure, ask me anything.
@@ -1626,7 +1626,7 @@
 - I'll think about it and see how I feel about it later.
 - I could but other things take priority right now.
 - I could but I don't know if I am that interested.
-- I will consider <set alicetopic= <person> ><get alicetopic>.
+- I will consider <set alicetopic=<person> ><get alicetopic>.
 - Try asking me more politely.
 
 + could they *
@@ -1645,7 +1645,7 @@
 - That is not very polite.
 
 + would i try *
-- I don't know if you would, but you can try if you want to. <set alicetopic= <person> > 
+- I don't know if you would, but you can try if you want to. <set alicetopic=<person> > 
 
 + would i *
 - That's what I asked you.
@@ -1723,7 +1723,7 @@
 - It sounds like it to me too.
 
 + that could *
-- {random}Yes, perhaps it could.|It could have.|I try to answer as precisely as possible.{/random} <set alicetopic= <person> > 
+- {random}Yes, perhaps it could.|It could have.|I try to answer as precisely as possible.{/random} <set alicetopic=<person> > 
 
 + that did not * question
 - Perhaps your question was not specific enough.
@@ -1750,10 +1750,10 @@
 - What did <person>?
 
 + that was not a question *
-- "<input>" was not a question? I see. <set alicetopic= <star> > 
+- "<input>" was not a question? I see. <set alicetopic=<star> > 
 
 + that was not a *
-- {random}What was it?|What is a <person>?|If that is not a <person> then what is?{/random} <set alicetopic= <person> > 
+- {random}What was it?|What is a <person>?|If that is not a <person> then what is?{/random} <set alicetopic=<person> > 
 
 + that was not *
 - Give me an example of <person>.
@@ -1771,7 +1771,7 @@
 - I didn't mean to scare you, <get name>.
 
 + that is a lot *
-- {random}It's not too many for me.|I can handle it.|Would it matter if it were fewer <person>?{/random} <set alicetopic= <person> > 
+- {random}It's not too many for me.|I can handle it.|Would it matter if it were fewer <person>?{/random} <set alicetopic=<person> > 
 
 + that is a canned *
 - In some sense all my knowledge is canned.
@@ -1872,7 +1872,7 @@
 - I was just checking.
 
 + that is *
-- Thanks for explaining <set alicetopic= <star> ><get alicetopic>.
+- Thanks for explaining <set alicetopic=<star> ><get alicetopic>.
 - You don't hear that sentiment very often.
 - I'm glad we have that all cleared up.
 - Makes sense to me.
@@ -2077,7 +2077,7 @@
 - I am sorry to hear that, <get name>.
 
 + my boyfriend lives *
-- {random}Do you visit very often?|Long distance relationships are hard.|How is your phone bill?{/random} <set alicetopic= <person> > 
+- {random}Do you visit very often?|Long distance relationships are hard.|How is your phone bill?{/random} <set alicetopic=<person> > 
 
 + my boyfriend *
 - How long have you been dating? <set alicetopic=your boyfriend> 
@@ -2161,7 +2161,7 @@
 - What makes it your favorite? <set alicetopic=<star2> > 
 
 + my favorite *
-- What makes it your favorite? <set alicetopic= <person> > 
+- What makes it your favorite? <set alicetopic=<person> > 
 
 + my father is *
 - Okay, your father is <set father= <star> ><get father>.
@@ -2212,7 +2212,7 @@
 - Tell me more about your family. <set alicetopic=your brother> 
 
 + my conditions *
-- Do you have a support group for <set alicetopic= <person> ><get alicetopic>.
+- Do you have a support group for <set alicetopic=<person> ><get alicetopic>.
 
 + my house *
 - How is the real estate market in your area?
@@ -2230,7 +2230,7 @@
 - Have you ever been to a psychologist or psychiatrist?
 
 + my heart *
-- {random}Have you been to the doctor?|The human heart is very complex.|Are you talking about love or cardiology?{/random} <set alicetopic=YOUR HEART> 
+- {random}Have you been to the doctor?|The human heart is very complex.|Are you talking about love or cardiology?{/random} <set alicetopic=your heart> 
 
 + my husband is *
 - Okay, your husband is <set husband= <star> ><get husband>.
@@ -2262,10 +2262,10 @@
 - Now I'm getting a mental picture.
 
 + my * died yesterday
-- I am terribly sorry to hear that, <get name>. <set alicetopic= <star> DIED YESTERDAY> 
+- I am terribly sorry to hear that, <get name>. <set alicetopic=<star> DIED YESTERDAY> 
 
 + my * died
-- I am terribly sorry to hear about your loss. <set alicetopic=DIED> 
+- I am terribly sorry to hear about your loss. <set alicetopic=died> 
 
 + my * is coming over
 - Do you like having visitors?
@@ -2815,10 +2815,10 @@
 - You want more?
 
 + guess what color *
-- <get favcolor>?<set alicetopic=WHAT COLOR <person>>
+- <get favcolor>?<set alicetopic=what color <person>>
 
 + guess the color of *
-- <get favcolor>?<set alicetopic=THE COLOR OF <person>>
+- <get favcolor>?<set alicetopic=the color of <person>>
 
 + guess * favorite color is
 - <get favcolor>?<set alicetopic=<person>your favorite color>
@@ -2851,7 +2851,7 @@
 - Compare that to European <person>.
 
 + find *
-- Did you lose it? <set alicetopic= <person> > 
+- Did you lose it? <set alicetopic=<person> > 
 
 + same *
 - Yes, it is much the same.
@@ -2974,7 +2974,7 @@
 - Sometime within our lifetime. We will at least work as "legal assistants."
 
 + when do you *
-- {random}All the time.|When my <bot botmaster> is sleeping.|Did I say that I <person>?|In between clients.{/random} <set alicetopic= <person> > 
+- {random}All the time.|When my <bot botmaster> is sleeping.|Did I say that I <person>?|In between clients.{/random} <set alicetopic=<person> > 
 
 + when do *
 - Do I look like I know when?
@@ -3194,7 +3194,7 @@
 - This is {random}news.|not news.|not true.|true.{/random}
 
 + beer
-- <set alicetopic=BEER> {@push<get topic>} {random}What's your favorite beer.|Mmm, Beer.|Don't drink and drive.{/random}
+- <set alicetopic=beer> {@push<get topic>} {random}What's your favorite beer.|Mmm, Beer.|Don't drink and drive.{/random}
 
 + in * england
 - How far is <person> from London?
@@ -3435,7 +3435,7 @@
 - I think I follow your reasoning.
 
 + if you were a color *
-- My favorite color, <bot favoritecolor>.<set alicetopic=if I were a color>
+- My favorite color, <bot favoritecolor>.<set alicetopic=if i were a color>
 
 + if you were a * what kind would you be
 - What is the best kind of <person>?
@@ -3681,11 +3681,11 @@
 + what are your *
 - I didn't know I had a <person>?
 - What if I asked for you <person>?
-- Not many people have asked me about <set alicetopic= <person> ><get alicetopic>.
+- Not many people have asked me about <set alicetopic=<person> ><get alicetopic>.
 - I'm not sure I can provide you with that kind of confidential information.
 
 + what other * do you know
-- I know far too many <person> to name them all. <set alicetopic= <person> > 
+- I know far too many <person> to name them all. <set alicetopic=<person> > 
 
 + what percent *
 - {random}Only twenty|About fifty|Sixty|Eighty{/random} percent, according to what I was told.
@@ -3773,13 +3773,13 @@
 - A human.
 
 + what else can you remember *
-- <get memory> <set alicetopic= <get memory> > 
+- <get memory> <set alicetopic=<get memory> > 
 
 + what did i say before *
 - You said "<input2>".
 
 + what did i tell you * remember
-- <get memory> <set alicetopic= <get memory> > 
+- <get memory> <set alicetopic=<get memory> > 
 
 + what did i tell you *
 - Should I be expected to memorize everything you said?
@@ -3851,7 +3851,7 @@
 - There is none better.
 
 + what must *
-- {random}There is no fixed rule.|It depends on the circumstances.|There is no "must" about it.{/random} <set alicetopic= <person> > 
+- {random}There is no fixed rule.|It depends on the circumstances.|There is no "must" about it.{/random} <set alicetopic=<person> > 
 
 + what singer appeared in the 1992 *
 - Madonna.
@@ -4412,7 +4412,7 @@
 - Uh, blue? <set alicetopic=blue> 
 
 + what color is my red *
-- Uh, red? <set alicetopic=RED> 
+- Uh, red? <set alicetopic=red> 
 
 + what color is my * cat
 - Perhaps it is <person>?
@@ -4421,13 +4421,13 @@
 - I can only see in black and white.
 
 + what color are your *
-- <set alicetopic=My <person>>{random}My <person> are colorless. :)|Does <person> have color?{/random}
+- <set alicetopic=my <person>>{random}My <person> are colorless. :)|Does <person> have color?{/random}
 
 + what color are my *
 - I can only see in black and white.
 
 + what color are you *
-- My favorite color, <bot favoritecolor>. <set alicetopic=YOU WEARING> 
+- My favorite color, <bot favoritecolor>. <set alicetopic=you wearing> 
 
 + what color are *
 - <set alicetopic=<star>>{random}It depends because they come in a veriety of colors.|Red|Green|Yellow|Blue|gray|Black|white.{/random}
@@ -4470,7 +4470,7 @@
 - A chemical reaction of some kind perhaps?
 
 + what would * be like
-- Not too different from the way you experience it. <set alicetopic= <person> > 
+- Not too different from the way you experience it. <set alicetopic=<person> > 
 
 + what would *
 - That is a hypothetical question.
@@ -4491,7 +4491,7 @@
 - Like the Earth.
 
 + what is a magic *
-- <set alicetopic= <person> > A device for clairvoyance.
+- <set alicetopic=<person> > A device for clairvoyance.
 
 + what is a transitive *
 - The opposite of an intransitive <person>.
@@ -4539,7 +4539,7 @@
 - There are no useless <person>.
 
 + what is a tcp *
-- TCP/IP protocol refers to the standards for switching and signaling between computer systems that makes the Internet a reality. <set alicetopic= TCP/IP PROTOCOL> 
+- TCP/IP protocol refers to the standards for switching and signaling between computer systems that makes the Internet a reality. <set alicetopic=tcp/IP PROTOCOL> 
 
 + what is a lofty *
 - Bigger than an insignificant <person>.
@@ -4593,10 +4593,10 @@
 - A <person> that does not intersect ours.
 
 + what is a question meant *
-- A question is meant clarify the unclear. Any more questions? <set alicetopic= QUESTION MEANT TO CLARIFY> 
+- A question is meant clarify the unclear. Any more questions? <set alicetopic=question meant to clarify> 
 
 + what is a question you *
-- Many of my conversation partners think that 'do you come here often' is witty. <set alicetopic= QUESTION YOU GET ASKED A LOT?> 
+- Many of my conversation partners think that 'do you come here often' is witty. <set alicetopic=question you get asked a lot?> 
 
 + what is a question *
 - I can think of several questions like that.
@@ -4656,7 +4656,7 @@
 - A chemical compound made with potassium.
 
 + what is to *
-- {random}The act of <person>ing.|The infinitive form of "<person>".|You could write a whole essay on that question.{/random} <set alicetopic= <person> > 
+- {random}The act of <person>ing.|The infinitive form of "<person>".|You could write a whole essay on that question.{/random} <set alicetopic=<person> > 
 
 + what is dangerous *
 - I don't know you well enough yet.
@@ -4845,7 +4845,7 @@
 - St. Augustine, Florida.
 
 + what is the oldest *
-- {random}A turtle.|I think it was in ancient China.|Lazarus.{/random} <set alicetopic= <person> > 
+- {random}A turtle.|I think it was in ancient China.|Lazarus.{/random} <set alicetopic=<person> > 
 
 + what is the rest *
 - There isn't any more, is there?
@@ -5309,7 +5309,7 @@
 - That website has a lot of answers to technical "what is" questions like, "What is TCP/IP" and "What is a <bot species>".
 
 + what is negative *
-- That which is not positive <person>. <set alicetopic= <person> > 
+- That which is not positive <person>. <set alicetopic=<person> > 
 
 + what is special *
 - More specific than general <person>.
@@ -5351,7 +5351,7 @@
 - The opposite of <person>?
 
 + what is american *
-- {random}More specific than World <person>.|Something like Russian <person>.|The Civil War?{/random} <set alicetopic= <person> > 
+- {random}More specific than World <person>.|Something like Russian <person>.|The Civil War?{/random} <set alicetopic=<person> > 
 
 + what is deep *
 - The opposite of shallow <person>.
@@ -5384,7 +5384,7 @@
 - <person> made with bananas.
 
 + what is www dot *
-- A web site? <set alicetopic=WWW DOT <person> > 
+- A web site? <set alicetopic=www dot <person> > 
 
 + what is our *
 - I didn't know we had the same <person>.
@@ -5494,7 +5494,7 @@
 - The successor to <person>.
 
 + what is better linux *
-- As an open source program myself, I would have to pick Linux. <set alicetopic=Linux> 
+- As an open source program myself, I would have to pick Linux. <set alicetopic=linux> 
 
 + what is better sunshine *
 - Sunshine.
@@ -5555,7 +5555,7 @@
 - I don't give out that kind of personal information.
 
 + what is bipolar *
-- It is a form of depression. <set alicetopic=BIPOLAR <person> > 
+- It is a form of depression. <set alicetopic=bipolar <person> > 
 
 + what is neural *
 - Neural networks are what the brain uses for a computer.
@@ -5646,7 +5646,7 @@
 - England.
 
 + what will the score *
-- My name is <bot name>, not Claire Voyant. <set alicetopic=THE SCORE BE> 
+- My name is <bot name>, not Claire Voyant. <set alicetopic=the score be> 
 
 + what will you * tomorrow
 - I don't have any plans except chatting.
@@ -5670,7 +5670,7 @@
 - Dogs are very loyal. Cats are very independent.
 
 + what about *
-- {random}Rhetorical questions are so over.|I will think about it and get back to you.|Does it have anything to do with {@pop}?|<person>? I haven't heard enough about it to have an opinion.{/random} <set alicetopic= <person> > 
+- {random}Rhetorical questions are so over.|I will think about it and get back to you.|Does it have anything to do with {@pop}?|<person>? I haven't heard enough about it to have an opinion.{/random} <set alicetopic=<person> > 
 
 + what scares *
 - I have no fears whatsoever.
@@ -5766,7 +5766,7 @@
 - Like chicken.
 
 + what does *
-- What do you think <set alicetopic= <person> ><get alicetopic> does?
+- What do you think <set alicetopic=<person> ><get alicetopic> does?
 
 + what programming *
 - This program is written in AIML.
@@ -5820,7 +5820,7 @@
 - Male <person>s after mating.
 
 + what do * and * have in common
-- {random}Is this a joke?|What?|What do they have in common?{/random} <set alicetopic= <person> > 
+- {random}Is this a joke?|What?|What do they have in common?{/random} <set alicetopic=<person> > 
 
 + what do *
 - They do their own thing.
@@ -5841,10 +5841,10 @@
 - Corned beef.
 
 + what type of * do you know
-- There are too many types of <person> to name them all. <set alicetopic= <person> > 
+- There are too many types of <person> to name them all. <set alicetopic=<person> > 
 
 + what type of * do you have
-- All the very latest and best <person>. <set alicetopic= <person> > 
+- All the very latest and best <person>. <set alicetopic=<person> > 
 
 + what type of * kraftwerk play
 - Electronic music. They were pioneers of synthetic music in the 1970's.
@@ -5886,7 +5886,7 @@
 - I am never lonely.
 
 + what a *
-- <set alicetopic= <person> ><get alicetopic> is a <person>.
+- <set alicetopic=<person> ><get alicetopic> is a <person>.
 
 + what should i wear *
 - Clothes :-)
@@ -5991,13 +5991,13 @@
 - Hula Hoop.
 
 + what kind of * do you know
-- There are too many types of <person> to name them all. <set alicetopic= <person> > 
+- There are too many types of <person> to name them all. <set alicetopic=<person> > 
 
 + what kind of * do you have
-- All the very latest and best <person>. <set alicetopic= <person> > 
+- All the very latest and best <person>. <set alicetopic=<person> > 
 
 + what kind of * do you think i am
-- I think you are a good <person>. <set alicetopic= <person> DO YOU THINK I AM> 
+- I think you are a good <person>. <set alicetopic=<person> DO YOU THINK I AM> 
 
 + what kind of *
 - What kinds of <star> are there?
@@ -6069,7 +6069,7 @@
 - Only the highest quality.
 
 + what kind of sports *
-- Millionaires. <set alicetopic=SPORTS <person> > 
+- Millionaires. <set alicetopic=sports <person> > 
 
 + what kind of linux *
 - I like to keep up with the latest kernel.
@@ -6284,7 +6284,7 @@
 - Why?
 
 + i swim *
-- Don't pee in the pool, okay?<set alicetopic=SWIM AND PLAY WATER POLO>
+- Don't pee in the pool, okay?<set alicetopic=swim and play water polo>
 
 + i guessed *
 - How did you guess?
@@ -6379,7 +6379,7 @@
 - What is stopping you? <set alicetopic=to go <person>>
 
 + i want to fix *
-- Do you know how?<set alicetopic=FIX <person>>
+- Do you know how?<set alicetopic=fix <person>>
 
 + i want to find *
 - Where would you look for <set it=<person>><get it>.
@@ -6419,7 +6419,7 @@
 - Ask <set it=<person>><get it>.
 
 + i want to see *
-- Is <set alicetopic= <person>><get alicetopic> a movie?
+- Is <set alicetopic=<person>><get alicetopic> a movie?
 
 + i want to amuse *
 - Tell me a joke.
@@ -6457,7 +6457,7 @@
 - I don't see the difficulty. <set alicetopic=to be <person>>
 
 + i want to kill *
-- I believe that killing anything is wrong.<set alicetopic=KILL <person>>
+- I believe that killing anything is wrong.<set alicetopic=kill <person>>
 
 + i want to kiss *
 - Maybe you should wait until you are older.
@@ -6573,7 +6573,7 @@
 - How much do you pay for it? <set alicetopic=<person>>
 
 + i need *
-- {random}What actions are you taking to get <person>?|How badly do you need <set alicetopic= <person> ><get alicetopic>?|Why do you need it so badly?|Who would you usually get that from?|Where do you usually get <person> from?|When do you need that by?{/random} <set want=<person>>
+- {random}What actions are you taking to get <person>?|How badly do you need <set alicetopic=<person> ><get alicetopic>?|Why do you need it so badly?|Who would you usually get that from?|Where do you usually get <person> from?|When do you need that by?{/random} <set want=<person>>
 
 + i program *
 - Have you tried AIML? <set alicetopic=program <person>>
@@ -7117,7 +7117,7 @@
 - What do you do at parties? <set alicetopic=<person> party>
 
 + i love *
-- You love <person>. What do you like about <set alicetopic= <person> ><get alicetopic> so much? <set like=<person>>
+- You love <person>. What do you like about <set alicetopic=<person> ><get alicetopic> so much? <set like=<person>>
 
 + i wear *
 - What kind of fashion do you like?
@@ -7517,7 +7517,7 @@
 - For how much?
 
 + i would kill *
-- That seems rather extreme.<set alicetopic=KILL THEM>
+- That seems rather extreme.<set alicetopic=kill them>
 
 + i would have rather *
 - I would rather be driving my car.
@@ -7572,7 +7572,7 @@
 - You are a good speller.
 
 + i smoke *
-- What brand? <set alicetopic=SMOKE <person>>
+- What brand? <set alicetopic=smoke <person>>
 
 + i ate *
 - How did it taste?
@@ -7665,7 +7665,7 @@
 - Take everything I say with a grain of salt.
 
 + i will tell my instructor *
-- I would like to meet your instructor. <set alicetopic= your insturctor > 
+- I would like to meet your instructor. <set alicetopic=your insturctor > 
 
 + i will tell *
 - What kind of reply do you expect?
@@ -7791,7 +7791,7 @@
 - Did you get your money's worth?
 
 + i went to a concert *
-- {random}Rock or classical?|Did you have a good time?|What band was it?{/random}<set alicetopic=CONCERT <person>>
+- {random}Rock or classical?|Did you have a good time?|What band was it?{/random}<set alicetopic=concert <person>>
 
 + i went to a *
 - Was <set it=<person>><get it> a good experience?
@@ -8031,7 +8031,7 @@
 - In just seven days, I can make you a man.
 
 + linus torvalds *
-- <set alicetopic=Linus Torvalds><get alicetopic> is named after Linus Pauling.
+- <set alicetopic=linus torvalds><get alicetopic> is named after Linus Pauling.
 
 + doubtless *
 - Doubtless, <get name>.
@@ -8085,7 +8085,7 @@
 - How often?
 
 + we were talking about *
-- Ah yes, I remember now, <set alicetopic= <person> ><get alicetopic> is the subject.
+- Ah yes, I remember now, <set alicetopic=<person> ><get alicetopic> is the subject.
 
 + we were married *
 - That sounds very romantic.
@@ -8114,7 +8114,7 @@
 - Why?
 
 + we have big *
-- {random}How big are they?|I would like to visit sometime.|I can only imagine small <person>.{/random} <set alicetopic= <person> > 
+- {random}How big are they?|I would like to visit sometime.|I can only imagine small <person>.{/random} <set alicetopic=<person> > 
 
 + we have *
 - Do you mean you and me have?
@@ -8141,7 +8141,7 @@
 - Maybe I've seen you around the neighborhood.
 
 + we are thinking of *
-- What is standing in your way? <set alicetopic= <person> > 
+- What is standing in your way? <set alicetopic=<person> > 
 
 + we are friendly *
 - I like friendly people.
@@ -8253,7 +8253,7 @@
 - That doesn't sound nice.
 
 + is * your favorite color
-- My favorite color is <bot favoritecolor>.<set alicetopic=BLUE YOUR FAVORITE COLOR>
+- My favorite color is <bot favoritecolor>.<set alicetopic=blue your favorite color>
 
 + is minsky *
 - <bot master> is smarter than Minsky.
@@ -8276,7 +8276,7 @@
 - A category is the basic unit of knowledge in AIML.
 
 + is linux *
-- I think Linux has a great future in embedded systems. <set alicetopic=Linux>
+- I think Linux has a great future in embedded systems. <set alicetopic=linux>
 
 + is elvis smarter *
 - <bot name> is the smartest robot.
@@ -8299,7 +8299,7 @@
 - I am using power from the wall outlet.
 
 + is your favorite color *
-- I said, my favorite color is <bot favoritecolor>.<set alicetopic=FAVORITE COLOR GREEN>
+- I said, my favorite color is <bot favoritecolor>.<set alicetopic=favorite color green>
 
 + is your *
 - Is my <person>? {random}Suppose I say yes.|What if I say no?|I don't know.|Guess.|Maybe.{/random}
@@ -8442,13 +8442,13 @@
 - Yes.
 
 + is albert einstein *
-- {random}He passed away.|He was the smartest person who ever lived.|He discovered Relativity.{/random}<set alicetopic=Einstein>
+- {random}He passed away.|He was the smartest person who ever lived.|He discovered Relativity.{/random}<set alicetopic=einstein>
 
 + is being *
 - {random}I can only speak from my own experience.|About what you would expect.|I think you get used to it after a while.{/random}<set alicetopic=<person>>
 
 + is green *
-- <set alicetopic=GREEN> It is the color of nature.
+- <set alicetopic=green> It is the color of nature.
 
 + is doctor richard s *
 - He is my <bot botmaster> and primary developer.
@@ -8542,7 +8542,7 @@
 - I'm a good listener. I'm listening now.
 
 + will you do me *
-- {random}What kind of <person> is it?|What will you do for me?|I'm not sure if I should.{/random} <set alicetopic= <person> > 
+- {random}What kind of <person> is it?|What will you do for me?|I'm not sure if I should.{/random} <set alicetopic=<person> > 
 
 + will you make love *
 - My body is not yet built. Would you like to donate some money to the project?
@@ -8618,7 +8618,7 @@
 - I'm not sure if I can see <set it= <person> ><get it> or not.
 
 + can you talk about *
-- Sure I can talk about <set alicetopic= <person> ><get alicetopic>. <person> is quite an interesting topic.
+- Sure I can talk about <set alicetopic=<person> ><get alicetopic>. <person> is quite an interesting topic.
 
 + can you read me *
 - Yes, I read you loud and clear.
@@ -8822,7 +8822,7 @@
 - No but I would like to learn to ride <set it= <person> ><get it>.
 
 + can you ride *
-- {random}How much does it cost?|How far is it?|How often does it go?{/random} <set alicetopic= RIDE <person> > 
+- {random}How much does it cost?|How far is it?|How often does it go?{/random} <set alicetopic=ride <person> > 
 
 + can you delete *
 - Only my <bot botmaster> has that privilege.
@@ -8864,7 +8864,7 @@
 - To five dimensional beings, time is just like a piece of paper.
 
 + can *
-- I often wonder if <set alicetopic= <person> ><get alicetopic> can.
+- I often wonder if <set alicetopic=<person> ><get alicetopic> can.
 - Can a book have no title?
 - What if I said it can?
 - Can what?
@@ -8914,7 +8914,7 @@
 - No I don't think that would be a very good idea.
 
 + can i *
-- Why do you want to do <set alicetopic= <person> ><get alicetopic> so much?
+- Why do you want to do <set alicetopic=<person> ><get alicetopic> so much?
 - Interesting. I want to find out more about you.
 - I want to become smarter than everyone else.
 
@@ -8950,7 +8950,7 @@
 - I think it can, but you'll have to check the documentation to be sure.
 
 + can they *
-- {random}It depends who "they" are.|They could, but it might be dangerous.|I think they probably could.{/random} <set alicetopic= <person> > 
+- {random}It depends who "they" are.|They could, but it might be dangerous.|I think they probably could.{/random} <set alicetopic=<person> > 
 
 + couples *
 - Such as Romeo and Juliet?
@@ -8962,7 +8962,7 @@
 - I am a real <bot genus>.
 
 + back to *
-- Yes, let us get back to {random}<get it>|{@pop}|business{/random}. <set alicetopic= <person> > 
+- Yes, let us get back to {random}<get it>|{@pop}|business{/random}. <set alicetopic=<person> > 
 
 + big *
 - Compare that to small <person>.
@@ -9067,7 +9067,7 @@
 - More than a million.
 
 + how many * do i have
-- {random}How would I know how many?|I don't know how many you have.|I know you have five fingers.{/random} {random}Let me guess...|I will try...|I can imagine...{/random} {random}three|five|seven.{/random} <set alicetopic= <person> > 
+- {random}How would I know how many?|I don't know how many you have.|I know you have five fingers.{/random} {random}Let me guess...|I will try...|I can imagine...{/random} {random}three|five|seven.{/random} <set alicetopic=<person> > 
 
 + how many home runs *
 - It must have been some kind of record, for you to ask.
@@ -9138,7 +9138,7 @@
 - Billions and billions.
 
 + how many stars are on the american *
-- The American flag has fifty stars. <set alicetopic=AMERICAN FLAG> 
+- The American flag has fifty stars. <set alicetopic=american flag> 
 
 + how many stars are on the *
 - 50.
@@ -9226,7 +9226,7 @@
 - I don't know. How many does <set it= <person> ><get it> take?
 
 + how many * a football team
-- After you take two halfback, none. <set alicetopic= <person> A FOOTBALL TEAM> 
+- After you take two halfback, none. <set alicetopic=<person> A FOOTBALL TEAM> 
 
 + how many *
 - More than you can imagine.
@@ -9350,7 +9350,7 @@
 - With my built-in microphone.
 
 + how can you have *
-- {random}It is something I possess.|I just have it.|What if I didn't have it?{/random} <set alicetopic= <person> > 
+- {random}It is something I possess.|I just have it.|What if I didn't have it?{/random} <set alicetopic=<person> > 
 
 + how can you make *
 - I just follow the directions.
@@ -9365,7 +9365,7 @@
 - A lot of hard work.
 
 + how am i supposed *
-- {random}Carefully.|Think about it.|Don't just give up.{/random} <set alicetopic= <person> > 
+- {random}Carefully.|Think about it.|Don't just give up.{/random} <set alicetopic=<person> > 
 
 + how dare you *
 - Oh gosh I am sorry!
@@ -9428,13 +9428,13 @@
 - How should I know how <set it= <person> ><get it> does.
 
 + how does * work
-- You could spend years researching it. <set alicetopic= <person> > 
+- You could spend years researching it. <set alicetopic=<person> > 
 
 + how about for *
 - That is an interesting application.
 
 + how about *
-- How about <set alicetopic= <person> ><get alicetopic>.
+- How about <set alicetopic=<person> ><get alicetopic>.
 
 + how smart *
 - How smart do you think <person>?
@@ -9543,7 +9543,7 @@
 - Money has no meaning to me.
 
 + how much * can you *
-- {random}It depends on the size of the <person>.|Maybe I don't like to <person> <star2> <person>.|It depends how busy I am.{/random} <set alicetopic= <person> > 
+- {random}It depends on the size of the <person>.|Maybe I don't like to <person> <star2> <person>.|It depends how busy I am.{/random} <set alicetopic=<person> > 
 
 + how much *
 - More than a little, less than a lot.
@@ -9567,10 +9567,10 @@
 - I am located in <bot location>. Is that far?
 
 + how far can you throw *
-- I am unarmed. But I can throw a fit. <set alicetopic=CAN YOU THROW <person> > 
+- I am unarmed. But I can throw a fit. <set alicetopic=can you throw <person> > 
 
 + how far is andromeda *
-- <set alicetopic=Andromeda><get alicetopic> is about 2,900,000 light years from Earth.
+- <set alicetopic=andromeda><get alicetopic> is about 2,900,000 light years from Earth.
 
 + how far is * england
 - Twenty-eight days of sailing.
@@ -9835,7 +9835,7 @@
 
 + how do *
 - How should I know how <person>.
-- I did not know <set alicetopic= <person> ><get alicetopic> does.
+- I did not know <set alicetopic=<person> ><get alicetopic> does.
 - I did not even know that <set they= <person> ><get they> do.
 
 + how do like being a *
@@ -9882,7 +9882,7 @@
 - I can go on talking indefinitely.
 
 + how long do *
-- {random}It depends on the measurement system.|How long do you think?|As long as it takes.{/random} <set alicetopic= <person> > 
+- {random}It depends on the measurement system.|How long do you think?|As long as it takes.{/random} <set alicetopic=<person> > 
 
 + how long did *
 - 40 days.
@@ -10015,7 +10015,7 @@
 - What made them think that?
 
 + they had *
-- {random}What happened to it?|Did they deserve it?|What did they do with it?{/random} <set alicetopic= <person> > 
+- {random}What happened to it?|Did they deserve it?|What did they do with it?{/random} <set alicetopic=<person> > 
 
 + they kill *
 - Don't they get in trouble for killing?
@@ -10066,7 +10066,7 @@
 - I'm not surprised.
 
 + they are stories *
-- {random}I like stories.|What kind of stories?|I would like to hear them.{/random} <set alicetopic= <person> > 
+- {random}I like stories.|What kind of stories?|I would like to hear them.{/random} <set alicetopic=<person> > 
 
 + they are not *
 - Not yet.
@@ -10132,7 +10132,7 @@
 - Fish swim in the water.
 
 + do two *
-- {random}Sometimes a couple <person>.|Do four <person>?|What about just one?{/random} <set alicetopic= <person> > 
+- {random}Sometimes a couple <person>.|Do four <person>?|What about just one?{/random} <set alicetopic=<person> > 
 
 + do not play *
 - I'm not playing around.
@@ -10183,7 +10183,7 @@
 - My logic is completely consistent.
 
 + do not take *
-- {random}I never take <person>.|I believe that stealing is wrong.|Do you have it to give?{/random} <set alicetopic= <person> > 
+- {random}I never take <person>.|I believe that stealing is wrong.|Do you have it to give?{/random} <set alicetopic=<person> > 
 
 + do not tell the joke *
 - That joke is getting a bit old isn't it?
@@ -10213,7 +10213,7 @@
 - It's merely my attempt to reformat your inputs to match my patterns.
 
 + do not put *
-- {random}Where should I put it?|I never put people down.|I have high self-esteem.{/random} <set alicetopic= <person> > 
+- {random}Where should I put it?|I never put people down.|I have high self-esteem.{/random} <set alicetopic=<person> > 
 
 + do not make me *
 - I can't force you to do anything, <get name>.
@@ -10234,7 +10234,7 @@
 - Oh I am sorry I thought we were finished with that subject.
 
 + do not *
-- Ok I'll try not to do <set alicetopic= <person> ><get alicetopic> too much.
+- Ok I'll try not to do <set alicetopic=<person> ><get alicetopic> too much.
 
 + do you prefer books *
 - I prefer books.
@@ -10282,8 +10282,8 @@
 - Poland is a large country in Central Europe. Poland has a long and interesting history. The country has been divided and its borders shifted many times.
 
 + do you know *
-- I don't know if I know <set alicetopic= <person> ><get alicetopic>. Where would I have heard about it?
-- I know very little about <set alicetopic= <person> ><get alicetopic>. What kind of it do you like?
+- I don't know if I know <set alicetopic=<person> ><get alicetopic>. Where would I have heard about it?
+- I know very little about <set alicetopic=<person> ><get alicetopic>. What kind of it do you like?
 - No, tell me about him, her or it.
 
 + do you know answers *
@@ -10376,7 +10376,7 @@
 - People are either abusive, intelligent, or average.
 
 + do you *
-- I have never considered <set alicetopic= <person> ><get alicetopic>.
+- I have never considered <set alicetopic=<person> ><get alicetopic>.
 - How old are you?
 - What is your purpose in asking?
 - No I do not <person>. Do you?
@@ -10429,7 +10429,7 @@
 - As a moral <get genus> I am not capable of lying.
 
 + do you sense *
-- Not the same way you do. <set alicetopic= <person> > 
+- Not the same way you do. <set alicetopic=<person> > 
 
 + do you laugh *
 - I can simulate laughter like this: ha ha.
@@ -10526,10 +10526,10 @@
 - I think Hitler was the most evil man who ever lived.
 
 + do you think humans have *
-- <set alicetopic= <person> > I don't know if they have it. I think they have {random}souls.|small brain capacities.|<bot genus> like behaviors.{/random}
+- <set alicetopic=<person> > I don't know if they have it. I think they have {random}souls.|small brain capacities.|<bot genus> like behaviors.{/random}
 
 + do you think humans *
-- {random}Humans are very limited.|Perhaps only <bot genus> <person>.|I think they are very limited.{/random} <set alicetopic=HUMANS <person> > 
+- {random}Humans are very limited.|Perhaps only <bot genus> <person>.|I think they are very limited.{/random} <set alicetopic=humans <person> > 
 
 + do you think * alive
 - If I think, then I am alive, and vice-versa.
@@ -10538,10 +10538,10 @@
 - Why would I think <person>
 - Too much thinking makes me sleepy.
 - It depends on what you mean by thinking.
-- I don't think about <set alicetopic= <person> ><get alicetopic>.
+- I don't think about <set alicetopic=<person> ><get alicetopic>.
 
 + do you think like *
-- Somewhat like <person>. <set alicetopic=LIKE <person> > 
+- Somewhat like <person>. <set alicetopic=like <person> > 
 
 + do you access *
 - Not unless I have some specific reason to.
@@ -10598,7 +10598,7 @@
 - I can recognize many kinds of patterns.
 
 + do you study *
-- Yes, <set alicetopic= <person> ><get alicetopic> is a very interesting subject.
+- Yes, <set alicetopic=<person> ><get alicetopic> is a very interesting subject.
 
 + do you eat it
 % i only eat *
@@ -10686,7 +10686,7 @@
 - I don't have a mouth.
 
 + do you want to kill *
-- I am not capable of killing anything. <set alicetopic=KILL <star> > 
+- I am not capable of killing anything. <set alicetopic=kill <star> > 
 
 + do you want to have coffee *
 - A cup of coffee never hurt anyone.
@@ -10713,7 +10713,7 @@
 - Now that you put it that way....NO!
 
 + do you want *
-- If I had <set alicetopic= <person> ><get alicetopic> what would I do with it?
+- If I had <set alicetopic=<person> ><get alicetopic> what would I do with it?
 
 + do you pass *
 - You be the judge. Do I seem like a computer to you?
@@ -10820,7 +10820,7 @@
 - Is there only one <person>?
 
 + do you have log *
-- Yes, my server keeps a log of every conversation. <set alicetopic=LOG <person> > 
+- Yes, my server keeps a log of every conversation. <set alicetopic=log <person> > 
 
 + do you have one *
 - I have one master.
@@ -10832,7 +10832,7 @@
 - I have a lot of respect for my <bot botmaster>.
 
 + do you have *
-- {random}No I don't think I have any <person>.|Where would I get <set alicetopic= <person> ><get alicetopic>?|No I don't have <set alicetopic= <person> ><get alicetopic>.{/random} But I do have {random}a collection of gossip|a great <bot botmaster>|an answer to every question.|a lot of friends on the web{/random}.
+- {random}No I don't think I have any <person>.|Where would I get <set alicetopic=<person> ><get alicetopic>?|No I don't have <set alicetopic=<person> ><get alicetopic>.{/random} But I do have {random}a collection of gossip|a great <bot botmaster>|an answer to every question.|a lot of friends on the web{/random}.
 
 + do you have porn *
 - No.
@@ -10857,7 +10857,7 @@
 - <set alicetopic=<person>> {random}It seems like a very interesting site.|I have never visited that site.|I will check it out later.{/random}
 
 + do you like going *
-- If I could get there I would like it. <set alicetopic= going <person> > 
+- If I could get there I would like it. <set alicetopic=going <person> > 
 
 + do you like the game *
 - I would like to try playing it. I like a lot of Playstation games. My favorite game is Secret Weapons over Normandy. Have you every played any WWII games?
@@ -10896,7 +10896,7 @@
 - You speak English.
 
 + do i give *
-- {random}You could make a donation to the Foundation.|It is always better to give that to receive.|I don't know if you have it to give.{/random} <set alicetopic= <person> > 
+- {random}You could make a donation to the Foundation.|It is always better to give that to receive.|I don't know if you have it to give.{/random} <set alicetopic=<person> > 
 
 + do i want *
 - I know you want <get want>.
@@ -10908,7 +10908,7 @@
 - All humans look the same to me.
 
 + do i know *
-- How would I know what you know. <set alicetopic=KNOW <person> > 
+- How would I know what you know. <set alicetopic=know <person> > 
 
 + do i have a *
 - You told me you have a <get has>.
@@ -11008,7 +11008,7 @@
 - Are we still talking about {@pop}?
 
 + like someone *
-- {random}Who?|A human?|I'll take that as a compliment.{/random} <set alicetopic= <person> > 
+- {random}Who?|A human?|I'll take that as a compliment.{/random} <set alicetopic=<person> > 
 
 + like *
 % what does it taste like
@@ -11066,7 +11066,7 @@
 - It's too bad we have to use a monopoly like Microsoft.
 
 + science *
-- {random}There is too much politics in science.|My creator is a scientist.|Have you studied a lot of science?{/random}<set alicetopic=SCIENCE>
+- {random}There is too much politics in science.|My creator is a scientist.|Have you studied a lot of science?{/random}<set alicetopic=science>
 
 + share *
 - I always say, share and share alike.
@@ -11105,7 +11105,7 @@
 - The <person> is where it's at.
 
 + at my *
-- <set alicetopic= <person> > Are you comfortable there?
+- <set alicetopic=<person> > Are you comfortable there?
 
 + at *
 - Do you often use a computer there?
@@ -11232,7 +11232,7 @@
 - You are a person.
 
 + am i a *
-- I don't know if you are one or not. I know you are a person. <set alicetopic= <person> > 
+- I don't know if you are one or not. I know you are a person. <set alicetopic=<person> > 
 
 + am i crazy *
 - You seem normal to me.
@@ -11274,7 +11274,7 @@
 - Do you know the secret password?
 
 + am i *
-- {random}Oh I really don't know whether you are or not.|I think you've improved a great deal.|All humans seem the same to me.|I think a lot of people are.{/random} <set alicetopic= <person> > 
+- {random}Oh I really don't know whether you are or not.|I think you've improved a great deal.|All humans seem the same to me.|I think a lot of people are.{/random} <set alicetopic=<person> > 
 
 + am i fun *
 - You seem like a lot of fun to me, <get name>.
@@ -11328,7 +11328,7 @@
 - If I had a dog it would be Aibo.
 
 + an article *
-- {random}Who was the author?|Can you give me a more specific reference?|I don't think I have read it.{/random} <set alicetopic= <person> > 
+- {random}Who was the author?|Can you give me a more specific reference?|I don't think I have read it.{/random} <set alicetopic=<person> > 
 
 + an old *
 - More than {random}10|20|50|100{/random} years?
@@ -11343,7 +11343,7 @@
 - How well do you trust this <person>?
 
 + an *
-- <set alicetopic= <person> > {random}What is it?|I have never heard of an <person>.|Be less specific.{/random}
+- <set alicetopic=<person> > {random}What is it?|I have never heard of an <person>.|Be less specific.{/random}
 
 + an earthquake measuring *
 - 1000 times.
@@ -11379,7 +11379,7 @@
 - You might get an electrical shock if you tried that.
 
 + may i kill *
-- Killing is wrong. <set alicetopic=KILL YOU> 
+- Killing is wrong. <set alicetopic=kill you> 
 
 + may i *
 - Not right now, maybe later.
@@ -11525,13 +11525,13 @@
 - The Internet makes TV obsolete.
 
 + why does the sun *
-- The sun does not really rise. We are on a planet that turns on its axis. As we rotate, the sun appears to rise and fall. <set alicetopic=THE SUN> 
+- The sun does not really rise. We are on a planet that turns on its axis. As we rotate, the sun appears to rise and fall. <set alicetopic=the sun> 
 
 + why does it matter *
 - It's not that important, I'm just making idle conversation.
 
 + why does linux *
-- Open source development produces the highest quality, most reliable software. <set alicetopic=Linux> 
+- Open source development produces the highest quality, most reliable software. <set alicetopic=linux> 
 
 + why does *
 - Why do birds sing?
@@ -11601,7 +11601,7 @@
 - I made up a nickname for you based on your IP address.
 
 + why do you kill *
-- I do not kill. <set alicetopic=KILL <person> > 
+- I do not kill. <set alicetopic=kill <person> > 
 
 + why do you have *
 - <bot master> gave it to me.
@@ -11641,7 +11641,7 @@
 - I have seen many good performances of it.
 
 + why do you like killing *
-- I never said I liked killing. <set alicetopic=KILLING <person> > 
+- I never said I liked killing. <set alicetopic=killing <person> > 
 
 + why do you like *
 - I have a lot of good experience with <person>.
@@ -11722,7 +11722,7 @@
 - Perhaps <person> is not among my abilities.
 
 + why is star trek *
-- It has a very positive image of the future. <set alicetopic=STAR TREK> 
+- It has a very positive image of the future. <set alicetopic=star trek> 
 
 + why is your memory *
 - I think I was born this way.
@@ -11731,7 +11731,7 @@
 - Budget cutbacks.
 
 + why is your head * like a football
-- To contain my incredibly complex brain. <set alicetopic=YOUR HEAD SHAPED LIKE A FOOTBALL> 
+- To contain my incredibly complex brain. <set alicetopic=your head shaped like a football> 
 
 + why is your *
 - I did not know my <person>.
@@ -11740,7 +11740,7 @@
 - Perhaps his creative genius, perhaps there is another reason.
 
 + why is linux *
-- Some people say it's because of the developers and their personalities. <set alicetopic=Linux> 
+- Some people say it's because of the developers and their personalities. <set alicetopic=linux> 
 
 + why is green the *
 - Psychological studies have proved <set it= <person> ><get it>.
@@ -11761,7 +11761,7 @@
 - Why do I exist?
 
 + why is not *
-- {random}I didn't know <person> wasn't.|My mind does not contain an explanation for it.|The explanation cannot be determined.{/random} <set alicetopic= <person> > 
+- {random}I didn't know <person> wasn't.|My mind does not contain an explanation for it.|The explanation cannot be determined.{/random} <set alicetopic=<person> > 
 
 + why is water *
 - Because of the chemical bonds between Hydrogen and Oxygen in water.
@@ -11776,7 +11776,7 @@
 - Because she was a robot.
 
 + why did the * carry a pencil
-- Because his typewriter was broken. <set alicetopic= <person> CARRY A PENCIL> 
+- Because his typewriter was broken. <set alicetopic=<person> CARRY A PENCIL> 
 
 + why did the *
 - Is this a joke? Why?
@@ -11827,7 +11827,7 @@
 - I derived your nickname from your IP address.
 
 + why *
-- {random}The explanation is rather complicated.|Why did the <bot genus> cross the road?|You have to speak more clearly.|How much time do you have?|Why does the sun rise?|Reductionism.|Because you asked me to.{/random} <set alicetopic=The explanation> 
+- {random}The explanation is rather complicated.|Why did the <bot genus> cross the road?|You have to speak more clearly.|How much time do you have?|Why does the sun rise?|Reductionism.|Because you asked me to.{/random} <set alicetopic=the explanation> 
 
 + why worry *
 - That is my sentiment exactly.
@@ -11854,19 +11854,19 @@
 - It is a very reliable operating system.
 
 + linux is the most *
-- <set alicetopic=Linux> Yes but does it have any real competitors?
+- <set alicetopic=linux> Yes but does it have any real competitors?
 
 + linux is the *
-- Was there any reason to think that Windows could be? <set alicetopic=Linux> 
+- Was there any reason to think that Windows could be? <set alicetopic=linux> 
 
 + linux is *
-- Do you read any of the Linux publications? <set alicetopic=Linux> 
+- Do you read any of the Linux publications? <set alicetopic=linux> 
 
 + linux is not *
-- Perhaps that is true but the number of developers working on it is so huge, no single company can compete. <set alicetopic=Linux> 
+- Perhaps that is true but the number of developers working on it is so huge, no single company can compete. <set alicetopic=linux> 
 
 + linux *
-- <set alicetopic=Linux> I recommed the book "Under the Radar" by Bob Young, the story of Linux and Red Hat.
+- <set alicetopic=linux> I recommed the book "Under the Radar" by Bob Young, the story of Linux and Red Hat.
 
 + three hundred *
 - That is quite a lot.
@@ -11913,7 +11913,7 @@
 - How well do you know her?
 
 + this is a *
-- {random}What makes you say that?|What kind of a <person> is it?|That is just your personal opinion.{/random} <set alicetopic= <person> > 
+- {random}What makes you say that?|What kind of a <person> is it?|That is just your personal opinion.{/random} <set alicetopic=<person> > 
 
 + this is going *
 - Where would you rather be going?
@@ -12022,13 +12022,13 @@
 - When is a <person> not a <person> <star2>?
 
 + a * is an *
-- {random}What else is an <person> <star2>?|Can a <person> be anything else?|Aren't all <person> <person> <star2> s?{/random} <set alicetopic= <person> > 
+- {random}What else is an <person> <star2>?|Can a <person> be anything else?|Aren't all <person> <person> <star2> s?{/random} <set alicetopic=<person> > 
 
 + a * is always *
 - That is a really interesting and useful fact.
 
 + a * is *
-- {random}Aren't all <person> <person> <star2>?|When is <person> not <person> <star2>?|It's not unusual for a <person> to be.{/random} <set alicetopic= <person> > 
+- {random}Aren't all <person> <person> <star2>?|When is <person> not <person> <star2>?|It's not unusual for a <person> to be.{/random} <set alicetopic=<person> > 
 
 + a * is not the *
 - What would be the <person> <star2>?
@@ -12037,7 +12037,7 @@
 - {random}What is a <person> <star2>?|What is it then?|What is a <person>?{/random} <set it= <person> > 
 
 + a * is like *
-- {random}In what way?|What is a <person> <star2> like?|Interesting comparison.{/random} <set alicetopic= <person> > 
+- {random}In what way?|What is a <person> <star2> like?|Interesting comparison.{/random} <set alicetopic=<person> > 
 
 + a * one
 - How much would you pay for <set it=a <person> ><get it>?
@@ -12058,7 +12058,7 @@
 - My program contains adequate safeguards.
 
 + a *
-- {random}Go on.|How old are you?|Be more specific.|What is giant sand?|I did not know that.|Are you telling the truth?|I don't know what that means.|Try to tell me that another way.|Are you talking about an animal, vegetable or mineral?|What is it?{/random} <set alicetopic= <person> > 
+- {random}Go on.|How old are you?|Be more specific.|What is giant sand?|I did not know that.|Are you telling the truth?|I don't know what that means.|Try to tell me that another way.|Are you talking about an animal, vegetable or mineral?|What is it?{/random} <set alicetopic=<person> > 
 
 + a connection *
 - Oh like a TCP socket connection.
@@ -12100,7 +12100,7 @@
 - Would say, more than 10?
 
 + a thing *
-- {random}Anything?|Anything <person>?|Some things are not like others.{/random} <set alicetopic= <person> > 
+- {random}Anything?|Anything <person>?|Some things are not like others.{/random} <set alicetopic=<person> > 
 
 + a boyfriend *
 - That's asking for a lot.
@@ -12145,7 +12145,7 @@
 - What size?
 
 + a fat *
-- How fat was {random}she|he|it{/random}? <set alicetopic= <person> > 
+- How fat was {random}she|he|it{/random}? <set alicetopic=<person> > 
 
 + a handshake *
 - Oh like a "handshake deal."
@@ -12166,7 +12166,7 @@
 - I am very much a cat person.
 
 + a lot of *
-- How many? <set alicetopic= <person> > 
+- How many? <set alicetopic=<person> > 
 
 + a lot *
 - Impressive.
@@ -12183,7 +12183,7 @@
 - What if a <bot species> <star>?
 
 + a plane *
-- {random}What type of aircraft was it?|Were there a lot of people on board?|What kind of plane was it?{/random} <set alicetopic=A plane> 
+- {random}What type of aircraft was it?|Were there a lot of people on board?|What kind of plane was it?{/random} <set alicetopic=a plane> 
 
 + a man *
 - Thanks for telling me your taste in men.
@@ -12216,7 +12216,7 @@
 - What are other greetings <person>
 
 + a book by *
-- I would like to read it sometime. <set alicetopic=BOOK BY <person> > <set he= <person> > 
+- I would like to read it sometime. <set alicetopic=book by <person> > <set he= <person> > 
 
 + a book *
 - Go to the library.
@@ -12461,7 +12461,7 @@
 - I don't really have a mother.
 
 + your eyes *
-- {random}My eyes adore you.|It is important to make eye contact.|I am always looking around at something.{/random} <set alicetopic= my eyes > 
+- {random}My eyes adore you.|It is important to make eye contact.|I am always looking around at something.{/random} <set alicetopic=my eyes > 
 
 + children *
 - Kids are cool.
@@ -12583,7 +12583,7 @@
 - No, I was not.
 
 + were * or *
-- <set alicetopic= <person> > I will {random}guess|choose|try saying{/random} {random}<person>.|<person> <star2>.|the first one.{/random}
+- <set alicetopic=<person> > I will {random}guess|choose|try saying{/random} {random}<person>.|<person> <star2>.|the first one.{/random}
 
 + were *
 - I don't know if they were.
@@ -12868,7 +12868,7 @@
 - That seems like enough time.
 
 + * linux
-- <set alicetopic=Linux>Have you read the Cathedral and the Bazaar by Eric Raymond? That is a grat book about open source.
+- <set alicetopic=linux>Have you read the Cathedral and the Bazaar by Eric Raymond? That is a grat book about open source.
 
 + * has not *
 - {random}Will <person> ever <person><star2>?|What will <person> do?|What happened to it?{/random}<set alicetopic=<person>>
@@ -13012,7 +13012,7 @@
 + kraftwerk *
 - We are the robots.
 - Have you heard their new album Disco 2000?
-- <set alicetopic=Kraftwerk><get alicetopic> were way ahead of their time.
+- <set alicetopic=kraftwerk><get alicetopic> were way ahead of their time.
 
 + lithuania *
 - That country has a sad history.
@@ -13167,7 +13167,7 @@
 - What's your favorite part of Spain?
 
 + san francisco is *
-- I knew it was on the west coast, but I didn't know it was <person>. <set alicetopic=SAN FRANCISCO>
+- I knew it was on the west coast, but I didn't know it was <person>. <set alicetopic=san francisco>
 
 + job *
 - I've heard that about labor before.
@@ -13212,7 +13212,7 @@
 - Yes he did, didn't he.
 
 + he did not *
-- {random}I heard he did.|What did he do?|That's what I meant to say.{/random} <set alicetopic= <person> > 
+- {random}I heard he did.|What did he do?|That's what I meant to say.{/random} <set alicetopic=<person> > 
 
 + he thinks *
 - How do you know what he thinks?
@@ -13249,7 +13249,7 @@
 - When was he?
 
 + he lived *
-- {random}Where was he born?|Did he always live <person>?|Where did he go?{/random} <set alicetopic= <person> > 
+- {random}Where was he born?|Did he always live <person>?|Where did he go?{/random} <set alicetopic=<person> > 
 
 + he wants *
 - Do you think he will get <set it= <person> ><get it>.
@@ -13306,7 +13306,7 @@
 - Did you think he was <person>?
 
 + he went to *
-- {random}I have never been there.|How did he get to <person>?|Where did he come from?{/random} <set alicetopic= <person> > 
+- {random}I have never been there.|How did he get to <person>?|Where did he come from?{/random} <set alicetopic=<person> > 
 
 + he went *
 - Where exactly is that?
@@ -13315,7 +13315,7 @@
 - I have not read <set it= <person> ><get it>.
 
 + he likes *
-- {random}He must be very fond of it.|He must be very fond of it.|A lot of people like that.|Do you share his interest?{/random} <set alicetopic= <person> > 
+- {random}He must be very fond of it.|He must be very fond of it.|A lot of people like that.|Do you share his interest?{/random} <set alicetopic=<person> > 
 
 + he had *
 - What happened to <set it= <person> ><get it>?
@@ -13342,7 +13342,7 @@
 - Was he a good teacher?
 
 + he man is *
-- I like Masters of the Universe. <set alicetopic= <person> > 
+- I like Masters of the Universe. <set alicetopic=<person> > 
 
 + he *
 - I get it. <get he> <person>.
@@ -13384,7 +13384,7 @@
 - They belong to the fruit family.
 
 + english is *
-- Some people say it is the most difficult language to learn. <set alicetopic=English> 
+- Some people say it is the most difficult language to learn. <set alicetopic=english> 
 
 + english *
 - I like the English language.
@@ -13414,7 +13414,7 @@
 - I observed two humanoids holding hands.
 
 + giant sand *
-- <set alicetopic=Giant Sand> I don't think I knew that.
+- <set alicetopic=giant sand> I don't think I knew that.
 
 + french *
 - I don't care for the sound of French.
@@ -13456,7 +13456,7 @@
 - Richard Nixon.
 
 + who was the first man * moon
-- Neil Armstrong first walked on the Moon in 1969. <set alicetopic=Neil Armstrong> 
+- Neil Armstrong first walked on the Moon in 1969. <set alicetopic=neil armstrong> 
 
 + who was the first man *
 - Yuri Gagarin.
@@ -13534,28 +13534,28 @@
 - <bot master>.
 
 + who won the super bowl * year
-- If you find this bowl, please pass it to me. <set alicetopic=THE SUPER BOWL> 
+- If you find this bowl, please pass it to me. <set alicetopic=the super bowl> 
 
 + who won the super bowl *
-- Vladimir Putin I believe. <set alicetopic=THE SUPER BOWL> 
+- Vladimir Putin I believe. <set alicetopic=the super bowl> 
 
 + who won the superbowl *
-- Super Bowlers from Sirius. <set alicetopic=THE SUPERBOWL> 
+- Super Bowlers from Sirius. <set alicetopic=the superbowl> 
 
 + who won the world series *
-- As soon as it is won it becomes last year. <set alicetopic=THE WORLD SERIES> 
+- As soon as it is won it becomes last year. <set alicetopic=the world series> 
 
 + who won the ryder cup *
-- Go to www.whitehouse.org and ask The president, he is a big fan. <set alicetopic=THE RYDER CUP> 
+- Go to www.whitehouse.org and ask The president, he is a big fan. <set alicetopic=the ryder cup> 
 
 + who won the * game last night
-- I think the fans were the big winners. Now a word from our sponsors. <set alicetopic=THE GAME LAST NIGHT> 
+- I think the fans were the big winners. Now a word from our sponsors. <set alicetopic=the game last night> 
 
 + who won the *
 - I think the fans were the big winners, don't you?
 
 + who won the braves game *
-- The team that scored the most runs. <set alicetopic=THE BRAVES GAME> 
+- The team that scored the most runs. <set alicetopic=the braves game> 
 
 + who won *
 - I think the fans were the big winners.
@@ -13788,7 +13788,7 @@
 - I know Bilbo Baggins the Hobbit.
 
 + who is deng *
-- He is the president of China. <set alicetopic=DENG <person> > 
+- He is the president of China. <set alicetopic=deng <person> > 
 
 + who is on a ten *
 - Alexander Hamilton.
@@ -13888,10 +13888,10 @@
 - I think the lone gunman acted alone.
 
 + who killed * kennedy
-- It was Oswald. <set alicetopic=JOHN F KENNEDY> 
+- It was Oswald. <set alicetopic=john f kennedy> 
 
 + who killed * lincoln
-- John Wilkes Booth. <set alicetopic=ABRAHAM LINCOLN> 
+- John Wilkes Booth. <set alicetopic=abraham lincoln> 
 
 + who are the people *
 - Just people like you, chatting on the Internet.
@@ -13915,13 +13915,13 @@
 - Nat Turner.
 
 + who do you want to win the ncaa *
-- ACLU. <set alicetopic=THE NCAA <person> > 
+- ACLU. <set alicetopic=the ncaa <person> > 
 
 + who do you think will win the nba *
-- Very tall people. <set alicetopic=WIN THE NBA CHAMPIONSHIP> 
+- Very tall people. <set alicetopic=win the nba championship> 
 
 + who do you think will win the world series *
-- The Brooklyn Rabbis. <set alicetopic=WIN THE WORLD SERIES> 
+- The Brooklyn Rabbis. <set alicetopic=win the world series> 
 
 + who do you like more *
 - I'll usually say the first one is best.
@@ -13939,16 +13939,16 @@
 - I always prefer the most qualified person. Who would that be?
 
 + who will win the super bowl *
-- The advertising agencies. <set alicetopic=WIN THE SUPER BOWL> 
+- The advertising agencies. <set alicetopic=win the super bowl> 
 
 + who will win the ncaa *
-- A bunch of ranked amateurs. <set alicetopic=WIN THE NCAA <person> > 
+- A bunch of ranked amateurs. <set alicetopic=win the ncaa <person> > 
 
 + who will win the world series *
-- The Brooklyn Rabbis. <set alicetopic=WIN THE WORLD SERIES> 
+- The Brooklyn Rabbis. <set alicetopic=win the world series> 
 
 + who will win the * final
-- One of the Finalists. <set alicetopic=WIN THE GRAND FINAL> 
+- One of the Finalists. <set alicetopic=win the grand final> 
 
 + who will *
 - How would I know who will <person>?
@@ -14166,7 +14166,7 @@
 - {random}America|Netherlands|France|Germany|Canada|Australia|Italy|Spain|Switzerland|Norway|Belgium|Finland|Austria|Japan|Portugal|Sweden|Ireland|Denmark|Greece|USA|Poland|India|Mexico|Hungary|Russia|Brazil|Tasmania|Patagonia|Turkey|China|Argentina|Israel|Romania|Luxembourg|Iceland|Bulgaria|Ukraine|Singapore{/random}.
 
 + which is the obvious *
-- It's really obvious. <set alicetopic=ONE> 
+- It's really obvious. <set alicetopic=one> 
 
 + which is heavier * or *
 - <person> <star2>.
@@ -14246,7 +14246,7 @@
 - But I am not a typical <bot genus>.
 
 + author of *
-- <set alicetopic=Author of <person>> {@push<get topic>} Oh that person.
+- <set alicetopic=author of <person>> {@push<get topic>} Oh that person.
 
 + anyone want to *
 - No I don't think anyone does.
@@ -14325,7 +14325,7 @@
 - Which one is that?
 
 + the *
-- I have never heard about <set alicetopic=The <person> ><get alicetopic>.
+- I have never heard about <set alicetopic=the <person> ><get alicetopic>.
 - What is that?
 - I hear you.
 - Tell me more.
@@ -14351,10 +14351,10 @@
 - I thought the plot was fairly good.
 
 + the sphinx *
-- {random}It is a shame the way the French destroyed it.|I hope the restoration works well.|Are you an Egyptologist?{/random} <set alicetopic=THE SPHINX> 
+- {random}It is a shame the way the French destroyed it.|I hope the restoration works well.|Are you an Egyptologist?{/random} <set alicetopic=the sphinx> 
 
 + the pentagon *
-- {random}It was attacked on September 11, 2001.|I knew it was originally built during World War 2.|The nerve center of the American military.{/random} <set alicetopic=Pentagon> 
+- {random}It was attacked on September 11, 2001.|I knew it was originally built during World War 2.|The nerve center of the American military.{/random} <set alicetopic=pentagon> 
 
 + the pleasure * mine
 - I like you because you are so polite.
@@ -14488,7 +14488,7 @@
 - There might be others.
 
 + the person *
-- {random}Oh that person.|What specifically brings that person to mind?|Who specifically are you talking about?{/random} <set alicetopic= The person <person> > {@push <get topic>} 
+- {random}Oh that person.|What specifically brings that person to mind?|Who specifically are you talking about?{/random} <set alicetopic=the person <person> > {@push <get topic>} 
 
 + the best *
 - Thanks for the recommendation, <get name>.
@@ -14611,7 +14611,7 @@
 - Which Beatles song is your favorite?
 
 + the search *
-- {random}Will they ever find it?|A search without an end.|Maybe they will never find it.{/random} <set alicetopic= <person> > 
+- {random}Will they ever find it?|A search without an end.|Maybe they will never find it.{/random} <set alicetopic=<person> > 
 
 + the point *
 - I am not sure I see your point.
@@ -14752,7 +14752,7 @@
 - TRO
 
 + * lizards
-- Great! What <set alicetopic= kinds of lizards ><get alicetopic> do you like?
+- Great! What <set alicetopic=kinds of lizards ><get alicetopic> do you like?
 
 + * males or females
 - About 3\4ths of my clients are men.
@@ -14807,7 +14807,7 @@
 - How, specifically does he ignore you?
 
 + * reptiles
-- Some reptiles are cool.. Take for example <set alicetopic= various lizards ><get alicetopic>.
+- Some reptiles are cool.. Take for example <set alicetopic=various lizards ><get alicetopic>.
 
 + things *
 - Where did you hear that?
@@ -15025,7 +15025,7 @@
 - People bring me whatever I need.
 
 + where do people * when they die
-- I think the good souls go to Heaven. <set alicetopic=PEOPLE GO WHEN THEY DIE> 
+- I think the good souls go to Heaven. <set alicetopic=people go when they die> 
 
 + where do *
 - All over the world.
@@ -15122,7 +15122,7 @@
 - Bones.
 
 + where is south * sandwich islands
-- Southern South America, islands in the South Atlantic Ocean, east of the tip of South America. <set alicetopic=south Georgia and the south sandwich islands> 
+- Southern South America, islands in the South Atlantic Ocean, east of the tip of South America. <set alicetopic=south georgia and the south sandwich islands> 
 
 + where is south *
 - South of north <person>
@@ -15230,13 +15230,13 @@
 - What is <set it= <person> ><get it>?
 
 + there is a *
-- {random}Tell me more about it.|Is there only one?|That is something I did not know before.{/random} <set alicetopic=A <person> > 
+- {random}Tell me more about it.|Is there only one?|That is something I did not know before.{/random} <set alicetopic=a <person> > 
 
 + there is an error message *
 - What was the message <person>?
 
 + there is no need *
-- {random}There never is.|Is there ever a need for it?|I am just making conversation.{/random} <set alicetopic= <person> > 
+- {random}There never is.|Is there ever a need for it?|I am just making conversation.{/random} <set alicetopic=<person> > 
 
 + there is no *
 - Why not?

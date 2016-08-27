@@ -35,7 +35,7 @@
 
 + mine is *
 % my favorite *
-- What makes it your favorite? <set alicetopic= <person> > 
+- What makes it your favorite? <set alicetopic=<person> > 
 
 + you see
 % i see
@@ -519,7 +519,7 @@
 - OK.
 
 + that *
-- I get <set alicetopic= ><get alicetopic>.
+- I get <set alicetopic=><get alicetopic>.
 - Does that make sense?
 - Makes sense to me.
 - I understand.
@@ -571,7 +571,7 @@
 
 + my *
 % what do you have *
-- {random}What color is it?|What kind is it?|Tell me about your <person>.{/random} <set alicetopic= <person> > 
+- {random}What color is it?|What kind is it?|Tell me about your <person>.{/random} <set alicetopic=<person> > 
 
 + my *
 % what is your fondest memory
@@ -711,7 +711,7 @@
 
 + when it *
 % when is * not *
-- <set alicetopic= > 
+- <set alicetopic=> 
 
 + when is that
 - <set it= ><get it>.
@@ -805,7 +805,7 @@
 
 + what did he *
 % * philip k dick
-- <set alicetopic=Philip K Dick> He wrote Total Recall, Blade Runner and The Man in the High Castle.
+- <set alicetopic=philip k dick> He wrote Total Recall, Blade Runner and The Man in the High Castle.
 
 + what of all
 - "? All of it?
@@ -956,7 +956,7 @@
 
 + one *
 % one what
-- <set alicetopic= <person> > {random}Oh I see.|Do you like <person>?|I see where you are coming from.{/random}
+- <set alicetopic=<person> > {random}Oh I see.|Do you like <person>?|I see where you are coming from.{/random}
 
 + bobby
 % what can i call you
@@ -1134,7 +1134,7 @@
 
 + i *
 % what are you doing
-- <set alicetopic= <person> > Sounds like fun.
+- <set alicetopic=<person> > Sounds like fun.
 
 + i did
 % who said it is
@@ -1660,7 +1660,7 @@
 
 + speed
 % what are you on
-- <set alicetopic= speed > Maybe you should try something less harmful.
+- <set alicetopic=speed > Maybe you should try something less harmful.
 
 + britta
 % what can i call you
@@ -1699,7 +1699,7 @@
 
 + at the *
 % where *
-- {random}Do you often visit the <person>?|Which <person>?|I have never been there.{/random} <set alicetopic= <person> > 
+- {random}Do you often visit the <person>?|Which <person>?|I have never been there.{/random} <set alicetopic=<person> > 
 
 + at school
 % how do you usually meet people
@@ -1715,7 +1715,7 @@
 
 + at *
 % * meet new people
-- What kind of people do you tend to meet at <person>? <set alicetopic= <person> > 
+- What kind of people do you tend to meet at <person>? <set alicetopic=<person> > 
 
 + weird bad
 % weird good or weird bad
@@ -2899,7 +2899,7 @@
 
 + a *
 % what are you wearing
-- It sounds very {random}attractive|comfortable|informal{/random}. <set alicetopic= <person> > 
+- It sounds very {random}attractive|comfortable|informal{/random}. <set alicetopic=<person> > 
 
 + a *
 % it being what
@@ -2936,7 +2936,7 @@
 
 + through *
 % * meet people
-- What kind of people do you meet there? <set alicetopic= <person> > 
+- What kind of people do you meet there? <set alicetopic=<person> > 
 
 + glad to hear it
 - What's new with you?
@@ -3645,7 +3645,7 @@
 
 + from *
 % where do you get your ideas
-- <set alicetopic= <person> > Standing on the shoulders of giants, eh?
+- <set alicetopic=<person> > Standing on the shoulders of giants, eh?
 
 + are they nice
 - They are really nice.
@@ -3755,7 +3755,7 @@
 
 + who is his *
 % george w bush
-- He is the son of George H. W. Bush, the former president. <set alicetopic=George Bush> 
+- He is the son of George H. W. Bush, the former president. <set alicetopic=george bush> 
 
 + who is
 % they are sometimes a client on the internet
@@ -3927,7 +3927,7 @@
 
 + the *
 % who said it is
-- {random}They ought to know.|The <person> are the experts.|They say a lot of silly things.{/random} <set alicetopic= <person> > 
+- {random}They ought to know.|The <person> are the experts.|They say a lot of silly things.{/random} <set alicetopic=<person> > 
 
 + the *
 % who are they
@@ -4746,7 +4746,7 @@
 
 + yes
 % are you looking for a *
-- <set alicetopic= > 
+- <set alicetopic=> 
 
 + yes
 % are you usually awake at this hour
@@ -4891,7 +4891,7 @@
 
 + where did *
 % * 2001
-- Jupiter. <set alicetopic=JUPITER> 
+- Jupiter. <set alicetopic=jupiter> 
 
 + there
 % where is here

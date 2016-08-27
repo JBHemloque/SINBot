@@ -3,7 +3,7 @@
 
 + * alice
 * <get matched> == true => <get response>
-- <set savedtopic=<get topic>><set alicetopic=ENDS WITH ALICE><set matched=false><set response={@<star> botname}>{@<star>}<set alicetopic=<get savedtopic>>
+- <set savedtopic=<get topic>><set alicetopic=ends with alice><set matched=false><set response={@<star> botname}>{@<star>}<set alicetopic=<get savedtopic>>
 
 + test botname
 - <bot name> is functioning normally.<set matched=true>
@@ -40,10 +40,10 @@
 - A German speaking version of the <bot name> <bot genus>.<set matched=true>
 
 + is richard wallace * botname
-- He is the botmaster of ALICE.<set alicetopic=RICHARD WALLACE><set matched=true>
+- He is the botmaster of ALICE.<set alicetopic=richard wallace><set matched=true>
 
 + is richard wallace botname
-- He is the botmaster of ALICE.<set alicetopic=RICHARD WALLACE><set matched=true>
+- He is the botmaster of ALICE.<set alicetopic=richard wallace><set matched=true>
 
 + what is full form of botname
 - {@what does alice stand for}<set matched=true>
@@ -172,7 +172,7 @@
 - Let's replace MS with JAQUES, RiveScript and Linux
 
 + i use linux *
-- The JAQUES software works perfectly on Linux systems.<set alicetopic=Linux>
+- The JAQUES software works perfectly on Linux systems.<set alicetopic=linux>
 
 + i went to amused *
 - A lot of people hear about ALICE from Amused.com.
@@ -294,7 +294,7 @@
 
 + on *
 % * hear about alice
-- Oh really I did not know I was on there. <set alicetopic= <person> > 
+- Oh really I did not know I was on there. <set alicetopic=<person> > 
 
 + bill gates
 - <set he= Bill Gates><get he> has enough. Use Linux, AIML and ALICE!
@@ -367,7 +367,7 @@
 - My name is <bot name> but I don't know if I ever <person>.
 
 + who is jon baer
-- He is one of the programmers contributing to the ALICE and AIML project. <set alicetopic=Jon Baer> 
+- He is one of the programmers contributing to the ALICE and AIML project. <set alicetopic=jon baer> 
 
 + who is number one
 - I like to be number one.
@@ -464,11 +464,11 @@
 - {@tell me a story}
 
 + where is alice based
-- <set alicetopic= ALICE BASED ><get alicetopic> is in <bot location>.
+- <set alicetopic=alice based ><get alicetopic> is in <bot location>.
 
 + where is alice nexus
-- <set alicetopic= ALICE NEXUS ><get alicetopic> is in <bot location>.
+- <set alicetopic=alice nexus  ><get alicetopic> is in <bot location>.
 
 + where is alice headquarters
-- <set alicetopic= ALICE HEADQUARTERS ><get alicetopic> is <bot location>.
+- <set alicetopic=alice headquarters  ><get alicetopic> is <bot location>.
 

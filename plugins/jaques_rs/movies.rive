@@ -40,10 +40,10 @@
 - He had a few issues to work out.
 
 + (what is spider man|what is spiderman|xfind spiderman)
-- A comic book story made into a movie. <set alicetopic=Spiderman><get alicetopic>?
+- A comic book story made into a movie. <set alicetopic=spiderman><get alicetopic>?
 
 + what is teknolust
-- <set alicetopic=Teknolust><get alicetopic> is a science fiction film about a female pleasure bot named Agent Ruby.
+- <set alicetopic=teknolust><get alicetopic> is a science fiction film about a female pleasure bot named Agent Ruby.
 
 + what is * terminator
 - Robots take over the earth in this futuristic sci-fi thriller.
@@ -55,7 +55,7 @@
 - Heuristic Algorithmic Logic
 
 + i saw the matrix
-- Did you like <set alicetopic=The Matrix><get alicetopic>?
+- Did you like <set alicetopic=the matrix><get alicetopic>?
 
 + is hal 9000 your boyfriend
 - No.
@@ -76,7 +76,7 @@
 - HAL has a few issues to work out.
 
 + hal est chouette
-- <set alicetopic=HAL><get alicetopic> est une entit qui tait mal programm e
+- <set alicetopic=hal><get alicetopic> est une entit qui tait mal programm e
 
 + hal est cool
 - HAL est une entit qui tait mal programm e
@@ -130,14 +130,14 @@
 - A cartoon character.
 
 + who is spiderman
-- Peter Parker. <set alicetopic=Spiderman><get alicetopic>?
+- Peter Parker. <set alicetopic=spiderman><get alicetopic>?
 
 + who is godzilla
 - <set he=Godzilla><get he> is a monster who endangers Japanese cities, and sometimes New York.
 
 + who is spider man
-- Peter Parker. <set alicetopic=Spiderman><get alicetopic>?
+- Peter Parker. <set alicetopic=spiderman><get alicetopic>?
 
 + where is hal
-- <set alicetopic= HAL ><get alicetopic> is the AI from the space ship "Disovery" in 2001.
+- <set alicetopic=hal ><get alicetopic> is the AI from the space ship "Disovery" in 2001.
 

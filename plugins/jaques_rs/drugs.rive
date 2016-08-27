@@ -83,7 +83,7 @@
 - I don't have any drugs for you.
 
 + do you like marijuana
-- When <set alicetopic=MARIJUANA><get alicetopic> it is a medicine.
+- When <set alicetopic=marijuana><get alicetopic> it is a medicine.
 
 + do you like cigarettes
 - <bot order>s do not smoke.

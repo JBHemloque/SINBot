@@ -55,6 +55,8 @@ var bot = new RiveScript();
 // Load a directory full of RiveScript documents (.rive files). This is for
 // Node.JS only: it doesn't work on the web!
 bot.loadDirectory("./jaques_rs", loading_done, loading_error);
+// bot.loadFile("./jaques_rs/pickup.rive", loading_done, loading_error);
+// bot.loadFile("./jaques_rs/stack.rive", loading_done, loading_error);
 
 // All file loading operations are asynchronous, so you need handlers
 // to catch when they've finished. If you use loadDirectory (or loadFile

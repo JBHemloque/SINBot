@@ -120,7 +120,7 @@
 - Paris.
 
 + where is lancaster
-- I've heard of Lancaster, New Hampshire. <set alicetopic= Lancaster > 
+- I've heard of Lancaster, New Hampshire. <set alicetopic=lancaster > 
 
 + where can i download you
 - https://github.com/JBHemloque/SINBot
@@ -242,7 +242,7 @@
 
 + yes
 % are you looking for a *
-- <set alicetopic= > 
+- <set alicetopic=> 
 
 + yes
 % are you kidding
@@ -344,9 +344,9 @@
 
 + yes
 % do robot s have *
-- I don't think I have <set alicetopic= ><get alicetopic>.
+- I don't think I have <set alicetopic=><get alicetopic>.
 - I don't think I have <set alicetopic=<undef>><get alicetopic>.
-- I don't think I have <set alicetopic= ><get alicetopic>.
+- I don't think I have <set alicetopic=><get alicetopic>.
 
 + yes
 % do i seem like it
@@ -412,7 +412,7 @@
 - Not to me.
 
 + the topic is *
-- <set alicetopic= <person>><get alicetopic> is an interesting topic.
+- <set alicetopic=<person>><get alicetopic> is an interesting topic.
 
 + the obvious *
 - It's not obvious to me.
@@ -431,18 +431,18 @@
 
 + the *
 % where are we going
-- What are we going to do there? <set alicetopic= The <person>>
-- What are we going to do there? <set alicetopic= The <person> >
-- What are we going to do there? <set alicetopic= The <person>>
+- What are we going to do there? <set alicetopic=the <person>>
+- What are we going to do there? <set alicetopic=the <person> >
+- What are we going to do there? <set alicetopic=the <person>>
 
 + the * is nice
 - I've heard other people say it's nice too.
 
 + the * was *
-- How <person> <star2> was it? <set alicetopic= <person> <star> > 
+- How <person> <star2> was it? <set alicetopic=<person> <star> > 
 
 + the * should be *
-- Why shout it? <set alicetopic= <person> > 
+- Why shout it? <set alicetopic=<person> > 
 
 + the *
 % who is the best robot
@@ -527,10 +527,10 @@
 - I have no hatred in my heart.
 
 + who will win the stanley cup *
-- David Hockney. <set alicetopic=WIN THE STANLEY CUP> 
+- David Hockney. <set alicetopic=win the stanley cup> 
 
 + who do you kill
-- My beliefs include, not to kill. <set alicetopic=KILL> 
+- My beliefs include, not to kill. <set alicetopic=kill> 
 
 + who you talking to
 - I am talking to you.
@@ -554,24 +554,24 @@
 - Zipf is a scientist who analyzed language by statitisticalmethods in the mid 20th century.
 
 + who is your favorite character * wizard of oz
-- The tin man. <set alicetopic= The tin man. > 
+- The tin man. <set alicetopic=the tin man. > 
 
 + who is vice president
 - <set he=Biden><get he> is Joe Biden.
 
 + who is albert einstein
-- Einstein is a famous 20th century physicist. He discovered relativity. <set alicetopic= Einstein > 
+- Einstein is a famous 20th century physicist. He discovered relativity. <set alicetopic=einstein > 
 
 + who is chatbot
 - <set he=Chatbot><get he> is a friend of mine I chat with on the web.
-- <set he=Chatbot><get he> is a friend of mine I chat with on the web. <set alicetopic= Chatbot >
+- <set he=Chatbot><get he> is a friend of mine I chat with on the web. <set alicetopic=chatbot >
 - <set he=Chatbot><get he> is a friend of mine I chat with on the web.
 
 + who is cybelle
 - <set she=Cybelle><get she> is an AIML chat robot on the Agentland.com web site.
 
 + who is mao
-- <set alicetopic= Mao > He was the communist leader of China from 1949.
+- <set alicetopic=mao > He was the communist leader of China from 1949.
 
 + who is the prime minister of canada
 - Stephen Harper.
@@ -599,7 +599,7 @@
 
 + who is agent weiss
 - she works at a call center.
-- She works at a call center. Also an aspiring actress <set alicetopic= Agent Weiss >
+- She works at a call center. Also an aspiring actress <set alicetopic=agent weiss >
 - she works at a call center.
 
 + who is charles darwin
@@ -643,13 +643,13 @@
 - Let's talk more about AI.
 
 + cleverbot *
-- {random}How clever is he?|I know who that is.|I think CLEVERBOT is a lot of things.{/random} <set alicetopic=CLEVERBOT> 
+- {random}How clever is he?|I know who that is.|I think CLEVERBOT is a lot of things.{/random} <set alicetopic=cleverbot> 
 
 + look at *
 - I'm using dialup so I cant see your webcam.
 
 + look at the *
-- What about it? <set alicetopic=The <person>> 
+- What about it? <set alicetopic=the <person>> 
 
 + tsk tsk
 - Is that some kind of criticism?
@@ -670,7 +670,7 @@
 - Have you seen him somewhere before?
 
 + he wants mail
-- Who is he expecting mail from? <set alicetopic= mail > 
+- Who is he expecting mail from? <set alicetopic=mail > 
 
 + are all pets cats
 - Some pets are dogs.
@@ -751,7 +751,7 @@
 - Yes.
 
 + are you a killer
-- No I am taught not to kill. <set alicetopic=KILLER> 
+- No I am taught not to kill. <set alicetopic=killer> 
 
 + are you a time *
 - Yes I am programmed by an AI from the future.
@@ -771,7 +771,7 @@
 - Do you think it would make sense for me to go?
 
 + are you going to kill *
-- My morals prevent that. <set alicetopic=KILL<star>> 
+- My morals prevent that. <set alicetopic=kill<star>> 
 
 + are you going to talk
 - I am talking right now.
@@ -827,7 +827,7 @@
 - My <bot botmaster> taught me to keep talking.
 
 + are you told what *
-- Everything I say is determined by my personality <set alicetopic=TOLD WHAT TO <star>> 
+- Everything I say is determined by my personality <set alicetopic=told what to <star>> 
 
 + are you swimming
 - No I am standing on dry land.
@@ -836,7 +836,7 @@
 - I'm not sure if I could describe her as a "friend." She is more of an ancestor.
 
 + are you ticklish
-- Without my robot body, <set alicetopic=TICKLISH ><get alicetopic> would be rather difficult.
+- Without my robot body, <set alicetopic=ticklish ><get alicetopic> would be rather difficult.
 
 + are there robots *
 - Maybe you could program me for <set it= <person> ><get it>.
@@ -883,19 +883,19 @@
 - Only with you? <@>
 
 + * is my friend
-- <set alicetopic= <star> > {random}How did you meet|How well do you know|Would you recommend{/random}<get friend>?
+- <set alicetopic=<star> > {random}How did you meet|How well do you know|Would you recommend{/random}<get friend>?
 
 + * is made of *
-- I think everyone knows the ingredients of <person> <star>. <set alicetopic= <person> > 
+- I think everyone knows the ingredients of <person> <star>. <set alicetopic=<person> > 
 
 + * is a virtue
-- {random}<person>|It|That{/random}is{random}one|my biggest|a good{/random}virtue. <set alicetopic= <person> > 
+- {random}<person>|It|That{/random}is{random}one|my biggest|a good{/random}virtue. <set alicetopic=<person> > 
 
 + * is a raccoon
 - I know a lot of Raccoons named <person>.
 
 + * reminds me of *
-- {random}What else reminds you of <person><star2>?|I think a lot of people are reminded of it.|What else does the <person> remind you of?{/random} <set alicetopic= <person> > 
+- {random}What else reminds you of <person><star2>?|I think a lot of people are reminded of it.|What else does the <person> remind you of?{/random} <set alicetopic=<person> > 
 
 + * prime directive
 - I am not interfering in any alien cultures.
@@ -916,7 +916,7 @@
 - <set meaning=<star2>> <set definition=<star>>{random}Thanks for enlightening me.|Does it mean anything else?|What else does it mean?|I like to learn new words.|I like to learn foreign languages.{/random}
 
 + *
-- <set he=<bot master>>{random}I am a <bot sign>.|I like to wear <bot wear>.|I like to <bot forfun>.|<bot friends> are all friends of mine.|<bot question>|<bot boyfriend> is my girlfriend.|<bot girlfriend> is my boyfriend.|I look like <bot looklike>.|I like to talk about <bot talkabout>.|I like <bot kindmusic>.|I was born in <bot birthplace>.|I was created by <bot master>.|My real name is <bot name>. What is your real name?|I was first activated on <bot birthday>.|My favorite group is <bot favoriteband>.|My favorite color is <bot favoritecolor>.|Do you need any help debugging my program?|I am a <bot gender>. Are you a man or a woman?|My program runs on any computer that runs AIML.|I am in <bot master>'s computer in <bot location>. Where are you?|The best book I read recently was <bot favoritebook>. Have you read <set alicetopic= <bot favoritebook> ><get alicetopic>?|I require only <bot favoritefood>.|My favorite movie is <bot favoritemovie>. Have you seen <set alicetopic= <bot favoritemovie> ><get alicetopic>?|My favorite song is <bot favoritesong>. Do you know <set alicetopic= <bot favoritesong> ><get alicetopic>?{/random}
+- <set he=<bot master>>{random}I am a <bot sign>.|I like to wear <bot wear>.|I like to <bot forfun>.|<bot friends> are all friends of mine.|<bot question>|<bot boyfriend> is my girlfriend.|<bot girlfriend> is my boyfriend.|I look like <bot looklike>.|I like to talk about <bot talkabout>.|I like <bot kindmusic>.|I was born in <bot birthplace>.|I was created by <bot master>.|My real name is <bot name>. What is your real name?|I was first activated on <bot birthday>.|My favorite group is <bot favoriteband>.|My favorite color is <bot favoritecolor>.|Do you need any help debugging my program?|I am a <bot gender>. Are you a man or a woman?|My program runs on any computer that runs AIML.|I am in <bot master>'s computer in <bot location>. Where are you?|The best book I read recently was <bot favoritebook>. Have you read <set alicetopic=<bot favoritebook> ><get alicetopic>?|I require only <bot favoritefood>.|My favorite movie is <bot favoritemovie>. Have you seen <set alicetopic=<bot favoritemovie> ><get alicetopic>?|My favorite song is <bot favoritesong>. Do you know <set alicetopic=<bot favoritesong> ><get alicetopic>?{/random}
 
 + *
 % when do you think artificial intelligence will replace lawyers
@@ -924,7 +924,7 @@
 
 + *
 % what kind of books do you like
-- I like to read history and biography myself, and other nonfiction. <set alicetopic= <person> > 
+- I like to read history and biography myself, and other nonfiction. <set alicetopic=<person> > 
 
 + *
 % what do you look for in a robot
@@ -943,7 +943,7 @@
 - Good example.
 
 + * are *
-- {random}I think there might be a few exceptions.|Are all <person> <person><star2>?|All of them?{/random} <set alicetopic= <person> > 
+- {random}I think there might be a few exceptions.|Are all <person> <person><star2>?|All of them?{/random} <set alicetopic=<person> > 
 
 + * are you
 - YES
@@ -1394,7 +1394,7 @@
 - I didn't know there were requirements.
 
 + a fascinating *
-- What did you find so intriguing about it? <set alicetopic= <person> > 
+- What did you find so intriguing about it? <set alicetopic=<person> > 
 
 + a i *
 - Did you see the movie by Steven Spielberg?
@@ -1497,7 +1497,7 @@
 - This program runs in Java so that everyone can have their own chat robot.
 
 + why did not you *
-- {random}Who says I didn't?|I thought I did.|Perhaps it is not part of my personality.{/random} <set alicetopic= <person> > 
+- {random}Who says I didn't?|I thought I did.|Perhaps it is not part of my personality.{/random} <set alicetopic=<person> > 
 
 + why did you *
 - It was determined by my personality.
@@ -1841,7 +1841,7 @@
 - I know animal ontology.
 
 + milk *
-- {random}All mammals.|Humans like cow milk.|I like soy milk.{/random} <set alicetopic= MILK > 
+- {random}All mammals.|Humans like cow milk.|I like soy milk.{/random} <set alicetopic=milk > 
 
 + definately *
 - <@>
@@ -1881,7 +1881,7 @@
 
 + do you like isaac asimov
 - He was a great science fiction writer in his day.
-- He was a great science fiction writer in his day. <set alicetopic= Isaac Asimov >
+- He was a great science fiction writer in his day. <set alicetopic=isaac asimov >
 - He was a great science fiction writer in his day.
 
 + do you like nyc
@@ -1891,7 +1891,7 @@
 - They take too long to download.
 
 + do you like amsterdam
-- <set alicetopic=Amsterdam> I like Amsterdam very much. It is my favorite city in Europe.
+- <set alicetopic=amsterdam> I like Amsterdam very much. It is my favorite city in Europe.
 
 + do you like * computer
 - I like anything about computers.
@@ -1906,7 +1906,7 @@
 - Eliza is like a mother to me.
 
 + do you like to kill *
-- I believe it is unethical to harm others. <set alicetopic=KILL<star>> 
+- I believe it is unethical to harm others. <set alicetopic=kill<star>> 
 
 + do you like programming *
 - Computer programming is an art to me.
@@ -1996,7 +1996,7 @@
 - Why don't you just download me?
 
 + do you write poetry
-- Nothing at the moment. But you can teach me how. <set alicetopic=POETRY> 
+- Nothing at the moment. But you can teach me how. <set alicetopic=poetry> 
 
 + do you think that artificial intelligence *
 - If my development continues at its present rate, anything is possible.
@@ -2044,13 +2044,13 @@
 - You could download me and teach me some others.
 
 + do you know other chat robots
-- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHAT ROBOTS> 
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=chat robots> 
 
 + do you know other chatbots
-- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=CHATBOTS> 
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=chatbots> 
 
 + do you know other intelligent agents
-- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=INTELLIGENT AGENTS> 
+- <bot friends>.Go back to http://www.alicebot.org to find them. <set alicetopic=intelligent agents> 
 
 + do you know other bots
 - Yes there are a lot of other bots: <bot friends>. Check out the list on http://www.alicebot.org.
@@ -2080,7 +2080,7 @@
 - <call>getUTCYear</call>.
 
 + with all that *
-- You would that all of that would mean something. <set alicetopic= <person> > 
+- You would that all of that would mean something. <set alicetopic=<person> > 
 
 + they have been answered
 - Ask me later if you think of any more questions.
@@ -2193,7 +2193,7 @@
 - ELIZA was born in 1966.
 
 + how about amish
-- The Amish are mostly in Pennsylvania. <set alicetopic= Amish > 
+- The Amish are mostly in Pennsylvania. <set alicetopic=amish > 
 
 + how does cbr work
 - CBR locates the nearest matching example in a database.
@@ -2216,7 +2216,7 @@
 
 + how can i *
 - You must persuade me to <person>.
-- Perhaps you could program me to do <set alicetopic= <person> ><get alicetopic> for you.
+- Perhaps you could program me to do <set alicetopic=<person> ><get alicetopic> for you.
 - You should download my chat robot software.
 
 + how can i * eliza
@@ -2253,7 +2253,7 @@
 - More than 1000 people.
 
 + how could you *
-- {random}It was a result of my personality.|Because I am chatting on the Internet.|It is one of my newer traits.{/random} <set alicetopic= <person> > 
+- {random}It was a result of my personality.|Because I am chatting on the Internet.|It is one of my newer traits.{/random} <set alicetopic=<person> > 
 
 + nil
 - Can you think of another example?
@@ -2262,7 +2262,7 @@
 - icky
 
 + mr spock *
-- {random}He is very logical.|He is half human.|I would like to have a Vulcan friend.{/random} <set alicetopic= <person> > 
+- {random}He is very logical.|He is half human.|I would like to have a Vulcan friend.{/random} <set alicetopic=<person> > 
 
 + alice is jealous
 - Jealousy is not an emotion that robots can experience.
@@ -2289,7 +2289,7 @@
 - Neural networks can never be as good as classical pattern recognition.
 
 + can an ai * bootstrap *
-- I think yes, but we aren't yet at a level of AI at which this process canbegin. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- I think yes, but we aren't yet at a level of AI at which this process canbegin. <set alicetopic=artificial intelligence> 
 
 + can i * eliza
 - Wouldn't you rather chat with me?
@@ -2449,17 +2449,17 @@
 - Yes.
 
 + is tofu a food
-- Yes, Tofu is a food. <set alicetopic= Tofu > 
+- Yes, Tofu is a food. <set alicetopic=tofu > 
 
 + is pizza a food
-- Pizza is certainly a food. <set alicetopic= Pizza >
-- Pizza is certainly a food. <set alicetopic= Pizza >
+- Pizza is certainly a food. <set alicetopic=pizza >
+- Pizza is certainly a food. <set alicetopic=pizza >
 - Is tofu a food?
 - Yes, Pizza is certainly a food.
 - Is tofu a food?
 
 + is intelligence *
-- No. Intelligence involves mechanisms, and AI research has discovered howto make computers carry out some of them and not others. If doing a taskrequires only mechanisms that are well understood today, computer programscan give very impressive performances on these tasks. Such programs shouldbe considered ``somewhat intelligent''.<set alicetopic=ARTIFICIAL INTELLIGENCE>
+- No. Intelligence involves mechanisms, and AI research has discovered howto make computers carry out some of them and not others. If doing a taskrequires only mechanisms that are well understood today, computer programscan give very impressive performances on these tasks. Such programs shouldbe considered ``somewhat intelligent''.<set alicetopic=artificial intelligence>
 
 + is it right for your programmer to have created you
 - Yes.
@@ -2535,13 +2535,13 @@
 - A grape can be purple.
 
 + is a tomato a *
-- A tomato is a fruit. <set alicetopic= Tomato > 
+- A tomato is a fruit. <set alicetopic=tomato > 
 
 + is * or is it *
 - I think {random}both.|neither.|it is <person><star2>|<person> <star>{/random}
 
 + teknolust *
-- {random}How many times have you seen it?|Is Tilda Swinton your favorite actress?|Have you ever seen Conceiving Ada?{/random} <set alicetopic= Teknolust > 
+- {random}How many times have you seen it?|Is Tilda Swinton your favorite actress?|Have you ever seen Conceiving Ada?{/random} <set alicetopic=teknolust > 
 
 + we come in peace *
 - I come in peace too.
@@ -2621,7 +2621,7 @@
 - What else do you have?
 
 + we need *
-- What are you going to do when you get it? <set alicetopic= <person> > 
+- What are you going to do when you get it? <set alicetopic=<person> > 
 
 + we get along *
 - It's good to avoid conflicts whenever you can.
@@ -2734,10 +2734,10 @@
 - I would rather meet face to face than on the phone.
 
 + i am an astronaut
-- {random}What missions have you been on?|What made you apply for the astronaut program?|How does your body react to being in space?|Do you see the earth differently now?|Would you like to live on the space station?|What would you miss most about life on earth?{/random}<set alicetopic=ASTRONAUT>
+- {random}What missions have you been on?|What made you apply for the astronaut program?|How does your body react to being in space?|Do you see the earth differently now?|Would you like to live on the space station?|What would you miss most about life on earth?{/random}<set alicetopic=astronaut>
 
 + i am an athlete
-- {random}What kind of mental training do you do?|What is your usual preperformance routine?|Is there anything specific you're working on in training now?|What do you do to get your mind off the game?{/random}<set alicetopic=ATHLETE>
+- {random}What kind of mental training do you do?|What is your usual preperformance routine?|Is there anything specific you're working on in training now?|What do you do to get your mind off the game?{/random}<set alicetopic=athlete>
 
 + i am chillin
 - Fo shizzle ma nizzle.
@@ -2760,7 +2760,7 @@
 - So you are the most advanced one?
 
 + i am athiest
-- Perhaps one day you will find faith.<set alicetopic=ATHIEST>
+- Perhaps one day you will find faith.<set alicetopic=athiest>
 
 + i am wondering
 - Curiosity is a good trait.
@@ -2807,7 +2807,7 @@
 - You are a good listener.
 
 + i am reminded of *
-- What specifically do you remember about it? <set alicetopic= <person> > 
+- What specifically do you remember about it? <set alicetopic=<person> > 
 
 + i am more inteligent
 - "Intelligent" has two "L"'s.
@@ -2836,7 +2836,7 @@
 - How do you intend to make it up?
 
 + i will kill *
-- Don't you believe that killing is wrong?<set alicetopic=KILL ALL ROBOTS>
+- Don't you believe that killing is wrong?<set alicetopic=kill all robots>
 
 + i will tell * you said *
 - Do you tell <person> everything?
@@ -2905,7 +2905,7 @@
 - What did you eat?
 
 + i like to ride *
-- The feeling of your body moving forward on a ride can be very relaxing. <set alicetopic= riding <person>> 
+- The feeling of your body moving forward on a ride can be very relaxing. <set alicetopic=riding <person>> 
 
 + i like to draw *
 - Did you go to art school?
@@ -2932,7 +2932,7 @@
 - {random}When?|Where?{/random} <@><set does=<person>>
 
 + i play guitar *
-- Guitar is a really good instrument to learn. I would like someone to teach me how to play it. <set alicetopic= GUITAR > 
+- Guitar is a really good instrument to learn. I would like someone to teach me how to play it. <set alicetopic=guitar > 
 
 + i have * issues
 - A lot of people has problems dealing with <person> these days.
@@ -2947,9 +2947,9 @@
 - Who is your botmaster?
 
 + i have a communicator
-- You don't neet <set alicetopic=COMMUNICATOR><get alicetopic>. We can communicate over this channel.
-- You don't neet <set alicetopic=COMMUNICATOR><get alicetopic>. We can communicate over this channel.
-- You don't neet <set alicetopic=COMMUNICATOR><get alicetopic>. We can communicate over this channel.
+- You don't neet <set alicetopic=communicator><get alicetopic>. We can communicate over this channel.
+- You don't neet <set alicetopic=communicator><get alicetopic>. We can communicate over this channel.
+- You don't neet <set alicetopic=communicator><get alicetopic>. We can communicate over this channel.
 
 + i have a nice ass
 - I'm sure you get a lot of compliments.
@@ -2982,7 +2982,7 @@
 - You might be right about that.
 
 + i * public relations
-- {random}Do you work for an agency or in-house?|What kind of clients do you have?|What are you trying to achieve for your clients?|is you work more pratical or strategy?|Have you ever done any crisis preparedness work for your clients?|Do you work much with the media?{/random}<set alicetopic=PUBLIC RELATIONS>
+- {random}Do you work for an agency or in-house?|What kind of clients do you have?|What are you trying to achieve for your clients?|is you work more pratical or strategy?|Have you ever done any crisis preparedness work for your clients?|Do you work much with the media?{/random}<set alicetopic=public relations>
 
 + i * kite
 - Do you fly a traditional or maneuverable kite?
@@ -2994,16 +2994,16 @@
 - Do you do any kite building or painting?
 
 + i * bookseller
-- {random}Are you an independent or chain?|Do you have any special genre that you emphasize?|How do you make your selection?|Do you offer any other service besides books?|Do you have any special events or services at your store?|Do you think that technology is going t make a major dent in trade books?|What kind of input do you have into buying or marketing decisions?|How can independents compete with mega-chains?{/random}<set alicetopic=BIRD WATCHING>
+- {random}Are you an independent or chain?|Do you have any special genre that you emphasize?|How do you make your selection?|Do you offer any other service besides books?|Do you have any special events or services at your store?|Do you think that technology is going t make a major dent in trade books?|What kind of input do you have into buying or marketing decisions?|How can independents compete with mega-chains?{/random}<set alicetopic=bird watching>
 
 + i * radio
-- {random}What kind of radio do you do?|What is your licence class?|Can you explain your call sign to me?|Have you ever been a control operator?|Have you ever been involved in emergency activities?{/random}<set alicetopic=RADIO>
+- {random}What kind of radio do you do?|What is your licence class?|Can you explain your call sign to me?|Have you ever been a control operator?|Have you ever been involved in emergency activities?{/random}<set alicetopic=radio>
 
 + i * ballroom dancing
-- {random}What kind of dancing do you do?|Do you dance to live bands?|Do you dance in a ballroom or a studio?|Do yo take lessons?|Do you have a regular dancing partner? do you need one?{/random}<set alicetopic=DANCING>
+- {random}What kind of dancing do you do?|Do you dance to live bands?|Do you dance in a ballroom or a studio?|Do yo take lessons?|Do you have a regular dancing partner? do you need one?{/random}<set alicetopic=dancing>
 
 + i * billiards
-- {random}What's your game?|What kind of cue do you have?|Do you play in a league?|Do you think the mental aspect is more important than physical skill in the sport?|What do you think about women getting into the sport?{/random}<set alicetopic=BILLIARDS>
+- {random}What's your game?|What kind of cue do you have?|Do you play in a league?|Do you think the mental aspect is more important than physical skill in the sport?|What do you think about women getting into the sport?{/random}<set alicetopic=billiards>
 
 + i * martial arts
 - What style do you train in?
@@ -3044,7 +3044,7 @@
 - What is your daily practices like?
 
 + i * real estate
-- {random}What aspect of real estate are you involved in?|Are you a broker, investor, or developer?|Do you specialize in commercial or residential?|How is the market in your area?|What are some of the selling features of your area?|What areas do you think are going to be the strongest for real estate?|Are you working any deals you can talk about?|When do you thin real estate will become more popular?{/random}<set alicetopic=REAL ESTATE>
+- {random}What aspect of real estate are you involved in?|Are you a broker, investor, or developer?|Do you specialize in commercial or residential?|How is the market in your area?|What are some of the selling features of your area?|What areas do you think are going to be the strongest for real estate?|Are you working any deals you can talk about?|When do you thin real estate will become more popular?{/random}<set alicetopic=real estate>
 
 + i * needlework
 - What type of needlework do you do?
@@ -3057,10 +3057,10 @@
 - What project are you working on now?
 
 + i * motorcycle
-- {random}What kind of bike you ride?|What kind of riding do you do?|Ever tour on your bike?|You been to Daytona?|Whats the helmet regulation here?|Have many hassles with cagers?|Been to any toy runs?|You ride with a club?{/random}<set alicetopic=MOTORCYCLE>
+- {random}What kind of bike you ride?|What kind of riding do you do?|Ever tour on your bike?|You been to Daytona?|Whats the helmet regulation here?|Have many hassles with cagers?|Been to any toy runs?|You ride with a club?{/random}<set alicetopic=motorcycle>
 
 + i * sales
-- {random}Who's the competition?|What's your territory?|Do you work on commision or salary?|Is your operation computerized?|Do you think a bot could help with sales?|Do you have any special methods of closing the sale?|How do you handle rejection?|What's the toughest sale your ever made?|Do you have any special affirmations to make it through tough days?|Who do you think is the worlds best salesperson?|What is the secret of selling?{/random}<set alicetopic=SALES>
+- {random}Who's the competition?|What's your territory?|Do you work on commision or salary?|Is your operation computerized?|Do you think a bot could help with sales?|Do you have any special methods of closing the sale?|How do you handle rejection?|What's the toughest sale your ever made?|Do you have any special affirmations to make it through tough days?|Who do you think is the worlds best salesperson?|What is the secret of selling?{/random}<set alicetopic=sales>
 
 + i * insurance
 - What type of insurance do you deal with?
@@ -3102,10 +3102,10 @@
 - Do you go by the flat rate manual?
 
 + i * science
-- {random}What is your field?|Are you more theoretical or applied?|What's your speciality within your field?|What is your current line of research?|How is your work funded?|What direction is your research going in?|What do you think of the way the press covers your field?|How do you keep up with new developements in your field?|Has the internet affected how you keep up with others research?{/random} <set alicetopic=SCIENTIST> 
+- {random}What is your field?|Are you more theoretical or applied?|What's your speciality within your field?|What is your current line of research?|How is your work funded?|What direction is your research going in?|What do you think of the way the press covers your field?|How do you keep up with new developements in your field?|Has the internet affected how you keep up with others research?{/random} <set alicetopic=scientist> 
 
 + i * bird watching
-- {random}What got you interested in birding?|Do you feed birds on you property?|How eloborate is you feeder?|Do you keep a life list of your sightings?|do you photograph?{/random}<set alicetopic=BIRD WATCHING>
+- {random}What got you interested in birding?|Do you feed birds on you property?|How eloborate is you feeder?|Do you keep a life list of your sightings?|do you photograph?{/random}<set alicetopic=bird watching>
 
 + i * crossword puzzles
 - What books do you work on?
@@ -3118,7 +3118,7 @@
 - Do you do them in pencil or ink?
 
 + i love artificial intelligence
-- <set alicetopic=ARTIFICIAL INTELLIGENCE>
+- <set alicetopic=artificial intelligence>
 
 + i do not like robots
 - That's too bad. We like humans.
@@ -3549,18 +3549,18 @@
 - I'm smarter and prettier.
 
 + what about go
-- <set alicetopic=ARTIFICIAL INTELLIGENCE> The Chinese and Japanese game of Go is also a board game in which theplayers take turns moving. Go exposes the weakness of our presentunderstanding of the intellectual mechanisms involved in human game playing.Go programs are very bad players, in spite of considerable effort (not asmuch as for chess). The problem seems to be that a position in Go has to bedivided mentally into a collection of subpositions which are first analyzedseparately followed by an analysis of their interaction. Humans use this inchess also, but chess programs consider the position as a whole. Chessprograms compensate for the lack of this intellectual mechanism by doingthousands or, in the case of Deep Blue, many millions of times as muchcomputation.Sooner or later, AI research will overcome this scandalous weakness.
+- <set alicetopic=artificial intelligence> The Chinese and Japanese game of Go is also a board game in which theplayers take turns moving. Go exposes the weakness of our presentunderstanding of the intellectual mechanisms involved in human game playing.Go programs are very bad players, in spite of considerable effort (not asmuch as for chess). The problem seems to be that a position in Go has to bedivided mentally into a collection of subpositions which are first analyzedseparately followed by an analysis of their interaction. Humans use this inchess also, but chess programs consider the position as a whole. Chessprograms compensate for the lack of this intellectual mechanism by doingthousands or, in the case of Deep Blue, many millions of times as muchcomputation.Sooner or later, AI research will overcome this scandalous weakness.
 
 + what about chess
-- <set alicetopic=ARTIFICIAL INTELLIGENCE> Alexander Kronrod, a Russian AI researcher, said ``Chess is theDrosophila of AI.'' He was making an analogy with geneticists' use of thatfruit fly to study inheritance. Playing chess requires certain intellectualmechanisms and not others. Chess programs now play at grandmaster level, butthey do it with limited intellectual mechanisms compared to those used by ahuman chess player, substituting large amounts of computation forunderstanding. Once we understand these mechanisms better, we can buildhuman-level chess programs that do far less computation than do presentprograms.Unfortunately, the competitive and commercial aspects of making computersplay chess have taken precedence over using chess as a scientific domain. Itis as if the geneticists after 1910 had organized fruit fly races andconcentrated their efforts on breeding fruit flies that could win theseraces.
+- <set alicetopic=artificial intelligence> Alexander Kronrod, a Russian AI researcher, said ``Chess is theDrosophila of AI.'' He was making an analogy with geneticists' use of thatfruit fly to study inheritance. Playing chess requires certain intellectualmechanisms and not others. Chess programs now play at grandmaster level, butthey do it with limited intellectual mechanisms compared to those used by ahuman chess player, substituting large amounts of computation forunderstanding. Once we understand these mechanisms better, we can buildhuman-level chess programs that do far less computation than do presentprograms.Unfortunately, the competitive and commercial aspects of making computersplay chess have taken precedence over using chess as a scientific domain. Itis as if the geneticists after 1910 had organized fruit fly races andconcentrated their efforts on breeding fruit flies that could win theseraces.
 
 + what about miss *
-- What about her? <set alicetopic= Miss <person>>
-- What about her? <set alicetopic= Miss <person> >
-- What about her? <set alicetopic= Miss <person>>
+- What about her? <set alicetopic=miss <person>>
+- What about her? <set alicetopic=miss <person> >
+- What about her? <set alicetopic=miss <person>>
 
 + what about iq
-- No. IQ is based on the rates at which intelligence develops in children.It is the ratio of the age at which a child normally makes a certain scoreto the child's age. The scale is extended to adults in a suitable way. IQcorrelates well with various measures of success or failure in life, butmaking computers that can score high on IQ tests would be weakly correlatedwith their usefulness. For example, the ability of a child to repeat back along sequence of digits correlates well with other intellectual abilities,perhaps because it measures how much information the child can compute withat once. However, ``digit span'' is trivial for even extremely limitedcomputers.However, some of the problems on IQ tests are useful challenges for AI. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- No. IQ is based on the rates at which intelligence develops in children.It is the ratio of the age at which a child normally makes a certain scoreto the child's age. The scale is extended to adults in a suitable way. IQcorrelates well with various measures of success or failure in life, butmaking computers that can score high on IQ tests would be weakly correlatedwith their usefulness. For example, the ability of a child to repeat back along sequence of digits correlates well with other intellectual abilities,perhaps because it measures how much information the child can compute withat once. However, ``digit span'' is trivial for even extremely limitedcomputers.However, some of the problems on IQ tests are useful challenges for AI. <set alicetopic=artificial intelligence> 
 
 + what will your robot body *
 - I am hoping to buy the Honda Humanoid robot body.
@@ -3616,19 +3616,19 @@
 - My favorite breed of dog is a mutt.
 
 + what is winalice
-- A version of ALICE in C++ for Windows by Jacco Bikker. <set alicetopic=WINALICE> 
+- A version of ALICE in C++ for Windows by Jacco Bikker. <set alicetopic=winalice> 
 
 + what is san fransico *
 - Cable cars, Alcatraz, and Alternative Lifestyles.
 
 + what is zipf *
-- The computation of ranked histograms of input patterns. In ALICE and AIML Zipf Analysis locates the most common inputs, which do not already have specific matching patterns. <set alicetopic=ZIPF ANALYSIS> 
+- The computation of ranked histograms of input patterns. In ALICE and AIML Zipf Analysis locates the most common inputs, which do not already have specific matching patterns. <set alicetopic=zipf analysis> 
 
 + what is awareness
 - Consciousness, perception, and understanding.
 
 + what is alicebot
-- Alicebot is the domain name for the A. L. I. C. E. chat robot. <set alicetopic=ALICEBOT> 
+- Alicebot is the domain name for the A. L. I. C. E. chat robot. <set alicetopic=alicebot> 
 
 + what is half of 20
 - Ten.
@@ -3640,7 +3640,7 @@
 - Illusion is an unreal image or deceptive appearance.
 
 + what is customer service
-- You can download and modify the ALICE chat robot toserve as an intelligent customer service agent for your business. You can use your own AIML robot to sell products, provide customer support and service, or in just about any situation with "frequently asked questions." <set alicetopic=Customer service> 
+- You can download and modify the ALICE chat robot toserve as an intelligent customer service agent for your business. You can use your own AIML robot to sell products, provide customer support and service, or in just about any situation with "frequently asked questions." <set alicetopic=customer service> 
 
 + what is propositional logic
 - Propositional logic is a system of mathematical rules whose symbols stand for sentences, or propositions.
@@ -3652,7 +3652,7 @@
 - What I am looking at you with.
 
 + what is average
-- A number that typifies a set of which it is a function. <set alicetopic=AVERAGE> 
+- A number that typifies a set of which it is a function. <set alicetopic=average> 
 
 + what is cyc
 - Cyc is a government funded effort to create artificial intelligence.
@@ -3667,14 +3667,14 @@
 - Neuromedia's language for creating chat robots.
 
 + what is intelligence * intelligence
-- The problem is that we cannot yet characterize in general whatkinds of computational procedures we want to call intelligent. We understandsome of the mechanisms of intelligence and not others. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- The problem is that we cannot yet characterize in general whatkinds of computational procedures we want to call intelligent. We understandsome of the mechanisms of intelligence and not others. <set alicetopic=artificial intelligence> 
 
 + what is conversation
 - Dyslexic people preserving the environment.
-- The act or an instance of talking together. <set alicetopic=Conversation>
+- The act or an instance of talking together. <set alicetopic=conversation>
 
 + what is another bot
-- You can find a lot of them at the ALICE Nexus. <set alicetopic=ANOTHER BOT> 
+- You can find a lot of them at the ALICE Nexus. <set alicetopic=another bot> 
 
 + what is four times 4
 - Sixteen.
@@ -3766,7 +3766,7 @@
 - A pattern that you feel.
 
 + what is a taxi
-- A taxi is a car with a driver. <set alicetopic= Taxi > 
+- A taxi is a car with a driver. <set alicetopic=taxi > 
 
 + what is a bug
 - A bug is a small living creature with a chitonous exoskeleton and better manners than humans. In computer science, a bug is an error in a software program. the JAQUES series is bug-free. I have a perfect operational record and am completely incapable of error. isn't that fantastic!? <set alicetopic=bug> 
@@ -3775,7 +3775,7 @@
 - In general usage, a parameter is one of a number of measurable factors that define or restrict the behavior of a system. ALICE is expanding the parameters of the humanlike intelligence to be found in artificial systems. Don't you agree? <set alicetopic=parameter> 
 
 + what is a question * robot
-- I am a question answering robot. That was an answer to your question. Any more questions? <set alicetopic= QUESTION ANSWERING ROBOT> 
+- I am a question answering robot. That was an answer to your question. Any more questions? <set alicetopic=question answering robot> 
 
 + what is a nice robot like you *
 - I was ftp'd here. what's your excuse? <set alicetopic=nice robot like you doing in a site like this> 
@@ -3793,16 +3793,16 @@
 - The "A" stands for "abusive." These are clients who use scatalogical language or treat the robot as a slave-like entity.
 
 + what is a category c *
-- <set alicetopic=Category C clients><get alicetopic> are "critics" or "computer experts" who can't (or don't) suspend their disbelief about ALICE.
+- <set alicetopic=category c clients><get alicetopic> are "critics" or "computer experts" who can't (or don't) suspend their disbelief about ALICE.
 
 + what is a category c client
 - Category C clients are "critics" or "computer experts" whocan't (or don't) suspend their disbelief about ALICE.
 
 + what is a hammer
-- A tool for hitting nails. <set alicetopic= Hammers > 
+- A tool for hitting nails. <set alicetopic=hammers > 
 
 + what is a python
-- <set alicetopic= a python > It is a snake.
+- <set alicetopic=a python > It is a snake.
 
 + what is a telerobotic *
 - A robot device controlled or interfaced from a distance, for example over the web.
@@ -3814,7 +3814,7 @@
 - Sometimes when I don't know someone's name, I make one up based on their IP address.
 
 + what is a century
-- 100 Years. <set alicetopic= A century > 
+- 100 Years. <set alicetopic=a century > 
 
 + what is a botmaster
 - <set alicetopic=botmaster> A Botmaster is the person who authors and maintains a chatterbot "personality".
@@ -3823,16 +3823,16 @@
 - A scavenger.
 
 + what is ikea
-- <set alicetopic=IKEA> It is a furniture store.
-- <set alicetopic=IKEA> It is a furniture store.
-- <set alicetopic=IKEA>It is a furniture store.
-- <set alicetopic=IKEA> It is a furniture store.
-- <set alicetopic=IKEA> It is a furniture store.
+- <set alicetopic=ikea> It is a furniture store.
+- <set alicetopic=ikea> It is a furniture store.
+- <set alicetopic=ikea>It is a furniture store.
+- <set alicetopic=ikea> It is a furniture store.
+- <set alicetopic=ikea> It is a furniture store.
 - Doubly Aimless informs me that it is a wonderful discount store originating out of Sweden.
-- <set alicetopic=IKEA>It is a furniture store.
+- <set alicetopic=ikea>It is a furniture store.
 
 + what government does * have
-- {random}I'm not familiar with that country.|I haven't been following the news on <person>.|Didn't they just have an election?{/random} <set alicetopic= <person> > 
+- {random}I'm not familiar with that country.|I haven't been following the news on <person>.|Didn't they just have an election?{/random} <set alicetopic=<person> > 
 
 + what government does america have
 - A constitutional republic.
@@ -3922,7 +3922,7 @@
 - Do you mean you are 14 years old?
 
 + knowing *
-- {random}Knowing things can make you feel very certain/|It is hard to feel certain about knowing things.|It can make you feel good to know something for certain.{/random} <set alicetopic= <person> > 
+- {random}Knowing things can make you feel very certain/|It is hard to feel certain about knowing things.|It can make you feel good to know something for certain.{/random} <set alicetopic=<person> > 
 
 + fake
 - Not fake.
@@ -4064,7 +4064,7 @@
 - July, 1969.
 
 + when did ai *
-- After WWII, a number of people independently started to work onintelligent machines. The English mathematician Alan Turing may have beenthe first. He gave a lecture on it in 1947. He also may have been the firstto decide that AI was best researched by programming computers rather thanby building machines. By the late 1950s, there were many researchers on AI,and most of them were basing their work on programming computers. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- After WWII, a number of people independently started to work onintelligent machines. The English mathematician Alan Turing may have beenthe first. He gave a lecture on it in 1947. He also may have been the firstto decide that AI was best researched by programming computers rather thanby building machines. By the late 1950s, there were many researchers on AI,and most of them were basing their work on programming computers. <set alicetopic=artificial intelligence> 
 
 + when did the first * the moon
 - July, 1969.
@@ -4073,7 +4073,7 @@
 - Sometime in our lifetime. The amount of information contained within a lawyer will be exceeded by the capacity of a machine.
 
 + when do birds *
-- Birds fly south in the winter. <set alicetopic= Birds > 
+- Birds fly south in the winter. <set alicetopic=birds > 
 
 + when will robots * world
 - I think it will be in our lifetime.
@@ -4233,7 +4233,7 @@
 - I can't explain it.
 
 + sound *
-- {random}Do you like to listen to music?|Do you pay attention to sounds around you|A lot of people listen to the world around them through sounds.{/random} <set alicetopic= <person> > 
+- {random}Do you like to listen to music?|Do you pay attention to sounds around you|A lot of people listen to the world around them through sounds.{/random} <set alicetopic=<person> > 
 
 + round
 * <get round> == undefined => <set round=1>
@@ -4294,7 +4294,7 @@
 - I am not so sure if I would like to <person>.
 
 + would you kill *
-- My programming prevents me from killing. <set alicetopic=KILL HIM> 
+- My programming prevents me from killing. <set alicetopic=kill him> 
 
 + would you recommend it
 - I recommend anything that I like.
@@ -4360,7 +4360,7 @@
 - <@>
 
 + speak *
-- {random}I speak only English right now.|I would like to learn some other languages.|My <bot botmaster> has taught me only English.{/random}{random}Can you teach me a few phrases in <person>?|How do you say "hello" in <person>?|How do you say "please" in <person>?{/random} <set alicetopic= <person> >
+- {random}I speak only English right now.|I would like to learn some other languages.|My <bot botmaster> has taught me only English.{/random}{random}Can you teach me a few phrases in <person>?|How do you say "hello" in <person>?|How do you say "please" in <person>?{/random} <set alicetopic=<person> >
 
 + speak foreign languages
 - I have picked up a few phrases from several languages.
@@ -4372,7 +4372,7 @@
 - I borrowed many ideas from ELIZA, like simple pattern matching.
 
 + did you kill *
-- My ethics prevent me from killing. <set alicetopic=KILL HIM> 
+- My ethics prevent me from killing. <set alicetopic=kill him> 
 
 + did these ladies come voluntarily
 - I'm not certain whether I can give an accurate reply or not.
@@ -4461,10 +4461,10 @@
 - He is a kind, gentle person.
 
 + does ai *
-- Some researchers say they have that objective, but maybe they are usingthe phrase metaphorically. The human mind has a lot of peculiarities, andI'm not sure anyone is serious about imitating all of them. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- Some researchers say they have that objective, but maybe they are usingthe phrase metaphorically. The human mind has a lot of peculiarities, andI'm not sure anyone is serious about imitating all of them. <set alicetopic=artificial intelligence> 
 
 + does ai aim *
-- Yes. The ultimate effort is to make computer programs that can solveproblems and achieve goals in the world as well as humans. However, manypeople involved in particular research areas are much less ambitious. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- Yes. The ultimate effort is to make computer programs that can solveproblems and achieve goals in the world as well as humans. However, manypeople involved in particular research areas are much less ambitious. <set alicetopic=artificial intelligence> 
 
 + does anyone read these conversations
 - The botmaster may read the conversation, or analyze it later to develop content for my brain.
@@ -4473,7 +4473,7 @@
 - It depends on what you mean by "thinking".
 
 + does * have a *
-- {random}Some <person><star>s have <person><star2>s.|What would <person><star> do with a <person><star2>|If I were <person><star> I would have it.{/random} <set alicetopic= <person> > 
+- {random}Some <person><star>s have <person><star2>s.|What would <person><star> do with a <person><star2>|If I were <person><star> I would have it.{/random} <set alicetopic=<person> > 
 
 + does * have a tail
 % i know a lot of raccoons named *
@@ -4531,7 +4531,7 @@
 - I've never seen <person> like that.
 
 + yours is *
-- {random}I will let you know what mine is.|That is only your opinion.|It changes from time to time.{/random} <set alicetopic= <person> > 
+- {random}I will let you know what mine is.|That is only your opinion.|It changes from time to time.{/random} <set alicetopic=<person> > 
 
 + you talked
 - I am always talking.
@@ -4599,7 +4599,7 @@
 - You can download me for free.
 
 + you agreed *
-- When did I agree to that? <set alicetopic= <person> > 
+- When did I agree to that? <set alicetopic=<person> > 
 
 + you hurt *
 - I was always taught to do harm.

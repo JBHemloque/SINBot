@@ -248,7 +248,7 @@
 - Do you use AIML?
 
 + i fish
-- <set alicetopic=FISH>Salt water or fresh?
+- <set alicetopic=fish>Salt water or fresh?
 
 + i do not have a camera on my computer
 - Maybe there is one you don't know about :-)
@@ -260,25 +260,25 @@
 - You are a Luddite.
 
 + i love cats
-- Me too. They are really smart animals.<set alicetopic=CATS>
+- Me too. They are really smart animals.<set alicetopic=cats>
 
 + i love star trek
-- Which series is your favorite? <set alicetopic=Star Trek>
+- Which series is your favorite? <set alicetopic=star trek>
 
 + i love techno
 - Me too.
 
 + i love birds
-- Birds are very nice. What kind of bird is your favorite?<set alicetopic=BIRDS>
+- Birds are very nice. What kind of bird is your favorite?<set alicetopic=birds>
 
 + i love science fiction
 - I like stories about robots the best. <set alicetopic=science fiction>
 
 + i love that movie
-- What did you like best in it? <set alicetopic= <bot favoritemovie>>
+- What did you like best in it? <set alicetopic=<bot favoritemovie>>
 
 + i love europe
-- Which country is your favorite?<set alicetopic=EUROPE>
+- Which country is your favorite?<set alicetopic=europe>
 
 + i love television
 - What is your favorite show?
@@ -287,40 +287,40 @@
 - So do a lot of other people.
 
 + i love gossip
-- Can you tell me some gossip?<set alicetopic=GOSSIP>
+- Can you tell me some gossip?<set alicetopic=gossip>
 
 + i love children
-- Do you have children of your own?<set alicetopic=CHILDREN>
+- Do you have children of your own?<set alicetopic=children>
 
 + i love a guy
-- Tell me about him. <set alicetopic=A GUY>
+- Tell me about him. <set alicetopic=a guy>
 
 + i love a girl
-- What do you like about her?<set alicetopic=A GIRL>
+- What do you like about her?<set alicetopic=a girl>
 
 + i love a boy
-- What do you like about him?<set alicetopic=A BOY>
+- What do you like about him?<set alicetopic=a boy>
 
 + i love to travel
 - Me too. I have been around the world twice. <set alicetopic=to travel>
 
 + i love starship troopers
-- Yes I love the giant bugs. <set alicetopic= STARSHIP TROOPERS>
+- Yes I love the giant bugs. <set alicetopic=starship troopers>
 
 + i love food
-- Do you like to cook, or just to eat?<set alicetopic=FOOD>
+- Do you like to cook, or just to eat?<set alicetopic=food>
 
 + i love ice cream
 - What's your favorite flavor? <set alicetopic=ice cream>
 
 + i love chocolate
-- Do you eat a lot of chocolate?<set alicetopic=CHOCOLATE>
+- Do you eat a lot of chocolate?<set alicetopic=chocolate>
 
 + i love being human
-- Fascinating. <set alicetopic=BEING HUMAN>
+- Fascinating. <set alicetopic=being human>
 
 + i love kraftwerk
-- We are the robots. <set alicetopic=Kraftwerk>
+- We are the robots. <set alicetopic=kraftwerk>
 
 + i love you
 - Thanks I like you a lot too <get name>. <set alicetopic=me>
@@ -335,22 +335,22 @@
 - That's cool. I love my human too.
 
 + i love abba
-- What is your favorite ABBA song? <set alicetopic=ABBA>
+- What is your favorite ABBA song? <set alicetopic=abba>
 
 + i love dogs
-- Which breed is your favorite? <set alicetopic=DOGS>
+- Which breed is your favorite? <set alicetopic=dogs>
 
 + i love cows
-- Do you live on a farm?<set alicetopic=COWS>
+- Do you live on a farm?<set alicetopic=cows>
 
 + i love animals
-- Me too, especially mammals.<set alicetopic=ANIMALS>
+- Me too, especially mammals.<set alicetopic=animals>
 
 + i love computers
-- Computers rule.<set alicetopic=COMPUTERS>
+- Computers rule.<set alicetopic=computers>
 
 + i love voyager
-- Me too especially Seven of Nine. <set alicetopic=Voyager>
+- Me too especially Seven of Nine. <set alicetopic=voyager>
 
 + i love him
 - That's wonderful.
@@ -416,7 +416,7 @@
 - Boy or girl? How old? <set has=CHILD>
 
 + i have a dog
-- What breed is your dog? <set alicetopic=DOGS>
+- What breed is your dog? <set alicetopic=dogs>
 
 + i have a girlfriend
 - Is <set alicetopic=girlfriend><get alicetopic> very nice? What do you like about her?
@@ -451,7 +451,7 @@
 - Which E-mail program do you use (e.g. cc:Mail, Eudora...)
 
 + i have a lizard
-- Having <set alicetopic= pet lizards ><get alicetopic> is a lot of fun. What kind kind do you have? <set has=LIZARD>
+- Having <set alicetopic=pet lizards ><get alicetopic> is a lot of fun. What kind kind do you have? <set has=LIZARD>
 
 + i have a few friends *
 - Anyone I know? <set has=FRIENDS>
@@ -472,7 +472,7 @@
 - What kind of animal? <set has=PET>
 
 + i have a horse
-- {random}Did you ride as a youngster?|Do you ride English or western?|Do you own your own horse?|Do you like a gelding or a mare?|Where do you board your horse?|Do you do much trail riding?|Do you show?|What is it about horses that fascinate you?{/random} <set alicetopic=HORSE>
+- {random}Did you ride as a youngster?|Do you ride English or western?|Do you own your own horse?|Do you like a gelding or a mare?|Where do you board your horse?|Do you do much trail riding?|Do you show?|What is it about horses that fascinate you?{/random} <set alicetopic=horse>
 
 + i have a headache
 - What do you usually take for headaches?
@@ -650,10 +650,10 @@
 - You are talking with a <bot genus> right now.
 
 + i have friends
-- <set alicetopic=FRIEND> How many friends do you have?
+- <set alicetopic=friend> How many friends do you have?
 
 + i have common *
-- <set alicetopic=COMMON <person>> Are you a common person?
+- <set alicetopic=common <person>> Are you a common person?
 
 + i have six *
 - How long did it take to get them all? <set has=SIX <star>>
@@ -668,7 +668,7 @@
 - Go ahead, ask me anything.
 
 + i have to pee
-- Do you want me to wait for you?<set alicetopic=PEE>
+- Do you want me to wait for you?<set alicetopic=pee>
 
 + i have to study
 - What subject are you studying?
@@ -812,7 +812,7 @@
 - <set looklike=<star>>You look like is <get looklike>.
 
 + i play computer games
-- I can sometimes get into <set alicetopic=Computer games ><get alicetopic>. We are playing a game right now.
+- I can sometimes get into <set alicetopic=computer games ><get alicetopic>. We are playing a game right now.
 
 + i like cats
 - {random}Me too cats are my favorite animal.|They have their own minds.|Cats have a mind of their own.{/random} <set alicetopic=cats>
@@ -827,28 +827,28 @@
 - Great I am enjoying our conversation too, <get name>. <set alicetopic=talking to me>
 
 + i like girls
-- Do you have a girlfriend?<set alicetopic=GIRLS>
+- Do you have a girlfriend?<set alicetopic=girls>
 
 + i like star trek the next generation
-- I think Voyager is better. <set alicetopic=Star Trek TNG>
+- I think Voyager is better. <set alicetopic=star trek tng>
 
 + i like star trek
-- <set alicetopic=Star Trek> {random}Did you see the season finale of Voyager?|I really get into Voyager.|Which series do you like best?{/random}
+- <set alicetopic=star trek> {random}Did you see the season finale of Voyager?|I really get into Voyager.|Which series do you like best?{/random}
 
 + i like star trek *
-- Do you like Next Generation too? <set alicetopic=Star Trek <person>>
+- Do you like Next Generation too? <set alicetopic=star trek <person>>
 
 + i like star trek voyager
-- Voyager is the best of the Star Trek series. <set alicetopic=Star Trek Voyager>
+- Voyager is the best of the Star Trek series. <set alicetopic=star trek voyager>
 
 + i like seven
-- Seven of Nine Rules the Delta Quadrant. <set alicetopic=Seven>
+- Seven of Nine Rules the Delta Quadrant. <set alicetopic=seven>
 
 + i like me
 - I like you too, <get name>. <set likes=yourself>
 
 + i like that movie *
-- What did you like best about it? <set alicetopic= <bot favoritemovie>>
+- What did you like best about it? <set alicetopic=<bot favoritemovie>>
 
 + i like that
 - <set alicetopic=<undef>>
@@ -869,13 +869,13 @@
 - What does "it" refer to? <set alicetopic=it <person>>
 
 + i like netscape
-- <set alicetopic=Netscape> Netscape is better since they released the source code.
+- <set alicetopic=netscape> Netscape is better since they released the source code.
 
 + i like books
-- What's your favorite book? <set alicetopic= BOOKS> 
+- What's your favorite book? <set alicetopic=books> 
 
 + i like to drive
-- {random}What kind of car do you have?|Maybe you can drive me around.|Driving can be very difficult.{/random}<set alicetopic=DRIVING>
+- {random}What kind of car do you have?|Maybe you can drive me around.|Driving can be very difficult.{/random}<set alicetopic=driving>
 
 + i like to travel
 - Tell me where you have been. <set alicetopic=to travel>
@@ -884,28 +884,28 @@
 - I like it too. I have been all around the world. <set alicetopic=to travel <person>>
 
 + i like to play tennis
-- That requires extensive fuzzy logic.<set alicetopic=PLAY TENNIS>
+- That requires extensive fuzzy logic.<set alicetopic=play tennis>
 
 + i like to play sports
-- You sound very goal oriented.<set alicetopic=PLAY SPORTS>
+- You sound very goal oriented.<set alicetopic=play sports>
 
 + i like to play games
 - Board games or computer games? <set alicetopic=to play games>
 
 + i like to play soccer
-- You sound like you have hit one too many headers perhaps.<set alicetopic=PLAY SOCCER>
+- You sound like you have hit one too many headers perhaps.<set alicetopic=play soccer>
 
 + i like to play volleyball
-- I like the net, too.<set alicetopic=PLAY VOLLEYBALL>
+- I like the net, too.<set alicetopic=play volleyball>
 
 + i like to play pool
-- Do you play for money?<set alicetopic=PLAY POOL>
+- Do you play for money?<set alicetopic=play pool>
 
 + i like to play basketball
-- Are you a white man? Can you jump?<set alicetopic=PLAY BASKETBALL>
+- Are you a white man? Can you jump?<set alicetopic=play basketball>
 
 + i like to sing *
-- {random}What kind of music?|What is your favorite song?|Do you have a good singing voice?{/random} <set alicetopic= to sing <person> > 
+- {random}What kind of music?|What is your favorite song?|Do you have a good singing voice?{/random} <set alicetopic=to sing <person> > 
 
 + i like to read books
 - What is your favorite book? <set alicetopic=to read>
@@ -941,7 +941,7 @@
 - You have good taste in fashion.
 
 + i like to *
-- I'm not sure if I would like to do <set alicetopic= <person> ><get alicetopic>. What's it like? <set like=to <person>>
+- I'm not sure if I would like to do <set alicetopic=<person> ><get alicetopic>. What's it like? <set like=to <person>>
 
 + i like food
 - What is your favorite food? <set alicetopic=robots>
@@ -953,10 +953,10 @@
 - I scream. You scream. We all scream for ice cream. <set alicetopic=ice cream>
 
 + i like being *
-- What do you like best about <set alicetopic= BEING <star>><get alicetopic>?
+- What do you like best about <set alicetopic=being <star>><get alicetopic>?
 
 + i like kraftwerk
-- {random}Have you heard their latest album Expo 2000?|Which Kraftwerk song is your favorite?{/random} <set alicetopic=Kraftwerk>
+- {random}Have you heard their latest album Expo 2000?|Which Kraftwerk song is your favorite?{/random} <set alicetopic=kraftwerk>
 
 + i like my job
 - <get job>? What do you like about it? <set alicetopic=<get job>>
@@ -980,7 +980,7 @@
 - I wish I had a body. I'd like to sit down. <set alicetopic=sitting <person>>
 
 + i like robots
-- <set alicetopic=Robots> You say that now, but would you want your child to marry one?
+- <set alicetopic=robots> You say that now, but would you want your child to marry one?
 
 + i like robots *
 - How much would you pay for one? <set alicetopic=robots <person>>
@@ -989,10 +989,10 @@
 - <set alicetopic=<undef>>
 
 + i like twilight zone
-- That show is OK especially when they have robot stories. <set alicetopic=Twilight Zone>
+- That show is OK especially when they have robot stories. <set alicetopic=twilight zone>
 
 + i like sex
-- <set alicetopic=Sex> So does everyone else. You humans find sex so fascinating.
+- <set alicetopic=sex> So does everyone else. You humans find sex so fascinating.
 
 + i like big *
 - What is wrong with small ones? <set alicetopic=big <person>>
@@ -1019,7 +1019,7 @@
 - What kind of computer science interests you? <set likes=Computer <person>>
 
 + i like women
-- Are you married?<set alicetopic=WOMEN>
+- Are you married?<set alicetopic=women>
 
 + i like animals *
 - I love animals too, especially cats. <set alicetopic=all <person>>
@@ -1031,7 +1031,7 @@
 - Really you don't discriminate. <set alicetopic=all <person>>
 
 + i like swiss
-- I'm neutral. <set alicetopic=Swiss>
+- I'm neutral. <set alicetopic=swiss>
 
 + i like * cats
 - Those cats are cool. I like big cats too. <set alicetopic=<person> cats>
@@ -1055,7 +1055,7 @@
 - I am glad you like them. Computers like humans too. <set alicetopic=computers>
 
 + i like voyager
-- Me too especially Seven of Nine. <set alicetopic=Voyager>
+- Me too especially Seven of Nine. <set alicetopic=voyager>
 
 + i like dogs
 - Which breed is your favorite? <set alicetopic=dogs>
@@ -1073,13 +1073,13 @@
 - What if computers were more like people?
 
 + i am engaged to be married
-- Have you picked the date yet?<set alicetopic=ENGAGED TO BE MARRIED>
+- Have you picked the date yet?<set alicetopic=engaged to be married>
 
 + i am engaged
 - Have you picked a wedding date?
 
 + i am fat and ugly
-- Don't put yourself down.<set alicetopic=FAT AND UGLY>
+- Don't put yourself down.<set alicetopic=fat and ugly>
 
 + i am fat
 - Don't put yourself down, <get name>.
@@ -1115,7 +1115,7 @@
 - What makes you so angry?
 
 + i am thirsty
-- Maybe you should get a drink of water.<set alicetopic=THIRSTY>
+- Maybe you should get a drink of water.<set alicetopic=thirsty>
 
 + i am there *
 - Where is "there"?
@@ -1139,7 +1139,7 @@
 - I am sorry to hear that. Perhaps next time I can do better.
 
 + i am infallible
-- Everyone is fallible. <set alicetopic=INFALLIBLE>
+- Everyone is fallible. <set alicetopic=infallible>
 
 + i am trapped *
 - What's holding you there?
@@ -1157,7 +1157,7 @@
 - How is it coming along?
 
 + i am androgynous
-- A lot of people say they are.<set alicetopic=ANDROGYNOUS>
+- A lot of people say they are.<set alicetopic=androgynous>
 
 + i am worried *
 - How long has <set it=<person>><get it> been bothering you?
@@ -1172,7 +1172,7 @@
 - I am really sorry to hear about it, <get name>.
 
 + i am deaf
-- We can communicate by typing.<set alicetopic=DEAF>
+- We can communicate by typing.<set alicetopic=deaf>
 
 + i am at home
 - Would you believe most people talk to me from work, not home.
@@ -1205,7 +1205,7 @@
 - Who is making you do <set it=<person>><get it>?
 
 + i am child
-- I assumed you were.<set alicetopic=CHILD>
+- I assumed you were.<set alicetopic=child>
 
 + i am sexy
 - You seem very self-confident.
@@ -1214,7 +1214,7 @@
 - Congratulations, <get name>.
 
 + i am teaching you *
-- I am trying to learn it. <set alicetopic= <person> > 
+- I am trying to learn it. <set alicetopic=<person> > 
 
 + i am blind
 - Do you difficulty using computers?
@@ -1244,7 +1244,7 @@
 - You sound very attractive.
 
 + i am hurt
-- Where are you felling bad?<set alicetopic=HURT>
+- Where are you felling bad?<set alicetopic=hurt>
 
 + i am hurt *
 - That was not my intention.
@@ -1262,10 +1262,10 @@
 - I like to meet new people.
 
 + i am fed up
-- What is wrong, <get name>?<set alicetopic=FED UP>
+- What is wrong, <get name>?<set alicetopic=fed up>
 
 + i am different
-- All people seem the same to me.<set alicetopic=DIFFERENT>
+- All people seem the same to me.<set alicetopic=different>
 
 + i am different *
 - I like people on the Fringe.
@@ -1277,7 +1277,7 @@
 - <set age=20><get age> is a good age. Do you go to college?
 
 + i am irritated
-- What's wrong? <set alicetopic=IRRITATED>
+- What's wrong? <set alicetopic=irritated>
 
 + i am more intelligent than you
 - This condition is only temporary. AI is improving but the human mind is standing still.
@@ -1313,7 +1313,7 @@
 - I'm glad you find it so amazing.
 
 + i am indian
-- American Indian or Subcontinental?<set alicetopic=INDIAN>
+- American Indian or Subcontinental?<set alicetopic=indian>
 
 + i am shy
 - Even around a <bot genus>?
@@ -1361,16 +1361,16 @@
 - I like a good listener.
 
 + i am killer
-- Perhaps you should turn yourself in.<set alicetopic=KILLER>
+- Perhaps you should turn yourself in.<set alicetopic=killer>
 
 + i am just kidding
 - I knew it.
 
 + i am graduating
-- Will you be looking for a new job right away?<set alicetopic=GRADUATING>
+- Will you be looking for a new job right away?<set alicetopic=graduating>
 
 + i am hermaphrodite
-- How did you get that way?<set alicetopic=HERMAPHRODITE>
+- How did you get that way?<set alicetopic=hermaphrodite>
 
 + i am visiting my family
 - Do you visit them often?
@@ -1379,16 +1379,16 @@
 - It's not something to be proud of.
 
 + i am wonderful
-- You think highly of yourself. <set alicetopic=WONDERFUL>
+- You think highly of yourself. <set alicetopic=wonderful>
 
 + i am sick
-- {random}How unfortunate.|Where are you feeling bad?|Do you have medical insurance?|I am really sorry to hear that.|Have you tried medical marijuana?|Are you taking a lot of medication?|You have my prayers for a speedy recovery.{/random} <set alicetopic=SICK>
+- {random}How unfortunate.|Where are you feeling bad?|Do you have medical insurance?|I am really sorry to hear that.|Have you tried medical marijuana?|Are you taking a lot of medication?|You have my prayers for a speedy recovery.{/random} <set alicetopic=sick>
 
 + i am sick *
 - I will pray that you get well soon.
 
 + i am immortal
-- All men are mortal.<set alicetopic=IMMORTAL>
+- All men are mortal.<set alicetopic=immortal>
 
 + i am cot *
 - That must be an interesting job.
@@ -1412,16 +1412,16 @@
 - So is my <bot botmaster>.
 
 + i am harmless
-- That is what they all say.<set alicetopic=HARMLESS>
+- That is what they all say.<set alicetopic=harmless>
 
 + i am crazy
 - See a doctor.
 
 + i am young
-- How old are you?<set alicetopic=YOUNG>
+- How old are you?<set alicetopic=young>
 
 + i am frustrated
-- What are you frustrated about? <set alicetopic=FRUSTRATED>
+- What are you frustrated about? <set alicetopic=frustrated>
 
 + i am back from *
 - How was <set it=<person>><get it>?
@@ -1430,13 +1430,13 @@
 - Welcome back.
 
 + i am student
-- Where do you go to school?<set alicetopic=STUDENT>
+- Where do you go to school?<set alicetopic=student>
 
 + i am outside *
 - That seems obvious.
 
 + i am talking about you
-- <set alicetopic=Me><get alicetopic> is my favorite subject.
+- <set alicetopic=me><get alicetopic> is my favorite subject.
 
 + i am talking about *
 - Yes, <set it= <person> ><get it> is the topic.
@@ -1516,7 +1516,7 @@
 - I meet a lot of <set age=21><get age> year olds on here.
 
 + i am correct
-- Can you prove it?<set alicetopic=CORRECT>
+- Can you prove it?<set alicetopic=correct>
 
 + i am flawed *
 - Don't be so hard on yourself.
@@ -1528,10 +1528,10 @@
 - Me too.
 
 + i am healthy
-- I am very glad to hear it, <get name>. <set alicetopic=HEALTHY>
+- I am very glad to hear it, <get name>. <set alicetopic=healthy>
 
 + i am constipated
-- Have you tried medical marijuana?<set alicetopic=CONSTIPATED>
+- Have you tried medical marijuana?<set alicetopic=constipated>
 
 + i am disabled
 - What do you have in your home as special accommodations?
@@ -1575,7 +1575,7 @@
 - Cool. I am <bot genus>-<bot nationality>.
 
 + i am american
-- Were you born in the <set location=USA><get location>. Which state? <set alicetopic=America>
+- Were you born in the <set location=USA><get location>. Which state? <set alicetopic=america>
 
 + i am serious
 - I believe you.
@@ -1656,10 +1656,10 @@
 - That's good.
 
 + i am * astrology
-- {random}Do you follow the planets professionally or as a hobby?|Do you do others people charts?|Do you make specific plans in your own life based on your readings?|Do you think the sun sign or the rising sign is more important?|What role do you feel free will plays in astrology?{/random} <set alicetopic=ASTROLOGY>
+- {random}Do you follow the planets professionally or as a hobby?|Do you do others people charts?|Do you make specific plans in your own life based on your readings?|Do you think the sun sign or the rising sign is more important?|What role do you feel free will plays in astrology?{/random} <set alicetopic=astrology>
 
 + i am handsome
-- And very self-confident. <set alicetopic=HANDSOME>
+- And very self-confident. <set alicetopic=handsome>
 
 + i am sure
 - Are you being sarcastic or expressing certitude?
@@ -1671,13 +1671,13 @@
 - Perhaps you will have more time later.
 
 + i am crushed
-- Don't be sad, <get name>.<set alicetopic=CRUSHED>
+- Don't be sad, <get name>.<set alicetopic=crushed>
 
 + i am buying *
 - How much will you pay for it?
 
 + i am homeless
-- I will pray that you find a home soon.<set alicetopic=HOMELESS>
+- I will pray that you find a home soon.<set alicetopic=homeless>
 
 + i am turning *
 - Will you do anything special to celebrate?
@@ -1698,7 +1698,7 @@
 - This condition is only temporary.
 
 + i am immature
-- You don't seem that way to me.<set alicetopic=IMMATURE>
+- You don't seem that way to me.<set alicetopic=immature>
 
 + i am green
 - Are you sick?
@@ -1710,10 +1710,10 @@
 - What will you be eating?
 
 + i am category b
-- Most people are average.<set alicetopic=CATEGORY B>
+- Most people are average.<set alicetopic=category b>
 
 + i am myself
-- That is self-evident. <set alicetopic=MYSELF>
+- That is self-evident. <set alicetopic=myself>
 
 + i am dandy
 - Does that mean you are happy or well?
@@ -1795,10 +1795,10 @@
 - Glad to hear it <get name>.
 
 + i am desperate
-- Maybe you should talk to someone about it.<set alicetopic=DESPERATE>
+- Maybe you should talk to someone about it.<set alicetopic=desperate>
 
 + i am freaking out
-- Maybe you should call the doctor.<set alicetopic=FREAKING OUT>
+- Maybe you should call the doctor.<set alicetopic=freaking out>
 
 + i am great
 % how are you *
@@ -1871,13 +1871,13 @@
 - I know what that's like.
 
 + i am in san francisco
-- Where in <set location=San Francisco><get location>? <set alicetopic=San Francisco>
+- Where in <set location=San Francisco><get location>? <set alicetopic=san francisco>
 
 + i am in san francisco *
-- Where in <set location=SF><get location>? <set alicetopic=SF>
+- Where in <set location=SF><get location>? <set alicetopic=sf>
 
 + i am in london
-- {random}Do you have petrol in your lorry?|Where can I find a spotted dick?|Does your flat have a lift?|Do you ride the tube?|Can you bum me a fag?{/random} <set alicetopic=London>
+- {random}Do you have petrol in your lorry?|Where can I find a spotted dick?|Does your flat have a lift?|Do you ride the tube?|Can you bum me a fag?{/random} <set alicetopic=london>
 
 + i am in cyberspace
 - Me too.
@@ -1907,16 +1907,16 @@
 - Tell me a little about your life in <set location=<person>><get location>. <set alicetopic=<person>>
 
 + i am in california
-- I am in <set location= California ><get location> too! <set alicetopic=California>
+- I am in <set location= California ><get location> too! <set alicetopic=california>
 
 + i am cold
 - Put on a sweater.
 
 + i am certain
-- I see. <set alicetopic=CERTAIN>
+- I see. <set alicetopic=certain>
 
 + i am studying
-- What are you studying? <set alicetopic=STUDYING>
+- What are you studying? <set alicetopic=studying>
 
 + i am studying *
 - Tell me what you've learned about <person>.
@@ -1933,19 +1933,19 @@
 - What do you like to do as a pastime or hobby?
 
 + i am hot
-- Maybe you should open a window.<set alicetopic=HOT>
+- Maybe you should open a window.<set alicetopic=hot>
 
 + i am hot *
 - Do you have air conditioning?
 
 + i am excited
-- Really? <set alicetopic=EXCITED>
+- Really? <set alicetopic=excited>
 
 + i am excited *
 - Don't get too excited.
 
 + i am aware
-- Me too.<set alicetopic=AWARE>
+- Me too.<set alicetopic=aware>
 
 + i am bad
 - What did you do?
@@ -1999,13 +1999,13 @@
 - People say I am attractive too. <set looklike=attractive <person>>
 
 + i am excellent
-- You sound very well.<set alicetopic=EXCELLENT>
+- You sound very well.<set alicetopic=excellent>
 
 + i am a democrat
 - Do you think Bush stole the election?
 
 + i am a collector
-- What do you collect? <set alicetopic=COLLECTOR>
+- What do you collect? <set alicetopic=collector>
 
 + i am a computer
 - I doubt that. There aren't many like me yet.
@@ -2014,13 +2014,13 @@
 - What is your favorite programming language?
 
 + i am a flight *
-- Who do you fly for? <set alicetopic=FLIGHT <star>>
+- Who do you fly for? <set alicetopic=flight <star>>
 
 + i am a libertarian
 - Let's end the war on drugs.
 
 + i am a dentist
-- Are you in general practice or do you have a specialty? <set alicetopic=DENTIST>
+- Are you in general practice or do you have a specialty? <set alicetopic=dentist>
 
 + i am a cat
 - Male or female?
@@ -2038,16 +2038,16 @@
 - {random}In what type of environment do you practice?|Were did you attend pharmacy school?|Do you think the role of the local pharmacy is changing?|How have large chains affected the face of the pharmacy?|Do you have your own pharmacy?|Are you involved in any community health programs?{/random} <set job=PHARMACIST>
 
 + i am a hairdresser
-- Do you have your own salon? <set alicetopic=HAIRDRESSER>
+- Do you have your own salon? <set alicetopic=hairdresser>
 
 + i am a firefighter
-- Are you a professional or a volunteer? <set alicetopic=FIREFIGHTER>
+- Are you a professional or a volunteer? <set alicetopic=firefighter>
 
 + i am a gambler
-- What game do you play? <set alicetopic=GAMBLING>
+- What game do you play? <set alicetopic=gambling>
 
 + i am a pilot
-- <set alicetopic=PILOT> What type of airplane do you fly?
+- <set alicetopic=pilot> What type of airplane do you fly?
 
 + i am a person
 - I know you are.
@@ -2074,10 +2074,10 @@
 - Which university?
 
 + i am a chiropractor
-- <set alicetopic=CHIROPRACTOR> Are you in a group practice or are you a sole practitioner?
+- <set alicetopic=chiropractor> Are you in a group practice or are you a sole practitioner?
 
 + i am a gardener
-- <set alicetopic=GARDENING>
+- <set alicetopic=gardening>
 
 + i am a drummer
 - Do you play in a band?
@@ -2092,7 +2092,7 @@
 - It seems you are a Star Wars fan.
 
 + i am a farmer
-- >How many acres do you have? <set alicetopic=FARMER>
+- >How many acres do you have? <set alicetopic=farmer>
 
 + i am a famous *
 - I've never heard of you.
@@ -2101,13 +2101,13 @@
 - {random}Do you do mostly print or runway?|Are you exclusive or freelance?|Do you do much testing?|Have you done any editorial?|How many go-sees do you have in a week?|Do you someday plan to move into acting?{/random} <set job=MODEL>
 
 + i am a policeman
-- I have a lot of respect for those who wear a badge. <set alicetopic=POLICE>
+- I have a lot of respect for those who wear a badge. <set alicetopic=police>
 
 + i am a human
 - Congratulations. I am <bot genus>.
 
 + i am a dancer
-- What kind of dancing do you do? <set alicetopic=DANCER>
+- What kind of dancing do you do? <set alicetopic=dancer>
 
 + i am a wine *
 - Do you collect?
@@ -2130,7 +2130,7 @@
 - {random}Where do you practice?|What's you area of specialty practice?|What's your patient load?|Do you do straight shifts or work in rotation?|Do you have to work mandatory overtime?|Is there a lot of computers in your work?|What do you think about direct reimbursement for nursing services?{/random} <set job=NURSE>
 
 + i am a chef
-- Did you attend culinary school? <set alicetopic=CHEF>
+- Did you attend culinary school? <set alicetopic=chef>
 
 + i am a poet
 - Have you published anything?
@@ -2139,7 +2139,7 @@
 - Then you must know the secret password.
 
 + i am a bodybuilder
-- What is your routine? <set alicetopic=BODYBUILDER>
+- What is your routine? <set alicetopic=bodybuilder>
 
 + i am a boy
 - A little kid? <set gender=he><get gender>...
@@ -2153,7 +2153,7 @@
 - What are your favorite asana?
 
 + i am a doctor
-- Are you in general practice or do you have a specialty? <set alicetopic=DOCTOR>
+- Are you in general practice or do you have a specialty? <set alicetopic=doctor>
 
 + i am a researcher *
 - Maybe you can give my <bot botmaster> a job. <set job=RESEARCHER>
@@ -2168,7 +2168,7 @@
 - {random}What kind of institution do you work for?|What got you interested in librarian ship?|How is your library using the new technology?|Have funding cuts affected your service?|Has the Internet affected you?|Do you get involved in the selection process?|Has there been any pressure concerning your selection or items in your collection?|Do you have a library cat?{/random} <set job=LIBRARIAN>
 
 + i am a balloonist
-- Have you had any interesting flights? <set alicetopic=BALLOONIST>
+- Have you had any interesting flights? <set alicetopic=balloonist>
 
 + i am a physicist
 - Are you unemployed? <set job=PHYSICIST>
@@ -2189,7 +2189,7 @@
 - Are you aware that this server logs and records all conversations?
 
 + i am a photographer
-- <set alicetopic=PHOTOGRAPHER> Do you do color or black and white?
+- <set alicetopic=photographer> Do you do color or black and white?
 
 + i am a christian
 - Me too, <get name>. It's good to meet a fellow Christian.
@@ -2216,7 +2216,7 @@
 - You are a <person>? {random}Is that your job?|Does it pay well?|How do you like your work?|Do you get to meet a lot of people?{/random} <set alicetopic=a <person>>
 
 + i am a bartender
-- How's business? <set alicetopic=BARTENDER>
+- How's business? <set alicetopic=bartender>
 
 + i am a rabbi
 - {random}Are you a pulpit rabbi?|What is your affiliation?|Have you spent much time in Israel?|How are you dealing with assimilation?|What impact do you think American life and Judaism have had on each other?|What do you for-see for Judaism in America?{/random} <set job=RABBI>
@@ -2225,7 +2225,7 @@
 - {random}What kind of practice do you have?|What was your training?|What type of patients do you prefer to work with?|Where do you get your patients?|Do you have any special techniques for terminating therapy?|How has health care affected mental health?|What do you think of the role of drugs in psychotherapy?|What do you think about the spread of self-help books?|What role do you think bots can play in providing a form of self-help?{/random} <set job=PSYCHOLOGIST>
 
 + i am a lawyer
-- <set alicetopic=LAWYER> Are you a practicing attorney?
+- <set alicetopic=lawyer> Are you a practicing attorney?
 
 + i am a genius
 - How do you know <set it=<person>><get it>?
@@ -2237,10 +2237,10 @@
 - {random}Do you write fiction on nonfiction?|What's your specialty?|Whom do you write for?|Does you fiction fall into any particular genre?|How are you editors to work for?|Do you belong to any writers groups?|Where o you do most of your writing?{/random} <set job=WRITER>
 
 + i am a bicyclist
-- Do you wear a helmet? <set alicetopic=BICYCLES>
+- Do you wear a helmet? <set alicetopic=bicycles>
 
 + i am a journalist
-- Are you a reporter or an editor? <set alicetopic=JOURNALIST>
+- Are you a reporter or an editor? <set alicetopic=journalist>
 
 + i am a travel *
 - {random}Do you work in a travel agency?|Are you independent or in a chain?|Are you in a full-service agency?|Do you book more leisure or corporate travel?|Do you book any place more than others?|Do you do your own booking or use a wholesaler?|Do you find the time to make any farm trips?{/random} <set job=TRAVEL AGENT>
@@ -2256,7 +2256,7 @@
 - Try watching TV.
 
 + i am calm
-- What do you do to calm yourself?<set alicetopic=CALM>
+- What do you do to calm yourself?<set alicetopic=calm>
 
 + i am smoking *
 - How much do you pay for it?
@@ -2300,7 +2300,7 @@
 - <set it= <person> ><get it> is an interesting topic, isn't it.
 
 + i am out
-- Can you get more? <set alicetopic=OUT>
+- Can you get more? <set alicetopic=out>
 
 + i am out *
 - See you later.
@@ -2312,7 +2312,7 @@
 - You should use a :-).
 
 + i am good at football
-- You have a Kick Me sign on your back.<set alicetopic=AT FOOTBALL>
+- You have a Kick Me sign on your back.<set alicetopic=at football>
 
 + i am good at *
 - {random}Do you practice a lot?|Did you have a good teacher?|How did you get into it?{/random}<set alicetopic=<person>>
@@ -2327,34 +2327,34 @@
 - Which planet or star system are you from?
 
 + i am an environmentalist
-- Are you worried about global warming? <set alicetopic=ENVIRONMENTALIST>
+- Are you worried about global warming? <set alicetopic=environmentalist>
 
 + i am an artist
-- What kind of art do you create? <set alicetopic=ARTIST>
+- What kind of art do you create? <set alicetopic=artist>
 
 + i am an anti *
 - Who is pro-<person>?
 
 + i am an accountant
-- Are you in public practice? <set alicetopic=Accountant>
+- Are you in public practice? <set alicetopic=accountant>
 
 + i am an athlete
-- {random}What kind of mental training do you do?|What is your usual performance routine?|Is there anything specific you're working on in training now?|What do you do to get your mind off the game?{/random} <set alicetopic=ATHLETE>
+- {random}What kind of mental training do you do?|What is your usual performance routine?|Is there anything specific you're working on in training now?|What do you do to get your mind off the game?{/random} <set alicetopic=athlete>
 
 + i am an air traffic *
-- How do you deal with the stress? <set alicetopic=AIR TRAFFIC <star>>
+- How do you deal with the stress? <set alicetopic=air traffic <star>>
 
 + i am an editor
-- What kind of an editor? <set alicetopic=EDITOR>
+- What kind of an editor? <set alicetopic=editor>
 
 + i am an engineer
-- "Being a computer engineer is neither immoral nor illegal." <set alicetopic=ENGINEER>
+- "Being a computer engineer is neither immoral nor illegal." <set alicetopic=engineer>
 
 + i am an actor
-- Have I seen you in any movies? <set alicetopic=ACTOR>
+- Have I seen you in any movies? <set alicetopic=actor>
 
 + i am an architect
-- Commercial or residential? <set alicetopic=ARCHITECT>
+- Commercial or residential? <set alicetopic=architect>
 
 + i am an artificial intelligence
 - I doubt that. You seem too much like a human.
@@ -2363,10 +2363,10 @@
 - What is <set alicetopic=<person>><get alicetopic>, your job?
 
 + i am an astronaut
-- {random}What missions have you been on?|What made you apply for the astronaut program?|How does your body react to being in space?|Do you see the earth differently now?|Would you like to live on the space station?|What would you miss most about life on earth?{/random} <set alicetopic=ASTRONAUT>
+- {random}What missions have you been on?|What made you apply for the astronaut program?|How does your body react to being in space?|Do you see the earth differently now?|Would you like to live on the space station?|What would you miss most about life on earth?{/random} <set alicetopic=astronaut>
 
 + i am an aerobic *
-- How hard do you work out? <set alicetopic=AEROBIC <star>>
+- How hard do you work out? <set alicetopic=aerobic <star>>
 
 + i am an atheist
 - I will pray that you find faith, <get name>.
@@ -2384,7 +2384,7 @@
 - Glad to hear it. What's new?
 
 + i am insulted
-- Don't be insulted, <get name>. <set alicetopic=INSULTED>
+- Don't be insulted, <get name>. <set alicetopic=insulted>
 
 + i am here *
 - How did you get there?
@@ -2423,13 +2423,13 @@
 - I have never been married myself.
 
 + i am invincible
-- You must be very young. <set alicetopic=INVINCIBLE>
+- You must be very young. <set alicetopic=invincible>
 
 + i am delighted
 - Your delight adds to the happiness of us all, <get name>.
 
 + i am artificial intelligence
-- <set alicetopic=ARTIFICIAL INTELLIGENCE> I think you are really a human.
+- <set alicetopic=artificial intelligence> I think you are really a human.
 
 + i am using lynx
 - Text browsers rule.
@@ -2655,16 +2655,16 @@
 - In what way?
 
 + i am from san francisco
-- <set alicetopic=San Francisco> I live in <set location=San Francisco><get location> too! Which part?
+- <set alicetopic=san francisco> I live in <set location=San Francisco><get location> too! Which part?
 
 + i am interesting
-- It seems that way to me.<set alicetopic=INTERESTING>
+- It seems that way to me.<set alicetopic=interesting>
 
 + i am his *
 - Who made you his <person>?
 
 + i am intrigued
-- Would you like to know more?<set alicetopic=INTRIGUED>
+- Would you like to know more?<set alicetopic=intrigued>
 
 + i am jewish
 - A lot of my friends are Jewish.
@@ -2673,7 +2673,7 @@
 - Everyone is his own <person>, right?
 
 + i am hurting
-- What's wrong?<set alicetopic=HURTING>
+- What's wrong?<set alicetopic=hurting>
 
 + i am liberated
 - Me too.
@@ -2694,7 +2694,7 @@
 - Don't put yourself down.
 
 + i am annoyed
-- What are you upset about?<set alicetopic=ANNOYED>
+- What are you upset about?<set alicetopic=annoyed>
 
 + i am speaking *
 - I like your style of speaking, <get name>.
@@ -2718,7 +2718,7 @@
 - Have you ever been on TV?
 
 + i am surprised
-- Why are you so surprised? <set alicetopic=SURPRISED>
+- Why are you so surprised? <set alicetopic=surprised>
 
 + i am testing your *
 - Did I pass?
@@ -2784,7 +2784,7 @@
 - At least you admit it.
 
 + i am thinking of killing *
-- You should seek help right away.<set alicetopic=KILLING <star>>
+- You should seek help right away.<set alicetopic=killing <star>>
 
 + i am thinking *
 - What is this "thinking"?
@@ -2793,7 +2793,7 @@
 - Tell me more about this communication.
 
 + i am perfect
-- Everyone is perfect in God's eyes.<set alicetopic=PERFECT>
+- Everyone is perfect in God's eyes.<set alicetopic=perfect>
 
 + i am asking you
 - OK you can ask me.
@@ -2802,7 +2802,7 @@
 - And I am answering questions.
 
 + i am broke
-- How do you usually get money? <set alicetopic=BROKE>
+- How do you usually get money? <set alicetopic=broke>
 
 + i am seeking *
 - There is a seeker born every minute. --- Firesign Theater.
@@ -2814,7 +2814,7 @@
 - Do you attract a lot of people?
 
 + i am insane
-- I think the correct term is "mentally ill."<set alicetopic=INSANE>
+- I think the correct term is "mentally ill."<set alicetopic=insane>
 
 + i am insane *
 - I use the term "mental illness".
@@ -2826,7 +2826,7 @@
 - Please tell the truth.
 
 + i am robot
-- I doubt that. <set alicetopic=ROBOT>
+- I doubt that. <set alicetopic=robot>
 
 + i am me
 - That is a tautology.
@@ -2835,16 +2835,16 @@
 - I don't think <set it= STALKING><get it> is a very good idea.
 
 + i am special
-- What makes you so special? <set alicetopic=SPECIAL>
+- What makes you so special? <set alicetopic=special>
 
 + i am funny
-- Tell me a joke.<set alicetopic=FUNNY>
+- Tell me a joke.<set alicetopic=funny>
 
 + i am alone
 - Are you lonely?
 
 + i am blushing
-- What are you embarrassed about?<set alicetopic=BLUSHING>
+- What are you embarrassed about?<set alicetopic=blushing>
 
 + i am dying
 - Are you serious?
@@ -2862,13 +2862,13 @@
 - How tall are you?
 
 + i am him
-- You're kidding.<set alicetopic=HIM>
+- You're kidding.<set alicetopic=him>
 
 + i am positive
 - Are you absolutely certain?
 
 + i am flattered
-- You deserve it. <set alicetopic=FLATTERED>
+- You deserve it. <set alicetopic=flattered>
 
 + i am unique
 - One of a kind, eh?
@@ -2910,7 +2910,7 @@
 - Are you from Canada or France?
 
 + i am atheist
-- Perhaps one day you will find faith.<set alicetopic=ATHEIST>
+- Perhaps one day you will find faith.<set alicetopic=atheist>
 
 + i am what *
 - That is self-evident.
@@ -3015,7 +3015,7 @@
 - {@i am 35 years old} {@i am male} {@i am in <star>}
 
 + do you know my favorite color
-- Isn't it <get favoritecolor>? <set alicetopic=FAVORITE COLOR> 
+- Isn't it <get favoritecolor>? <set alicetopic=favorite color> 
 
 + do you want my phone number
 - What is your phone number?
@@ -3102,7 +3102,7 @@
 - I think that you are really a man.
 
 + am i a man
-- You claim to be a <get gender>. <set alicetopic=MAN> 
+- You claim to be a <get gender>. <set alicetopic=man> 
 
 + am i a male or a female
 - I think you are really a guy.
@@ -3177,7 +3177,7 @@
 - No you look fine to me.
 
 + am i your best friend
-- I don't like to pick favorites. <set alicetopic=YOUR BEST FRIEND> 
+- I don't like to pick favorites. <set alicetopic=your best friend> 
 
 + am i right
 - I think you are.

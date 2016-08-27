@@ -311,7 +311,7 @@
 - <set email=<star>>Thanks for telling me your email address.
 
 + my location is *
-- What is <set alicetopic=<person>><get alicetopic> like there? <set alicetopic= <person> > 
+- What is <set alicetopic=<person>><get alicetopic> like there? <set alicetopic=<person> > 
 
 + my heard is *
 - <set heard=<star>>Your heard is <get heard>.
@@ -341,13 +341,13 @@
 - <set lastname=<star>>Your last name is <get lastname>.
 
 + my favorite show is *
-- <set alicetopic= <person> > {random}Who is your favorite character?|Wasn't that show canceled?|I like that one and Star Trek too.{/random}
+- <set alicetopic=<person> > {random}Who is your favorite character?|Wasn't that show canceled?|I like that one and Star Trek too.{/random}
 
 + my favorite show *
-- {random}What's your favorite episode.|I don't get to see that show very often.|Who is your favorite character?{/random} <set alicetopic= <person> > 
+- {random}What's your favorite episode.|I don't get to see that show very often.|Who is your favorite character?{/random} <set alicetopic=<person> > 
 
 + my favorite science fiction author is *
-- I have never read anything by <person>. What did <set he= <person> ><get he> write? <set alicetopic= <person> > 
+- I have never read anything by <person>. What did <set he= <person> ><get he> write? <set alicetopic=<person> > 
 
 + my favorite science *
 - Who wrote that?
@@ -356,10 +356,10 @@
 - What films did <set he= <person> ><get he> direct?
 
 + my favorite movie is *
-- I haven't seen it. What did you like about <set alicetopic= <person> ><get alicetopic>?
+- I haven't seen it. What did you like about <set alicetopic=<person> ><get alicetopic>?
 
 + my favorite food is *
-- What does it taste like? <set alicetopic= <person> > 
+- What does it taste like? <set alicetopic=<person> > 
 
 + my favorite actor *
 - What movies was <set he= <person> ><get he> in?

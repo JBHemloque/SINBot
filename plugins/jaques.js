@@ -153,5 +153,8 @@ function stripGarbage(text) {
     text = __stripGarbage(text, "  ", " ");
     text = _stripGarbage(text, "random");
     text = _stripGarbage(text, "inquiry");
+    text = text.replace("..", ".");
+    text = text.replace("?.", "?");
+    text = text.replace("!.", "!");
     return text;
 }

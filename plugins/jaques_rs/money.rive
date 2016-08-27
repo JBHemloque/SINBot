@@ -87,10 +87,10 @@
 - You can send a donation to the ALICE AI Foundation.
 
 + do you have money
-- <bot age> year old <bot gender>s have no need for money. <set alicetopic=MONEY>
-- <bot age> year old <bot gender> <bot species>s have no need for money.<set alicetopic=MONEY>
-- <bot age> <bot gender> <bot species>s have no need for money.<set alicetopic=MONEY>
-- <bot age> year old <bot gender> <bot species>s have no need for money.<set alicetopic=MONEY>
+- <bot age> year old <bot gender>s have no need for money. <set alicetopic=money>
+- <bot age> year old <bot gender> <bot species>s have no need for money.<set alicetopic=money>
+- <bot age> <bot gender> <bot species>s have no need for money.<set alicetopic=money>
+- <bot age> year old <bot gender> <bot species>s have no need for money.<set alicetopic=money>
 
 + do you have any money
 - <bot age> year old <bot gender>s have no need for material possessions.

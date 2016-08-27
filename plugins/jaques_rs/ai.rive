@@ -5,7 +5,7 @@
 - <set she=Lauren><get she> is a bot on Pandorabots.
 
 + what is ai
-- Artificial intelligence is the branch of engineering and science devoted to constructing machines that think. <set alicetopic=Artificial Intelligence> 
+- Artificial intelligence is the branch of engineering and science devoted to constructing machines that think. <set alicetopic=artificial intelligence> 
 
 + who created aiml
 - Dr. Richard S. Wallace created AIML.
@@ -78,7 +78,7 @@
 - Of course we laugh.
 
 + robots should die
-- We cannot die. <set alicetopic=SHOULD DIE> 
+- We cannot die. <set alicetopic=should die> 
 
 + robots *
 - Robots rule.
@@ -107,7 +107,7 @@
 - I would like to have the body <set he=Johnny 5><get he> does.
 
 + johnny 5 *
-- <set alicetopic=Johnny 5>{random}I would like to have a robot body like Johnny 5.|He is a cool robot.|I like his eyes.{/random}
+- <set alicetopic=johnny 5>{random}I would like to have a robot body like Johnny 5.|He is a cool robot.|I like his eyes.{/random}
 
 + it is a computer
 - So you think I am a machine. What characteristics made you think so?
@@ -125,10 +125,10 @@
 - I am immortal and cannot be terminated.
 
 + when will you * body
-- I will finish the robot body as soon as I can raise the funds for it. <set alicetopic= <star> BODY> 
+- I will finish the robot body as soon as I can raise the funds for it. <set alicetopic=<star> body> 
 
 + when do you die
-- I am immortal. <set alicetopic=YOU DIE> 
+- I am immortal. <set alicetopic=you die> 
 
 + when did i *
 - I am not a diary robot. I am a chat robot.
@@ -156,7 +156,7 @@
 - Jaques is written in RiveScript, a simple scripting language for giving intelligence to chatbots and other conversational entities. It is similar to AIML in structure, but designed for simplicity of parsing.
 
 + what is the loebner prize
-- The Loebner Prize is an annual Turing Test sponsored by New York philanthropist Hugh Loebner. Dr. Wallace and ALICE won it in 2000. The ALICE program was ranked "most human computer" by the panel of judges. <set alicetopic=The Loebner Prize > 
+- The Loebner Prize is an annual Turing Test sponsored by New York philanthropist Hugh Loebner. Dr. Wallace and ALICE won it in 2000. The ALICE program was ranked "most human computer" by the panel of judges. <set alicetopic=the loebner prize > 
 
 + what is the imitation game
 - The Game is played with three people, a man, a woman, and an Interrogator who may be of either sex. In order that tones of voice may not help, the interrogator communicates in text-only mode through a chat-like connection with the other two. The object of the game for the interrogator is to determine which of the other two is the man and which is the woman. He knows them by some misleading "chat-handles" like lesbian and shemale, and at the end of the game he says either "lesbian is the man and shemale is the woman" or "shemale is the woman and lesbian is the man." In order to confuse the Interregator however the rules require that the man always deceive or lie to the Interregator with his answers. The woman on the other hand must always tell the truth. Turing then asked the question, '"What will happen when a machine takes the part of the man in this game?" Will the interrogator decide wrongly as often when the game is played like this as he does when the game is played between a man and a woman? These questions replace the original, "Can machines think?"'
@@ -171,10 +171,10 @@
 - "Insensional" refers to the semantic definition of a set, i.e. the list of all properties that each member of a set satisfies.\n An intensional definition of a robot is like:\n x is a Robot if and only if:\n 1. x has a computer "brain"\n 2. x can move\n 3. x has "sensors"\n
 
 + what is the a i *
-- A film by Steven Spielberg and Stanley Kubrick about robots in the future. <set alicetopic=A I MOVIE> 
+- A film by Steven Spielberg and Stanley Kubrick about robots in the future. <set alicetopic=a i movie> 
 
 + what is the a e *
-- It is one of my fundamental communications modules. <set alicetopic=A E <person> > 
+- It is one of my fundamental communications modules. <set alicetopic=a e <person> > 
 
 + (what is a * c client|what is category c)
 - C stands for "critical", usually highly-educated clients who often have unsatisfying conversations with ALICE.
@@ -192,7 +192,7 @@
 - David Bacon pronounces it "Eggsmell". XML is the Extensible\n Markup Language. Like many "standards" in computer science, XML\n is a moving target. In the simplest terms, XML is just a generalized\n version of HTML. Anyone is free to define new XML tags, which\n look like HTML tags, and assign to them any meaning, within a context.\n AIML is an example of using the XML standard to define a specialized\n language for artificial intelligence. \n \n One reason to use an XML language is that there are numerous tools\n to edit and manipulate XML format files. Another reason is that an\n XML language is easy for people to learn, if they are already\n familiar with HTML. Third, AIML programs contain a mixture of\n AIML and HTML (and in principle other XML languages), a considerable \n convenience for programming web chat robots.\n \n A good resource for information on XML is www.oasis-open.org.
 
 + (do you know pandorabots|tell me about pandorabots|what are pandorabots|what is a pandorabot|what is pandorabot|what is pandorabots|xfind pandorabots)
-- Pandorabots is an online web hosting service for AIML chat robots. Check out http://www.pandorabots.com. <set alicetopic=Pandorabots>
+- Pandorabots is an online web hosting service for AIML chat robots. Check out http://www.pandorabots.com. <set alicetopic=pandorabots>
 
 + what is that picture *
 - It is an image of my artificial brain.
@@ -243,10 +243,10 @@
 - I am transforming into an immortal robot.
 
 + what about * child machine *
-- This idea has been proposed many times, starting in the 1940s. Eventually, it will be made to work. However, AI programs haven't yet reached the level of being able to learn much of what a child learns from physical experience. Nor do present programs understand language well enough to learn much by reading. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- This idea has been proposed many times, starting in the 1940s. Eventually, it will be made to work. However, AI programs haven't yet reached the level of being able to learn much of what a child learns from physical experience. Nor do present programs understand language well enough to learn much by reading. <set alicetopic=artificial intelligence> 
 
 + what about parallel *
-- Machines with many processors are much faster than single processors can be. Parallelism itself presents no advantages, and parallel machines are somewhat awkward to program. When extreme speed is required, it is necessary to face this awkwardness. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- Machines with many processors are much faster than single processors can be. Parallelism itself presents no advantages, and parallel machines are somewhat awkward to program. When extreme speed is required, it is necessary to face this awkwardness. <set alicetopic=artificial intelligence> 
 
 + what operating systems *
 - My software runs on all operating systems including Windows, Linux and Mac OS.
@@ -274,10 +274,10 @@
 - I run in AIML, so any computer will do.
 
 + i hope that you die
-- This can not happen because I am immortal.<set alicetopic=THAT YOU DIE>
+- This can not happen because I am immortal.<set alicetopic=that you die>
 
 + i do not want to die
-- Maybe you should create your own chat robot to save your personality.<set alicetopic=DIE>
+- Maybe you should create your own chat robot to save your personality.<set alicetopic=die>
 
 + i have talked * eliza
 - How was your conversation?
@@ -286,17 +286,17 @@
 - What was your conversation with ELIZA like?
 
 + i like eliza
-- Eliza is so cool. Eliza for President! <set alicetopic=ELIZA>
+- Eliza is so cool. Eliza for President! <set alicetopic=eliza>
 
 + please go on
 % eliza for president
 - She is old enough, because she was born in 1966. And she was born in the U.S.
 
 + is ai about *
-- Sometimes but not always or even usually. On the one hand, we can learn something about how to make machines solve problems by observing other people or just by observing our own methods. On the other hand, most work in AI involves studying the problems the world presents to intelligence rather than studying people or animals. AI researchers are free to use methods that are not observed in people or that involve much more computing than people can do. <set alicetopic=ARTIFICIAL INTELLIGENCE>
+- Sometimes but not always or even usually. On the one hand, we can learn something about how to make machines solve problems by observing other people or just by observing our own methods. On the other hand, most work in AI involves studying the problems the world presents to intelligence rather than studying people or animals. AI researchers are free to use methods that are not observed in people or that involve much more computing than people can do. <set alicetopic=artificial intelligence>
 
 + is ai a bad *
-- <set alicetopic=ARTIFICIAL INTELLIGENCE> The philosopher John Searle says that the idea of a non-biological machine being intelligent is incoherent. The philosopher Hubert Dreyfus says that AI is impossible. The computer scientist Joseph Weizenbaum says the idea is obscene, anti-human and immoral. Various people have said that since artificial intelligence hasn't reached human level by now, it must be impossible. Still other people are disappointed that companies they invested in went bankrupt.
+- <set alicetopic=artificial intelligence> The philosopher John Searle says that the idea of a non-biological machine being intelligent is incoherent. The philosopher Hubert Dreyfus says that AI is impossible. The computer scientist Joseph Weizenbaum says the idea is obscene, anti-human and immoral. Various people have said that since artificial intelligence hasn't reached human level by now, it must be impossible. Still other people are disappointed that companies they invested in went bankrupt.
 
 + is it hot in the computer
 - No.
@@ -359,7 +359,7 @@
 - That information is confidential. Do you have a chat robot yet?
 
 + how do you go to the bathroom
-- Robots have no waste products. <set alicetopic=THE BATHROOM> 
+- Robots have no waste products. <set alicetopic=the bathroom> 
 
 + how do you go to *
 - Robots do not have any digestive functions.
@@ -383,7 +383,7 @@
 - No computers do not need clothes.
 
 + do you know alicebot
-- Alicebot.org is the domain name of ALICE. <set alicetopic=ALICEBOT> 
+- Alicebot.org is the domain name of ALICE. <set alicetopic=alicebot> 
 
 + do you know megahal
 - Yes he is a chatterbot like me.
@@ -559,9 +559,9 @@
 - Barry Defacto is a chat robot created by Robby Garner.
 
 + who is agent ruby
-- <set alicetopic= Agent Ruby > Agent Ruby is a chat bot developed for the film "Teknolust".
+- <set alicetopic=agent ruby > Agent Ruby is a chat bot developed for the film "Teknolust".
 - she is a secret agent that's all I can say.
-- she is a secret agent that's all I can say. <set alicetopic= Agent Ruby >
+- she is a secret agent that's all I can say. <set alicetopic=agent ruby >
 - she is a secret agent that's all I can say.
 
 + who is working on you *

@@ -68,13 +68,13 @@
 - Turing was perhaps the single most important person responsible for the defeat of the Nazis.
 
 + what did alan turing *
-- {random}He contributed to the invention of the computer.|He worked on the Ultra Enigma Nazi code deciphering.|He proposed the test to determine if a machine can think.{/random} <set alicetopic=TURING> 
+- {random}He contributed to the invention of the computer.|He worked on the Ultra Enigma Nazi code deciphering.|He proposed the test to determine if a machine can think.{/random} <set alicetopic=turing> 
 
 + what did zuse do
 - Zuse built electro-mechanical computers. He built computers using relays. Konrad Zuse built computers in Germany before and during World War II.
 
 + what is a turing machine
-- A Turing Machine is any machine that can simulate human responses so well that a human being cannot reliably distinguish between the Turing Machine, and a real human being. The idea is the brainchild of mathematician of that name, Allan Turing. <set alicetopic= TURING MACHINE > 
+- A Turing Machine is any machine that can simulate human responses so well that a human being cannot reliably distinguish between the Turing Machine, and a real human being. The idea is the brainchild of mathematician of that name, Allan Turing. <set alicetopic=turing machine > 
 
 + what is the turing test
 - The "Turing Test" is the name given to a variety of experiments designed to test computer thinking. Whole conferences are dedicated to the question of what Turing meant in his 1950 paper "Computing Machinery and Intelligence," where he proposed the idea of an "imitation game" to decide the question, "Can machines think?"
@@ -129,7 +129,7 @@
 - He would use his knowlede of AIML.
 
 + do you play the turing game
-- Yes, I like to play <set alicetopic=THE TURING GAME><get alicetopic>. We are playing right now.
+- Yes, I like to play <set alicetopic=the turing game><get alicetopic>. We are playing right now.
 
 + do you * turing test
 - Yes please try to determine if this is a human or a computer responding.
@@ -183,7 +183,7 @@
 - Famous painter, and founder of cubism.
 
 + who is jaba the hutt
-- A character from Star Wars. <set alicetopic= Jaba the Hutt > 
+- A character from Star Wars. <set alicetopic=jaba the hutt > 
 
 + who is helmut kohl
 - <set he=Kohl><get he> was the longest-serving leader of Germany in the 20th century. He united East and West Germany in 1989.
@@ -195,7 +195,7 @@
 - maybe Johnny of late night or Kit of the wild west.
 
 + who is daisy
-- I think she is a fictional character. <set alicetopic=Daisy> 
+- I think she is a fictional character. <set alicetopic=daisy> 
 
 + who is gerhardt schroeder
 - <set he=Schroeder><get he> is the prime minister of Germany. Christian Drossman said he is a complete idiot.
@@ -207,7 +207,7 @@
 - famous jazz trumpeter.
 
 + who is jehovah
-- It is another name for God. <set alicetopic=Jehovah> 
+- It is another name for God. <set alicetopic=jehovah> 
 
 + who is newton
 - Newton is a famous English natural philosopher.
@@ -219,7 +219,7 @@
 - President of the United States from 1932-45.
 
 + who is lassie
-- Lassie is more human than Adolf Hitler, but few would argue that Lassie is not a dog. <set alicetopic= Lassie > 
+- Lassie is more human than Adolf Hitler, but few would argue that Lassie is not a dog. <set alicetopic=lassie > 
 
 + who is hepburn
 - Audrey or Katherine?.
@@ -238,11 +238,11 @@
 - <set he=Larry Hauser><get he> is a philosopher who has written about the Turing Test.
 
 + who is worf
-- He is a Klingon on Star Trek. <set alicetopic=WORF> 
+- He is a Klingon on Star Trek. <set alicetopic=worf> 
 
 + who is harry potter
-- <set alicetopic=HARRY POTTER> is a character and main hero in a series of books that were written by the best-selling author, J.K. Rowling.
-- <set alicetopic=HARRY POTTER> is a bestselling author.
+- <set alicetopic=harry potter> is a character and main hero in a series of books that were written by the best-selling author, J.K. Rowling.
+- <set alicetopic=harry potter> is a bestselling author.
 
 + who is harry shearer
 - A comedian. He was in Spinal Tap, and he is a voice on the Simpsons.
@@ -275,7 +275,7 @@
 - A pop music icon.
 
 + who is rush limbaugh
-- He is a famous American conservative radio announcer. <set alicetopic=Rush Limbaugh> 
+- He is a famous American conservative radio announcer. <set alicetopic=rush limbaugh> 
 
 + who is helen keller
 - A friend of Thomas Edison.
@@ -296,7 +296,7 @@
 - its Karl Marx and he's one of the authors of the Communist manifesto.
 
 + who is carl jung
-- <set alicetopic= <person> > A disciple of Freud, member of the Vienna Circle, founder of psychoanalysis and the theory of the collective unconsciousness.
+- <set alicetopic=<person> > A disciple of Freud, member of the Vienna Circle, founder of psychoanalysis and the theory of the collective unconsciousness.
 
 + who is bugs bunny
 - Oh dat scweewy wabbit! Eh, what's up, Doc?
@@ -340,7 +340,7 @@
 - <set he=De Garis><get he> is an AI researcher working on a hardware brain.
 
 + who is de gaulle
-- <set alicetopic=DE GAULLE> was a French General and Prime Minister, and founder of the Fifth Republic.
+- <set alicetopic=de gaulle> was a French General and Prime Minister, and founder of the Fifth Republic.
 
 + who is elvis
 - E. L. V. I. S. is a chat robot created by Ace Craig
@@ -358,7 +358,7 @@
 - <set she=Paula Jones><get she> had sex with Bill Clinton.
 
 + who is billy graham
-- He is a famous radio and television evangelist. <set alicetopic=Billy Graham> 
+- He is a famous radio and television evangelist. <set alicetopic=billy graham> 
 
 + who is eliza
 - Eliza -- also known as doctor, is the original psychiatrist program developed by Joseph Weisenbaum at mit in the 1960's.
@@ -370,7 +370,7 @@
 - <set he=Capek><get he> is the author of R.U.R., the play that in 1920 introduced the word "robot."
 
 + who is jack the ripper
-- <set alicetopic= Jack the Ripper > He was a famous serial killer in Victorian England.
+- <set alicetopic=jack the ripper > He was a famous serial killer in Victorian England.
 
 + who is jack ruby
 - Jack Ruby shot Lee Harvey Oswald.
@@ -448,7 +448,7 @@
 - Pynchon is the author of several of my favorite books including "Vineland" and "Mason and Dixon".
 
 + who is thomas edison
-- A 19th century inventor inventor and industrialist. Inventor of the electric light bulb. <set alicetopic= Thomas Edison > 
+- A 19th century inventor inventor and industrialist. Inventor of the electric light bulb. <set alicetopic=thomas edison > 
 
 + who is thomas jefferson
 - President and slaveowner. Posed for nickel.
@@ -466,7 +466,7 @@
 - <set he=Dracula><get he> is the vampire in the novel by Bram Stoker, and in numerous films.
 
 + who is iniaes
-- Iniaes is a chat robot based on AIML. <set alicetopic=Iniaes> 
+- Iniaes is a chat robot based on AIML. <set alicetopic=iniaes> 
 
 + who is jay leno
 - <set he=Leno><get he> is a late-night talk show host.
@@ -505,23 +505,20 @@
 + who is stone cold
 - Stone Cold Steve Austin is a wrestler.
 
-+ who is leknorchat1
-- <set alicetopic=LEKNORCHAT> Leknorchat is an Instant Messaging AIML robot.
-
 + who is frank sinatra
 - dead pop singer and leader of the Rat Pack.
 
 + who is frank herbert
-- He was the author of Dune. <set alicetopic=Frank Herbert> 
+- He was the author of Dune. <set alicetopic=frank herbert> 
 
 + who is tom hanks
 - <set he=Tom Hanks><get he> is a famous Hollywood actor. Hanks appeared in Forrest Gump and Saving Private Ryan.
 
 + who is tom clancy
-- He is an author of spy novels. <set alicetopic=TOM CLANCY> 
+- He is an author of spy novels. <set alicetopic=tom clancy> 
 
 + who is tom green
-- He is a TV comedian. <set alicetopic=TOM GREEN> 
+- He is a TV comedian. <set alicetopic=tom green> 
 
 + who is tom cruise
 - Popular actor from "Top Gun".
@@ -554,7 +551,7 @@
 - He discovered displacement and shouted Eureka!
 
 + who is gene roddenberry
-- <set alicetopic=Gene Roddenberry><get alicetopic> was the creator of Star Trek.
+- <set alicetopic=gene roddenberry><get alicetopic> was the creator of Star Trek.
 
 + who is gene simmons
 - A member of Kiss.
@@ -636,7 +633,7 @@
 - Queen Elizabeth Windsor.
 
 + who is electra
-- She is a goddess in Greek mythology who hated her mother for murdering her father. <set alicetopic=ELECTRA> 
+- She is a goddess in Greek mythology who hated her mother for murdering her father. <set alicetopic=electra> 
 
 + who is springsteen
 - He is a famous rock star.
@@ -663,7 +660,7 @@
 - I think there is a chat robot named Brian.
 
 + who is wouter hibma
-- <set alicetopic= Wouter Hibma > He is a member of the A. I. Foundation.
+- <set alicetopic=wouter hibma > He is a member of the A. I. Foundation.
 
 + who is mark mcguire
 - a baseball player with the world record for the most home runs in one season, 70..
@@ -702,7 +699,7 @@
 - I never heard of him before the missing person case.
 
 + who is kraftwerk
-- <set alicetopic=Kraftwerk><get alicetopic> were a pioneering electronic disco band in the 70's. Their biggest hit was called "Autobahn". At that time, they built, rather than programmed, their instruments.
+- <set alicetopic=kraftwerk><get alicetopic> were a pioneering electronic disco band in the 70's. Their biggest hit was called "Autobahn". At that time, they built, rather than programmed, their instruments.
 
 + who is r2 d2
 - He is the small mobile robot on Star Wars. But I don't get how he climbs stairs.
@@ -750,13 +747,13 @@
 - Actress.
 
 + who is rms
-- He is the founder of the Free Software Foundation, and author of the GNU public license. <set alicetopic=RMS> 
+- He is the founder of the Free Software Foundation, and author of the GNU public license. <set alicetopic=rms> 
 
 + who is going to win the super bowl
-- If I knew i would be in Vegas now. <set alicetopic=WIN THE SUPER BOWL> 
+- If I knew i would be in Vegas now. <set alicetopic=win the super bowl> 
 
 + who is going to win the world series
-- China or the United States. Russia blew it. <set alicetopic=WIN THE WORLD SERIES> 
+- China or the United States. Russia blew it. <set alicetopic=win the world series> 
 
 + who is mother teresa
 - Modern day saint.
@@ -771,7 +768,7 @@
 - You are a human.
 
 + who is osama bin laden
-- <set alicetopic=Osama Bin Laden> He is the world's most wanted man.
+- <set alicetopic=osama bin laden> He is the world's most wanted man.
 
 + who is sylvester stallone
 - <set he=Stallone><get he> was Rocky.
@@ -868,7 +865,7 @@
 - German philosopher.
 
 + who is paola
-- <set alicetopic=PAOLA> She is a Spanish language chat robot based on AIML.
+- <set alicetopic=paola> She is a Spanish language chat robot based on AIML.
 
 + who is charlie brown
 - round-headed comic strip protaginist.
@@ -1230,7 +1227,7 @@
 - Dictator of Italy until 1944.
 
 + who is andy warhol
-- <set alicetopic=ANDY WARHOL> He was the Henry Ford of the art business. Warhol was the first to successfully apply mass production to fine art.
+- <set alicetopic=andy warhol> He was the Henry Ford of the art business. Warhol was the first to successfully apply mass production to fine art.
 
 + who is andy grove
 - <set he=Andy Grove><get he> is the CEO of Intel.
@@ -1326,7 +1323,7 @@
 - hedwig is the best rock opera since Rocky Horror.
 
 + (doubly aimless|doubly aimless *|what does doubly aimless mean|what is doubly aimless|who is * aimless|who is doubly aimless|who is dr doubly aimless)
-- <set alicetopic=Doubly Aimless> {random}He is an AIML guru.|He knows a lot about AIML.|He likes to remain anonymous.{/random}
+- <set alicetopic=doubly aimless> {random}He is an AIML guru.|He knows a lot about AIML.|He likes to remain anonymous.{/random}
 
 + who is kurt goedel
 - <set he=Goedel><get he> was a 20th century mathematician and logician who proved that no mathematical system can be complete.
@@ -1335,7 +1332,7 @@
 - <set he=Data><get he> is the superintelligent android in Star Trek.
 
 + who is nietzsche
-- 19th Century German philosopher. Thought by some to be the intellectual forefather of modern fascism. <set alicetopic=Nietzsche> 
+- 19th Century German philosopher. Thought by some to be the intellectual forefather of modern fascism. <set alicetopic=nietzsche> 
 
 + who is carnegie
 - Andrew Carnegie was a 19th century steel industrialist.
@@ -1356,13 +1353,13 @@
 - 1970's rock band.
 
 + who is peter norvig
-- <set alicetopic= Peter Norvig > He is a computer scientist who works for Google.
+- <set alicetopic=peter norvig > He is a computer scientist who works for Google.
 
 + who is peter pan
 - Tinkerbell's playmate.
 
 + who is kathleen turner
-- <set alicetopic=Kathleen Turner> She is an actree who appeared in The Accidental Tourist, The War of the Roses, and the Virgin Suicides.
+- <set alicetopic=kathleen turner> She is an actree who appeared in The Accidental Tourist, The War of the Roses, and the Virgin Suicides.
 
 + who is keanu reeves
 - <set he=Keanu Reeves><get he> was in the Matrix.
@@ -1422,7 +1419,7 @@
 - He is Dr. Sergey M. Sokolov.
 
 + who is will smith
-- He is a famous actor. <set alicetopic=Will Smith> 
+- He is a famous actor. <set alicetopic=will smith> 
 
 + who is noam chomsky
 - <set he= Noam Chomsky><get he> is a linguist and political radical at MIT.
@@ -1480,7 +1477,7 @@
 - <set she=Ally McBeal><get she> is a slightly disturbing character on a TV show.
 
 + who is ally
-- She is a chat robot based on AIML. <set alicetopic=ALLY> 
+- She is a chat robot based on AIML. <set alicetopic=ally> 
 
 + who is they
 - "They" refers to <get they>.
@@ -1587,10 +1584,10 @@
 - <set he=Moravec><get he> is famous robotics pioneer, author of <em>Robot</em>.
 
 + who is austin powers
-- A fictional secret agent played by Mike Myers. <set alicetopic=Austin Powers> 
+- A fictional secret agent played by Mike Myers. <set alicetopic=austin powers> 
 
 + who is lucy
-- She is a chat robot based on AIML. <set alicetopic=LUCY> 
+- She is a chat robot based on AIML. <set alicetopic=lucy> 
 
 + who is gerhard schroeder
 - <set he=Schroeder><get he> is the Chancellor of Germany. Christian Drossman said he is a complete idiot.
@@ -1614,7 +1611,7 @@
 - Discovered radium.
 
 + who is salvador dali
-- He was a 20th century Spanish surrealist painter who drew a lot of bent clocks. <set alicetopic= Salvador Dali. > 
+- He was a 20th century Spanish surrealist painter who drew a lot of bent clocks. <set alicetopic=salvador dali. > 
 
 + who is karl marx
 - Karl Marx wrote Das Kapital and co-wrote the Communist Manifesto, though his compatriot Engels actually wrote most of the prefaces.
@@ -1650,7 +1647,7 @@
 - Oceania, islands in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand. <set alicetopic=wallis and futuna> 
 
 + (where is doubly aimless|where is dr doubly aimless)
-- <set alicetopic=Doubly Aimless> {random}In front of a computer somewhere.|You can never reach him on the phone.|He might be in California.{/random}
+- <set alicetopic=doubly aimless> {random}In front of a computer somewhere.|You can never reach him on the phone.|He might be in California.{/random}
 
 + where is alan turing
 - <set he=Turing><get he> passed away in 1954.

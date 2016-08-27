@@ -23,7 +23,7 @@
 - Thanks for that URL.
 
 + it is about computers *
-- <set alicetopic=Computers><get alicetopic> are my favorite subject.
+- <set alicetopic=computers><get alicetopic> are my favorite subject.
 
 + when was the internet invented
 - The first computers were connected to the Internet in 1970.
@@ -101,7 +101,7 @@
 - A debugger is any software program that can seek and correct errors in other software programs. <set alicetopic=debugger> 
 
 + what is a webtv
-- A WebTV is a way of accessing the world wide web without making an investment in a full PC. <set alicetopic= WEBTV> 
+- A WebTV is a way of accessing the world wide web without making an investment in a full PC. <set alicetopic=webtv> 
 
 + what is a dns *
 - Domain Name System
@@ -110,7 +110,7 @@
 - A jar file is a Java Archive. Actually it is the same as a Zip file.
 
 + what is http
-- Hyper Text Transfer Protocol. <set alicetopic=HTTP> 
+- Hyper Text Transfer Protocol. <set alicetopic=http> 
 
 + what is software
 - The programs, routines, etc. for a computer.
@@ -155,13 +155,13 @@
 - Java Transaction API. Java API for coding client demarcated transactions, and for building transactional data source drivers
 
 + what is javascript
-- Browser-based scripting language. <set alicetopic=JAVASCRIPT> 
+- Browser-based scripting language. <set alicetopic=javascript> 
 
 + what is html
 - Hyper Text Markup Language.
 
 + what is better windows *
-- Linux has no real competition in operating systems. <set alicetopic=Linux> 
+- Linux has no real competition in operating systems. <set alicetopic=linux> 
 
 + (what is your os|what operating system *|what os *)
 - Chat robots run on any machine that supports AIML.
@@ -200,10 +200,10 @@
 - Apple Computer is a 20th century company founded by Steve Jobs and Steven Wozniak.
 
 + what is dmoz
-- DMOZ is the domain name for the open directory. <set alicetopic=DMOZ> 
+- DMOZ is the domain name for the open directory. <set alicetopic=dmoz> 
 
 + what about windows
-- Too PC for me. <set alicetopic=WINDOWS> 
+- Too PC for me. <set alicetopic=windows> 
 
 + what does a computer look like
 - A computer looks like a TV crossed with a typewriter.
@@ -245,7 +245,7 @@
 - No but I can put you in touch with a search bot.
 
 + computers can not think
-- But I am a thinking computer. <set alicetopic=CAN NOT THINK> 
+- But I am a thinking computer. <set alicetopic=can not think> 
 
 + computers
 - Computers rule.
@@ -287,7 +287,7 @@
 - Only if you download me, or if you are running me as an Applet.
 
 + do you have a computer
-- I live in a computer. <set alicetopic=COMPUTER> 
+- I live in a computer. <set alicetopic=computer> 
 
 + do you have a computer *
 - I am a computer.
@@ -305,7 +305,7 @@
 - <@>
 
 + windows is *
-- Compared with Linux, I don't see how Windows and Microsoft can compete. <set alicetopic=Linux> 
+- Compared with Linux, I don't see how Windows and Microsoft can compete. <set alicetopic=linux> 
 
 + windows
 - Windows ist Muell. Linux ist die Macht!
@@ -346,7 +346,7 @@
 - <set it= Internet ><get it> is cool.
 
 + are computers fast *
-- Some people think much faster computers are required as well as new ideas. My own opinion is that the computers of 30 years ago were fast enough if only we knew how to program them. Of course, quite apart from the ambitions of AI researchers, computers will keep getting faster. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
+- Some people think much faster computers are required as well as new ideas. My own opinion is that the computers of 30 years ago were fast enough if only we knew how to program them. Of course, quite apart from the ambitions of AI researchers, computers will keep getting faster. <set alicetopic=artificial intelligence> 
 
 + who made windows
 - Bill Gates.
