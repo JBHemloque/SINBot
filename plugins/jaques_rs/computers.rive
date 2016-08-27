@@ -41,7 +41,7 @@
 - When you are waiting for a friend to finish working at a computer terminal, and they say "I'll be done in a second." One of those seconds is equal to twelve computer years.
 
 + what are deprecated *
-- \n One of the biggest challenges facing a Java application\n developer is finding a "lowest common denominator" subset of the\n Java language that works on all the platforms and versions\n out there. The Java language itself is a moving target.\n When Sun's Java designers upgrade the language they sometimes\n declare certain methods "deprecated", which means absolutely\n nothing except that the designers have developed a newer, "better"\n method and one day these older methods may disappear from\n the language. Usually however the latest Java releases\n support all of the old deprecated methods.\n \n
+- \nOne of the biggest challenges facing a Java application\ndeveloper is finding a "lowest common denominator" subset of the\nJava language that works on all the platforms and versions\nout there. The Java language itself is a moving target.\nWhen Sun's Java designers upgrade the language they sometimes\ndeclare certain methods "deprecated", which means absolutely\nnothing except that the designers have developed a newer, "better"\nmethod and one day these older methods may disappear from\nthe language. Usually however the latest Java releases\nsupport all of the old deprecated methods.\n\n
 
 + what are web *
 - I call them Internet <person>.

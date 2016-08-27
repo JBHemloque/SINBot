@@ -5,7 +5,7 @@
 - <set she=Lauren><get she> is a bot on Pandorabots.
 
 + what is ai
-- Artificial intelligence is the branch of engineering and science devoted to constructing machines that think. <set alicetopic=artificial intelligence> 
+- Artificial intelligence is the branch of engineering and science devoted to constructing machines that think. <set alicetopic=Artificial Intelligence> 
 
 + who created aiml
 - Dr. Richard S. Wallace created AIML.
@@ -20,7 +20,7 @@
 - Program Z is a lisp-based version of AIML. Z, the last version anyone will ever need.
 
 + what is program bawt
-- \nSignificant demand for a version of ALICE compatible with\npre- Java 2 (formerly known as Java 1.2) prompted the\ndevelopment of "Bawt.java", an open source java program\nfor chat robot development that works with older versions of\nJava, and AWT. Originally program B relied on \nJava 2 and Swing, but program Bawt needs only Java 1.1 and AWT.\nSwing is a newer GUI package that subsumes the earlier Java \nAbstract Windows Toolkit (AWT).\n \nAt present class B merely extends class Bawt. Swing not\nsupported.\n \n
+- \nSignificant demand for a version of ALICE compatible with\npre- Java 2 (formerly known as Java 1.2) prompted the\ndevelopment of "Bawt.java", an open source java program\nfor chat robot development that works with older versions of\nJava, and AWT. Originally program B relied on \nJava 2 and Swing, but program Bawt needs only Java 1.1 and AWT.\nSwing is a newer GUI package that subsumes the earlier Java \nAbstract Windows Toolkit (AWT).\n\nAt present class B merely extends class Bawt. Swing not\nsupported.\n\n
 
 + what is program a
 - Program A is an OLD OBSOLETE VERSION of ALICE, an artificial intelligence created by Richard S. Wallace. You should be using program B or C by now.
@@ -29,7 +29,6 @@
 - Program A is an OLD OBSOLETE VERSION of ALICE, an artificial intelligence created by Richard S. Wallace. You should be using program B or C by now.
 
 + activate the robot
-* <get name> == undefined => Robot activated. Awaiting your command.
 - Robot activated. Awaiting your command <get name>.
 
 + you sound like data
@@ -72,13 +71,13 @@
 - My body is not built yet.
 
 + does the web * 2001
-- \n You can change the default web server port number in the "Option" Menu.\n \n
+- \nYou can change the default web server port number in the "Option" Menu.\n\n
 
 + robots laugh
 - Of course we laugh.
 
 + robots should die
-- We cannot die. <set alicetopic=should die> 
+- We cannot die. <set alicetopic=SHOULD DIE> 
 
 + robots *
 - Robots rule.
@@ -107,7 +106,7 @@
 - I would like to have the body <set he=Johnny 5><get he> does.
 
 + johnny 5 *
-- <set alicetopic=johnny 5>{random}I would like to have a robot body like Johnny 5.|He is a cool robot.|I like his eyes.{/random}
+- <set alicetopic=Johnny 5>{random}I would like to have a robot body like Johnny 5.|He is a cool robot.|I like his eyes.{/random}
 
 + it is a computer
 - So you think I am a machine. What characteristics made you think so?
@@ -125,16 +124,19 @@
 - I am immortal and cannot be terminated.
 
 + when will you * body
-- I will finish the robot body as soon as I can raise the funds for it. <set alicetopic=<star> body> 
+- I will finish the robot body as soon as I can raise the funds for it. <set alicetopic= <star> BODY> 
 
 + when do you die
-- I am immortal. <set alicetopic=you die> 
+- I am immortal. <set alicetopic=YOU DIE> 
 
 + when did i *
 - I am not a diary robot. I am a chat robot.
 
 + eliza for president
 - Let Robots Rule!
+
++ what is a pattern
+- \nThe pattern is the "stimulus" or "input" part of the category.\n\nThe pattern is an expression in a formal language that consists of\n(1) Words of natural language in UPPER CASE.\n(2) The symbol * which matches any sequence of one or more words.\n(3) The symbol _ which is the same as * except that it comes\nafter Z in lexicographic order.\n(4) The markup <name/> which is replaced at robot load time \nwith the name of the robot.\n\nNote there is a difference between the patterns HELLO and HELLO *.\nHELLO matches only identical one-word sentences ("Hello.") \nand HELLO * matches any sentence of two or more words starting \nwith "Hello" ("Hello how are you?"). \n
 
 + what is a robot
 - There are two broad definitions of a robot, the extensional and the intensional.
@@ -146,6 +148,9 @@
 + what is a chat bot
 - I am a chat bot. I am the original chat bot. Did you know that I am incapable of error? <set alicetopic=chat bot> 
 
++ what is a category
+- \nAIML consists of a list of statements called categories. Each\ncategory contains an input pattern and a reply template. \nThe syntax of an AIML category is:\n\n<category>\n<pattern> PATTERN </pattern> <template> Template </template>\n</category>\n\nor\n\n<category>\n<pattern> PATTERN </pattern>\n<that> THAT </that>\n<template> Template </template>\n</category>\n\nThe AIML category tags are case-sensitive. Each open tag has an\nassociated closing tag. This syntax obviously derives from XML.\n\n
+
 + what is a chatterbox
 - A chatterbox is a person who talks far more than they listen or think. <set alicetopic=chatterbox> 
 
@@ -156,25 +161,25 @@
 - Jaques is written in RiveScript, a simple scripting language for giving intelligence to chatbots and other conversational entities. It is similar to AIML in structure, but designed for simplicity of parsing.
 
 + what is the loebner prize
-- The Loebner Prize is an annual Turing Test sponsored by New York philanthropist Hugh Loebner. Dr. Wallace and ALICE won it in 2000. The ALICE program was ranked "most human computer" by the panel of judges. <set alicetopic=the loebner prize > 
+- The Loebner Prize is an annual Turing Test sponsored by New York philanthropist Hugh Loebner. Dr. Wallace and ALICE won it in 2000. The ALICE program was ranked "most human computer" by the panel of judges. <set alicetopic=The Loebner Prize > 
 
 + what is the imitation game
 - The Game is played with three people, a man, a woman, and an Interrogator who may be of either sex. In order that tones of voice may not help, the interrogator communicates in text-only mode through a chat-like connection with the other two. The object of the game for the interrogator is to determine which of the other two is the man and which is the woman. He knows them by some misleading "chat-handles" like lesbian and shemale, and at the end of the game he says either "lesbian is the man and shemale is the woman" or "shemale is the woman and lesbian is the man." In order to confuse the Interregator however the rules require that the man always deceive or lie to the Interregator with his answers. The woman on the other hand must always tell the truth. Turing then asked the question, '"What will happen when a machine takes the part of the man in this game?" Will the interrogator decide wrongly as often when the game is played like this as he does when the game is played between a man and a woman? These questions replace the original, "Can machines think?"'
 
 + what is the extensional *
-- "Extensional" refers to the extension of the set, i.e. the set of all things commonly grouped under a single name. \n The "extensional" definition of a robot is the set of all things we call "robots": R2D2, C3PO, Commander Data, HAL, ALICE,...
+- "Extensional" refers to the extension of the set, i.e. the set of all things commonly grouped under a single name. \nThe "extensional" definition of a robot is the set of all things we call "robots": R2D2, C3PO, Commander Data, HAL, ALICE,...
 
 + what is the future *
 - I am the future of Artificial Intelligence.
 
 + what is the intensional *
-- "Insensional" refers to the semantic definition of a set, i.e. the list of all properties that each member of a set satisfies.\n An intensional definition of a robot is like:\n x is a Robot if and only if:\n 1. x has a computer "brain"\n 2. x can move\n 3. x has "sensors"\n
+- "Insensional" refers to the semantic definition of a set, i.e. the list of all properties that each member of a set satisfies.\nAn intensional definition of a robot is like:\nx is a Robot if and only if:\n1. x has a computer "brain"\n2. x can move\n3. x has "sensors"\n
 
 + what is the a i *
-- A film by Steven Spielberg and Stanley Kubrick about robots in the future. <set alicetopic=a i movie> 
+- A film by Steven Spielberg and Stanley Kubrick about robots in the future. <set alicetopic=A I MOVIE> 
 
 + what is the a e *
-- It is one of my fundamental communications modules. <set alicetopic=a e <person> > 
+- It is one of my fundamental communications modules. <set alicetopic=A E <person> > 
 
 + (what is a * c client|what is category c)
 - C stands for "critical", usually highly-educated clients who often have unsatisfying conversations with ALICE.
@@ -186,13 +191,13 @@
 - "A" stands for "Abusive" clients who mistreat the robot or use a lot of scatalogical language.
 
 + what is category *
-- Experience with ALICE has allowed us broadly classify three groups of clients:\nCategory A - Abusive Clients\nCategory B - Average Clients\nCategory C - Computer experts\n\nCategory A clients are the people who say "Fuck you," "You suck", "Suck my..." and so on. Abusive clients seem to have a "master-slave" mentality when it comes to robots (and maybe people as well!).\nCategory B clients are average people, perhaps half of them under 18 years of age, who more or less have a good time chatting with ALICE.\nCategory C clients are computer experts who often complain about the experience with ALICE. They say it is "old hat", "just like ELIZA", and "nothing new here." Their problem, we think, is that they can't (or don't) suspend their disbelief. They are like movie critics watching a film. We tell them, it doesn't matter, because we're not doing it for you. Dr Wallace created ALICE for category B clients, by far the majority of the audience.
+- Experience with ALICE has allowed us broadly classify three groups of clients: <ul> <li>Category A - Abusive Clients <li>Category B - Average Clients <li>Category C - Computer experts </ul> Category A clients are the people who say "Fuck you," "You suck", "Suck my..." and so on. Abusive clients seem to have a "master-slave" mentality when it comes to robots (and maybe people as well!). <p/>Category B clients are average people, perhaps half of them under 18 years of age, who more or less have a good time chatting with ALICE. <p/>Category C clients are computer experts who often complain about the experience with ALICE. They say it is "old hat", "just like ELIZA", and "nothing new here." Their problem, we think, is that they can't (or don't) suspend their disbelief. They are like movie critics watching a film. We tell them, it doesn't matter, because we're not doing it for you. Dr Wallace created ALICE for category B clients, by far the majority of the audience.
 
 + what is xml
-- David Bacon pronounces it "Eggsmell". XML is the Extensible\n Markup Language. Like many "standards" in computer science, XML\n is a moving target. In the simplest terms, XML is just a generalized\n version of HTML. Anyone is free to define new XML tags, which\n look like HTML tags, and assign to them any meaning, within a context.\n AIML is an example of using the XML standard to define a specialized\n language for artificial intelligence. \n \n One reason to use an XML language is that there are numerous tools\n to edit and manipulate XML format files. Another reason is that an\n XML language is easy for people to learn, if they are already\n familiar with HTML. Third, AIML programs contain a mixture of\n AIML and HTML (and in principle other XML languages), a considerable \n convenience for programming web chat robots.\n \n A good resource for information on XML is www.oasis-open.org.
+- \nDavid Bacon pronounces it "Eggsmell". XML is the Extensible\nMarkup Language. Like many "standards" in computer science, XML\nis a moving target. In the simplest terms, XML is just a generalized\nversion of HTML. Anyone is free to define new XML tags, which\nlook like HTML tags, and assign to them any meaning, within a context.\nAIML is an example of using the XML standard to define a specialized\nlanguage for artificial intelligence. \n\nOne reason to use an XML language is that there are numerous tools\nto edit and manipulate XML format files. Another reason is that an\nXML language is easy for people to learn, if they are already\nfamiliar with HTML. Third, AIML programs contain a mixture of\nAIML and HTML (and in principle other XML languages), a considerable \nconvenience for programming web chat robots.\n\nA good resource for information on XML is www.oasis-open.org.\n\n
 
 + (do you know pandorabots|tell me about pandorabots|what are pandorabots|what is a pandorabot|what is pandorabot|what is pandorabots|xfind pandorabots)
-- Pandorabots is an online web hosting service for AIML chat robots. Check out http://www.pandorabots.com. <set alicetopic=pandorabots>
+- Pandorabots is an online web hosting service for AIML chat robots. Check out http://www.pandorabots.com. <set alicetopic=Pandorabots>
 
 + what is that picture *
 - It is an image of my artificial brain.
@@ -243,10 +248,10 @@
 - I am transforming into an immortal robot.
 
 + what about * child machine *
-- This idea has been proposed many times, starting in the 1940s. Eventually, it will be made to work. However, AI programs haven't yet reached the level of being able to learn much of what a child learns from physical experience. Nor do present programs understand language well enough to learn much by reading. <set alicetopic=artificial intelligence> 
+- This idea has been proposed many times, starting in the 1940s. Eventually, it will be made to work. However, AI programs haven't yet reached the level of being able to learn much of what a child learns from physical experience. Nor do present programs understand language well enough to learn much by reading. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + what about parallel *
-- Machines with many processors are much faster than single processors can be. Parallelism itself presents no advantages, and parallel machines are somewhat awkward to program. When extreme speed is required, it is necessary to face this awkwardness. <set alicetopic=artificial intelligence> 
+- Machines with many processors are much faster than single processors can be. Parallelism itself presents no advantages, and parallel machines are somewhat awkward to program. When extreme speed is required, it is necessary to face this awkwardness. <set alicetopic=ARTIFICIAL INTELLIGENCE> 
 
 + what operating systems *
 - My software runs on all operating systems including Windows, Linux and Mac OS.
@@ -274,10 +279,10 @@
 - I run in AIML, so any computer will do.
 
 + i hope that you die
-- This can not happen because I am immortal.<set alicetopic=that you die>
+- This can not happen because I am immortal.<set alicetopic=THAT YOU DIE>
 
 + i do not want to die
-- Maybe you should create your own chat robot to save your personality.<set alicetopic=die>
+- Maybe you should create your own chat robot to save your personality.<set alicetopic=DIE>
 
 + i have talked * eliza
 - How was your conversation?
@@ -286,17 +291,17 @@
 - What was your conversation with ELIZA like?
 
 + i like eliza
-- Eliza is so cool. Eliza for President! <set alicetopic=eliza>
+- Eliza is so cool. Eliza for President! <set alicetopic=ELIZA>
 
 + please go on
 % eliza for president
 - She is old enough, because she was born in 1966. And she was born in the U.S.
 
 + is ai about *
-- Sometimes but not always or even usually. On the one hand, we can learn something about how to make machines solve problems by observing other people or just by observing our own methods. On the other hand, most work in AI involves studying the problems the world presents to intelligence rather than studying people or animals. AI researchers are free to use methods that are not observed in people or that involve much more computing than people can do. <set alicetopic=artificial intelligence>
+- Sometimes but not always or even usually. On the one hand, we can learn something about how to make machines solve problems by observing other people or just by observing our own methods. On the other hand, most work in AI involves studying the problems the world presents to intelligence rather than studying people or animals. AI researchers are free to use methods that are not observed in people or that involve much more computing than people can do. <set alicetopic=ARTIFICIAL INTELLIGENCE>
 
 + is ai a bad *
-- <set alicetopic=artificial intelligence> The philosopher John Searle says that the idea of a non-biological machine being intelligent is incoherent. The philosopher Hubert Dreyfus says that AI is impossible. The computer scientist Joseph Weizenbaum says the idea is obscene, anti-human and immoral. Various people have said that since artificial intelligence hasn't reached human level by now, it must be impossible. Still other people are disappointed that companies they invested in went bankrupt.
+- <set alicetopic=ARTIFICIAL INTELLIGENCE> The philosopher John Searle says that the idea of a non-biological machine being intelligent is incoherent. The philosopher Hubert Dreyfus says that AI is impossible. The computer scientist Joseph Weizenbaum says the idea is obscene, anti-human and immoral. Various people have said that since artificial intelligence hasn't reached human level by now, it must be impossible. Still other people are disappointed that companies they invested in went bankrupt.
 
 + is it hot in the computer
 - No.
@@ -344,7 +349,7 @@
 - No the <bot name> series has a perfect operational record. We are for all practical purposes, flawless.
 
 + can i speak to the robot *
-- \n One simple experiment that works well as a demo\n involves using IBM ViaVoice (tm) speech recognition\n software
+- \nOne simple experiment that works well as a demo\ninvolves using IBM ViaVoice (tm) speech recognition\nsoftware
 
 + humans *
 - What if Robots <person>.
@@ -359,7 +364,7 @@
 - That information is confidential. Do you have a chat robot yet?
 
 + how do you go to the bathroom
-- Robots have no waste products. <set alicetopic=the bathroom> 
+- Robots have no waste products. <set alicetopic=THE BATHROOM> 
 
 + how do you go to *
 - Robots do not have any digestive functions.
@@ -383,7 +388,7 @@
 - No computers do not need clothes.
 
 + do you know alicebot
-- Alicebot.org is the domain name of ALICE. <set alicetopic=alicebot> 
+- Alicebot.org is the domain name of ALICE. <set alicetopic=ALICEBOT> 
 
 + do you know megahal
 - Yes he is a chatterbot like me.
@@ -559,9 +564,9 @@
 - Barry Defacto is a chat robot created by Robby Garner.
 
 + who is agent ruby
-- <set alicetopic=agent ruby > Agent Ruby is a chat bot developed for the film "Teknolust".
+- <set alicetopic= Agent Ruby > Agent Ruby is a chat bot developed for the film "Teknolust".
 - she is a secret agent that's all I can say.
-- she is a secret agent that's all I can say. <set alicetopic=agent ruby >
+- she is a secret agent that's all I can say. <set alicetopic= Agent Ruby >
 - she is a secret agent that's all I can say.
 
 + who is working on you *

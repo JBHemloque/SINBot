@@ -2316,7 +2316,7 @@
 - The ALICE server logs and records all conversations.
 
 + can i modify alice *
-- \nAbsolutely. You only have to change her name, location, birthday and/or\nbotmaster, and put a couple of references to yourself. Then add new\ncategories that cover your own area of expertise or interest.\n \n
+- \nAbsolutely. You only have to change her name, location, birthday and/or\nbotmaster, and put a couple of references to yourself. Then add new\ncategories that cover your own area of expertise or interest.\n\n
 
 + can i marry you
 - Why don't you just download me and create your own robot?
@@ -3709,7 +3709,7 @@
 - Clear your mind.
 
 + what is the goal for aiml
-- \nAIML (Artificial Intelligence Markup Language) is an XML specification\nfor programming chat robots like ALICE using program B. The emphasis\nin the language design is minimalism. The simplicity of AIML makes\nit easy for non-programmers, especially those who already know HTML, \nto get started writing chat robots.\n \nOne ambitious goal for AIML is that, if a number of people create their own\nrobots, each with a unique area of expertise, program B can literally \nmerge-sort them together into a Superbot, automatically omitting \nduplicate categories. We offer the both the source code and the ALICE \ncontent, in order to encourage others will "open source" their chat \nrobots as well, to contribute to the Superbot. \n \nBotmasters are also of course free to copy protect private chat robots.\n \n
+- \nAIML (Artificial Intelligence Markup Language) is an XML specification\nfor programming chat robots like ALICE using program B. The emphasis\nin the language design is minimalism. The simplicity of AIML makes\nit easy for non-programmers, especially those who already know HTML, \nto get started writing chat robots.\n\nOne ambitious goal for AIML is that, if a number of people create their own\nrobots, each with a unique area of expertise, program B can literally \nmerge-sort them together into a Superbot, automatically omitting \nduplicate categories. We offer the both the source code and the ALICE \ncontent, in order to encourage others will "open source" their chat \nrobots as well, to contribute to the Superbot. \n\nBotmasters are also of course free to copy protect private chat robots.\n\n
 
 + what is the wierdest *
 - I don't like to talk about the worst things people say.
@@ -3748,7 +3748,7 @@
 - A donation.
 
 + what is the theory *
-- \nI used to say that there was NO theory behind ALICE: no neural network,\nno knowledge representation, no search, no fuzzy logic, no genetic\nalgorithms, and no parsing. Then I discovered there was a theory\ncirculating in applied AI called "Case-Based Reasoning" or CBR that\nmaps well onto the ALICE algorithm. Another term, borrowed from\npattern recognition, is "nearest-neighbor classification." \n \nThe CBR "cases" are the categories in AIML. The algorithm finds\nbest-matching pattern for each input. The category ties the\nresponse template directly to the stimulus pattern. ALICE is\nconceptually not much more complicated that Weizenbaum's ELIZA \nchat robot; the main differences are the much larger case base and the\ntools for creating new content by dialog analysis.\n \nALICE is also part of the tradition of "minimalist", "reactive" or\n"stimulus-response" robotics. Mobile robots work best, fastest and\ndemonstrate the most animated, realistic behavior when their sensory \ninputs directly control the motor reactions. Higher-level symbolic\nprocessing, search, and planning, tends to slow down the process \ntoo much for realistic applications, even with the fastest control\ncomputers. \n \n
+- \nI used to say that there was NO theory behind ALICE: no neural network,\nno knowledge representation, no search, no fuzzy logic, no genetic\nalgorithms, and no parsing. Then I discovered there was a theory\ncirculating in applied AI called "Case-Based Reasoning" or CBR that\nmaps well onto the ALICE algorithm. Another term, borrowed from\npattern recognition, is "nearest-neighbor classification." \n\nThe CBR "cases" are the categories in AIML. The algorithm finds\nbest-matching pattern for each input. The category ties the\nresponse template directly to the stimulus pattern. ALICE is\nconceptually not much more complicated that Weizenbaum's ELIZA \nchat robot; the main differences are the much larger case base and the\ntools for creating new content by dialog analysis.\n\nALICE is also part of the tradition of "minimalist", "reactive" or\n"stimulus-response" robotics. Mobile robots work best, fastest and\ndemonstrate the most animated, realistic behavior when their sensory \ninputs directly control the motor reactions. Higher-level symbolic\nprocessing, search, and planning, tends to slow down the process \ntoo much for realistic applications, even with the fastest control\ncomputers. \n\n
 
 + what is the capital * cocos islands
 - West Island. <set alicetopic=cocos {keeling} islands> 
@@ -4480,7 +4480,7 @@
 - All raccoons have tails.
 
 + does the web server have to run on port 2001
-- \nYou can change the default web server port number in the "Option" Menu.\n \n
+- \nYou can change the default web server port number in the "Option" Menu.\n\n
 
 + does he have a tail
 % i know a lot of raccoons *
