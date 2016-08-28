@@ -12028,7 +12028,7 @@
 - That is a really interesting and useful fact.
 
 + a * is *
-- {random}Aren't all <person> <person> <star2>?|When is <person> not <person> <star2>?|It's not unusual for a <person> to be.{/random} <set alicetopic= <person> > 
+- {random}Aren't all <person> <star2>?|When is <person> not <star2>?|It's not unusual for a <person> to be.{/random} <set alicetopic= <person> > 
 
 + a * is not the *
 - What would be the <person> <star2>?
