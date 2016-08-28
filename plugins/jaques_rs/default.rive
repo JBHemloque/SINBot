@@ -12729,6 +12729,7 @@
 - There exists someone named <person>.
 
 + * it
+* <get it> == undefined => You never told me what it was.
 - "it" being <get it>?
 
 + * up
@@ -15155,6 +15156,7 @@
 - China.
 
 + where is my *
+* <get location> == undefined => Isn't that it right in front of you?
 - Have you looked in <get location>?
 
 + where is carnegie *
