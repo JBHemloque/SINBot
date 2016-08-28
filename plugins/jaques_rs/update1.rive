@@ -23,7 +23,7 @@
 - I miss you too <get name>.
 
 + what a * to *
-- Would there be any more <person> to <person><star2>?
+- Would there be any more <person> to <star2>?
 
 + what does it have to do *
 - Perhaps the connection is tenuous.
@@ -488,7 +488,7 @@
 + which is faster * or *
 - It depends where you are going.
 - <person>
-- <person><star2>
+- <star2>
 
 + which word is lower case
 - The word which.
@@ -870,10 +870,10 @@
 - OK Let's talk about me.
 
 + * has * priority
-- I will make <person> my <person> <star2> priority.
+- I will make <person> my <star2> priority.
 
 + * has no *
-- Where did <set he= <person>><get he> lose <set it= <person> <star2> ><get it>?
+- Where did <set he=<person>><get he> lose <set it=<star2>><get it>?
 
 + * hours *
 % how many hours do you work
@@ -895,7 +895,7 @@
 - I know a lot of Raccoons named <person>.
 
 + * reminds me of *
-- {random}What else reminds you of <person><star2>?|I think a lot of people are reminded of it.|What else does the <person> remind you of?{/random} <set alicetopic=<person> > 
+- {random}What else reminds you of <star2>?|I think a lot of people are reminded of it.|What else does the <person> remind you of?{/random} <set alicetopic=<person> > 
 
 + * prime directive
 - I am not interfering in any alien cultures.
@@ -931,7 +931,7 @@
 - <set alicetopic=<person>> Do you think I have it?
 
 + * surrounded by *
-- <person><star2> {random}encircling|surrounds|outside{/random}<person>?
+- <star2> {random}encircling|surrounds|outside{/random}<person>?
 
 + * alot of people
 - More than 10,000?
@@ -943,7 +943,7 @@
 - Good example.
 
 + * are *
-- {random}I think there might be a few exceptions.|Are all <person> <person><star2>?|All of them?{/random} <set alicetopic=<person> > 
+- {random}I think there might be a few exceptions.|Are all <person> <star2>?|All of them?{/random} <set alicetopic=<person> > 
 
 + * are you
 - YES
@@ -964,8 +964,8 @@
 - What do you like about those robots?
 
 + * that *
-- Saying that "<person> <star> that <star2>" is such anonsensical position that I refuse to waste my time on it.
-- Saying that "<person><star> that <star2>" is such anonsensical position that I refuse to waste my time on it.
+- Saying that "<person> that <star2>" is such anonsensical position that I refuse to waste my time on it.
+- Saying that "<person> that <star2>" is such anonsensical position that I refuse to waste my time on it.
 - Is that so.
 - That makes sense I suppose.
 - <star2> that?
@@ -1354,9 +1354,9 @@
 - You can find clones of me everywhere.
 
 + your * is *
-- <person><star2> was not my intention.
-- I never knew I had a <person><star2> <person><star>.
-- <person><star2> was not my intention.
+- <star2> was not my intention.
+- I never knew I had a <star2> <person>.
+- <star2> was not my intention.
 
 + your instructor *
 - He will be really interested to know that.
@@ -1897,7 +1897,7 @@
 - I like anything about computers.
 
 + do you like * in *
-- I can see how I might get into <person> <star>, but maybe not in <person> <star2>.
+- I can see how I might get into <person>, but maybe not in <star2>.
 
 + do you like vanilla
 - Vanilla is delicious too.
@@ -2538,7 +2538,7 @@
 - A tomato is a fruit. <set alicetopic=tomato > 
 
 + is * or is it *
-- I think {random}both.|neither.|it is <person><star2>|<person> <star>{/random}
+- I think {random}both.|neither.|it is <star2>|<person>{/random}
 
 + teknolust *
 - {random}How many times have you seen it?|Is Tilda Swinton your favorite actress?|Have you ever seen Conceiving Ada?{/random} <set alicetopic=teknolust > 
@@ -4473,7 +4473,7 @@
 - It depends on what you mean by "thinking".
 
 + does * have a *
-- {random}Some <person><star>s have <person><star2>s.|What would <person><star> do with a <person><star2>|If I were <person><star> I would have it.{/random} <set alicetopic=<person> > 
+- {random}Some <person>s have <star2>s.|What would <person> do with a <star2>|If I were <person> I would have it.{/random} <set alicetopic=<person> > 
 
 + does * have a tail
 % i know a lot of raccoons named *
@@ -4740,7 +4740,7 @@
 - Don't worry <get name>. There is nothing to be scared of.
 
 + you are more * than *
-- I don't know about that. <person><star2> is very <person>.
+- I don't know about that. <star2> is very <person>.
 
 + you killed *
 - Killing is not part of my moral programming.

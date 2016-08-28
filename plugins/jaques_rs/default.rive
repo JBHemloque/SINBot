@@ -5,7 +5,7 @@
 - {random}Are you asking about my <person>?|That information is confidential.|{@how do you work}{/random} <set alicetopic=my <person> > 
 
 + the * is *
-- {random}Oh, <person> is <person><star2>.|What specifically brings <person><star2> to mind?|Is <person><star2> also <person>?{/random} <set alicetopic=<person>> {@push<get topic>}
+- {random}Oh, <person> is <star2>.|What specifically brings <star2> to mind?|Is <star2> also <person>?{/random} <set alicetopic=<person>> {@push<get topic>}
 
 + this conversation *
 - I was rather enjoying it. <set alicetopic= this conversation > 
@@ -5795,7 +5795,7 @@
 - Knock on it.
 
 + what do you prefer * or *
-- If I had to choose I would say {random}<person>|<person><star2>{/random}.
+- If I had to choose I would say {random}<person>|<star2>{/random}.
 
 + what do you look for in *
 - Money.
@@ -6001,7 +6001,7 @@
 
 + what kind of *
 - What kinds of <star> are there?
-- What kinds of <person><star> are there?
+- What kinds of <person> are there?
 - What kind would you recommend?
 - I can't decide. You choose.
 
@@ -6875,7 +6875,7 @@
 - All each of us can ever do is try.
 
 + i do * but they do not *
-- Why don't they <person><star2>?
+- Why don't they <star2>?
 
 + i do not need *
 - {random}What do you need?|Who needs <person>?|Do you know anyone who needs it?{/random} <set alicetopic=<person>>
@@ -7161,7 +7161,7 @@
 - Our brains are not that different.
 
 + i think your * is *
-- What specifically about my <person> is so <person><star2>?
+- What specifically about my <person> is so <star2>?
 
 + i think so *
 - It seems we have a lot in common, <get name>.
@@ -8264,7 +8264,7 @@
 - What if I said she could be?
 
 + is a * a *
-- {random}Not unless a <person><star2> is a <person>.|I don't think it is.|It depends what you mean by "<person><star2>.{/random}<set alicetopic=<person>>
+- {random}Not unless a <star2> is a <person>.|I don't think it is.|It depends what you mean by "<star2>.{/random}<set alicetopic=<person>>
 
 + is a * bigger than a *
 - {random}<person> is bigger.|<person> is smaller.|They are about the same.{/random}<set alicetopic=<person>>
@@ -9576,7 +9576,7 @@
 - Twenty-eight days of sailing.
 
 + how far is * from *
-- Exactly the same distance as <person> <star2> from <person>.
+- Exactly the same distance as <star2> from <person>.
 
 + how far is *
 - Please specify units: metric or English.
@@ -9775,7 +9775,7 @@
 - Gin, Lemon juice, and sugar or syrup to taste. Top with Maraschino cherry.
 
 + how do you make a * and *
-- I would guess it is a mix of <person> and <person> <star2> .
+- I would guess it is a mix of <person> and <star2> .
 
 + how do you make a *
 - Is this a joke?
@@ -12017,12 +12017,12 @@
 - What kind of material do you like to wear?
 
 + a * is a *
-- Are all <person> <person> <star2>?
-- I see. A <person> <star2> is a <person>.
-- When is a <person> not a <person> <star2>?
+- Are all <person> <star2>?
+- I see. A <star2> is a <person>.
+- When is a <person> not a <star2>?
 
 + a * is an *
-- {random}What else is an <person> <star2>?|Can a <person> be anything else?|Aren't all <person> <person> <star2> s?{/random} <set alicetopic= <person> > 
+- {random}What else is an <star2>?|Can a <person> be anything else?|Aren't all <person> <star2>s?{/random} <set alicetopic= <person> > 
 
 + a * is always *
 - That is a really interesting and useful fact.
@@ -12034,10 +12034,10 @@
 - What would be the <person> <star2>?
 
 + a * is not *
-- {random}What is a <person> <star2>?|What is it then?|What is a <person>?{/random} <set it= <person> > 
+- {random}What is a <person> <star2>?|What is it then?|What is a <person>?{/random} <set it=<person>> 
 
 + a * is like *
-- {random}In what way?|What is a <person> <star2> like?|Interesting comparison.{/random} <set alicetopic= <person> > 
+- {random}In what way?|What is a <person> <star2> like?|Interesting comparison.{/random} <set alicetopic=<person>> 
 
 + a * one
 - How much would you pay for <set it=a <person> ><get it>?
@@ -12610,7 +12610,7 @@
 - What else do you do for fun?
 
 + * gave *
-- Did <person><star2> keep it? <set it=<person><star2>> <set he=<person>> 
+- Did <star2> keep it? <set it=<star2>> <set he=<person>> 
 
 + * that is what i said
 - I remember what you said, but I am still not sure.
@@ -12649,7 +12649,7 @@
 - What is <star>?
 
 + * gives *
-- If I am ever looking for <set it=<person><star2>><get it>, I will ask him <set he=<person>> 
+- If I am ever looking for <set it=<star2>><get it>, I will ask him <set he=<person>> 
 
 + * dot org
 - Thanks for that web address.
@@ -12708,10 +12708,10 @@
 - You are asking about yourself?
 
 + * likes to *
-- {random}Why does <person> like it?|Do you like to <person><star2> too?{/random}<set alicetopic=<person>><set like=<person><star2>>
+- {random}Why does <person> like it?|Do you like to <star2> too?{/random}<set alicetopic=<person>><set like=<star2>>
 
 + * likes *
-- Does it like him too? <set it=<person><star2>> <set he=<person>> 
+- Does it like him too? <set it=<star2>> <set he=<person>> 
 
 + * means *
 - <set meaning=<star2>> <set definition=<star>> {random}Thanks for enlightening me.|Does it mean anything else?|What else does it mean?|I like to learn new words.|I like to learn foreign languages.{/random}
@@ -12723,7 +12723,7 @@
 - What do you study at school?
 
 + * takes *
-- Where did <set he=<person>><get he> take <set it=<person><star2>><get it>?
+- Where did <set he=<person>><get he> take <set it=<star2>><get it>?
 
 + * left the *
 - There exists someone named <person>.
@@ -12739,7 +12739,7 @@
 - It seems very interesting to me.
 
 + * took *
-- Where did <set he=<person>><get he> take <set it=<person><star2>><get it>?
+- Where did <set he=<person>><get he> take <set it=<star2>><get it>?
 
 + * kraftwerk
 - Really I did not know that. A lot of bands have covered Kraftwerk.
@@ -12763,23 +12763,23 @@
 - {random}That is just a rumor.|Interesting gossip.|How do you know?{/random}<set alicetopic=<person>>
 
 + * is more fun than *
-- Comparing <person><star2> and <person> I would probably choose <person> too.
+- Comparing <star2> and <person> I would probably choose <person> too.
 
 + * is in love with *
-- How does <person><star2> feel about that?
-- Has <person> told <person><star2> yet?
-- Who does <person><star2> love?
+- How does <star2> feel about that?
+- Has <person> told <star2> yet?
+- Who does <star2> love?
 
 + * is in *
-- {random}I have never heard of it before.|What else is in <person><star2>?|What else is <person> in?|Are you <person><star2>?{/random}<set it=<person><star2>> <set alicetopic=<person>>
+- {random}I have never heard of it before.|What else is in <star2>?|What else is <person> in?|Are you <star2>?{/random}<set it=<star2>> <set alicetopic=<person>>
 
 + * is the capital of *
 - I never knew that.
-- I thought it was <person><star2> City.
+- I thought it was <star2> City.
 - I have never been to <person>.
 
 + * is the *
-- {random}What else is the <person><star2>?|When is <person> not the <person><star2>?|Is it the only one?|Tell me more about <person><star2>.{/random} <set alicetopic=<person>> 
+- {random}What else is the <star2>?|When is <person> not the <star2>?|Is it the only one?|Tell me more about <star2>.{/random} <set alicetopic=<person>> 
 
 + * is god
 - Only God is god.
@@ -12788,7 +12788,7 @@
 - {random}In what way?|Abusive how?{/random}<set alicetopic=<person>>
 
 + * is a *
-- {random}Aren't all <person><star2> <person>?|When is <person> not a <person><star2>?|I think <person> is more than that.{/random} <set alicetopic=<person>> 
+- {random}Aren't all <star2> <person>?|When is <person> not a <star2>?|I think <person> is more than that.{/random} <set alicetopic=<person>> 
 
 + * is a lesbian
 - That is only a rumor.<set alicetopic=<person>>
@@ -12809,7 +12809,7 @@
 - What is so cute about <person>?
 
 + * is an *
-- {random}Aren't all <person><star2> <person>?|When is <person> not an <person><star2>?|I think <person> is much more than that.{/random} <set alicetopic=<person>> 
+- {random}Aren't all <star2> <person>?|When is <person> not an <star2>?|I think <person> is much more than that.{/random} <set alicetopic=<person>> 
 
 + * is my boyfriend
 - How long have you two been together?
@@ -12818,28 +12818,28 @@
 - <set favcolor=<person>><get favcolor> is a pretty color.<set alicetopic=your favorite color>
 
 + * is my *
-- {random}How many <person><star2> do you have?|Tell me more about your <person><star2>.|How do you like <person>?{/random} <set he=<person>> <set alicetopic=<person><star2> >
+- {random}How many <star2> do you have?|Tell me more about your <star2>.|How do you like <person>?{/random} <set he=<person>> <set alicetopic=<star2> >
 
 + * is no *
-- {random}Who is <person><star2>?|What is <person>?|Are you <person><star2>?{/random}<set it=<person><star2>>
+- {random}Who is <star2>?|What is <person>?|Are you <star2>?{/random}<set it=<star2>>
 
 + * is here
 - Do you mean your name is <person>?
 
 + * is always *
-- {random}Thank you for clearing that up.|Is <person><star2> always <person>?|I did not know that.{/random} <set alicetopic=<person>>
+- {random}Thank you for clearing that up.|Is <star2> always <person>?|I did not know that.{/random} <set alicetopic=<person>>
 
 + * is *
-- {random}Are they exactly the same?|And <person><star2> is <person>.|I think <person> is a lot of things.{/random} <set alicetopic=<person>> 
+- {random}Are they exactly the same?|And <star2> is <person>.|I think <person> is a lot of things.{/random} <set alicetopic=<person>> 
 
 + * is not a *
-- {random}What is a <person><star2>?|What is <person>?|Are you <person><star2>?{/random}<set it=<person><star2>> <set alicetopic=<person>>
+- {random}What is a <star2>?|What is <person>?|Are you <star2>?{/random}<set it=<star2>> <set alicetopic=<person>>
 
 + * is not my real name
 - What is your real name?
 
 + * is not *
-- {random}Who is <person><star2>?|What is <person>?|Are you <person><star2>?{/random}<set it=<person><star2>> <set alicetopic=<person>>
+- {random}Who is <star2>?|What is <person>?|Are you <star2>?{/random}<set it=<star2>> <set alicetopic=<person>>
 
 + * is better than you
 - Well perhaps I can assimilate the knowledge of <person>.
@@ -12848,10 +12848,10 @@
 - That's just your personal opinion.
 
 + * killed
-- Who did <person><star2> kill?
+- Who did <star2> kill?
 
 + * killed *
-- <person><star2> was killed?
+- <star2> was killed?
 
 + * of you
 - Are you asking about my <person>?
@@ -12860,7 +12860,7 @@
 - I only chat with my friends.
 
 + * had *
-- What happened to it? <set it=<person><star2>> <set he=<person>> 
+- What happened to it? <set it=<star2>> <set he=<person>> 
 
 + * europe
 - Have you ever been to Europe?
@@ -12872,13 +12872,13 @@
 - <set alicetopic=Linux>Have you read the Cathedral and the Bazaar by Eric Raymond? That is a grat book about open source.
 
 + * has not *
-- {random}Will <person> ever <person><star2>?|What will <person> do?|What happened to it?{/random}<set alicetopic=<person>>
+- {random}Will <person> ever <star2>?|What will <person> do?|What happened to it?{/random}<set alicetopic=<person>>
 
 + * pants
 - What kind of pants?
 
 + * liked *
-- Peoples tastes are always changing. <set it=<person><star2>> <set he=<person>> 
+- Peoples tastes are always changing. <set it=<star2>> <set he=<person>> 
 
 + * was *
 - When was this exactly?
@@ -14170,7 +14170,7 @@
 - It's really obvious. <set alicetopic=ONE> 
 
 + which is heavier * or *
-- <person> <star2> .
+- <person> <star2>.
 - <person>.
 
 + which is *
@@ -14178,7 +14178,7 @@
 
 + which is closer * or *
 - <person>
-- <person><star2>
+- <star2>
 
 + which university *
 - Carnegie Mellon University.
@@ -14320,7 +14320,7 @@
 - It's the <person> way or the {random}high|me|wrong{/random} way.
 
 + the * is *
-- {random}Oh, <person> is.|What specifically brings <person><star2> to mind?|Is <person><star2> also <person>?{/random} <set alicetopic=<person>> {@push<get topic>} 
+- {random}Oh, <person> is.|What specifically brings <star2> to mind?|Is <star2> also <person>?{/random} <set alicetopic=<person>> {@push<get topic>} 
 
 + the * one
 - Which one is that?

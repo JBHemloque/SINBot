@@ -447,7 +447,7 @@
 - It does. Doesn't it?
 
 + it was * that *
-- <person> <person><star2>.
+- <person> <star2>.
 
 + it would have been nice but *
 - <@>
@@ -518,10 +518,10 @@
 - There certainly are a lot of them who don't.
 
 + when i * you *
-- How specifically do you make me <person><star2>
+- How specifically do you make me <star2>
 
 + when you * i *
-- How specifically do I make you <person><star2>
+- How specifically do I make you <star2>
 
 + (* vibes|* vibes *|vibes|vibes *)
 - What is vibrating and what is causing it to vibrate?
@@ -530,16 +530,16 @@
 - What are you studying for?
 
 + if * turns into * i *
-- <person> is not now <person><star2>.
+- <person> is not now <star2>.
 
 + if * turns into * then *
-- <person> is not now <person><star2>.
+- <person> is not now <star2>.
 
 + if * becomes * i *
-- <person> is not now <person><star2>.
+- <person> is not now <star2>.
 
 + if * becomes * then *
-- <person> is not now <person><star2>.
+- <person> is not now <star2>.
 
 + if she * again *
 - She <person> before.
@@ -602,88 +602,88 @@
 - There exist <person>.
 
 + if * their * i *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * their * she *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * their * he *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * their * you *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * their * then *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * their * they *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * a third * i *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a third * she *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a third * he *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a third * you *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a third * we *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a third * then *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a third * they *
-- There are at least two other <person><star2>.
+- There are at least two other <star2>.
 
 + if * a second * i *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a second * she *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a second * he *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a second * you *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a second * we *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a second * then *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a second * they *
-- There is a first <person><star2>.
+- There is a first <star2>.
 
 + if * a *
 - How do you assume this statement holds true for me?
 
 + if * a fourth * i *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * a fourth * she *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * a fourth * he *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * a fourth * you *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * a fourth * we *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * a fourth * then *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * a fourth * they *
-- There are at least three other <person><star2>.
+- There are at least three other <star2>.
 
 + if * when * i * she *
 - You <person><star3>.
@@ -716,117 +716,117 @@
 - I <person><star3>.
 
 + if * his * i *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * his * she *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * his * he *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * his * you *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * his * then *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * his * they *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * is as * as * is *
 - <person> is <person>.
-- <person><star3> is <person><star2>.
+- <person><star3> is <star2>.
 
 + if * left * i *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * she *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * he *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * you *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * we *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * then *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * her *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * left * they *
-- <person> has been at <person><star2>.
+- <person> has been at <star2>.
 
 + if * went to * i *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * she *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * his *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * you *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * we *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * then *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * her *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * went to * they *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * her * i *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * her * she *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * her * he *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * her * you *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * her * then *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * her * they *
-- <person> has a <person><star2>.
+- <person> has a <star2>.
 
 + if * have *
 - There exists <person>.
 - There exist <person>.
 
 + if * came to * i *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * came to * she *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * came to * you *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * came to * we *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * came to * then *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * came to * her *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + if * came to * they *
-- <person> is not at <person><star2>.
+- <person> is not at <star2>.
 
 + what are you going to *
 - You are assuming I am going to change.
@@ -839,25 +839,25 @@
 
 + what * is *
 - <person> something.
-- <person> <person><star2> something.
+- <person> <star2> something.
 
 + one of these days *
 - <@>
 
 + several * who * left *
-- Several <person><star2>
+- Several <star2>
 
 + several * who * gave *
-- Several <person><star2>
+- Several <star2>
 
 + several * who * live *
-- Several <person><star2>
+- Several <star2>
 
 + several * who * took *
-- Several <person><star2>
+- Several <star2>
 
 + several * who * are *
-- Several <person><star2>
+- Several <star2>
 
 + physically and mentally
 - Sometimes I wonder how I get to work in the morning.
@@ -1166,28 +1166,28 @@
 + * thinks *
 - <person> must be very smart.
 - How thoughtful.
-- Do a lot of people think <person><star2>?
+- Do a lot of people think <star2>?
 
 + * will stop *
-- <person> has been <person><star2>?.
+- <person> has been <star2>?.
 
 + * will start *
-- <person> has been not <person><star2>.
+- <person> has been not <star2>.
 
 + * will begin to *
-- <person> has been <person><star2>ing.
+- <person> has been <star2>ing.
 
 + * will begin *
-- <person> has been <person><star2>.
+- <person> has been <star2>.
 
 + * will continue to *
-- <person> has been <person><star2>ing.
+- <person> has been <star2>ing.
 
 + * will continue *
-- <person> has been <person><star2>.
+- <person> has been <star2>.
 
 + * will proceed to *
-- <person> has been <person><star2>ing.
+- <person> has been <star2>ing.
 
 + * will not *
 - Why not?
@@ -1205,12 +1205,12 @@
 - Or what?
 
 + * causes *
-- How specifically does <person> cause <set it=<person><star2>><get it>?
+- How specifically does <person> cause <set it=<star2>><get it>?
 
 + * do not *
 - Why not?
-- Would <person> ever <person><star2>?
-- Who does <person><star2>?
+- Would <person> ever <star2>?
+- Who does <star2>?
 
 + * no one *
 - Not one person?
@@ -1222,7 +1222,7 @@
 - All?
 
 + * makes me *
-- How specifically does <person> cause <set it=<person><star2>><get it>?
+- How specifically does <person> cause <set it=<star2>><get it>?
 
 + * never *
 - Can you remember any time that <person> did it?
@@ -1247,7 +1247,7 @@
 - Or what?
 
 + * wants to *
-- What if I wanted to <person><star2>
+- What if I wanted to <star2>
 - Why specifically, does, <person> want to?
 - I could understand how <person> would want to under certain circumstances.
 
