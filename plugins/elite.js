@@ -266,6 +266,43 @@ function gmpExceptionReport(center, distance, bot, channel) {
 	}
 }
 
+// Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
+function gmpPoiList(center, distance, bot, channel) {
+	const supportedTypes = ['planetaryNebula', 'nebula', 'blackHole', 'historicalLocation', 'beacon', 'stellarRemnant', 'minorPOI', 'explorationHazard', 'starCluster', 'pulsar'];
+	var gmp = gmpData;
+	var msgArray = [];
+	for (var i = 0; i < gmp.length; i++) {
+		var item = gmp[i];
+		if (supportedTypes.find(function(str) { return str == item.type; })) {
+			var itemString = "[" + item.id + "] " + item.name + " (" + item.type + ") -- " + item.galMapSearch + " -- ";
+			var process = true;	// We can set this to false to indicate we should skip processing this item
+			// If we have a center, calculate the distance between this item and that. 
+			if (center) {
+				// We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
+				// EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
+				// GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
+				var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
+				var itemDistance = edsm.calcDistance(center, coords);
+				itemString += " {" + itemDistance.toFixed(2) + " ly}";
+				if (itemDistance > distance) {
+					process = false;
+				}
+			}
+			if (process) {
+				msgArray.push("**" + item.name + "**");
+				msgArray.push(item.galMapSearch);
+				msgArray.push(item.type + "\n");
+			}
+		}					
+	}
+	if(msgArray.length > 0) {
+		msgArray.unshift("**GMP POI:**");
+		utils.sendMessages(bot, channel, msgArray);
+	} else {
+		bot.sendMessage(channel, "**No GMP POI matching**");
+	}
+}
+
 function gmpItemMatch(item, query) {
 	try {
 		if (item.galMapSearch.toUpperCase().includes(query)) {
@@ -317,33 +354,50 @@ var commands = {
 							msgs.push(item.descriptionMardown);
 						}
 					}
-					console.log("Done!");
 					if (msgs.length > 0) {
 						utils.sendMessages(bot,msg.channel,msgs);
 					} else {
 						bot.sendMessage(msg.channel, "No GMP point of interest matches that query.");
 					}
-
-					// var entries = gmpData.filter(function(item) {
-					// 	return gmpItemMatch(item, query);
-					// });
-					// if (entries.length > 0) {
-					// 	var msgs = [];
-					// 	for (var i = 0; i < entries.length; i++) {
-					// 		msgs.push("**" + item.name + "**");
-					// 		msgs.push(item.galMapSearch);
-					// 		msgs.push(item.type);
-					// 		msgs.push(item.descriptionMardown);
-					// 	}
-					// 	utils.sendMessages(bot,msg.channel,msgs);
-					// } else {
-					// 	bot.sendMessage(msg.channel, "No GMP point of interest matches that query.");
-					// }
 				} else {
 					bot.sendMessage(msg.channel, "No GMP data in system. Please refresh.");
 				}
 			} else {
 				utils.displayUsage(bot,msg,this);
+			}
+		}
+	},
+	"gmp_list": {
+		usage: "<optional distance in light years> -> <optional system to serve as a center>",
+		spammy: true,
+		help: "Returns a list of galactic mapping data points of interest, optionally within a certain range of a point.",
+		process: function(args,bot,msg) {
+			var that = this;
+			var query = utils.compileArgs(args).split("->");
+			if ((query[0].length > 0) && (query.length <= 2)) {
+				query[0] = query[0].trim();
+				var dist = parseFloat(query[0]);
+				if (query.length == 1) {
+					query[1] = "Sol";
+				} else {
+					query[1] = query[1].trim();
+				}
+				// We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
+				if ((dist != NaN) && (query[1].length > 0)) {
+					// Radius report.
+					edsm.getSystemCoordsAsync(query[1], function(coords) {
+						if (coords && coords.coords) {
+							gmpPoiList(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
+						} else {
+							pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
+						}
+					});
+				} else {
+					utils.displayUsage(bot,msg,that);
+				}
+			} else {
+				// Do everything
+				gmpPoiList(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
 			}
 		}
 	},
