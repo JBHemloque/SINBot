@@ -6,6 +6,9 @@ var fs = require("fs");
 
 var lastMessages = [];
 var undefinedMessages = [];
+var sinBot;
+
+var messageCache = {};  // Holds the last message from a user, for js callback purposes...
 
 var commands = {
 	"gossip": {
@@ -31,6 +34,7 @@ var commands = {
 		process: function(args, bot, message) {
 			if (jaquesStarted) {							
 				var statement = utils.compileArgs(args);
+                messageCache[message.author.id] = message;
 				var reply = getReply(jaquesBot, message.author.id, message.author.name, statement);
 				reply = stripGarbage(reply);                
 				var cache = {user: message.author.name, statement: statement, reply: reply};
@@ -55,6 +59,22 @@ exports.findCommand = function(command) {
 }
 
 exports.commands = commands;
+
+exports.setup = function(config, bot, botcfg) {
+    sinBot = botcfg.sinBot;
+
+    jaquesBot.setSubroutine("sinbot", function(rs, input) {
+        // Get the last message sent by that user to jaques. That will be the context for this command.
+        var message = messageCache[rs.currentUser()];
+        // We'll use forceProcCommand to avoid having to deal with the command prefix...
+        console.log(JSON.stringify(input));
+        message.content = input.join(" ").trim();
+        var res = sinBot.compileCommand(true, input);
+        sinBot.handleCommand(bot, res, message);
+        // We can return something to Jaques, but we aren't doing that here.
+        // return "Return value!";
+    });
+}
 
 var jaquesStarted = false;
 

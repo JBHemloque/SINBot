@@ -582,22 +582,23 @@ function findCommand(command) {
 function botShouldHandleCommand(bot, message) {
 	// If there's a command prefix, use that. Otherwise, only do this if the message
 	// starts with a mention of the bot.
+	var handleCommand = false;
 	var result = {handleCommand: false};
 	var messageContent = message.content;
 	var stripFirstArg = false;
 	if (config.COMMAND_PREFIX) {
 		if (message.content.startsWith(config.COMMAND_PREFIX)) {
-			result.handleCommand = true;
+			handleCommand = true;
 			messageContent = message.content.substr(config.COMMAND_PREFIX.length);
 		}
 	} else if (userMentioned(message.content, bot.user.id)) {
 		stripFirstArg = true;
-		result.handleCommand = true;
+		handleCommand = true;
 	} else if (message.channel.isPrivate) {
 		stripFirstArg = false;
-		result.handleCommand = true;
+		handleCommand = true;
 	}
-	if (result.handleCommand) {
+	if (handleCommand) {
 		var args = messageContent.split(" ");
 		if (stripFirstArg) {
 			args.shift();
@@ -606,13 +607,11 @@ function botShouldHandleCommand(bot, message) {
 		while (args.length > 0 && args[0] === "") {
 			args.shift();
 		}
-		if (args) {
-			result.args = args;
-		} else {
-			result.handleCommand = false;
+		if (!args) {
+			handleCommand = false;
 		}
 	}
-	return result;
+	return compileCommand(handleCommand, args);
 }
 
 var defaultCommandHandler = function(args, bot, message) {
@@ -638,35 +637,43 @@ function procCommand(bot, message) {
 	if (message.author !== bot.user) {
 		var res = botShouldHandleCommand(bot, message);
 		if (res.handleCommand) {
-			var cmd = findCommand(res.args[0]);
-			if(cmd) {
-				if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && !isAdmin(message.author.id)) {
-					bot.sendMessage(message.channel, "Hey " + message.sender + ", you are not allowed to do that!");
-				} else {
-					try{
-						cmd.process(res.args, bot, message);
-					} catch(e){
-						if(config.debug){
-							bot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
-						}
-					}
-				}
-			} else {
-				cmd = aliases[res.args[0].toLowerCase()];
-				if (cmd) {
-					procAlias(bot, message, cmd, compileArgs(res.args));
-				} else {
-					// We don't know what the command is, so we need to push the original command to the
-					// start, to account for the one that will be stripped later. Ew, I know.
-					res.args.unshift(res.args[0]);
-					defaultCommandHandler(res.args, bot, message);
-				}
-			}
+			handleCommand(bot, res, message);
 		} else if (message.author != bot.user && message.isMentioned(bot.user)) {
             bot.sendMessage(message.channel,message.author + ", you called?");
         }
         checkForMessages(bot, message.author);
 	} 
+}
+
+function compileCommand(handleCommand, args) {
+	return {handleCommand: handleCommand, args: args};
+}
+
+function handleCommand(bot, res, message) {
+	var cmd = findCommand(res.args[0]);
+	if(cmd) {
+		if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && !isAdmin(message.author.id)) {
+			bot.sendMessage(message.channel, "Hey " + message.sender + ", you are not allowed to do that!");
+		} else {
+			try{
+				cmd.process(res.args, bot, message);
+			} catch(e){
+				if(config.debug){
+					bot.sendMessage(message.channel, "command " + message.content + " failed :(\n" + e.stack);
+				}
+			}
+		}
+	} else {
+		cmd = aliases[res.args[0].toLowerCase()];
+		if (cmd) {
+			procAlias(bot, message, cmd, compileArgs(res.args));
+		} else {
+			// We don't know what the command is, so we need to push the original command to the
+			// start, to account for the one that will be stripped later. Ew, I know.
+			res.args.unshift(res.args[0]);
+			defaultCommandHandler(res.args, bot, message);
+		}
+	}
 }
 
 function procPresence(bot, user, status, gameId) {
@@ -684,6 +691,7 @@ function startBot(bot, cfg) {
 	plugins = config.PLUGINS;
 
 	var botcfg = {
+		sinBot: this,
 		aliases: aliases,
 		writeAliases: writeAliases,
 		makeAlias: makeAlias,
@@ -738,6 +746,8 @@ function startBot(bot, cfg) {
 exports.commands = commands;
 exports.plugins = plugins;
 exports.startBot = startBot;
+exports.compileCommand = compileCommand;
+exports.handleCommand = handleCommand;
 exports.procCommand = procCommand;
 exports.procPresence = procPresence;
 exports.aliases = aliases;
