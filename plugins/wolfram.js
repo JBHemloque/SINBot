@@ -34,6 +34,9 @@ var commands = {
 									output.push(res.subpods[j].image);
 								}
 							}
+							if (output.length == 0) {
+								output.push("I'm sorry, I don't know the answer to that.");
+							}
 							utils.sendMessages(bot, message.channel, output);
 						}
 					}
