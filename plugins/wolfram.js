@@ -29,12 +29,12 @@ var commands = {
 							if (res.subpods[0].text) {
 								msg = res.subpods[0].text;
 							}
-							// if (res.subpods[0].image) {
-							// 	if (msg.length > 0) {
-							// 		msg += "\n";
-							// 	}
-							// 	msg += res.subpods[0].image;
-							// }
+							if (res.subpods[0].image) {
+								if (msg.length > 0) {
+									msg += "\n";
+								}
+								msg += res.subpods[0].image;
+							}
 							bot.sendMessage(message.channel, msg);
 						}
 					}
