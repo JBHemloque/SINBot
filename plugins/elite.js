@@ -744,7 +744,7 @@ var commands = {
 	"clear_sysalias": {
 		usage: "<alias>",
 		adminOnly: true,
-		help: "Deletes a CMDR alias.",
+		help: "Deletes a system alias.",
 		process: function(args, bot, message) {
 			var system = utils.compileArgs(args);
 			if(system) {
