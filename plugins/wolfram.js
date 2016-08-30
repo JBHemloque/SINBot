@@ -13,7 +13,7 @@ var commands = {
 			if (args.length > 1) {
 				var query = utils.compileArgs(args);
 				wolfram.query(query, function(err, result) {
-					// console.log(JSON.stringify(result));
+					console.log(JSON.stringify(result));
 					if (err) {
 						bot.sendMessage(message.channel, "Sorry, I could not query that...");
 					}
@@ -38,6 +38,8 @@ var commands = {
 								output.push("I'm sorry, I don't know the answer to that.");
 							}
 							utils.sendMessages(bot, message.channel, output);
+						} else {
+							bot.sendMessage(message.channel, "I'm sorry, I don't know the answer to that.");
 						}
 					}
 				});
