@@ -4240,38 +4240,6 @@
 * <get round> != undefined => <get round>
 - <set round=1>Round <get round>.
 
-+ xfind gene pool
-- All the chromosomes in the population.
-
-+ xfind electronic circuit
-- A set of electrononic components connected by wires.
-
-+ xfind artificial intelligence
-- A brain made out of a computer instead of a person.
-
-+ xfind youtube
-- It is a web site for video sharing. <set alicetopic=youtube>
-- It is a web site for video sharing. <set alicetopic=youtube>
-- It is a web site for video sharing. <set alicetopic=youtube>
-
-+ xfind albert einstein
-- Einstein was a great atomic scientist of the 20th century.
-
-+ xfind tilda swinton
-- She is a famous actress. She was in Teknolust.
-
-+ xfind divorce
-- The dissolution of marriage.
-
-+ xfind columbus do
-- Columbus sailed to North America.
-
-+ xfind recursion in aiml
-- You threw my brain through a loop.
-
-+ xfind justice
-- There is no real justice in this world.
-
 + undrestand what
 - I understand everything you say.
 
