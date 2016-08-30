@@ -13,29 +13,28 @@ var commands = {
 			if (args.length > 1) {
 				var query = utils.compileArgs(args);
 				wolfram.query(query, function(err, result) {
-					console.log(JSON.stringify(result));
+					// console.log(JSON.stringify(result));
 					if (err) {
 						bot.sendMessage(message.channel, "Sorry, I could not query that...");
 					}
 					if (result) {
 						if (result.length > 0) {
+							var output = [];
 							var res = result[0];
 							for (var i = 0; i < result.length; i++) {
-								if (result[i].title = "Result") {
+								if (result[i].primary === true) {
 									res = result[i];
 								}
 							}
-							var msg = "";
-							if (res.subpods[0].text) {
-								msg = res.subpods[0].text;
-							}
-							if (res.subpods[0].image) {
-								if (msg.length > 0) {
-									msg += "\n";
+							output.push(res.title);
+							for (var j = 0; j < res.subpods.length; j++) {
+								if (res.subpods[j].text) {
+									output.push(res.subpods[j].text);
+								} else if (res.subpods[j].image) {
+									output.push(res.subpods[j].image);
 								}
-								msg += res.subpods[0].image;
 							}
-							bot.sendMessage(message.channel, msg);
+							utils.sendMessages(bot, message.channel, output);
 						}
 					}
 				});
