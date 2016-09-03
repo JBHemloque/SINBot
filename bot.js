@@ -486,10 +486,10 @@ var commands = {
 		process: function(args, bot, message) {
 			var command = compileArgs(args).toLowerCase();
 			if (command) {
-				var output = command + " is not a valid command or plugin";
+				var outputArray = [];
 				var cmd = findCommand(command);				
 				if (cmd) {
-					output = utils.bold(command);
+					var output = utils.bold(command);
 					if (cmd.usage) {
 						output += ("\t" + utils.italic(cmd.usage));
 					}
@@ -498,24 +498,30 @@ var commands = {
 					} else {
 						output += ("\n\n" + cmd.help);
 					}
+					outputArray.push(output);
 				} else if (command === "built-in") {
-					output = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
+					outputArray = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
 				} else {
 					for (var i = 0; i < plugins.length; i++) {
+						console.log("Checking " + command + " against " + plugins[i].name.toLowerCase());
 						if (plugins[i].name.toLowerCase() === command) {
-							output = helpForCommands(plugins[i].name, plugins[i].plugin.commands);
+							console.log("Got one!");
+							outputArray = outputArray.concat(helpForCommands(plugins[i].name, plugins[i].plugin.commands, includeAdmin));
 						}
 					}
 				}
-				utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
+				console.log(JSON.stringify(outputArray));
+				if (outputArray.length > 0) {
+					utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);	
+				} else {
+					utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, command + " is not a valid command or plugin");
+				}				
 			} else {
 				var includeAdmin = isAdmin(message.author.id);
-				var outputArray = [];
-				var index = 0;
-				outputArray[index++] = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
+				var outputArray = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
 				for (var i = 0; i < plugins.length; i++) {
 					if (plugins[i].plugin.commands) {
-						outputArray[index++] = helpForCommands(plugins[i].name, plugins[i].plugin.commands);
+						outputArray = outputArray.concat(helpForCommands(plugins[i].name, plugins[i].plugin.commands, includeAdmin));
 					}
 				}
 				utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
@@ -533,7 +539,8 @@ function dumpMessages(messageArray) {
 }
 
 function helpForCommands(header, cmds, includeAdmin) {
-	var output = utils.bold(header) + ":";
+	var outputArray = [];
+	outputArray.push(utils.bold(header + ":"));
 	var key;
 	for (key in cmds) {
 		var includeCommand = true;
@@ -542,7 +549,7 @@ function helpForCommands(header, cmds, includeAdmin) {
 			includeCommand = false;
 		}
 		if (includeCommand) {
-			output += "\n\t";
+			var output = "|\t";
 			if (config.COMMAND_PREFIX) {
 				output += config.COMMAND_PREFIX;
 			}
@@ -550,11 +557,13 @@ function helpForCommands(header, cmds, includeAdmin) {
 			if(cmd.usage){
 				output += " " + utils.italic(cmd.usage);
 			}
-			output += "\n\t\t\t";
+			outputArray.push(output);
+			output = "|\t\t\t";
 			output += cmds[key.toLowerCase()].help;
+			outputArray.push(output);
 		}
 	}
-	return output;
+	return outputArray;
 }
 
 function findCommand(command) {
