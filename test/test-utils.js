@@ -70,6 +70,10 @@ describe('utils', function(){
     	assert(res === "**One Two**");
     });
 
+    it('should export a sendMessages function', function(){
+        assert(typeof(utils.sendMessages) == 'function');
+    });
+
     it('should handle small data sizes in sendMessages', function() {
     	var messageArray = [
     		"One",
@@ -162,6 +166,42 @@ describe('utils', function(){
     	assert(handledCommand);
     });
 
+    it('should export a pmOrSendChannel function', function(){
+        assert(typeof(utils.pmOrSendChannel) == 'function');
+    });
+
+    it('should export return the main channel for a non-spammy command when pmIfSpam is false', function(){
+        var command = {spammy: false}
+        var pmChannel = 1;
+        var mainChannel = 2;
+
+        assert(utils.pmOrSendChannel(command, false, pmChannel, mainChannel) == mainChannel);
+    });
+
+    it('should export return the main channel for a non-spammy command when pmIfSpam is true', function(){
+        var command = {spammy: false}
+        var pmChannel = 1;
+        var mainChannel = 2;
+
+        assert(utils.pmOrSendChannel(command, true, pmChannel, mainChannel) == mainChannel);
+    });
+
+    it('should export return the main channel for a spammy command when pmIfSpam is false', function(){
+        var command = {spammy: true}
+        var pmChannel = 1;
+        var mainChannel = 2;
+
+        assert(utils.pmOrSendChannel(command, false, pmChannel, mainChannel) == mainChannel);
+    });
+
+    it('should export return the pm channel for a spammy command when pmIfSpam is true', function(){
+        var command = {spammy: true}
+        var pmChannel = 1;
+        var mainChannel = 2;
+
+        assert(utils.pmOrSendChannel(command, true, pmChannel, mainChannel) == pmChannel);
+    });
+
 	it('should create the appropriate structures for logError', function() {
 		var handledCommand = false;
 		utils.logError("Test error", "This is a test error", function(err) {
@@ -178,4 +218,40 @@ describe('utils', function(){
 		});
 		assert(handledCommand);
 	});
+
+    it('should export a sanitizeString function', function(){
+        assert(typeof(utils.sanitizeString) == 'function');
+    });
+
+    it('should sanitize strings appropriately', function() {
+        var output = utils.sanitizeString("This is a+'test'");
+        assert(output == "This%20is%20a%2B%27test%27");
+    });
+
+    it('should export a desanitizeString function', function(){
+        assert(typeof(utils.desanitizeString) == 'function');
+    });
+
+    it('should desanitize strings appropriately', function() {
+        var output = utils.desanitizeString("This%20is%20a%2B%27test%27");
+        assert(output == "This is a+'test'");
+    });
+
+    it('should exhibit idempotence for sanitization and desanitization', function() {
+        var input = "This is a+'test'";
+        var expectedOutput = "This%20is%20a%2B%27test%27";
+
+        var temp = utils.sanitizeString(input);
+        assert(temp == expectedOutput);
+        temp = utils.desanitizeString(temp);
+        assert(temp == input);
+        temp = utils.sanitizeString(temp);
+        assert(temp == expectedOutput);
+        temp = utils.desanitizeString(temp);
+        assert(temp == input);
+        temp = utils.sanitizeString(temp);
+        assert(temp == expectedOutput);
+        temp = utils.desanitizeString(temp);
+        assert(temp == input);
+    });
 })

@@ -1,7 +1,7 @@
 'use strict';
 
 var utils = require('../utils.js');
-var edsm = require('./edsmbot.js');
+var edsm = require('./edsm.js');
 var fs = require("fs");
 var alphanum = require("../alphanum.js");
 var _ = require("underscore");
@@ -98,48 +98,6 @@ function refreshGmpData(callback) {
 			callback(error);
 		}		
 	});
-}
-
-function _calcJumpRange(jumpRange, distSagA, distMax) {
-	var N = Math.floor(distMax / jumpRange);
-	var M = N * jumpRange;
-	return M - ((N/4) + (distSagA * 2));
-}
-
-function calcJumpRange(jumpRange, distSagA, distMax) {
-	if ((!distMax) || (distMax > 1000.0)) {
-		distMax = 1000.0;
-	} 
-
-	if (distSagA > 100.0) {
-		// Assume we've mistakenly gotten a distance in ly, not kly
-		distSagA /= 1000.0;
-	}
-
-	var estRange = _calcJumpRange(jumpRange, distSagA, distMax);
-	if (estRange <= 0) {
-		return "Error: Calculation resulted in a negative distance. Please check your input.";
-	}
-	if (distMax < 1000) {
-		var maxRange = distMax;
-		while(true) {
-			distMax += jumpRange;
-			var improvement = _calcJumpRange(jumpRange, distSagA, distMax);
-			if (improvement > maxRange) {
-				break;
-			}
-			estRange = improvement;
-		}
-	}
-	var marginOfError = estRange * 0.0055;
-	var output = "Estimated plot range should be around **";
-	output += estRange.toFixed(2);
-	output += "ly** - check range *";
-	output += (estRange - marginOfError).toFixed(2);
-	output += " to ";
-	output += (estRange + marginOfError).toFixed(2);
-	output += " ly*";
-	return output;
 }
 
 function getRegionName(location) {
@@ -323,6 +281,18 @@ function gmpItemMatch(item, query) {
 	return false;
 }
 
+function findGMPItems(query) {
+	query = query.toUpperCase();
+	var ret = [];
+	for (var i = 0; i < gmpData.length; i++) {
+		var item = gmpData[i];
+		if (gmpItemMatch(item, query)) {
+			ret.push(item);
+		}
+	}
+	return ret;
+}
+
 var commands = {
 	"refresh_gmp": {
 		help: "Refresh the Galactic Mapping Project data from EDSM",
@@ -345,14 +315,13 @@ var commands = {
 			if (query.length > 0) {
 				if (gmpData && gmpData.length > 0) {
 					var msgs = [];
-					for (var i = 0; i < gmpData.length; i++) {
-						var item = gmpData[i];
-						if (gmpItemMatch(item, query)) {
-							msgs.push("**" + item.name + "**");
-							msgs.push(item.galMapSearch);
-							msgs.push(item.type);
-							msgs.push(item.descriptionMardown);
-						}
+					var items = findGMPItems(query);					
+					for (var i = 0; i < items.length; i++) {
+						var item = items[i];
+						msgs.push("**" + item.name + "**");
+						msgs.push(item.galMapSearch);
+						msgs.push(item.type);
+						msgs.push(item.descriptionMardown);
 					}
 					if (msgs.length > 0) {
 						utils.sendMessages(bot,msg.channel,msgs);
@@ -483,7 +452,7 @@ var commands = {
 					displayUsage = true;
 				}
 				if (!displayUsage) {
-					bot.sendMessage(msg.channel, calcJumpRange(jumpRange, distSagA, distMax));
+					bot.sendMessage(msg.channel, edsm.calcJumpRange(jumpRange, distSagA, distMax));
 				}
 			} 
 
@@ -967,8 +936,57 @@ var commands = {
 			}
 			utils.sendMessages(bot,msg.channel,outputArray);
 		}
-	}
+	},
+	"waypoints": {
+		usage: "<origin> -> <destination> [-> <jump range>]",
+		help: "Get a list of waypoints between the origin and destination to help in-game plotting.",
+		spammy: true,
+		process: function(args, bot, msg) {
+			var that = this;
+			var systems = utils.compileArgs(args).split("->");
+			if (systems.length >= 2) {
+				var origin = systems[0].trim();
+				var destination = systems[1].trim();
+
+				console.log(origin + ":" + destination + ":");
+
+				if (origin == destination) {
+					utils.sendMessage(bot, msg.channel, origin + " = " + destination + ", which doesn't really make all that much sense.");
+					return;
+				}
+
+				var jumpRange = undefined;
+				if (systems.length == 3) {
+					jumpRange = +(systems[2]);
+					if (jumpRange == NaN) {
+						jumpRange = undefined;
+					}
+				}
+
+				edsm.getWaypoints(origin, destination, 1000, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel), jumpRange);
+			} else {
+				utils.displayUsage(bot,msg,this);
+			}			
+		}
+	},
 };
+
+var normalizeSystem = function(system) {
+	// We'll look in both the system alias list and the GMP database
+	var key = system.toLowerCase();
+	if (edsm.aliases[key]) {
+		if (edsm.aliases[key].system) {
+			return utils.sanitizeString(edsm.aliases[key].system)
+		}
+	}
+	var items = findGMPItems(system);
+	if (items.length == 1) {
+		if (items[0].galMapSearch) {
+			return items[0].galMapSearch;
+		}
+	}
+	return utils.sanitizeString(system);
+}
 
 exports.findCommand = function(command) {
 	return commands[command];
@@ -978,7 +996,7 @@ exports.setup = function(config, bot, botconfig) {
 	botcfg = botconfig;
 	// For dependency injection
 	if (botconfig.edsm) {
-		edsm = botconfig.edsm;
+		edsm = botconfig.edsm;		
 	}
 	if (botconfig.pmIfSpam) {
 		pmIfSpam = true;
@@ -987,7 +1005,9 @@ exports.setup = function(config, bot, botconfig) {
 		if (config.regionfont) {
 			regionjpg.setRegionFont(config.regionfont);
 		}
-	}	
+	}
+	// Override edsm.normalizeSystem...
+	edsm.setNormalizeSystem(normalizeSystem);
 }
 
 exports.commands = commands;

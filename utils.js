@@ -174,3 +174,11 @@ exports.logError = function(header, error, callback) {
 		callback(err);
 	}
 }
+
+exports.sanitizeString = function(input) {
+	return input.replace(/ /g, "%20").replace(/\+/g, "%2B").replace(/\'/g, "%27");
+}
+
+exports.desanitizeString = function(input) {
+	return input.replace(/\%20/g, " ").replace(/\%2B/g, "+").replace(/\%27/g, "'");
+}
