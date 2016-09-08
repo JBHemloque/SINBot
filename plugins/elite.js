@@ -249,20 +249,24 @@ function gmpPoiList(centerName, center, distance, bot, channel) {
 		if (GMP_SUPPORTED_TYPES[item.type]) {
 			var process = true;	// We can set this to false to indicate we should skip processing this item
 			// If we have a center, calculate the distance between this item and that. 
+			var itemDistance;
 			if (center) {
 				// We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
 				// EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
 				// GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
 				var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
-				var itemDistance = edsm.calcDistance(center, coords);
+				itemDistance = edsm.calcDistance(center, coords);
 				if (itemDistance > distance) {
 					process = false;
 				}
 			}
 			if (process) {
 				msgArray.push("**" + item.name + "**");
+				if (itemDistance) {
+					msgArray.push(itemDistance.toFixed(2) + " ly");
+				}
 				msgArray.push(item.galMapSearch);
-				msgArray.push(GMP_SUPPORTED_TYPES[item.type] + "\n");
+				msgArray.push(GMP_SUPPORTED_TYPES[item.type] + "\n");				
 			}
 		}					
 	}
