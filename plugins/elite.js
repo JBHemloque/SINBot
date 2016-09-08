@@ -153,15 +153,26 @@ function showRegion(args, bot, msg) {
 	}
 }
 
+const GMP_SUPPORTED_TYPES = {
+	'planetaryNebula'		: 'Planetary Nebula',
+	'nebula'				: 'Nebula',
+	'blackhole'				: 'Black Hole',
+	'historicalLocation'	: 'Historical Location',
+	'stellarRemnant'		: 'Stellar Remnant',
+	'minorPOI'				: 'Minor POI',
+	'explorationHazard'		: 'Exploration Hazard',
+	'starCluster'			: 'Star Cluster',
+	'pulsar'				: 'Neutron Star'
+};
+
 // Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
 function gmpExceptionReport(center, distance, bot, channel) {
-	const supportedTypes = ['planetaryNebula', 'nebula', 'blackHole', 'historicalLocation', 'beacon', 'stellarRemnant', 'minorPOI', 'explorationHazard', 'starCluster', 'pulsar'];
 	var gmp = gmpData;
 	var msgArray = [];
 	for (var i = 0; i < gmp.length; i++) {
 		var item = gmp[i];
-		if (supportedTypes.find(function(str) { return str == item.type; })) {
-			var itemString = "[" + item.id + "] " + item.name + " (" + item.type + ") -- " + item.galMapSearch + " -- ";
+		if (GMP_SUPPORTED_TYPES[item.type]) {
+			var itemString = "[" + item.id + "] " + item.name + " (" + GMP_SUPPORTED_TYPES[item.type] + ") -- " + item.galMapSearch + " -- ";
 			var process = true;	// We can set this to false to indicate we should skip processing this item
 			// If we have a center, calculate the distance between this item and that. 
 			if (center) {
@@ -231,8 +242,7 @@ function gmpPoiList(center, distance, bot, channel) {
 	var msgArray = [];
 	for (var i = 0; i < gmp.length; i++) {
 		var item = gmp[i];
-		if (supportedTypes.find(function(str) { return str == item.type; })) {
-			var itemString = "[" + item.id + "] " + item.name + " (" + item.type + ") -- " + item.galMapSearch + " -- ";
+		if (GMP_SUPPORTED_TYPES[item.type]) {
 			var process = true;	// We can set this to false to indicate we should skip processing this item
 			// If we have a center, calculate the distance between this item and that. 
 			if (center) {
@@ -241,7 +251,6 @@ function gmpPoiList(center, distance, bot, channel) {
 				// GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
 				var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
 				var itemDistance = edsm.calcDistance(center, coords);
-				itemString += " {" + itemDistance.toFixed(2) + " ly}";
 				if (itemDistance > distance) {
 					process = false;
 				}
@@ -249,7 +258,7 @@ function gmpPoiList(center, distance, bot, channel) {
 			if (process) {
 				msgArray.push("**" + item.name + "**");
 				msgArray.push(item.galMapSearch);
-				msgArray.push(item.type + "\n");
+				msgArray.push(GMP_SUPPORTED_TYPES[item.type] + "\n");
 			}
 		}					
 	}
@@ -320,7 +329,7 @@ var commands = {
 						var item = items[i];
 						msgs.push("**" + item.name + "**");
 						msgs.push(item.galMapSearch);
-						msgs.push(item.type);
+						msgs.push(GMP_SUPPORTED_TYPES[item.type]);
 						msgs.push(item.descriptionMardown);
 					}
 					if (msgs.length > 0) {
