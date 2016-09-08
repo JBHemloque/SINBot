@@ -354,11 +354,11 @@ var commands = {
 				// We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
 				if ((dist != NaN) && (query[1].length > 0)) {
 					// Radius report.
-					edsm.getSystemCoordsAsync(query[1], function(coords) {
+					edsm.getSystemOrCmdrCoords(query[1], function(coords) {
 						if (coords && coords.coords) {
 							gmpPoiList(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
 						} else {
-							pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
+							utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
 						}
 					});
 				} else {
@@ -388,11 +388,11 @@ var commands = {
 				// We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
 				if ((dist != NaN) && (query[1].length > 0)) {
 					// Radius report.
-					edsm.getSystemCoordsAsync(query[1], function(coords) {
+					edsm.getSystemOrCmdrCoords(query[1], function(coords) {
 						if (coords && coords.coords) {
 							gmpExceptionReport(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
 						} else {
-							pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
+							utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
 						}
 					});
 				} else {

@@ -102,7 +102,9 @@ var getPosition = function(commander, bot, message) {
 }
 
 var _getSystemCoords = function(system, callback) {
-	client.get("http://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1", function (data, response) {		
+	var url = "http://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1";
+	console.log(url);
+	client.get(url, function (data, response) {		
 		if (data) {
 			if (!data.name) {
 				data = null;
@@ -137,22 +139,24 @@ var _getCommanderCoords = function(commander, callback) {
 }
 
 var _getSystemOrCmdrCoords = function(query, callback) {
+	console.log("getSystemOrCmdrCoords(" + query + ")");
 	_getSystemCoords(query, function(coords) {
 		if (coords) {
-			// console.log(query + " is a system");
+			console.log(query + " is a system");
 			callback(coords, false);
 		} else {
 			_getCommanderCoords(query, function(coords) {
-				// if (coords) {
-				// 	console.log(query + " is a commander");
-				// } else {
-				// 	console.log("Could not find " + query);
-				// }
+				if (coords) {
+					console.log(query + " is a commander");
+				} else {
+					console.log("Could not find " + query);
+				}
 				callback(coords, true);
 			});
 		}
 	});
 }
+exports.getSystemOrCmdrCoords = _getSystemOrCmdrCoords;
 
 var _getCoordString = function(coords) {
 	return "[ " + coords.coords.x + " : " + coords.coords.y + " : " + coords.coords.z + " ]";
