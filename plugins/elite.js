@@ -236,8 +236,12 @@ function gmpExceptionReport(center, distance, bot, channel) {
 }
 
 // Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
-function gmpPoiList(center, distance, bot, channel) {
-	const supportedTypes = ['planetaryNebula', 'nebula', 'blackHole', 'historicalLocation', 'beacon', 'stellarRemnant', 'minorPOI', 'explorationHazard', 'starCluster', 'pulsar'];
+function gmpPoiList(centerName, center, distance, bot, channel) {
+	var header = "**GMP POI";
+	if (center) {
+		header += " within " + distance + " light years of " + centerName;
+	}
+	header += ":**";
 	var gmp = gmpData;
 	var msgArray = [];
 	for (var i = 0; i < gmp.length; i++) {
@@ -263,10 +267,10 @@ function gmpPoiList(center, distance, bot, channel) {
 		}					
 	}
 	if(msgArray.length > 0) {
-		msgArray.unshift("**GMP POI:**");
+		msgArray.unshift(header);
 		utils.sendMessages(bot, channel, msgArray);
 	} else {
-		bot.sendMessage(channel, "**No GMP POI matching**");
+		bot.sendMessage(channel, header + " **No GMP POI matching**");
 	}
 }
 
@@ -365,7 +369,7 @@ var commands = {
 					// Radius report.
 					edsm.getSystemOrCmdrCoords(query[1], function(coords) {
 						if (coords && coords.coords) {
-							gmpPoiList(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
+							gmpPoiList(query[1], coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
 						} else {
 							utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
 						}
@@ -375,7 +379,7 @@ var commands = {
 				}
 			} else {
 				// Do everything
-				gmpPoiList(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
+				gmpPoiList(undefined, undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
 			}
 		}
 	},
