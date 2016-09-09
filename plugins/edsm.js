@@ -25,10 +25,10 @@ var normalizeSystem = function(system) {
 	var key = system.toLowerCase();
 	if (aliases[key]) {
 		if (aliases[key].system) {
-			return utils.sanitizeString(aliases[key].system)
+			return aliases[key].system;
 		}
 	}
-	return utils.sanitizeString(system);
+	return system;
 }
 exports.setNormalizeSystem = function(fcn) {
 	normalizeSystem = fcn;
@@ -38,10 +38,10 @@ var normalizeCmdr = function(cmdr) {
 	var key = cmdr.toLowerCase();
 	if (cmdraliases[key]) {
 		if (cmdraliases[key].cmdr) {
-			return utils.sanitizeString(cmdraliases[key].cmdr);
+			return cmdraliases[key].cmdr;
 		}		
 	}
-	return utils.sanitizeString(cmdr);
+	return cmdr;
 }
 
 var _getSystem = function(commander, callback) {
@@ -349,7 +349,7 @@ function getNearbySystems(name, range, bot, channel) {
 			utils.sendMessage(bot, message.channel, "This may take a while....");
 			systemName = coords.name;
 			systemCoords = coords.coords;
-			_getNearbySystems(utils.sanitizeString(systemName), range, nearbySystemsResponseHandler);
+			_getNearbySystems(systemName, range, nearbySystemsResponseHandler);
 		} else {
 			utils.sendMessage(bot, channel, name + " not found.");
 		}
