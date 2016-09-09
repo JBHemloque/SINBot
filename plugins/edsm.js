@@ -182,6 +182,8 @@ var _sq2 = function(a, b) {
 }
 
 function _calculateStep(originCoords, destinationCoords, range) {
+	const UNSCOOPABLE_TOP = 30;
+	const UNSCOOPABLE_BOTTOM = -120;
 	// console.log("_calculateStep(" + JSON.stringify(originCoords) + ", " + JSON.stringify(destinationCoords) + ", " + range + ")");
 	var distance = _calcDistance(originCoords, destinationCoords);
 
@@ -193,9 +195,19 @@ function _calculateStep(originCoords, destinationCoords, range) {
 	var rateY = (originCoords.y - destinationCoords.y)/distance;
 	var rateZ = (originCoords.z - destinationCoords.z)/distance;
 
+	var prospectiveY = originCoords.y - (rateY * range);
+	// Avoid the unscoopable layer
+	if ((UNSCOOPABLE_TOP > prospectiveY) && (UNSCOOPABLE_BOTTOM < prospectiveY)) {
+		// we'll avoid it by setting our  y to UNSCOOPABLE_TOP. We'll have to reduce our range for this leg...
+		// There are mathematically better ways of doing this, but this at least guarantees that we won't
+		// plot a leg too long...
+		range -= (UNSCOOPABLE_TOP - prospectiveY);
+		prospectiveY = UNSCOOPABLE_TOP;
+	}
+
 	var coords = {
 		x: originCoords.x - (rateX * range),
-		y: originCoords.y - (rateY * range),
+		y: prospectiveY,
 		z: originCoords.z - (rateZ * range)
 	};
 
@@ -412,6 +424,11 @@ function getNearbySystemsByCoordinates(x,y,z, range, bot, channel) {
 
 function getWaypoints(origin, destination, range, bot, channel, jumpRange) {
 	var orgRange = range;
+
+	var outputArray = [];
+
+	const includeCoords = false;
+
 	function originCoordsResponseHandler(coords, isSystem) {
 		if (coords) {
 			if (coords.coords == undefined) {
@@ -463,10 +480,13 @@ function getWaypoints(origin, destination, range, bot, channel, jumpRange) {
 
 			currentCoords = _calculateStep(currentOriginCoords, destinationSystem.coords, range);
 			waypointNo = 0;
-			output += "#0\t" + originSystem.name + "\t(Distance: 0ly)\t(Distance from " + destinationSystem.name + ": " + Number(distance).toFixed(2) + " ly)\n";
+			outputArray.push("#0\t" + originSystem.name + "\t(Distance: 0ly)\t(Distance from " + destinationSystem.name + ": " + Number(distance).toFixed(2) + " ly)");
+			if (includeCoords) {
+				outputArray.push("\t\t" + JSON.stringify(currentCoords));
+			}
 
 			if (currentCoords == destinationSystem.coords) {
-				utils.sendMessage(bot, channel, output);
+				utils.sendMessages(bot, channel, outputArray);
 			} else {
 				_getNearbySystemsByCoordinates(currentCoords, searchRadius, nearbySystemsResponseHandler);
 			}
@@ -499,16 +519,23 @@ function getWaypoints(origin, destination, range, bot, channel, jumpRange) {
 
 			waypointNo++;
 
+			var output = "";
+
 			if (bestSystem == null) {
 				var distance = _calcDistance(currentOriginCoords, currentCoords);
-				output += "#" + waypointNo + "\tX: " + Number(currentCoords.x).toFixed(2) + ", Y: " + Number(currentCoords.y).toFixed(2) + ", Z: " + Number(currentCoords.z).toFixed(2) + "\t(Distance: " + Number(distance).toFixed(2) + " ly)";
+				output = "#" + waypointNo + "\tX: " + Number(currentCoords.x).toFixed(2) + ", Y: " + Number(currentCoords.y).toFixed(2) + ", Z: " + Number(currentCoords.z).toFixed(2) + "\t(Distance: " + Number(distance).toFixed(2) + " ly)";
 			} else {
 				currentCoords = bestSystem.coords;
-				output += "#" + waypointNo + "\t" + bestSystem.name + "\t(Distance: " + Number(bestSystemDistance).toFixed(2) + " ly)";
+				output = "#" + waypointNo + "\t" + bestSystem.name + "\t(Distance: " + Number(bestSystemDistance).toFixed(2) + " ly)";
 			}
 
 			var destinationDistance = _calcDistance(currentCoords, destinationSystem.coords);
-			output += "\t(Distance to " + destinationSystem.name + ": " + Number(destinationDistance).toFixed(2) + " ly)\n";
+			output += "\t(Distance to " + destinationSystem.name + ": " + Number(destinationDistance).toFixed(2) + " ly)";
+
+			outputArray.push(output);
+			if (includeCoords) {
+				outputArray.push("\t\t" + JSON.stringify(currentCoords));
+			}
 
 			currentOriginCoords = currentCoords;
 
@@ -527,14 +554,20 @@ function getWaypoints(origin, destination, range, bot, channel, jumpRange) {
 
 			if (currentCoords == destinationSystem.coords) {
 				waypointNo++;
-				output += "#" + waypointNo + "\t" + destinationSystem.name + "\t(Distance: " + Number(destinationDistance).toFixed(2) + " ly)";
-				utils.sendMessage(bot, channel, output);
+
+				outputArray.push("#" + waypointNo + "\t" + destinationSystem.name + "\t(Distance: " + Number(destinationDistance).toFixed(2) + " ly)");
+				if (includeCoords) {
+					outputArray.push("\t\t" + JSON.stringify(destinationSystem.coords));
+				}
+				utils.sendMessages(bot, channel, outputArray);
+				outputArray = [];
 			} else {
 				_getNearbySystemsByCoordinates(currentCoords, searchRadius, nearbySystemsResponseHandler);
 			}
 		} else {
-			output += "\nSomething's wrong...";
-			utils.sendMessage(bot, channel, output);
+			outputArray.push("Something's wrong...");
+			utils.sendMessages(bot, channel, outputArray);
+			outputArray = [];
 		}
 	}
 
