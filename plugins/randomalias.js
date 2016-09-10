@@ -33,7 +33,7 @@ var commands = {
 		help: "Adds an item to a category for use ",
 		extendedhelp: "Adds an item to a category for use - random will select an item at random from a set of categorized items - you might have a set of spider images, for instance.",
 		process: function(args, bot, msg) {
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if (query.length >= 2) {
 				query[0] = query[0].trim();
 				query[1] = query[1].trim();
@@ -63,7 +63,7 @@ var commands = {
 		help: "Removes an item from a random category list",
 		adminOnly: true,
 		process: function(args, bot, msg) {
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if (query.length == 2) {
 				var category = query[0].trim();
 				var index = parseInt(query[1]);

@@ -359,7 +359,7 @@ var commands = {
 		help: "Returns a list of galactic mapping data points of interest, optionally within a certain range of a point.",
 		process: function(args,bot,msg) {
 			var that = this;
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if ((query[0].length > 0) && (query.length <= 2)) {
 				query[0] = query[0].trim();
 				var dist = parseFloat(query[0]);
@@ -393,7 +393,7 @@ var commands = {
 		help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
 		process: function(args,bot,msg) {
 			var that = this;
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if ((query[0].length > 0) && (query.length <= 2)) {
 				query[0] = query[0].trim();
 				var dist = parseFloat(query[0]);
@@ -549,7 +549,7 @@ var commands = {
 		help: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol.",
 		extendedhelp: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol. We use information from EDSM to do this. In order to be findable, a commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public. In addition, the system they are in must have coordinates in EDSM. Likewise, for distance calculations, a system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
 		process: function(args,bot,msg) {
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if (query.length <= 2) {
 				query[0] = query[0].trim();
 				if (query.length == 1) {
@@ -573,7 +573,7 @@ var commands = {
 		help: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel.",
 		extendedhelp: "Creates or updates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel -- with an optional expedition. This is useful simply as a convenience.",
 		process: function(args, bot, msg) {
-			var systems = utils.compileArgs(args).split("->");
+			var systems = utils.compileArgs(args).split(/->|:/);
 			if (systems.length >= 2) {
 				systems[0] = systems[0].trim();
 				systems[1] = systems[1].trim();
@@ -673,7 +673,7 @@ var commands = {
 		help: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0.",
 		extendedhelp: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0 -- with an optional expedition. This is useful simply as a convenience. Many systems have several accepted designations (like Beagle Point, for instance, or RR Lyrae, which is another designation for HIP 95497).",
 		process: function(args, bot, msg) {
-			var systems = utils.compileArgs(args).split("->");
+			var systems = utils.compileArgs(args).split(/->|:/);
 			if (systems.length >= 2) {
 				systems[0] = systems[0].trim();
 				systems[1] = systems[1].trim();
@@ -774,7 +774,7 @@ var commands = {
 		adminOnly: true,
 		help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",		
 		process: function(args, bot, msg) {
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if (query.length == 2) {
 				query[0] = query[0].trim();
 				query[1] = query[1].trim();
@@ -800,7 +800,7 @@ var commands = {
 		help: "Assigns an alias to an expedition, allowing it to be grouped with the explist command.",
 		extendedhelp: "Assigns an alias to an expedition, allowing it to be grouped with the explist command. You can optionally include the full alias, allowing you to easily edit an alias attached to an expedition without having to reassign it to the expedition in another step.",
 		process: function(args, bot, msg) {
-			var query = utils.compileArgs(args).split("->");
+			var query = utils.compileArgs(args).split(/->|:/);
 			if (query.length >= 2) {
 				query[0] = query[0].trim();
 				query[1] = query[1].trim();
@@ -960,7 +960,7 @@ var commands = {
 		spammy: true,
 		process: function(args, bot, msg) {
 			var that = this;
-			var systems = utils.compileArgs(args).split("->");
+			var systems = utils.compileArgs(args).split(/->|:/);
 			if (systems.length >= 2) {
 				var origin = systems[0].trim();
 				var destination = systems[1].trim();
