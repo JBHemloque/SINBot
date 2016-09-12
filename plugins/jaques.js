@@ -60,7 +60,6 @@ var commands = {
                 } else {
                     bot.sendMessage(message.channel, reply);
                 }
-				bot.sendMessage(message.channel, reply);
 			} else {
 				bot.sendMessage(message.channel, "Sorry I'm still waking up...");
 			}
