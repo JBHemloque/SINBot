@@ -48,9 +48,9 @@ var commands = {
 					lastMessages.shift();
 				}
                 var useTTS = false;
-                if (allowTTS) {
+                // Users can set usetts for themselves, or serverwide if we allow it
+                if (allowTTS || message.channel.isPrivate) {
                     var ttsVar = jaquesBot.getUservar(userid, "usetts");
-                    console.log("usetts: " + ttsVar);
                     if (ttsVar == "true") {
                         useTTS = true;
                     }
