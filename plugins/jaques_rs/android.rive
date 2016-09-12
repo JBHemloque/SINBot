@@ -7,6 +7,9 @@
 + what is my bank balance
 - Accessing bank info. Please stand by.
 
++ set tts *
+- <set usetts=<star>>Setting tts to <get usetts>
+
 + say *
 - "<star>"
 

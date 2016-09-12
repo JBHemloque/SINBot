@@ -323,9 +323,9 @@ var commands = {
         usage: "<message>",
         help: "Bot says message with text to speech.",
         process: function(args, bot, message) { 
-        	var message = compileArgs(args);
-        	if (message) {
-        		bot.sendMessage(message.channel,message,{tts:true});
+        	var msg = compileArgs(args);
+        	if (msg) {
+        		bot.sendMessage(message.channel,msg,{tts:true});
         	} else {
 				displayUsage(bot, message, this);
 			}

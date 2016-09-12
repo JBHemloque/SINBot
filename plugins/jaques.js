@@ -7,6 +7,7 @@ var fs = require("fs");
 var lastMessages = [];
 var undefinedMessages = [];
 var sinBot;
+var allowTTS = false;
 
 var messageCache = {};  // Holds the last message from a user, for js callback purposes...
 
@@ -34,8 +35,9 @@ var commands = {
 		process: function(args, bot, message) {
 			if (jaquesStarted) {							
 				var statement = utils.compileArgs(args);
-                messageCache[message.author.id] = message;
-				var reply = getReply(jaquesBot, message.author.id, message.author.name, statement);
+                var userid = message.author.id;
+                messageCache[userid] = message;
+				var reply = getReply(jaquesBot, userid, message.author.name, statement);
 				reply = stripGarbage(reply);                
 				var cache = {user: message.author.name, statement: statement, reply: reply};
                 if (reply.includes("undefined")) {
@@ -45,6 +47,19 @@ var commands = {
 				while (lastMessages.length > 10) {
 					lastMessages.shift();
 				}
+                var useTTS = false;
+                if (allowTTS) {
+                    var ttsVar = jaquesBot.getUservar(userid, "usetts");
+                    console.log("usetts: " + ttsVar);
+                    if (ttsVar == "true") {
+                        useTTS = true;
+                    }
+                }
+                if (useTTS) {
+                    bot.sendMessage(message.channel, reply, {tts:true});
+                } else {
+                    bot.sendMessage(message.channel, reply);
+                }
 				bot.sendMessage(message.channel, reply);
 			} else {
 				bot.sendMessage(message.channel, "Sorry I'm still waking up...");
@@ -62,6 +77,11 @@ exports.commands = commands;
 
 exports.setup = function(config, bot, botcfg) {
     sinBot = botcfg.sinBot;
+    if (config) {
+        if (config.allowTTS) {
+            allowTTS = config.allowTTS;
+        }
+    }
 
     jaquesBot.setSubroutine("sinbot", function(rs, input) {
         // Get the last message sent by that user to jaques. That will be the context for this command.
