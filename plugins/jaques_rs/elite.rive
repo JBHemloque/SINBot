@@ -14,3 +14,6 @@
 
 + how can i land[*]
 - Take a look at this: <call>sinbot safelandings</call>
+
++ where is *
+- <call>sinbot showloc <star></call>

@@ -13,3 +13,4 @@ sysalias.json
 userdata/**
 .DS_Store
 gmp-edd.json
+regions.json

@@ -125,29 +125,33 @@ function getRegionMap(location, callback) {
 	}		
 }
 
+function _showRegion(region, bot, msg) {
+	region = edsm.normalizeSystem(region);
+	getRegionMap(region, function(data) {
+		if (data) {
+			var regionString = region;
+			if (data.map) {							
+				bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, data.region);
+				regionString = data.region;
+				var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
+				var regionDate = new Date(data.date).getTime();
+				if (regionDate > newRegionDate) {
+					regionString += "\n*Newly trilaterated region: " + data.date + "*";
+				}
+				bot.sendMessage(msg.channel, regionString);
+			} else {
+				bot.sendMessage(msg.channel, "Sorry, I have no map for " + regionString);
+			}
+		} else {
+			bot.sendMessage(msg.channel, "Sorry, I have no information on " + region);
+		}
+	});
+}
+
 function showRegion(args, bot, msg) {
 	if (args.length > 1) {
 		var region = utils.compileArgs(args);
-		region = edsm.normalizeSystem(region);
-		getRegionMap(region, function(data) {
-			if (data) {
-				var regionString = region;
-				if (data.map) {							
-					bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, data.region);
-					regionString = data.region;
-					var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
-					var regionDate = new Date(data.date).getTime();
-					if (regionDate > newRegionDate) {
-						regionString += "\n*Newly trilaterated region: " + data.date + "*";
-					}
-					bot.sendMessage(msg.channel, regionString);
-				} else {
-					bot.sendMessage(msg.channel, "Sorry, I have no map for " + regionString);
-				}
-			} else {
-				bot.sendMessage(msg.channel, "Sorry, I have no information on " + region);
-			}
-		});
+		_showRegion(region, bot, msg);
 	} else {
 		utils.displayUsage(bot,msg,this);
 	}
@@ -484,7 +488,8 @@ var commands = {
 		extendedhelp: "Shows the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
 		process: function(args,bot,msg) {
 			if (args.length > 1) {
-				edsm.getPositionString(utils.compileArgs(args), function(posString, position) {
+				var name = utils.compileArgs(args);
+				edsm.getPositionString(name, function(posString, position) {
 					if (position) {
 						getRegionMap(position, function(data) {
 							if (data) {
@@ -500,7 +505,7 @@ var commands = {
 							}
 						});
 					} else {
-						bot.sendMessage(msg.channel, posString);
+						_showRegion(name, bot, msg);
 					}				
 				});
 			} else {
