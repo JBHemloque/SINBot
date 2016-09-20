@@ -779,7 +779,7 @@ var commands = {
 		adminOnly: true,
 		help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",		
 		process: function(args, bot, msg) {
-			var query = utils.compileArgs(args).split(/->|:/);
+			var query = utils.compileArgs(args).split("->");
 			if (query.length == 2) {
 				query[0] = query[0].trim();
 				query[1] = query[1].trim();
@@ -805,7 +805,7 @@ var commands = {
 		help: "Assigns an alias to an expedition, allowing it to be grouped with the explist command.",
 		extendedhelp: "Assigns an alias to an expedition, allowing it to be grouped with the explist command. You can optionally include the full alias, allowing you to easily edit an alias attached to an expedition without having to reassign it to the expedition in another step.",
 		process: function(args, bot, msg) {
-			var query = utils.compileArgs(args).split(/->|:/);
+			var query = utils.compileArgs(args).split("->");
 			if (query.length >= 2) {
 				query[0] = query[0].trim();
 				query[1] = query[1].trim();
