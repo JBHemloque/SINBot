@@ -4,7 +4,21 @@ var fs = require("fs");
 var gm = require('gm');
 var imageMagick = gm.subClass({ imageMagick: true });
 
-var _regions = require("./regions.json");
+var _regions;
+
+try{
+	_regions = require("./regions.json");
+} catch(e) {
+	// Do nothing, we'll try to load the backup
+}
+
+if (_regions === undefined) {
+	try {
+		_regions = require("./bakregions.json");
+	} catch (e) {
+		_regions = {};
+	}
+}
 
 // Magic numbers based on the source image, Galaxy.jpg
 const KLY_TO_PIXEL = 1000 / 12.5;
