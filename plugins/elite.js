@@ -7,11 +7,26 @@ var alphanum = require("../alphanum.js");
 var _ = require("underscore");
 var request = require('request');
 
-var regions = require("./elite/regions.json");
 var regionjpg = require("./elite/regionjpg.js");
 
 var botcfg = null;
 var pmIfSpam = false;
+
+var regions;
+
+try{
+	regions = require("./elite/regions.json");
+} catch(e) {
+	// Do nothing, we'll try to load the backup
+}
+
+if (regions === undefined) {
+	try {
+		regions = require("./elite/bakregions.json");
+	} catch (e) {
+		regions = {};
+	}
+}
 
 var NEW_THRESHHOLD = (7 * 24 * 60 * 60 * 1000);
 
