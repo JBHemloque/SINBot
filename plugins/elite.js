@@ -1006,6 +1006,23 @@ var commands = {
 			}			
 		}
 	},
+	"nearest": {
+		usage: "<x> <y> <z>",
+		help: "Gets systems near a given point.",
+		process: function(args, bot, msg) {
+			// Get rid of the command
+			args.shift();
+			// Run through the args stripping out anything that's not a number. This takes care of things like "-8740 / -740 / 12820"
+			var coords = args.filter(function(value) {
+				return !isNaN(value);
+			});
+			if (coords.length == 3) {
+				edsm.getNearbySystemsByCoordinates(coords[0].trim(),coords[1].trim(),coords[2].trim(), null, bot, msg.channel);
+			} else {
+				utils.displayUsage(bot,msg,this);
+			}
+		}
+	}
 };
 
 var normalizeSystem = function(system) {
