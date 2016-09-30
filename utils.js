@@ -96,16 +96,18 @@ var sendMessages = function(bot, channel, outputArray) {
 	var i = 0;
 	var buffer = "";
 	for (var j = 0; j < outputArray.length; j++) {
-		if (typeof outputArray[j] != 'function') {
-			if (buffer.length + outputArray[j].length > MESSAGE_LIMIT) {
-				compiledArray[i++] = buffer;
-				buffer = "";
+		if (outputArray[j]) {
+			if (typeof outputArray[j] != 'function') {
+				if (buffer.length + outputArray[j].length > MESSAGE_LIMIT) {
+					compiledArray[i++] = buffer;
+					buffer = "";
+				}
+				if (buffer.length > 0) {
+					buffer += "\n";
+				}
+				buffer += outputArray[j];
 			}
-			if (buffer.length > 0) {
-				buffer += "\n";
-			}
-			buffer += outputArray[j];
-		}
+		}		
 	}
 	compiledArray[i++] = buffer;
 
