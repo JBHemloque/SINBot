@@ -305,6 +305,7 @@ function gmpItemMatch(item, query) {
 	} catch (e) {
 		;
 		// console.log("Couldn't do the galmap search for [" + item.id + "]: " + e);
+		// console.log(JSON.stringify(item));
 	}
 	try {
 		if (item.name.toUpperCase().includes(query)) {
@@ -313,6 +314,7 @@ function gmpItemMatch(item, query) {
 	} catch (e) {
 		;
 		// console.log("Couldn't do the name search for [" + item.id + "]: " + e);
+		// console.log(JSON.stringify(item));
 	}
 	return false;
 }
@@ -351,13 +353,19 @@ var commands = {
 			if (query.length > 0) {
 				if (gmpData && gmpData.length > 0) {
 					var msgs = [];
-					var items = findGMPItems(query);					
+					var items = findGMPItems(query);
 					for (var i = 0; i < items.length; i++) {
 						var item = items[i];
 						msgs.push("**" + item.name + "**");
 						msgs.push(item.galMapSearch);
 						msgs.push(GMP_SUPPORTED_TYPES[item.type]);
-						msgs.push(item.descriptionMardown);
+						var desc = item.descriptionMardown;
+						if (desc.length > 800) {
+							// Too long...
+							desc = desc.substring(0, 800);
+							desc += "...";
+						}
+						msgs.push(desc);
 					}
 					if (msgs.length > 0) {
 						utils.sendMessages(bot,msg.channel,msgs);
@@ -1007,7 +1015,7 @@ var commands = {
 		}
 	},
 	"nearest": {
-		usage: "<x> <y> <z>",
+		usage: "<x> <y> <z> [optional range]",
 		help: "Gets systems near a given point.",
 		process: function(args, bot, msg) {
 			// Get rid of the command
@@ -1016,8 +1024,12 @@ var commands = {
 			var coords = args.filter(function(value) {
 				return !isNaN(value);
 			});
-			if (coords.length == 3) {
-				edsm.getNearbySystemsByCoordinates(coords[0].trim(),coords[1].trim(),coords[2].trim(), null, bot, msg.channel);
+			if (coords.length >= 3) {
+				var range = undefined;
+				if (coords.length == 4) {
+					range = coords[3].trim();
+				}
+				edsm.getNearbySystemsByCoordinates(coords[0].trim(),coords[1].trim(),coords[2].trim(), range, bot, msg.channel);
 			} else {
 				utils.displayUsage(bot,msg,this);
 			}
