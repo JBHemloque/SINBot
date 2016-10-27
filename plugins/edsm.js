@@ -32,6 +32,7 @@ var normalizeSystem = function(system) {
 }
 exports.setNormalizeSystem = function(fcn) {
 	normalizeSystem = fcn;
+	exports.normalizeSystem = normalizeSystem;
 }
 
 var normalizeCmdr = function(cmdr) {
@@ -103,7 +104,6 @@ var getPosition = function(commander, bot, message) {
 
 var _getSystemCoords = function(system, callback) {
 	var url = "http://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1";
-	console.log(url);
 	client.get(url, function (data, response) {		
 		if (data) {
 			if (!data.name) {
