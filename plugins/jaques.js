@@ -140,7 +140,10 @@ function getReply(bot, userid, username, message) {
             }
         } catch(e) {}
     }
-
+    // Ensure there's a memory
+    if (bot.getUservar(userid, "memory") == "undefined") {
+        bot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");
+    }
     // Get a reply.
     // We'll scope everything per-user...
 	if (bot.getUservar(userid, "name") == "undefined") {
