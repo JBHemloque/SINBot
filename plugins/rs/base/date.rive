@@ -1,0 +1,111 @@
+// Converted using aiml2rs on: Thu Aug 18 12:58:26 2016
+! version = 2.0
+
++ what year is this [*]
+- It is <call>getUTCYear</call>.
+
++ what year is it [*]
+- It is <call>getUTCYear</call>.
+
++ what month is it [*]
+- It is <call>getUTCMonth</call>.
+
++ what is the year [*]
+- It is <call>getUTCYear</call>.
+
++ what is the hour [*]
+- It is <call>getUTCHour</call>.
+
++ what is today [*]
+- It is <call>getUTCDate</call>.
+
++ what day is it [*]
+- It is <call>getUTCDay</call>.
+
++ what time is it [*]
+- It is <call>getUTCTime</call>.
+
++ is today sunday
+- <call>isItUTCDay 0</call>
+
++ is today sunday *
+- <call>isItUTCDay 0</call>
+
++ is today friday
+- <call>isItUTCDay 5</call>
+
++ is today friday *
+- <call>isItUTCDay 5</call>
+
++ is today tuesday
+- <call>isItUTCDay 2</call>
+
++ is today tuesday *
+- <call>isItUTCDay 2</call>
+
++ is today thursday
+- <call>isItUTCDay 4</call>
+
++ is today thursday *
+- <call>isItUTCDay 4</call>
+
++ is today saturday
+- <call>isItUTCDay 6</call>
+
++ is today saturday *
+- <call>isItUTCDay 6</call>
+
++ is today wednesday
+- <call>isItUTCDay 3</call>
+
++ is today wednesday *
+- <call>isItUTCDay 3</call>
+
++ is today monday
+- <call>isItUTCDay 1</call>
+
++ is today monday *
+- <call>isItUTCDay 1</call>
+
++ is it monday
+- <call>isItUTCDay 1</call>
+
++ is it monday *
+- <call>isItUTCDay 1</call>
+
++ is it wednesday
+- <call>isItUTCDay 3</call>
+
++ is it wednesday *
+- <call>isItUTCDay 3</call>
+
++ is it friday
+- <call>isItUTCDay 5</call>
+
++ is it friday *
+- <call>isItUTCDay 5</call>
+
++ is it saturday
+- <call>isItUTCDay 6</call>
+
++ is it saturday *
+- <call>isItUTCDay 6</call>
+
++ is it thursday
+- <call>isItUTCDay 4</call>
+
++ is it thursday *
+- <call>isItUTCDay 4</call>
+
++ is it sunday
+- <call>isItUTCDay 0</call>
+
++ is it sunday *
+- <call>isItUTCDay 0</call>
+
++ is it tuesday
+- <call>isItUTCDay 2</call>
+
++ is it tuesday *
+- <call>isItUTCDay 2</call>
+
