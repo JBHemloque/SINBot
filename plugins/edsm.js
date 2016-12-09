@@ -46,7 +46,7 @@ var normalizeCmdr = function(cmdr) {
 }
 
 var _getSystem = function(commander, callback) {
-	client.get("http://www.edsm.net/api-logs-v1/get-position?commanderName=" + normalizeCmdr(commander), function (data, response) {
+	client.get("https://www.edsm.net/api-logs-v1/get-position?commanderName=" + normalizeCmdr(commander), function (data, response) {
 		try {
 			callback(data);
 		} catch(e) {
@@ -103,7 +103,7 @@ var getPosition = function(commander, bot, message) {
 }
 
 var _getSystemCoords = function(system, callback) {
-	var url = "http://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1";
+	var url = "https://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1";
 	client.get(url, function (data, response) {		
 		if (data) {
 			if (!data.name) {
@@ -298,7 +298,7 @@ function _getNearbySystems(system, range, callback) {
 		rangeParameter = "&radius=" + range;
 	}
 
-	client.get("http://www.edsm.net/api-v1/sphere-systems?systemName=" + system + "&coords=1" + rangeParameter, responseHandler).on("error", errorHandler);
+	client.get("https://www.edsm.net/api-v1/sphere-systems?systemName=" + system + "&coords=1" + rangeParameter, responseHandler).on("error", errorHandler);
 }
 
 function _getNearbySystemsByCoordinates(coords, range, callback) {
@@ -320,7 +320,7 @@ function _getNearbySystemsByCoordinates(coords, range, callback) {
 		rangeParameter = "&radius=" + range;
 	}
 
-	client.get("http://www.edsm.net/api-v1/sphere-systems?x=" + Number(coords.x).toFixed(2) + "&y=" + Number(coords.y).toFixed(2) + "&z=" + Number(coords.z).toFixed(2) + "&coords=1" + rangeParameter, responseHandler).on("error", errorHandler);
+	client.get("https://www.edsm.net/api-v1/sphere-systems?x=" + Number(coords.x).toFixed(2) + "&y=" + Number(coords.y).toFixed(2) + "&z=" + Number(coords.z).toFixed(2) + "&coords=1" + rangeParameter, responseHandler).on("error", errorHandler);
 }
 
 function _getSystemCoordinates(system, callback) {
@@ -340,7 +340,7 @@ function _getSystemCoordinates(system, callback) {
 		callback(null);
 	}
 
-	client.get("http://www.edsm.net/api-v1/system?systemName=" + system + "&coords=1", responseHandler).on("error", errorHandler);
+	client.get("https://www.edsm.net/api-v1/system?systemName=" + system + "&coords=1", responseHandler).on("error", errorHandler);
 }
 
 function getNearbySystems(name, range, bot, channel) {
