@@ -39,12 +39,12 @@ exports.setup = function(config, bot, botcfg) {
 
 function pollFeeds() {
     for (var i = 0; i < feeds.length; i++) {
-        fetch(feeds[i].url, feeds[i].server, feeds[i].channel, feeds[i].prefix, feeds[i].suffix);
+        fetch(feeds[i].url, feeds[i].server, feeds[i].channel, feeds[i].message, feeds[i].prefix, feeds[i].suffix);
     }
     setTimeout(pollFeeds, 1000*60*5); //every 5 minutes minute
 }
 
-function fetch(feed, server, channel, prefix, suffix) {
+function fetch(feed, server, channel, message, prefix, suffix) {
     // Define our streams
     var req = request(feed, { timeout: 10000, pool: false });
     req.setMaxListeners(50);
@@ -75,18 +75,28 @@ function fetch(feed, server, channel, prefix, suffix) {
                     console.log("Skipping " + post.link + " because we know it.");
                 } else {                                  
                     var msg = "";
-                    if (prefix) {
-                        msg += prefix;
-                    }
-                    msg += post.link;
-                    if (suffix) {
-                        msg += suffix;
-                    }
-                    utils.sendMessageToServerAndChannel(discord, server, channel, msg, function(err, msg) {
-                        if (!err) {
-                            addGuid(guid);
+                    if (message) {
+                        msg = message;
+                        msg = msg.replace('<link/>', post.link);
+                        msg = msg.replace('<title/>', post.title);
+                        msg = msg.replace('<description/>', post.description);
+                        msg = msg.replace('<pubDate/>', post.pubDate);
+                        msg = msg.replace('<comments/>', post.comments);
+                    } else {
+                        if (prefix) {
+                            msg += prefix;
                         }
-                    });
+                        msg += post.link;
+                        if (suffix) {
+                            msg += suffix;
+                        }
+                    }
+                    console.log(msg);
+                    // utils.sendMessageToServerAndChannel(discord, server, channel, msg, function(err, msg) {
+                    //     if (!err) {
+                    //         addGuid(guid);
+                    //     }
+                    // });
                 }
             } else {
                 console.log("Oops, no guid for this item: " + post.link);
