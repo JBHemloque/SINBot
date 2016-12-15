@@ -91,12 +91,11 @@ function fetch(feed, server, channel, message, prefix, suffix) {
                             msg += suffix;
                         }
                     }
-                    console.log(msg);
-                    // utils.sendMessageToServerAndChannel(discord, server, channel, msg, function(err, msg) {
-                    //     if (!err) {
-                    //         addGuid(guid);
-                    //     }
-                    // });
+                    utils.sendMessageToServerAndChannel(discord, server, channel, msg, function(err, msg) {
+                        if (!err) {
+                            addGuid(guid);
+                        }
+                    });
                 }
             } else {
                 console.log("Oops, no guid for this item: " + post.link);
