@@ -696,7 +696,7 @@ function procPresence(bot, user, status, gameId) {
 function startBot(bot, cfg) {
 	config = cfg;
 
-	version = config.NAME + " Version " + package_json.version;
+	version = config.NAME + "- SINBot Version " + package_json.version;
 	plugins = config.PLUGINS;
 
 	var botcfg = {
