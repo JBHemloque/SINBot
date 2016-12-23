@@ -82,6 +82,7 @@ function fetch(feed, server, channel, message, prefix, suffix) {
                         msg = msg.replace('<description/>', post.description);
                         msg = msg.replace('<pubDate/>', post.pubDate);
                         msg = msg.replace('<comments/>', post.comments);
+                        msg = msg.replace('<guid/>', post.guid);
                     } else {
                         if (prefix) {
                             msg += prefix;
