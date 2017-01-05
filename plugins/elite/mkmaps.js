@@ -1,8 +1,8 @@
 var fs = require("fs");
-var regionjpg = require("../regionjpg.js");
+var regionjpg = require("./regionjpg.js");
 var async = require('async');
 
-var compiled = require("../regions.json");
+var compiled = require("./regions.json");
 
 console.log("Loaded " + compiled.length + " regions...");
 
@@ -27,7 +27,7 @@ async.forEachSeries(compiled, function(data, callback) {
 		console.log("Error generating map:");
 		console.log(err);
 	}
-	fs.writeFile("../regions.json",JSON.stringify(compiled,null,2), null);
+	fs.writeFile("./regions.json",JSON.stringify(compiled,null,2), null);
 
 	console.log("Created " + images + " maps. Done!");
 });

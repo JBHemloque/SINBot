@@ -5,7 +5,7 @@ var summary = require('node-sumuparticles');
 
 var customsearch = google.customsearch('v1');
 
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 
 var config;
 

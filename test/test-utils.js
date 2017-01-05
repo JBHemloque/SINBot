@@ -1,7 +1,7 @@
 var assert = require('assert');
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var mocks = require('./mocks.js');
-var bot = require("../bot.js");
+var bot = require("../server/bot.js");
 
 describe('utils', function(){
 	it('should export a compileArgs function', function(){

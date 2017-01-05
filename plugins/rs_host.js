@@ -1,7 +1,7 @@
 // This is a generic rivescript host. It manages its own state and memory.
 'use strict';
 
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var RiveScript = require("rivescript");
 var fs = require("fs");
 var async = require('async');

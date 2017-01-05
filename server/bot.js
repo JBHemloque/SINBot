@@ -2,10 +2,10 @@
 
 var async = require('async');
 var Discord = require("discord.js");
-var search = require('./plugins/search.js');
-var elizabot = require('./plugins/elizabot.js');
+var search = require('../plugins/search.js');
+var elizabot = require('../plugins/elizabot.js');
 var utils = require('./utils.js');
-var package_json = require("./package.json");
+var package_json = require("../package.json");
 var fs = require("fs");
 var _ = require("underscore");
 var version;
@@ -36,20 +36,20 @@ var messagebox;
 var aliases;
 
 try{
-	messagebox = require("./messagebox.json");
+	messagebox = require("../messagebox.json");
 } catch(e) {
 	//no stored messages
 	messagebox = {};
 }
 try{
-	aliases = require("./alias.json");
+	aliases = require("../alias.json");
 } catch(e) {
 	//No aliases defined
 	aliases = {};
 }
 
 function updateMessagebox(){
-	fs.writeFile("./messagebox.json",JSON.stringify(messagebox,null,2), null);
+	fs.writeFile("../messagebox.json",JSON.stringify(messagebox,null,2), null);
 }
 
 function checkForMessages(bot, user) {
@@ -124,7 +124,7 @@ function makeAliasStructFromArgs(args) {
 }
 
 function writeAliases() {
-	fs.writeFile("./alias.json",JSON.stringify(aliases,null,2), null);
+	fs.writeFile("../alias.json",JSON.stringify(aliases,null,2), null);
 }
 
 function makeAliasFromArgs(args, addExtrasCallback) {
@@ -714,16 +714,29 @@ function startBot(bot, cfg) {
 	}
 
 	for (var i = 0; i < plugins.length; i += 1) {
+        // Prior to 2.0, the server files were in the root, with plugins a subdir off of them.
+        // In 2.0, the server files are in a server directory. This means that config files from
+        // pre-2.0 have different plugin paths than in 2.0. Rather than require the config
+        // files to be changed, we'll check one level down if the plugin can't be located...
 		try {
 			plugins[i].plugin = require(plugins[i].path);
 
 			debugLog("Loaded plugin " + plugins[i].name);
 		} catch(e) {
-			utils.logError("Couldn't load " + plugins[i].name, e);
-			if (config.DEBUG) {
-				throw e;
-			}
+			; // Do nothing. We're trying again one dir down
 		}
+        if (!plugins[i].plugins) {
+            try {
+                plugins[i].plugin = require('../' + plugins[i].path);
+
+                debugLog("Loaded plugin " + plugins[i].name);
+            } catch(e) {
+                utils.logError("Couldn't load " + plugins[i].name, e);
+                if (config.DEBUG) {
+                    throw e;
+                }
+            }
+        }
 		try {
 			if (plugins[i].plugin.setup) {
 				debugLog("Running setup for " + plugins[i].name);

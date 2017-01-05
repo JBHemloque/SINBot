@@ -70,8 +70,8 @@ module.exports.prototype.getConfig = function(){
 
 function bootstrap(callback){
 	//if we can find a file named "last.id" then use that to store the activity timeline bookmark
-	if (fs.existsSync('./last.id')){
-		callback( fs.readFileSync('./last.id').toString() );
+	if (fs.existsSync('../last.id')){
+		callback( fs.readFileSync('../last.id').toString() );
 	}
 }
 
@@ -177,6 +177,6 @@ function trunc(s){
 	return s;
 }
 function writePrevId(id){
-	fs.writeFileSync('./last.id', id);
+	fs.writeFileSync('../last.id', id);
 
 }

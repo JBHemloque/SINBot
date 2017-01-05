@@ -2,7 +2,7 @@
 
 var bot = require('./bot.js');
 var Discord = require("discord.js");
-var config = require('./config.js');
+var config = require('../config.js');
 var utils = require('./utils.js');
 
 var SINBot = new Discord.Client();

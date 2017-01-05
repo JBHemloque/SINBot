@@ -1,5 +1,5 @@
 var assert = require('assert');
-var bot = require("../bot.js");
+var bot = require("../server/bot.js");
 var mocks = require('./mocks.js');
 
 function handleUsage(command, user) {

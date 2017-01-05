@@ -2,7 +2,7 @@
 
 var async = require('async');
 var fs = require('fs');
-var config = require('./config.js');
+var config = require('../config.js');
 
 exports.compileArgs = function(args) {
 	args.splice(0,1);

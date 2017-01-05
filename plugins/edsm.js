@@ -1,5 +1,5 @@
 var Client = require('node-rest-client').Client;
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
  
 var client = new Client();
 

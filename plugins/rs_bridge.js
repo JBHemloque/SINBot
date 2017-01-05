@@ -2,7 +2,7 @@
 'use strict';
 
 var rs_host = require('./rs_host.js');
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 
 exports.RSBridge = RSBridge;
 function RSBridge(userDataDir, memoryPrefix, options) {

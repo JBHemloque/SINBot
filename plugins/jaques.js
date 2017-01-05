@@ -1,6 +1,6 @@
 'use strict';
 
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var rs_bridge = require('./rs_bridge');
 
 var commands = {
@@ -27,8 +27,8 @@ exports.findCommand = function(command) {
 exports.commands = commands;
 
 exports.setup = function(config, bot, botcfg) {
-    rsBridge.setup(config, bot, botcfg, undefined, ['./plugins/rs/jaques', './plugins/rs/base']);
+    rsBridge.setup(config, bot, botcfg, undefined, ['../plugins/rs/jaques', '../plugins/rs/base']);
 }
 
-var rsBridge = new rs_bridge.RSBridge('./plugins/rs/');
+var rsBridge = new rs_bridge.RSBridge('../plugins/rs/');
 

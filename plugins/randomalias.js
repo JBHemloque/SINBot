@@ -1,7 +1,7 @@
 'use strict';
 
 var fs = require('fs');
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 
 //////////////////////////
 //
@@ -179,5 +179,5 @@ try{
 }
 
 function writeRandomAliases() {
-	fs.writeFile("./randomalias.json",JSON.stringify(randomaliases,null,2));
+	fs.writeFile("../randomalias.json",JSON.stringify(randomaliases,null,2));
 }

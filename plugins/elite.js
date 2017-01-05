@@ -1,9 +1,9 @@
 'use strict';
 
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var edsm = require('./edsm.js');
 var fs = require("fs");
-var alphanum = require("../alphanum.js");
+var alphanum = require("../server/alphanum.js");
 var _ = require("underscore");
 var request = require('request');
 
@@ -77,11 +77,11 @@ function handleGravity(planetMass, planetRadius) {
 }
 
 function writeAliases() {
-	fs.writeFile("./sysalias.json",JSON.stringify(edsm.aliases,null,2), null);
+	fs.writeFile("../sysalias.json",JSON.stringify(edsm.aliases,null,2), null);
 }
 
 function writeCmdrAliases() {
-	fs.writeFile("./cmdralias.json",JSON.stringify(edsm.cmdraliases,null,2), null);
+	fs.writeFile("../cmdralias.json",JSON.stringify(edsm.cmdraliases,null,2), null);
 }
 
 var gmpData = [];

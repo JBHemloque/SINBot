@@ -1,6 +1,6 @@
 'use strict';
 
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var http = require("http");
 
 var commands = {

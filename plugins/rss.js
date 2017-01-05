@@ -4,7 +4,7 @@ var request = require('request');
 var FeedParser = require('feedparser');
 var Iconv = require('iconv').Iconv;
 var fs = require("fs");
-var utils = require("../utils");
+var utils = require("../server/utils");
 
 var feeds;
 var discord;
@@ -24,7 +24,7 @@ try{
 function addGuid(guid){
     old_guids[guid] = guid;
     // This path differs from the one above because the context it's run from is different
-    fs.writeFile("./old_rss_guids.json",JSON.stringify(old_guids,null,2), null);
+    fs.writeFile("../old_rss_guids.json",JSON.stringify(old_guids,null,2), null);
 }
 
 exports.findCommand = function(command) {

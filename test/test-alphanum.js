@@ -1,5 +1,5 @@
 var assert = require('assert');
-var alphanum = require("../alphanum.js");
+var alphanum = require("../server/alphanum.js");
 
 describe('alphanum', function(){
 	var testData = [
