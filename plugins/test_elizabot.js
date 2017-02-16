@@ -10,8 +10,8 @@ process.stdin.setEncoding('utf8');
 var util = require('util');
 
 process.stdin.on('data', function(text) {
-	text = text.replace(/(\r\n|\n|\r)/gm,"");
-	console.log(eliza.transform(text));
+    text = text.replace(/(\r\n|\n|\r)/gm,"");
+    console.log(eliza.transform(text));
     if (eliza.quit) {
         process.exit();
     }

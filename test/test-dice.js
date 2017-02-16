@@ -17,7 +17,7 @@ function genDieSequence(die, count) {
     return results;
 }
 
-describe('minimal-plugin', function(){
+describe('test-dice', function(){
     it('should export a commands object', function(){
         assert(typeof(plugin.commands) == 'object');
     });
@@ -36,8 +36,8 @@ describe('minimal-plugin', function(){
 
         var results = genDieSequence(die, count);
 
-        var min = die * die * die * 0.9;
-        var max = die * die * die * 1.1;
+        var min = die * die * die * 0.85;
+        var max = die * die * die * 1.15;
         for (var i = 0; i < die; i++) {
             assert(results[i] > min);
             assert(results[i] < max);

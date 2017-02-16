@@ -6,7 +6,7 @@ var utils = require('../server/utils.js');
 
 exports.RSBridge = RSBridge;
 function RSBridge(userDataDir, memoryPrefix, options) {
-	this.RSHost = new rs_host.RSHost(userDataDir, memoryPrefix, options);
+    this.RSHost = new rs_host.RSHost(userDataDir, memoryPrefix, options);
     this.messageCache = {}; // For callback purposes
 }
 
@@ -35,16 +35,16 @@ RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.
 RSBridge.prototype.gossip = function(args, bot, message) {
-	utils.sendMessages(bot, message.author, rs_host.gossip());
+    utils.sendMessages(bot, message.author, rs_host.gossip());
 }
 
 // Talk to the bot
-RSBridge.prototype.reply = function(args, bot, message) {				
-	var statement = utils.compileArgs(args);
+RSBridge.prototype.reply = function(args, bot, message) {                
+    var statement = utils.compileArgs(args);
     var userid = message.author.id;
     this.messageCache[userid] = message;
     var reply = this.RSHost.reply(statement, message.author.name, userid);
-	reply = this.RSHost.stripGarbage(reply); 
+    reply = this.RSHost.stripGarbage(reply); 
     var useTTS = false;
     // Users can set usetts for themselves, or serverwide if we allow it
     // if (allowTTS || message.channel.isPrivate) {
@@ -54,9 +54,9 @@ RSBridge.prototype.reply = function(args, bot, message) {
     //     }
     // }
     if (useTTS) {
-        bot.sendMessage(message.channel, reply, {tts:true});
+        utils.ttsMessage(bot, message.channel, reply);
     } else {
-        bot.sendMessage(message.channel, reply);
+        utils.sendMessage(bot, message.channel, reply);
     }
 }
 

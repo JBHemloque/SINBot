@@ -73,7 +73,7 @@ function fetch(feed, server, channel, message, prefix, suffix) {
             if (guid) {
                 if (old_guids[guid]) {
                     console.log("Skipping " + post.link + " because we know it.");
-                } else {                                  
+                } else {
                     var msg = "";
                     if (message) {
                         msg = message;

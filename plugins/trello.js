@@ -3,11 +3,11 @@
 var Bot = null;
 
 exports.findCommand = function(command) {
-	return null;
+    return null;
 }
 
 exports.setup = function(config, bot, botcfg) {
-	Bot = require('./trellobot.js')
+    Bot = require('./trellobot.js')
     ,bot = new Bot({
         pollFrequency: 1000*60*1 //every minute
         ,start: true
