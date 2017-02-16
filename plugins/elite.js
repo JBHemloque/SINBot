@@ -146,7 +146,7 @@ function _showRegion(region, bot, msg) {
         if (data) {
             var regionString = region;
             if (data.map) {                            
-                bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, data.region);
+                msg.channel.sendFile("./plugins/elite/maps/" + data.map, data.map, data.region);
                 regionString = data.region;
                 var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
                 var regionDate = new Date(data.date).getTime();
@@ -517,7 +517,7 @@ var commands = {
                         getRegionMap(position, function(data) {
                             if (data) {
                                 if (data.map) {
-                                    bot.sendFile(msg.channel, "./plugins/elite/maps/" + data.map, data.map, posString);
+                                    msg.channel.sendFile("./plugins/elite/maps/" + data.map, data.map);
                                     utils.sendMessage(bot, msg.channel, posString);
                                 } else {
                                     utils.sendMessage(bot, msg.channel, posString);

@@ -8,14 +8,18 @@ var _regions;
 
 try{
     _regions = require("./regions.json");
+    console.log("Using ./regions.json");
 } catch(e) {
+    console.log("Couldn't find ./regions.json, trying the backup file...");
     // Do nothing, we'll try to load the backup
 }
 
 if (_regions === undefined) {
     try {
         _regions = require("./bakregions.json");
+        console.log("Using ./bakregions.json");
     } catch (e) {
+        console.log("Couldn't find ./bakregions.json, starting from scratch...");
         _regions = {};
     }
 }
@@ -28,6 +32,10 @@ const Y0 = 875;
 var _regionFont = "ArialBk";
 var _sourceFile = "./plugins/elite/Galaxy.jpg";
 var _destDir = "./plugins/elite/maps/";
+
+if (!fs.existsSync(_sourceFile)) {
+    console.log("\n\nSOMETHING IS WRONG\nCould not find " + _sourceFile + "\nCheck your installation for corruption");
+}
 
 var generateRegionMap = function(key, callback, regionsOverride) {
     var regions = _regions;
@@ -43,6 +51,10 @@ var generateRegionMap = function(key, callback, regionsOverride) {
     y = Y0 - y;
     x = Math.floor(x);
     y = Math.floor(y);
+
+    if (!fs.existsSync(_sourceFile)) {
+        console.log("\n\nSOMETHING IS WRONG\nCould not find " + _sourceFile + "\nCheck your installation for corruption");
+    }
 
     // convert Galaxy.jpg -fill white -stroke black -draw "circle Circle.x,Circle.y Circle.x+5,Circle.y+5" 
     // -fill white -stroke black -font ArialBk -pointsize 20 -draw "text Circle.x+20,Circle.y+7 'Hello'" maps/REGION.jpg

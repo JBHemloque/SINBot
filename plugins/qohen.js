@@ -13,7 +13,7 @@ var commands = {
     },
     "qohen": {
         usage: "<anything - just talk>",
-        help: "I'm Jaques, your cyborg bartender. Have a drink!",
+        help: "I'm Qohen, your cyborg moderator. Have a drink!",
         process: function(args, bot, message) {
             rsBridge.reply(args, bot, message);
         }
@@ -27,8 +27,8 @@ exports.findCommand = function(command) {
 exports.commands = commands;
 
 exports.setup = function(config, bot, botcfg) {
-    rsBridge.setup(config, bot, botcfg, undefined, ['../plugins/rs/qohen', '../plugins/rs/base']);
+    rsBridge.setup(config, bot, botcfg, undefined, ['./plugins/rs/qohen', './plugins/rs/base']);
 }
 
-var rsBridge = new rs_bridge.RSBridge('../plugins/rs/');
+var rsBridge = new rs_bridge.RSBridge('./plugins/rs/');
 
