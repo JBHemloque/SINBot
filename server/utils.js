@@ -43,11 +43,11 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
         channel = channel.substr(1);
     }
     var channels = bot.channels;
-    var ch = bot.channels.get("name",channel);
+    var ch = bot.channels.find("name",channel);
     if (server) {
-        var svr = bot.servers.get("id", server);
+        var svr = bot.guilds.get(server);
         if (svr) {
-            ch = svr.channels.get("name",channel);
+            ch = svr.channels.find("name",channel);
         }
     }
     
