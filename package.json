@@ -1,6 +1,6 @@
 {
   "name": "SINBot",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Discord bot with plugins appropriate for Final Fantasy 14 and Elite Dangerous",
   "main": "main.js",
   "dependencies": {
@@ -8,11 +8,11 @@
     "async": "^2.0.0-rc.2",
     "discord.js": "^11.0.0",
     "event-stream": "^3.3.4",
-    "feedparser": "^1.1.4",
+    "feedparser": "^2.1.0",
     "gm": "^1.22.0",
-    "googleapis": "^2.1.7",
+    "googleapis": "^16.1.0",
     "iconv": "^2.2.1",
-    "node-rest-client": "^1.8.0",
+    "node-rest-client": "^2.5.0",
     "node-sumuparticles": "^0.1.4",
     "redis": "^2.4.2",
     "request": "^2.74.0",
