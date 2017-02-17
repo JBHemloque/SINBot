@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd ~/FGEBot/plugins/elite
+~/npm/bin/pm2 stop FGEBot
+cp regions.json bakregions.json
+./makeregions
+
+cd ~
+~/npm/bin/pm2 restart FGEBot -m

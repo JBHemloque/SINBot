@@ -1,10 +1,10 @@
 var assert = require('assert');
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var mocks = require('./mocks.js');
-var bot = require("../bot.js");
+var bot = require("../server/bot.js");
 
 describe('utils', function(){
-	it('should export a compileArgs function', function(){
+    it('should export a compileArgs function', function(){
         assert(typeof(utils.compileArgs) == 'function');
     });
 
@@ -35,39 +35,48 @@ describe('utils', function(){
     });
 
     it('should use ** to bold text', function() {
-    	assert(utils.bold("This is a test") === "**This is a test**");
+        assert(utils.bold("This is a test") === "**This is a test**");
     });
 
     it('should use * to italicize text', function() {
-    	assert(utils.italic("This is a test") === "*This is a test*");
+        assert(utils.italic("This is a test") === "*This is a test*");
     });
 
     it('should display usage', function() {
-    	var command = {usage: "This is a test"};
-    	var handledCommand = false;
-    	var client = mocks.makeClient(function(channel, message) {
-    		if (message === "Usage: This is a test") {
-    			handledCommand = true;
-    		}
-    	});
-    	bot.startBot(client, mocks.makeConfig());
-    	utils.displayUsage(client, mocks.makeMessage(""), command);
-    	assert(handledCommand);
+        var command = {usage: "This is a test"};
+        var user = mocks.nonAdminUser;
+        // Usage always comes in via PM, so we need to account for that...
+        var oldUserSendMessage = user.sendMessage;
+        user.sendMessage = function(message) {
+            if (message.includes("Usage: ")) {
+                handledCommand = true;
+            } else {
+                console.log("Unexpected usage reply: " + message);
+            }
+        };
+        var handledCommand = false;
+        var client = mocks.makeClient();
+        bot.startBot(client, mocks.makeConfig());
+
+        utils.displayUsage(client, mocks.makeMessage("", user), command);
+        assert(handledCommand);
+
+        user.sendMessage = oldUserSendMessage;
     });
 
     it('should display the first sentence inBrief', function() {
-    	var res = utils.inBrief("One Two. Three Four.");
-    	assert(res === "One Two");
+        var res = utils.inBrief("One Two. Three Four.");
+        assert(res === "One Two");
     });
 
     it('should display the first line inBrief', function() {
-    	var res = utils.inBrief("One\nTwo. Three Four.");
-    	assert(res === "One");
+        var res = utils.inBrief("One\nTwo. Three Four.");
+        assert(res === "One");
     });
 
     it('should close bold markup inBrief', function() {
-    	var res = utils.inBrief("**One Two. Three Four.**");
-    	assert(res === "**One Two**");
+        var res = utils.inBrief("**One Two. Three Four.**");
+        assert(res === "**One Two**");
     });
 
     it('should export a sendMessages function', function(){
@@ -75,26 +84,26 @@ describe('utils', function(){
     });
 
     it('should handle small data sizes in sendMessages', function() {
-    	var messageArray = [
-    		"One",
-    		"Two",
-    		"Three"
-    	];
-    	var expectedResults = "One\nTwo\nThree";
-    	var buffer = "";
-    	var handledCommand = false;
-    	var client = mocks.makeClient(function(channel, message) {
-    		if (buffer.length > 0) {
-    			buffer += "\n";
-    		}
-    		buffer += message;
-    		if (buffer == expectedResults) {
-	    		handledCommand = true;
-    		}
-    	});
-    	bot.startBot(client, mocks.makeConfig());
-    	utils.sendMessages(client, mocks.makeMessage("").channel, messageArray);
-    	assert(handledCommand);
+        var messageArray = [
+            "One",
+            "Two",
+            "Three"
+        ];
+        var expectedResults = "One\nTwo\nThree";
+        var buffer = "";
+        var handledCommand = false;
+        var client = mocks.makeClient();
+        bot.startBot(client, mocks.makeConfig());
+        utils.sendMessages(client, mocks.makeMessage("", function(message) {
+            if (buffer.length > 0) {
+                buffer += "\n";
+            }
+            buffer += message;
+            if (buffer == expectedResults) {
+                handledCommand = true;
+            }
+        }).channel, messageArray);
+        assert(handledCommand);
     });
 
     it('should handle small data sizes in sendMessage', function() {
@@ -102,15 +111,15 @@ describe('utils', function(){
         var expectedResults = "Lorem ipsum...";
         var buffer = "";
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message, callback) {
+        var client = mocks.makeClient();
+        bot.startBot(client, mocks.makeConfig());
+        utils.sendMessage(client, mocks.makeMessage("", function(message, callback) {
             buffer += message;
             if (buffer === expectedResults) {
                 handledCommand = true;
             }
             callback();
-        });
-        bot.startBot(client, mocks.makeConfig());
-        utils.sendMessage(client, mocks.makeMessage("").channel, message);
+        }).channel, message);
         assert(handledCommand);
     });
 
@@ -125,7 +134,9 @@ describe('utils', function(){
         var expectedResults = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
         var buffer = "";
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message, callback) {
+        var client = mocks.makeClient();
+        bot.startBot(client, mocks.makeConfig());
+        utils.sendMessage(client, mocks.makeMessage("", function(message, callback) {
             if (buffer.length > 0) {
                 buffer += "\n";
             }
@@ -134,36 +145,34 @@ describe('utils', function(){
                 handledCommand = true;
             }
             callback();
-        });
-        bot.startBot(client, mocks.makeConfig());
-        utils.sendMessage(client, mocks.makeMessage("").channel, message);
+        }).channel, message);
         assert(handledCommand);
     });
 
     it('should handle large data sizes in sendMessages', function() {
-    	var messageArray = [
-    		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    		"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    	];
-    	var expectedResults = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    	var buffer = "";
-    	var handledCommand = false;
-    	var client = mocks.makeClient(function(channel, message, callback) {
-    		if (buffer.length > 0) {
-    			buffer += "\n";
-    		}
-    		buffer += message;
-    		if (buffer === expectedResults) {
-	    		handledCommand = true;
-    		}
-    		callback();
-    	});
-    	bot.startBot(client, mocks.makeConfig());
-    	utils.sendMessages(client, mocks.makeMessage("").channel, messageArray);
-    	assert(handledCommand);
+        var messageArray = [
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        ];
+        var expectedResults = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        var buffer = "";
+        var handledCommand = false;
+        var client = mocks.makeClient();
+        bot.startBot(client, mocks.makeConfig());
+        utils.sendMessages(client, mocks.makeMessage("", function(message, callback) {
+            if (buffer.length > 0) {
+                buffer += "\n";
+            }
+            buffer += message;
+            if (buffer === expectedResults) {
+                handledCommand = true;
+            }
+            callback();
+        }).channel, messageArray);
+        assert(handledCommand);
     });
 
     it('should export a pmOrSendChannel function', function(){
@@ -202,22 +211,26 @@ describe('utils', function(){
         assert(utils.pmOrSendChannel(command, true, pmChannel, mainChannel) == pmChannel);
     });
 
-	it('should create the appropriate structures for logError', function() {
-		var handledCommand = false;
-		utils.logError("Test error", "This is a test error", function(err) {
-			handledCommand = true;
-			if (typeof(err.timestamp) !== 'string') {
-				handledCommand = false;
-			}
-			if (err.header !== "Test error") {
-				handledCommand = false;
-			}
-			if (err.error !== "This is a test error") {
-				handledCommand = false;
-			}
-		});
-		assert(handledCommand);
-	});
+    it('should create the appropriate structures for logError', function() {
+        var handledCommand = false;
+        var countOutput = 0;
+        utils.logError("Test error", "This is a test error", function(err) {
+            handledCommand = true;
+            if (typeof(err.timestamp) !== 'string') {
+                handledCommand = false;
+            }
+            if (err.header !== "Test error") {
+                handledCommand = false;
+            }
+            if (err.error !== "This is a test error") {
+                handledCommand = false;
+            }
+        }, function(output) {
+            countOutput++;
+        });
+        assert(countOutput === 3);
+        assert(handledCommand);
+    });
 
     it('should export a sanitizeString function', function(){
         assert(typeof(utils.sanitizeString) == 'function');

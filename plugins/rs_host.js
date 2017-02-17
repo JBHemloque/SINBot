@@ -1,7 +1,7 @@
 // This is a generic rivescript host. It manages its own state and memory.
 'use strict';
 
-var utils = require('../utils.js');
+var utils = require('../server/utils.js');
 var RiveScript = require("rivescript");
 var fs = require("fs");
 var async = require('async');
@@ -9,89 +9,89 @@ var _ = require('underscore');
 
 exports.RSHost = RSHost;
 function RSHost(userDataDir, memoryPrefix, options) {
-	this.userDataDir = normalizePath(userDataDir);
-	this.lastMessages = [];
-	this.undefinedMessages = [];
-	this.memoryPrefix = normalizePath(memoryPrefix);	// A scoping prefix for memory management
-	this.botStarted = false;
-	this.rsBot = new RiveScript(options);
+    this.userDataDir = normalizePath(userDataDir);
+    this.lastMessages = [];
+    this.undefinedMessages = [];
+    this.memoryPrefix = normalizePath(memoryPrefix);    // A scoping prefix for memory management
+    this.botStarted = false;
+    this.rsBot = new RiveScript(options);
 
     function normalizePath(path) {
-    	if (path) {
-    		if (path.endsWith('/') === false) {
-	    		path += '/';
-	    	}
-    	}
-    	return path;
+        if (path) {
+            if (path.endsWith('/') === false) {
+                path += '/';
+            }
+        }
+        return path;
     }
 }
 
 RSHost.prototype.setup = function(rivescriptArray, callback) {
-	var that = this;
+    var that = this;
     // Now load the rivescript
     async.eachSeries(rivescriptArray, loadDirectory, function() {
-    	// All done!
-		// Now the replies must be sorted!
-		console.log("Sorting...")
-	    that.rsBot.sortReplies();
+        // All done!
+        // Now the replies must be sorted!
+        console.log("Sorting...")
+        that.rsBot.sortReplies();
 
-	    that.botStarted = true;
-	    if (callback) {
-	    	callback();
-	    }
-	    console.log("Ready!");
+        that.botStarted = true;
+        if (callback) {
+            callback();
+        }
+        console.log("Ready!");
     });
 
     function loadDirectory(rs, cb) {
-    	that.rsBot.loadDirectory(rs, function(batch_num) {
-    		console.log("Batch #" + batch_num + " has finished loading!");
-    		cb();
-    	}, function(error) {
-    		utils.logError("Error when loading files: " + error, error);
-    		cb();
-    	});
+        that.rsBot.loadDirectory(rs, function(batch_num) {
+            console.log("Batch #" + batch_num + " has finished loading!");
+            cb();
+        }, function(error) {
+            utils.logError("Error when loading files: " + error, error);
+            cb();
+        });
     }
 }
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.
 RSHost.prototype.gossip = function() {
-	var msgs = [];
-	_.each(this.undefinedMessages, function(item) {
-		msgs.push(item.user + " said: " + item.statement);
+    var msgs = [];
+    _.each(this.undefinedMessages, function(item) {
+        msgs.push(item.user + " said: " + item.statement);
         msgs.push("And the bot said: " + item.reply);
-	});
-	_.each(this.lastMessages, function(item) {
-		msgs.push(item.user + " said: " + item.statement);
-		msgs.push("And the bot said: " + item.reply);
-	});
-	return msgs;
+    });
+    _.each(this.lastMessages, function(item) {
+        msgs.push(item.user + " said: " + item.statement);
+        msgs.push("And the bot said: " + item.reply);
+    });
+    return msgs;
 }
 
 // Talk to the bot
 RSHost.prototype.reply = function(statement, name, userid) {
-	if (this.botStarted) {							
-		var reply = this.getReply(userid, name, statement);
-		reply = this.stripGarbage(reply);                
-		var cache = {user: name, statement: statement, reply: reply};
+    if (this.botStarted) {                            
+        var reply = this.getReply(userid, name, statement);
+        reply = this.stripGarbage(reply);                
+        var cache = {user: name, statement: statement, reply: reply};
         if (reply.includes("undefined")) {
             this.undefinedMessages.push(cache);   
         }
-		this.lastMessages.push(cache);
-		while (this.lastMessages.length > 10) {
-			this.lastMessages.shift();
-		}
-		return reply;
-	} else {
-		return "Sorry I'm still waking up...";
-	}
+        this.lastMessages.push(cache);
+        while (this.lastMessages.length > 10) {
+            this.lastMessages.shift();
+        }
+        return reply;
+    } else {
+        return "Sorry I'm still waking up...";
+    }
 }
 
 RSHost.prototype.setSubroutine = function(identifier, callback) {
-	this.rsBot.setSubroutine(identifier, callback);
+    this.rsBot.setSubroutine(identifier, callback);
 }
 
 RSHost.prototype.getUservar = function(userid, varId) {
-	return this.rsBot.getUservar(userid, varId);
+    return this.rsBot.getUservar(userid, varId);
 }
 
 // The meat of the logic is in here. This function gets a reply from the bot,
@@ -100,7 +100,7 @@ RSHost.prototype.getUservar = function(userid, varId) {
 RSHost.prototype.getReply = function(userid, username, message) {
     var filename = this.userDataDir;
     if (this.memoryPrefix) {
-    	filename += this.memoryPrefix;
+        filename += this.memoryPrefix;
     }
     filename += (userid + ".json");
 
@@ -123,9 +123,9 @@ RSHost.prototype.getReply = function(userid, username, message) {
     }
     // Get a reply.
     // We'll scope everything per-user...
-	if (this.rsBot.getUservar(userid, "name") == "undefined") {
-		this.rsBot.setUservar (userid, "name", username);
-	}
+    if (this.rsBot.getUservar(userid, "name") == "undefined") {
+        this.rsBot.setUservar (userid, "name", username);
+    }
     var reply = this.rsBot.reply(userid, message);
     // Rarely do we have a reply that looks like this: "}"
     if (reply == "}") {

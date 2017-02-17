@@ -1,5 +1,5 @@
 var assert = require('assert');
-var bot = require("../bot.js");
+var bot = require("../server/bot.js");
 var mocks = require('./mocks.js');
 
 // {
@@ -22,29 +22,36 @@ var mocks = require('./mocks.js');
 // 		}
 
 function handleUsage(command, user) {
-	var handledCommand = false;
-	var client = mocks.makeClient(function(channel, message) {
-		if (message.includes("Usage: ")) {
-	    	handledCommand = true;
-	    } else {
-	    	console.log("Unexpected usage reply: " + message);
-	    }
-	});
-	bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
-	bot.procCommand(client, mocks.makeMessage(command, user));
-	return handledCommand;
+    if (!user) {
+        user = mocks.nonAdminUser;
+    }
+    // Usage always comes in via PM, so we need to account for that...
+    var oldUserSendMessage = user.sendMessage;
+    user.sendMessage = function(message) {
+        if (message.includes("Usage: ")) {
+            handledCommand = true;
+        } else {
+            console.log("Unexpected usage reply: " + message);
+        }
+    };
+    var handledCommand = false;
+    var client = mocks.makeClient();
+    bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
+    bot.procCommand(client, mocks.makeMessage(command, user));
+    user.sendMessage = oldUserSendMessage;
+    return handledCommand;
 }
 
 function handleAdminCheck(command) {
-	var handledCommand = false;
-	var client = mocks.makeClient(function(channel, message) {
-		if (message.includes("you are not allowed to do that")) {
-    		handledCommand = true;
-		}
-	});
-	bot.startBot(client, mocks.makeConfig());
-	bot.procCommand(client, mocks.makeMessage(command, mocks.nonAdminUser));
-	return handledCommand;
+    var handledCommand = false;
+    var client = mocks.makeClient();
+    bot.startBot(client, mocks.makeConfig());
+    bot.procCommand(client, mocks.makeMessage(command, mocks.nonAdminUser, function(message) {
+        if (message.includes("you are not allowed to do that")) {
+            handledCommand = true;
+        }
+    }));
+    return handledCommand;
 }
 
 function createBot(client, bot) {
@@ -127,25 +134,25 @@ describe('edsm', function(){
 
     it("should calculate a route properly", function() {
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message) {
+        var client = mocks.makeClient();
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!route 33.06 8", mocks.nonAdminUser, function(message) {
             if (message == "Estimated plot range should be around **968.30ly** - check range *962.97 to 973.63 ly*") {
                 handledCommand = true;
             }
-        });
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!route 33.06 8"));
+        }));
         assert(handledCommand);
     });
 
     it("should calculate a route properly with a max distance", function() {
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message) {
+        var client = mocks.makeClient();
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!route 34.54 9 980", mocks.nonAdminUser, function(message) {
             if (message == "Estimated plot range should be around **976.41ly** - check range *971.04 to 981.78 ly*") {
                 handledCommand = true;
             }
-        });
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!route 34.54 9 980"));
+        }));
         assert(handledCommand);
     });
 
@@ -167,49 +174,49 @@ describe('edsm', function(){
 
     it("should calculate g properly for earth", function() {
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message) {            
+        var client = mocks.makeClient();
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!g 1 6371", mocks.nonAdminUser, function(message) {
             if (message == "The gravity for a planet with 1 Earth masses and a radius of 6371 km is **9.83** m/s^2 or **1.00** g. It has a density of **5.52e+3** kg/m^3.\n**Likely**: AW, HMC, WW\n**Possible**: ELW, MR") {
                 handledCommand = true;
             }
-        });
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!g 1 6371"));
+        }));
         assert(handledCommand);
     });
 
     it("should calculate g properly for a near earth", function() {
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message) {            
+        var client = mocks.makeClient();
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!g 1.1 6371.2", mocks.nonAdminUser, function(message) {
             if (message == "The gravity for a planet with 1.1 Earth masses and a radius of 6371.2 km is **10.81** m/s^2 or **1.10** g. It has a density of **6.07e+3** kg/m^3.\n**Likely**: AW, ELW, HMC, WW\n**Possible**: MR") {
                 handledCommand = true;
             }
-        });
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!g 1.1 6371.2"));
+        }));
         assert(handledCommand);
     });
 
     it("should calculate g properly for a sub earth", function() {
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message) {            
+        var client = mocks.makeClient();
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!g 0.25 3456", mocks.nonAdminUser, function(message) {
             if (message == "The gravity for a planet with 0.25 Earth masses and a radius of 3456 km is **8.35** m/s^2 or **0.85** g. It has a density of **8.65e+3** kg/m^3.\n**Likely**: MR\n**Possible**: AW, HMC, WW") {
                 handledCommand = true;
             }
-        });
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!g 0.25 3456"));
+        }));
         assert(handledCommand);
     });
 
     it("should calculate g properly for a super earth", function() {
         var handledCommand = false;
-        var client = mocks.makeClient(function(channel, message) {
+        var client = mocks.makeClient();
+        createBot(client, bot);
+        bot.procCommand(client, mocks.makeMessage("!g 3.64 8245", mocks.nonAdminUser, function(message) {
             if (message == "The gravity for a planet with 3.64 Earth masses and a radius of 8245 km is **21.36** m/s^2 or **2.17** g. It has a density of **9.27e+3** kg/m^3.\n**Likely**: MR\n**Possible**: AW, HMC, WW") {
                 handledCommand = true;
             }
-        });
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!g 3.64 8245"));
+        }));
         assert(handledCommand);
     });
 })

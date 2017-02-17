@@ -11,5 +11,5 @@ var commands = { };
 exports.commands = commands;
 
 exports.findCommand = function(command) {
-	return commands[command];
+    return commands[command];
 }
