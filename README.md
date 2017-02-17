@@ -28,7 +28,7 @@ Once you have node installed running `npm install` from the bot directory should
 Before first run you will need to create a `config.js` file. The token for a discord bot account are required. The other credentials are not required for the bot to run, but highly recommended as commands that depend on them will malfunction. See `sample_config.js`.
 
 To start the bot just run
-`node server.js`.
+`node server/server.js`.
 
 The bot doesn't include an uncaught exception handler, so I highly recommend running the bot with a process manager like pm2.
 
