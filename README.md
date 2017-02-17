@@ -60,3 +60,13 @@ This bot includes code from GreenImp's JavaScript RPG dice roller: https://githu
 7) Copy this into the auth.json's "google_custom_search" section.
 
 Make sure you also have your google server API key or the search will fail.
+
+## Special instructions for setting up the Elite plugin. 
+
+The Elite plugin uses ImageMagick to generate the region maps from data dumped from edsm. In order to have accurate maps, you will need to have ImageMagick installed (https://www.imagemagick.org/script/index.php) and a periodic process to grab data from edsm. In addition, the Galactic Mapping Project data should be periodically refreshed in order for it to be up to date.
+
+1) Install ImageMagick from https://www.imagemagick.org/script/index.php and ensure it is on your path. If you fail to do this, you will see errors from the region commands (showloc, region, etc) in the bots error logs.
+
+2) Write a scheduled task to download and refresh the region data. A sample is included in this repo (refreshregions.sh). This script should download https://www.edsm.net/dump/systemsWithCoordinates.json, stop the bot, run plugins/elite/makeregions (to process the system data into a region database), and then restart the bot. The plugin will fall back to a backup region file if it can't find/load the primary file, and the sample script creates this.
+
+3) Write a scheduled task to download and refresh the galactic mapping project data. There is a shell script, plugins/elite/refreshgmp, which does this. This isn't critical, since the GMP data refresh is fast, and it happens automatically when you start the bot, so it will happen as a side effect of the region data refresh.

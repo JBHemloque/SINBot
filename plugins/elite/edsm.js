@@ -1,12 +1,15 @@
 var Client = require('node-rest-client').Client;
-var utils = require('../server/utils.js');
+var path = require('path');
+var base = require(path.resolve(__dirname, '../../base.js'));
+var utils = require(path.resolve(base.path, 'server/utils.js'));
  
 var client = new Client();
 
 var aliases = {};
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    aliases = require("../sysalias.json");
+    console.log('  - Loading ' + path.resolve(base.path, "sysalias.json"));
+    aliases = require(path.resolve(base.path, "sysalias.json"));
 } catch(e) {
     //No aliases defined
     aliases = {};
@@ -15,7 +18,8 @@ try{
 var cmdraliases = {};
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    cmdraliases = require("../cmdralias.json");
+    console.log('  - Loading ' + path.resolve(base.path, "cmdralias.json"));
+    cmdraliases = require(path.resolve(base.path, "cmdralias.json"));
 } catch(e) {
     //No aliases defined
     cmdraliases = {};
@@ -104,7 +108,7 @@ var getPosition = function(commander, bot, message) {
 
 var _getSystemCoords = function(system, callback) {
     var url = "https://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1";
-    client.get(url, function (data, response) {        
+    client.get(url, function (data, response) {
         if (data) {
             if (!data.name) {
                 data = null;
@@ -139,15 +143,12 @@ var _getCommanderCoords = function(commander, callback) {
 }
 
 var _getSystemOrCmdrCoords = function(query, callback) {
-    console.log("getSystemOrCmdrCoords(" + query + ")");
     _getSystemCoords(query, function(coords) {
         if (coords) {
-            console.log(query + " is a system");
             callback(coords, false);
         } else {
             _getCommanderCoords(query, function(coords) {
                 if (coords) {
-                    console.log(query + " is a commander");
                 } else {
                     console.log("Could not find " + query);
                 }
@@ -247,11 +248,16 @@ function getNoCoordString(item, isCmdr) {
 }
 
 var getDistance = function(first, second, bot, message) {
+    console.log('getDistance(' + first + ', ' + second + ', bot, message)');
     // Each query item could be a system or a commander...
     _getSystemOrCmdrCoords(first, function(firstCoords, firstIsCmdr) {
+        console.log(firstCoords);
         if (firstCoords) {
+            console.log('Got coords for ' + first);
             _getSystemOrCmdrCoords(second, function(secondCoords, secondIsCmdr) {
+                console.log(secondCoords);
                 if (secondCoords) {
+                    console.log('got coords for ' + second);
                     if (firstCoords.coords && secondCoords.coords) {
                         var dist = _calcDistance(firstCoords.coords, secondCoords.coords);
                         utils.sendMessage(bot, message.channel, "Distance between " + first + " and " + second + " is " + dist.toFixed(2) + " ly");

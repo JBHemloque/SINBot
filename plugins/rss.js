@@ -5,14 +5,16 @@ var FeedParser = require('feedparser');
 var Iconv = require('iconv').Iconv;
 var fs = require("fs");
 var utils = require("../server/utils");
+var base = require('../base.js');
+var path = require('path');
 
 var feeds;
 var discord;
 
 var old_guids;
 try{
-    // This path differs from the one below because the context it's run from is different
-    old_guids = require("../old_rss_guids.json");
+    console.log('  - Loading ' + path.resolve(base.path, "old_rss_guids.json"));
+    old_guids = require(path.resolve(base.path, "old_rss_guids.json"));
     console.log("Read old guids:");
     console.log(JSON.stringify(old_guids));
 } catch(e) {
@@ -24,7 +26,7 @@ try{
 function addGuid(guid){
     old_guids[guid] = guid;
     // This path differs from the one above because the context it's run from is different
-    fs.writeFile("../old_rss_guids.json",JSON.stringify(old_guids,null,2), null);
+    fs.writeFile(path.resolve(base.path, "old_rss_guids.json"),JSON.stringify(old_guids,null,2), null);
 }
 
 exports.findCommand = function(command) {

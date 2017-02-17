@@ -4,8 +4,11 @@ var bot = require('./bot.js');
 var Discord = require("discord.js");
 var config = require('../config.js');
 var utils = require('./utils.js');
+var base = require('../base.js');
 
 var SINBot = new Discord.Client();
+
+console.log('Bot base directory: ' + base.path);
 
 // the ready event is vital, it means that your bot will only start reacting to information
 // from Discord _after_ ready is emitted.

@@ -1,13 +1,15 @@
 'use strict';
 
-var utils = require('../server/utils.js');
-var edsm = require('./edsm.js');
 var fs = require("fs");
-var alphanum = require("../server/alphanum.js");
 var _ = require("underscore");
 var request = require('request');
-
+var path = require('path');
+var base = require('../base.js');
+var utils = require('../server/utils.js');
+var edsm = require('./elite/edsm.js');
+var alphanum = require("../server/alphanum.js");
 var regionjpg = require("./elite/regionjpg.js");
+var gmp = require('./elite/gmp.js');
 
 var botcfg = null;
 var pmIfSpam = false;
@@ -15,14 +17,16 @@ var pmIfSpam = false;
 var regions;
 
 try{
-    regions = require("./elite/regions.json");
+    console.log('  - Loading ' + path.resolve(base.path, "plugins/elite/regions.json"));
+    regions = require(path.resolve(base.path, "plugins/elite/regions.json"));
 } catch(e) {
     // Do nothing, we'll try to load the backup
 }
 
 if (regions === undefined) {
     try {
-        regions = require("./elite/bakregions.json");
+        console.log('  - Loading ' + path.resolve(base.path, "plugins/elite/bakregions.json"));
+        regions = require(path.resolve(base.path, "plugins/elite/bakregions.json"));
     } catch (e) {
         regions = {};
     }
@@ -77,43 +81,14 @@ function handleGravity(planetMass, planetRadius) {
 }
 
 function writeAliases() {
-    fs.writeFile("../sysalias.json",JSON.stringify(edsm.aliases,null,2), null);
+    fs.writeFile(path.resolve(base.path, "sysalias.json"),JSON.stringify(edsm.aliases,null,2), null);
 }
 
 function writeCmdrAliases() {
-    fs.writeFile("../cmdralias.json",JSON.stringify(edsm.cmdraliases,null,2), null);
+    fs.writeFile(path.resolve(base.path, "cmdralias.json"),JSON.stringify(edsm.cmdraliases,null,2), null);
 }
 
-var gmpData = [];
-try{
-    // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    gmpData = require('../gmp-edd.json');
-} catch(e) {
-    //No aliases defined
-    gmpData = [];
-}
-function writeGmpData() {
-    fs.writeFile("./gmp-edd.json",JSON.stringify(gmpData,null,2), null);
-}
-function refreshGmpData(callback) {
-    request('https://www.edsm.net/galactic-mapping/json-edd', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            try {
-                var gmp = JSON.parse(body);
-                if (gmp.length > 0) {
-                    gmpData = gmp;
-                    writeGmpData();
-                    callback();
-                }
-            } catch(e) {
-                utils.logError("Couldn't refresh galactic mapping project data from EDSM", e);
-                callback(e);
-            }
-        } else {
-            callback(error);
-        }        
-    });
-}
+
 
 function getRegionName(location) {
     var names = location.split(/ [a-z][a-z]-[a-z] /i);
@@ -145,8 +120,8 @@ function _showRegion(region, bot, msg) {
     getRegionMap(region, function(data) {
         if (data) {
             var regionString = region;
-            if (data.map) {                            
-                msg.channel.sendFile("./plugins/elite/maps/" + data.map, data.map, data.region);
+            if (data.map) {
+                msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map, data.region);
                 regionString = data.region;
                 var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
                 var regionDate = new Date(data.date).getTime();
@@ -172,171 +147,12 @@ function showRegion(args, bot, msg) {
     }
 }
 
-const GMP_SUPPORTED_TYPES = {
-    'planetaryNebula'        : 'Planetary Nebula',
-    'nebula'                : 'Nebula',
-    'blackhole'                : 'Black Hole',
-    'historicalLocation'    : 'Historical Location',
-    'stellarRemnant'        : 'Stellar Remnant',
-    'minorPOI'                : 'Minor POI',
-    'explorationHazard'        : 'Exploration Hazard',
-    'starCluster'            : 'Star Cluster',
-    'pulsar'                : 'Neutron Star'
-};
-
-// Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
-function gmpExceptionReport(center, distance, bot, channel) {
-    var gmp = gmpData;
-    var msgArray = [];
-    for (var i = 0; i < gmp.length; i++) {
-        var item = gmp[i];
-        if (GMP_SUPPORTED_TYPES[item.type]) {
-            var itemString = "[" + item.id + "] " + item.name + " (" + GMP_SUPPORTED_TYPES[item.type] + ") -- " + item.galMapSearch + " -- ";
-            var process = true;    // We can set this to false to indicate we should skip processing this item
-            // If we have a center, calculate the distance between this item and that. 
-            if (center) {
-                // We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
-                // EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
-                // GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
-                var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
-                var itemDistance = edsm.calcDistance(center, coords);
-                itemString += " {" + itemDistance.toFixed(2) + " ly}";
-                if (itemDistance > distance) {
-                    process = false;
-                }
-            }
-            if (process) {
-                if (item.descriptionHtml == undefined) {
-                    itemString += " has no description";
-                    msgArray.push(itemString);
-                } else {
-                    if (item.descriptionHtml.length < 50) {
-                        item.shortDescription = true;
-                    }
-                    if (item.descriptionHtml.includes("<a href") == false) {
-                        item.noForumLink = true;
-                    }
-                    if (item.descriptionHtml.includes("<img ") == false) {
-                        item.noImage = true;
-                    }
-                    if (item.shortDescription || item.noForumLink || item.noImage) {
-                        var ex = "";
-                        if (item.shortDescription) {
-                            if (ex.length > 0) {
-                                ex += ", ";
-                            }
-                            ex += "short description";
-                        }
-                        if (item.noForumLink) {
-                            if (ex.length > 0) {
-                                ex += ", ";
-                            }
-                            ex += "no forum link";
-                        }
-                        if (item.noImage) {
-                            if (ex.length > 0) {
-                                ex += ", ";
-                            }
-                            ex += "no image";
-                        }
-                        itemString += " is flagged for: " + ex;
-                        msgArray.push(itemString);
-                    }
-                }
-            }
-        }                    
-    }
-    if(msgArray.length > 0) {
-        msgArray.unshift("**GMP Data exceptions:**");
-        utils.sendMessages(bot, channel, msgArray);
-    } else {
-        utils.sendMessage(bot, channel, "All data acceptable!");
-    }
-}
-
-// Generate a report of all GMP exceptions within distance ly of coords. If coords is null, generate a report of everything.
-function gmpPoiList(centerName, center, distance, bot, channel) {
-    var header = "**GMP POI";
-    if (center) {
-        header += " within " + distance + " light years of " + centerName;
-    }
-    header += ":**";
-    var gmp = gmpData;
-    var msgArray = [];
-    for (var i = 0; i < gmp.length; i++) {
-        var item = gmp[i];
-        if (GMP_SUPPORTED_TYPES[item.type]) {
-            var process = true;    // We can set this to false to indicate we should skip processing this item
-            // If we have a center, calculate the distance between this item and that. 
-            var itemDistance;
-            if (center) {
-                // We'll need to create a new coords structure for the item, since it's not in the same format as the rest of EDSM.
-                // EDSM format is: "coords":{"x":X,"y":Y,"z":Z}
-                // GMP format is: "coordinates": [-1259.84375,-177.4375,30270.28125]
-                var coords = {x: item.coordinates[0], y: item.coordinates[1], z: item.coordinates[2]};
-                itemDistance = edsm.calcDistance(center, coords);
-                if (itemDistance > distance) {
-                    process = false;
-                }
-            }
-            if (process) {
-                msgArray.push("**" + item.name + "**");
-                if (itemDistance) {
-                    msgArray.push(itemDistance.toFixed(2) + " ly");
-                }
-                msgArray.push(item.galMapSearch);
-                msgArray.push(GMP_SUPPORTED_TYPES[item.type] + "\n");                
-            }
-        }                    
-    }
-    if(msgArray.length > 0) {
-        msgArray.unshift(header);
-        utils.sendMessages(bot, channel, msgArray);
-    } else {
-        utils.sendMessage(bot, channel, header + " **No GMP POI matching**");
-    }
-}
-
-function gmpItemMatch(item, query) {
-    try {
-        if (item.galMapSearch.toUpperCase().includes(query)) {
-            return true;
-        }
-    } catch (e) {
-        ;
-        // console.log("Couldn't do the galmap search for [" + item.id + "]: " + e);
-        // console.log(JSON.stringify(item));
-    }
-    try {
-        if (item.name.toUpperCase().includes(query)) {
-            return true;
-        }
-    } catch (e) {
-        ;
-        // console.log("Couldn't do the name search for [" + item.id + "]: " + e);
-        // console.log(JSON.stringify(item));
-    }
-    return false;
-}
-
-function findGMPItems(query) {
-    query = query.toUpperCase();
-    var ret = [];
-    for (var i = 0; i < gmpData.length; i++) {
-        var item = gmpData[i];
-        if (gmpItemMatch(item, query)) {
-            ret.push(item);
-        }
-    }
-    return ret;
-}
-
 var commands = {
     "refresh_gmp": {
         help: "Refresh the Galactic Mapping Project data from EDSM",
         adminOnly: true,
         process: function(args,bot,msg) {
-            refreshGmpData(function(error) {
+            gmp.refreshGmpData(function(error) {
                 if (error) {
                     utils.sendMessage(bot, msg.channel, "Error refreshing GMP data: " + JSON.stringify(error));
                 } else {
@@ -351,14 +167,14 @@ var commands = {
         process: function(args,bot,msg) {
             var query = utils.compileArgs(args).toUpperCase();
             if (query.length > 0) {
-                if (gmpData && gmpData.length > 0) {
+                if (gmp.hasGmpData()) {
                     var msgs = [];
-                    var items = findGMPItems(query);
+                    var items = gmp.findGMPItems(query);
                     for (var i = 0; i < items.length; i++) {
                         var item = items[i];
                         msgs.push("**" + item.name + "**");
                         msgs.push(item.galMapSearch);
-                        msgs.push(GMP_SUPPORTED_TYPES[item.type]);
+                        msgs.push(gmp.getGmpType(item.type));
                         var desc = item.descriptionMardown;
                         if (desc.length > 800) {
                             // Too long...
@@ -366,6 +182,7 @@ var commands = {
                             desc += "...";
                         }
                         msgs.push(desc);
+                        msgs.push(" ");
                     }
                     if (msgs.length > 0) {
                         utils.sendMessages(bot,msg.channel,msgs);
@@ -381,10 +198,12 @@ var commands = {
         }
     },
     "gmp_list": {
+        // @@todo - broken!
         usage: "<optional distance in light years> -> <optional system to serve as a center>",
         spammy: true,
         help: "Returns a list of galactic mapping data points of interest, optionally within a certain range of a point.",
         process: function(args,bot,msg) {
+            console.log("gmp_list...");
             var that = this;
             var query = utils.compileArgs(args).split(/->|:/);
             if ((query[0].length > 0) && (query.length <= 2)) {
@@ -400,7 +219,7 @@ var commands = {
                     // Radius report.
                     edsm.getSystemOrCmdrCoords(query[1], function(coords) {
                         if (coords && coords.coords) {
-                            gmpPoiList(query[1], coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
+                            gmp.gmpPoiList(query[1], coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
                         } else {
                             utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
                         }
@@ -410,7 +229,8 @@ var commands = {
                 }
             } else {
                 // Do everything
-                gmpPoiList(undefined, undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
+                console.log("Running gmpPoiList on everything...");
+                gmp.gmpPoiList(undefined, undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
             }
         }
     },
@@ -434,7 +254,7 @@ var commands = {
                     // Radius report.
                     edsm.getSystemOrCmdrCoords(query[1], function(coords) {
                         if (coords && coords.coords) {
-                            gmpExceptionReport(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
+                            gmp.gmpExceptionReport(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
                         } else {
                             utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
                         }
@@ -444,7 +264,7 @@ var commands = {
                 }
             } else {
                 // Do everything
-                gmpExceptionReport(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
+                gmp.gmpExceptionReport(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
             }
         }
     },
@@ -517,7 +337,7 @@ var commands = {
                         getRegionMap(position, function(data) {
                             if (data) {
                                 if (data.map) {
-                                    msg.channel.sendFile("./plugins/elite/maps/" + data.map, data.map);
+                                    msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map);
                                     utils.sendMessage(bot, msg.channel, posString);
                                 } else {
                                     utils.sendMessage(bot, msg.channel, posString);
@@ -593,7 +413,7 @@ var commands = {
             } else {
                 utils.displayUsage(bot,msg,this);
             }
-        }        
+        }
     },
     "cmdralias": {
         usage: "<alias> -> <commander> [-> <optional expedition>]",
@@ -800,7 +620,7 @@ var commands = {
     "expsa": {
         usage: "<system alias> -> <expedition>",
         adminOnly: true,
-        help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",        
+        help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",
         process: function(args, bot, msg) {
             var query = utils.compileArgs(args).split("->");
             if (query.length == 2) {
@@ -810,7 +630,7 @@ var commands = {
                     if (edsm.aliases[query[0].toLowerCase()]) {
                         edsm.aliases[query[0].toLowerCase()].expedition = query[1];
                         writeAliases();
-                        utils.sendMessage(bot, msg.channel, "Assigned " + query[0] + " to " + query[1]);                    
+                        utils.sendMessage(bot, msg.channel, "Assigned " + query[0] + " to " + query[1]);
                     } else {
                         utils.sendMessage(bot, msg.channel, query[0] + " is not in my records.")
                     }
@@ -1045,7 +865,7 @@ var normalizeSystem = function(system) {
             return utils.sanitizeString(edsm.aliases[key].system)
         }
     }
-    var items = findGMPItems(system);
+    var items = gmp.findGMPItems(system);
     if (items.length == 1) {
         if (items[0].galMapSearch) {
             return items[0].galMapSearch;
@@ -1062,7 +882,7 @@ exports.setup = function(config, bot, botconfig) {
     botcfg = botconfig;
     // For dependency injection
     if (botconfig.edsm) {
-        edsm = botconfig.edsm;        
+        edsm = botconfig.edsm;
     }
     if (botconfig.pmIfSpam) {
         pmIfSpam = true;
