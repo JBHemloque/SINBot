@@ -31,9 +31,10 @@ SINBot.on('disconnected', function() {
 });
 
 function startBot() {
-    SINBot.login(config.TOKEN).then(atoken => console.log('logged in with token ' + atoken)).catch(console.error);
-
+	// Load all the plugins and everything before we login, to avoid race conditions with the async login
     bot.startBot(SINBot, config);
+
+    SINBot.login(config.TOKEN).then(atoken => console.log('logged in with token ' + atoken)).catch(console.error);
 }
 
 startBot();

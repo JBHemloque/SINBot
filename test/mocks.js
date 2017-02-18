@@ -156,7 +156,7 @@ var adminUser = makeUser("Admin user", adminId);
 var userList = [adminUser, nonAdminUser];
 
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 exports.makeMessage = makeMessage;
