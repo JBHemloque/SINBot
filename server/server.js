@@ -44,8 +44,7 @@ function startBot() {
                 .catch(console.error);
         });
     } catch (e) {
-        console.log("Error: " + e);
-        console.log(e.stack);
+        utils.logError("startBot error", e);
     }
 }
 
