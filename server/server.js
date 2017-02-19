@@ -6,7 +6,12 @@ var config = require('../config.js');
 var utils = require('./utils.js');
 var base = require('../base.js');
 
-var SINBot = new Discord.Client();
+var options = {};
+if (config.DISCORD_OPTIONS) {	
+	options = config.DISCORD_OPTIONS;
+}
+console.log("Using discord options: " + JSON.stringify(options));
+var SINBot = new Discord.Client(options);
 
 console.log('Bot base directory: ' + base.path);
 
