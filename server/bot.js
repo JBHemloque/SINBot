@@ -152,11 +152,11 @@ function makeAlias(alias, output, addExtrasCallback) {
             var key = aliasStruct.alias.toLowerCase();
             if (aliases[key]) {
                 var item = aliases[key];
-                _.extend(item, aliasStruct); 
+                _.extend(item, aliasStruct);
                 aliases[key] = item;
             } else {
                 aliases[key] = aliasStruct;
-            }           
+            }
             //now save the new alias
             writeAliases();
             return aliasStruct;
@@ -175,7 +175,7 @@ var guildListCmd = {
         for (var i = 0; i < serverList.length; i++) {
             servers.push(serverList[i].name + " [" + serverList[i].id + "]");
         }
-        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,servers); 
+        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,servers);
     }
 };
 
@@ -219,12 +219,12 @@ var commands = {
                 var alias = aliases[args[1].toLowerCase()];
                 var output = args[1] + " is not an alias.";
                 if (alias) {
-                    output = alias.alias + " -> " + alias.output; 
+                    output = alias.alias + " -> " + alias.output;
                 }
                 utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
             } else {
                 displayUsage(bot, message, this);
-            }       
+            }
         }
     },
     "aliases": {
@@ -298,7 +298,7 @@ var commands = {
     "say": {
         usage: "<message>",
         help: "Bot says message.",
-        process: function(args, bot, message) { 
+        process: function(args, bot, message) {
             var msg = compileArgs(args);
             if (msg) {
                 utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,msg);
@@ -310,7 +310,7 @@ var commands = {
     "announce": {
         usage: "<message>",
         help: "Bot says message with text to speech.",
-        process: function(args, bot, message) { 
+        process: function(args, bot, message) {
             var msg = compileArgs(args);
             if (msg) {
                 utils.ttsMessage(bot, message.channel,msg);
@@ -337,7 +337,7 @@ var commands = {
         process: function(args, bot, message) {
             utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, version + " is going down NOW!", function(error, message) {
                 process.exit(0);
-            });         
+            });
         }
     },
     "adminlist": {
@@ -417,7 +417,7 @@ var commands = {
                         var msgObj = {
                             channel: message.channel.id,
                             content: msgtext
-                        };                  
+                        };
                         addMessage(target.id, msgObj);
                         utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"message saved.");
                     });
@@ -426,7 +426,7 @@ var commands = {
                 }
             } else {
                 displayUsage(bot, message, this);
-            }           
+            }
         }
     },
     "uptime": {
@@ -465,7 +465,7 @@ var commands = {
             var command = compileArgs(args).toLowerCase();
             if (command) {
                 var outputArray = [];
-                var cmd = findCommand(command);             
+                var cmd = findCommand(command);
                 if (cmd) {
                     var output = utils.bold(command);
                     if (cmd.usage) {
@@ -487,10 +487,10 @@ var commands = {
                     }
                 }
                 if (outputArray.length > 0) {
-                    utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray); 
+                    utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
                 } else {
                     utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, command + " is not a valid command or plugin");
-                }               
+                }
             } else {
                 var includeAdmin = isAdmin(message.author.id);
                 var outputArray = helpForCommands(version + " commands:\nBuilt-in", commands, includeAdmin);
@@ -500,7 +500,7 @@ var commands = {
                     }
                 }
                 utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
-            }           
+            }
         }
     },
 };
@@ -557,9 +557,9 @@ function findCommand(command) {
                 }
             } catch(e) {
                 utils.logError("Couldn't call findCommand() on plugin " + plugins[i].name, e);
-            }   
+            }
         }
-    }   
+    }
     return null;
 }
 
@@ -601,7 +601,7 @@ function botShouldHandleCommand(bot, message) {
 var defaultCommandHandler = function(args, bot, message) {
     if(config.respondToInvalid){
         utils.sendMessage(bot, message.channel, "Invalid command " + message.content);
-    } 
+    }
 }
 
 var procAlias = function(bot, message, cmd, extra) {
@@ -627,7 +627,7 @@ function procCommand(bot, message) {
             sendMessage(bot, message.channel,message.author + ", you called?");
         }
         checkForMessages(bot, message.author);
-    } 
+    }
 }
 
 function compileCommand(handleCommand, args) {
@@ -666,7 +666,9 @@ function procPresence(bot, user, status, gameId) {
         if(status != 'offline'){
             checkForMessages(bot, user);
         }
-    }catch(e){}
+    } catch(e){
+        utils.logError("procPresence error", e);
+    }
 }
 
 function startBot(bot, cfg, callback) {
@@ -703,7 +705,7 @@ function startBot(bot, cfg, callback) {
         try {
             if (plugins[i].plugin.setup) {
                 debugLog("Running setup for " + plugins[i].name);
-                plugins[i].plugin.setup(plugins[i].config, bot, botcfg);            
+                plugins[i].plugin.setup(plugins[i].config, bot, botcfg);
             }
         } catch(e) {
             utils.logError("Couldn't run setup for " + plugins[i].name, e);
