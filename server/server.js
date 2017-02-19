@@ -7,8 +7,8 @@ var utils = require('./utils.js');
 var base = require('../base.js');
 
 var options = {};
-if (config.DISCORD_OPTIONS) {	
-	options = config.DISCORD_OPTIONS;
+if (config.DISCORD_OPTIONS) {
+    options = config.DISCORD_OPTIONS;
 }
 console.log("Using discord options: " + JSON.stringify(options));
 var SINBot = new Discord.Client(options);
@@ -36,10 +36,17 @@ SINBot.on('disconnected', function() {
 });
 
 function startBot() {
-	// Load all the plugins and everything before we login, to avoid race conditions with the async login
-    bot.startBot(SINBot, config);
-
-    SINBot.login(config.TOKEN).then(atoken => console.log('logged in with token ' + atoken)).catch(console.error);
+    // Load all the plugins and everything before we login, to avoid race conditions with the async login
+    try {
+        bot.startBot(SINBot, config, function() {
+            SINBot.login(config.TOKEN)
+                .then(atoken => console.log('logged in with token ' + atoken))
+                .catch(console.error);
+        });
+    } catch (e) {
+        console.log("Error: " + e);
+        console.log(e.stack);
+    }
 }
 
 startBot();

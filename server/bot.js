@@ -669,7 +669,7 @@ function procPresence(bot, user, status, gameId) {
     }catch(e){}
 }
 
-function startBot(bot, cfg) {
+function startBot(bot, cfg, callback) {
     config = cfg;
 
     version = config.NAME + "- SINBot Version " + package_json.version;
@@ -726,6 +726,10 @@ function startBot(bot, cfg) {
             }
         }
     };
+
+    if (callback) {
+        callback();
+    }
 }
 
 exports.commands = commands;
