@@ -36,16 +36,18 @@ SINBot.on('disconnected', function() {
 });
 
 function startBot() {
-    // Load all the plugins and everything before we login, to avoid race conditions with the async login
-    try {
-        bot.startBot(SINBot, config, function() {
-            SINBot.login(config.TOKEN)
-                .then(atoken => console.log('logged in with token ' + atoken))
-                .catch(console.error);
-        });
-    } catch (e) {
-        utils.logError("startBot error", e);
-    }
+    SINBot.login(config.TOKEN)
+        .then(atoken => {
+            console.log('logged in with token ' + atoken);
+            try {
+                bot.startBot(SINBot, config, function() {
+                    console.log("Bot initialization complete!");
+                });
+            } catch (e) {
+                utils.logError("startBot error", e);
+            }
+        })
+        .catch(console.error);
 }
 
 startBot();

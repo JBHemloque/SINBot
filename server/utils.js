@@ -9,7 +9,7 @@ exports.compileArgs = function(args) {
     return args.join(" ").trim();
 }
 
-exports.bold = function(text) { 
+exports.bold = function(text) {
     return "**" + text + "**";
 }
 
@@ -50,7 +50,7 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
             ch = svr.channels.find("name",channel);
         }
     }
-    
+
     if (ch) {
         console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
         ch.sendMessage(msg, callback);
@@ -121,7 +121,7 @@ var sendMessages = function(bot, channel, outputArray, tts) {
                 }
                 buffer += outputArray[j];
             }
-        }       
+        }
     }
     compiledArray[i++] = buffer;
 
@@ -160,7 +160,7 @@ var pmOrSendArray = function(bot, command, pmIfSpam, user, channel, messages) {
         if (error) {
             logError("Error sending message", e);
         }
-    }); 
+    });
 }
 exports.pmOrSendArray = pmOrSendArray;
 
