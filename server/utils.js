@@ -53,37 +53,38 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
 
     if (ch) {
         console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        ch.sendMessage(msg, callback);
+        ch.sendMessage(msg, callback)
+            .catch(error => { logError("Error sending message", error); });
     } else {
         console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
 }
 exports.sendMessageToServerAndChannel = sendMessageToServerAndChannel;
 
-var sendMessage = function(bot, channel, message) {
+var sendMessage = function(bot, channel, message, callback) {
     // If the message is too big, let's split it...
     if (message.length > MESSAGE_LIMIT) {
-        sendMessages(bot, channel, message.split(/\r?\n/));
+        sendMessages(bot, channel, message.split(/\r?\n/), callback);
     } else {
-        channel.sendMessage(message, function(error, message) {
-            if (error) {
-                logError("Error sending message", e);
-            }
-        });
+        channel.sendMessage(message)
+            .catch(error => { logError("Error sending message", error); });
+        if (callback) {
+            callback();
+        }
     }
 }
 exports.sendMessage = sendMessage;
 
-var ttsMessage = function(bot, channel, message) {
+var ttsMessage = function(bot, channel, message, callback) {
     // If the message is too big, let's split it...
     if (message.length > MESSAGE_LIMIT) {
-        sendMessages(bot, channel, message.split(/\r?\n/), true);
+        sendMessages(bot, channel, message.split(/\r?\n/), true, callback);
     } else {
-        channel.sendMessage(message, {tts:true}, function(error, message) {
-            if (error) {
-                logError("Error sending message", e);
-            }
-        });
+        channel.sendMessage(message, {tts:true})
+            .catch(error => { logError("Error sending message", error); });
+        if (callback) {
+            callback();
+        }
     }
 }
 exports.ttsMessage = ttsMessage;
@@ -102,7 +103,7 @@ var pmOrSend = function(bot, command, pmIfSpam, user, channel, message) {
 }
 exports.pmOrSend = pmOrSend;
 
-var sendMessages = function(bot, channel, outputArray, tts) {
+var sendMessages = function(bot, channel, outputArray, tts, callback) {
     // We've got an array of messages, but we might be able to compile them together.
     // Discord has a message size limit of about 2k, so we'll compile them together
     // in chunks no bigger than MESSAGE_LIMIT characters, for grins.
@@ -129,19 +130,18 @@ var sendMessages = function(bot, channel, outputArray, tts) {
         var cb = callback;
         if (output) {
             if (tts) {
-                channel.sendMessage(output, {tts:true}, function(error, message) {
-                    if (error) {
-                        logError("Error sending message", e);
-                    }
-                    cb();
-                })
+                channel.sendMessage(output, {tts:true})
+                    .then(message => cb())
+                    .catch(error => {
+                        logError("Error sending message", error);
+                    });
             } else {
-                channel.sendMessage(output, function(error, message) {
-                    if (error) {
-                        logError("Error sending message", e);
-                    }
-                    cb();
-                });
+                channel.sendMessage(output)
+                    .then(message => cb())
+                    .catch(error => {
+                        logError("Error sending message", error);
+                        cb();
+                    });
             }
         } else {
             cb();
@@ -151,6 +151,9 @@ var sendMessages = function(bot, channel, outputArray, tts) {
             logError("Error sending messages - forEachSeries error", err);
         }
     });
+    if (callback) {
+        callback();
+    }
 }
 exports.sendMessages = sendMessages;
 

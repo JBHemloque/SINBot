@@ -691,6 +691,12 @@ function startBot(bot, cfg, callback) {
         debugLog("Starting in direct-mention mode...");
     }
 
+    if (config.CLEAR_MESSAGEBOX) {
+        debugLog("Clearing message box...");
+        messagebox = {};
+        updateMessagebox();
+    }
+
     for (var i = 0; i < plugins.length; i += 1) {
         try {
             plugins[i].plugin = require(path.resolve(base.path, plugins[i].path));

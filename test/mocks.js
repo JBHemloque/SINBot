@@ -97,14 +97,38 @@ function makeMessage(message, user, sendMessage, setTopic) {
         sm = user;
         user = undefined;
     }
-    return _makeMessage(message, user, makeTextChannel("Text", sm, st));
+    return _makeMessage(
+        message, 
+        user, 
+        makeTextChannel(
+            "Text", 
+            function(message, options) {
+                return new Promise(function(resolve, reject) {
+                    sm(message, options);
+                    resolve(message, options);
+                });
+            },
+            st)
+        );
 }
 
 function makePrivateMessage(message, user, recipient, sendMessage) {
     if (!recipient) {
         recipient = user;
     }
-    return _makeMessage(message, user, makePMChannel("PM", recipient, sendMessage));
+    return _makeMessage(
+        message, 
+        user, 
+        makePMChannel(
+            "PM", 
+            recipient, 
+            function(message, options) {
+                return new Promise(function(resolve, reject) {
+                    sendMessage(message, options);
+                    resolve(message, options);
+                });
+            })
+        );
 }
 
 function makeClient(sendMessageCallback, plugins, setChannelTopicCallback) {
@@ -143,6 +167,7 @@ function _makeConfig(prefix, plugins) {
         NAME: "Test Bot",
         COMMAND_PREFIX: prefix,
         PLUGINS: plugins,
+        CLEAR_MESSAGEBOX: true,
         ADMIN_IDS: [adminId]
     };
 }

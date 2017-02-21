@@ -145,8 +145,9 @@ describe('utils', function(){
                 handledCommand = true;
             }
             callback();
-        }).channel, message);
-        assert(handledCommand);
+        }).channel, message, function() {
+            assert(handledCommand);
+        });
     });
 
     it('should handle large data sizes in sendMessages', function() {
@@ -162,7 +163,7 @@ describe('utils', function(){
         var handledCommand = false;
         var client = mocks.makeClient();
         bot.startBot(client, mocks.makeConfig());
-        utils.sendMessages(client, mocks.makeMessage("", function(message, callback) {
+        utils.sendMessages(client, mocks.makeMessage("", function(message) {
             if (buffer.length > 0) {
                 buffer += "\n";
             }
@@ -170,9 +171,9 @@ describe('utils', function(){
             if (buffer === expectedResults) {
                 handledCommand = true;
             }
-            callback();
-        }).channel, messageArray);
-        assert(handledCommand);
+        }).channel, messageArray, function() {
+            assert(handledCommand);
+        });
     });
 
     it('should export a pmOrSendChannel function', function(){
