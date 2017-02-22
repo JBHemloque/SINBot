@@ -578,7 +578,7 @@ function botShouldHandleCommand(bot, message) {
     } else if (userMentioned(message.content, bot.user.id)) {
         stripFirstArg = true;
         handleCommand = true;
-    } else if (message.channel.isPrivate) {
+    } else if (message.channel.type === "dm") {
         stripFirstArg = false;
         handleCommand = true;
     }

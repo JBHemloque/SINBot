@@ -47,7 +47,7 @@ RSBridge.prototype.reply = function(args, bot, message) {
     reply = this.RSHost.stripGarbage(reply); 
     var useTTS = false;
     // Users can set usetts for themselves, or serverwide if we allow it
-    // if (allowTTS || message.channel.isPrivate) {
+    // if (allowTTS || message.channel.type === "dm") {
     //     var ttsVar = this.RSHost.getUservar(userid, "usetts");
     //     if (ttsVar == "true") {
     //         useTTS = true;
