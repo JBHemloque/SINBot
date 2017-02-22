@@ -46,6 +46,7 @@ function makePMChannel(name, rec, sendMessage) {
         topic: "Test PMChannel",
         recipient: rec,
         isPrivate: true,
+        type: "dm",
         lastMessage: null,
         messages: [],
         sendMessage: sendMessage,

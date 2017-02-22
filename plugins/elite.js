@@ -121,14 +121,13 @@ function _showRegion(region, bot, msg) {
         if (data) {
             var regionString = region;
             if (data.map) {
-                msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map, data.region);
                 regionString = data.region;
                 var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
                 var regionDate = new Date(data.date).getTime();
                 if (regionDate > newRegionDate) {
                     regionString += "\n*Newly trilaterated region: " + data.date + "*";
                 }
-                utils.sendMessage(bot, msg.channel, regionString);
+                msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map, regionString);
             } else {
                 utils.sendMessage(bot, msg.channel, "Sorry, I have no map for " + regionString);
             }

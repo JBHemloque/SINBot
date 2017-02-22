@@ -83,6 +83,7 @@ describe('bot', function(){
         var client = mocks.makeClient();
         bot.startBot(client, mocks.makeDirectConfig());
         var message = mocks.makePrivateMessage("ping", mocks.nonAdminUser, bot.user, function(message) {
+            console.log("Message: " + message);
             if (message == "Pong!") {
                 handledCommand = true;
             }

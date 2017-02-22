@@ -53,8 +53,16 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
 
     if (ch) {
         console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        ch.sendMessage(msg, callback)
-            .catch(error => { logError("Error sending message", error); });
+        ch.sendMessage(msg)
+            .then(message => {
+                if (callback) {
+                    callback(undefined, message);
+                }
+            })
+            .catch(error => { 
+                logError("Error sending message", error);
+                callback(error);
+            });
     } else {
         console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
@@ -67,10 +75,15 @@ var sendMessage = function(bot, channel, message, callback) {
         sendMessages(bot, channel, message.split(/\r?\n/), callback);
     } else {
         channel.sendMessage(message)
-            .catch(error => { logError("Error sending message", error); });
-        if (callback) {
-            callback();
-        }
+            .then(message => {
+                if (callback) {
+                    callback(undefined, message);
+                }
+            })
+            .catch(error => { 
+                logError("Error sending message", error);
+                callback(error);
+            });
     }
 }
 exports.sendMessage = sendMessage;
@@ -81,10 +94,15 @@ var ttsMessage = function(bot, channel, message, callback) {
         sendMessages(bot, channel, message.split(/\r?\n/), true, callback);
     } else {
         channel.sendMessage(message, {tts:true})
-            .catch(error => { logError("Error sending message", error); });
-        if (callback) {
-            callback();
-        }
+            .then(message => {
+                if (callback) {
+                    callback(undefined, message);
+                }
+            })
+            .catch(error => { 
+                logError("Error sending message", error);
+                callback(error);
+            });
     }
 }
 exports.ttsMessage = ttsMessage;
