@@ -116,12 +116,16 @@ function getRegionMap(location, callback) {
 }
 
 function _showRegion(region, bot, msg) {
+    var orgRegion = region;
     region = edsm.normalizeSystem(region);
     getRegionMap(region, function(data) {
         if (data) {
             var regionString = region;
+            if (orgRegion !== region) {
+                regionString = orgRegion + " (" + region + ")";
+            }
             if (data.map) {
-                regionString = data.region;
+                // regionString = data.region;
                 var newRegionDate = new Date().getTime() - NEW_THRESHHOLD;
                 var regionDate = new Date(data.date).getTime();
                 if (regionDate > newRegionDate) {
