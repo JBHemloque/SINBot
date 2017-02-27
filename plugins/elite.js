@@ -118,6 +118,8 @@ function getRegionMap(location, callback) {
 function _showRegion(region, bot, msg) {
     var orgRegion = region;
     region = edsm.normalizeSystem(region);
+    // EDSM wants spaces => %20, but our region map leaves them spaces, so...
+    region = region.replace('%20', ' ');
     getRegionMap(region, function(data) {
         if (data) {
             var regionString = region;
