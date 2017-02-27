@@ -7,7 +7,7 @@ var wolfram;
 
 var commands = {
     "wolfram": {
-        usage: "<query>",
+        usage: "wolfram <query>",
         help: "Query Wolfram Alpha",
         process: function(args, bot, message) { 
             if (args.length > 1) {

@@ -28,7 +28,7 @@ function addOrReplace(array, item) {
 
 var commands = { 
     "add_random": {
-        usage: "<category> -> <item>",
+        usage: "add_random <category> -> <item>",
         adminOnly: true,
         help: "Adds an item to a category for use ",
         extendedhelp: "Adds an item to a category for use - random will select an item at random from a set of categorized items - you might have a set of spider images, for instance.",
@@ -59,7 +59,7 @@ var commands = {
         }
     },
     "clear_random": {
-        usage: "<category> -> <index of item to delete>",
+        usage: "clear_random <category> -> <index of item to delete>",
         help: "Removes an item from a random category list",
         adminOnly: true,
         process: function(args, bot, msg) {
@@ -90,7 +90,7 @@ var commands = {
         }
     },
     "random_list": {
-        usage: "<category>",
+        usage: "random_list <category>",
         help: "Lists everything associated with a category.",
         process: function(args, bot, msg) {
             if (args.length > 1) {
@@ -139,7 +139,7 @@ var commands = {
         }
     },
     "random": {
-        usage: "<category>",
+        usage: "random <category>",
         help: "Return a random item in a category",
         process: function(args, bot, msg) {
             if (args.length > 1) {

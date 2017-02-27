@@ -192,7 +192,11 @@ exports.displayUsage = function(bot, message, command) {
         if (config.SPAMMY_PM) {
             channel = message.author;
         }
-        channel.sendMessage("Usage: " + command.usage);
+        var prefix = "";
+        if (config.COMMAND_PREFIX) {
+            prefix = config.COMMAND_PREFIX;
+        }
+        channel.sendMessage("Usage: " + prefix + command.usage);
     }
 }
 

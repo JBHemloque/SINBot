@@ -13,7 +13,7 @@ var commands = {
         process: function(args, bot, message) { endEliza(args, bot, message); }
     },
     "eliza": {
-        usage: "<anything - just talk>",
+        usage: "eliza <anything - just talk>",
         help: "Let's talk...",
         process: function(args, bot, message) {
             if (!elizaStarted) {

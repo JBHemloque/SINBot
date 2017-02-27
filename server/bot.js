@@ -195,7 +195,7 @@ var guildListCmd = {
 
 var commands = {
     "alias": {
-        usage: "<alias> <text to display>",
+        usage: "alias <alias> <text to display>",
         adminOnly: true,
         help: "Creates a command alias -- e.g. !ping can output Pong!",
         extendedhelp: "An alias is a simple text substitution. It creates or updates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
@@ -211,7 +211,7 @@ var commands = {
         }
     },
     "show_alias": {
-        usage: "<alias>",
+        usage: "show_alias <alias>",
         help: "Displays an alias.",
         extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%. This command shows the contents of an alias.",
         process: function(args, bot, message) {
@@ -247,7 +247,7 @@ var commands = {
         }
     },
     "clear_alias": {
-        usage: "<alias>",
+        usage: "clear_alias <alias>",
         adminOnly: true,
         help: "Deletes an alias.",
         process: function(args, bot, message) {
@@ -296,7 +296,7 @@ var commands = {
         process: function(args, bot, message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,message.author.id); }
     },
     "say": {
-        usage: "<message>",
+        usage: "say <message>",
         help: "Bot says message.",
         process: function(args, bot, message) {
             var msg = compileArgs(args);
@@ -308,7 +308,7 @@ var commands = {
         }
     },
     "announce": {
-        usage: "<message>",
+        usage: "announce <message>",
         help: "Bot says message with text to speech.",
         process: function(args, bot, message) {
             var msg = compileArgs(args);
@@ -359,7 +359,7 @@ var commands = {
         process: function(args,bot,message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,isAdmin(message.author.id).toString()); }
     },
     "userid": {
-        usage: "<user to get id of, or blank for your own>",
+        usage: "userid <user to get id of, or blank for your own>",
         adminOnly: true,
         help: "Returns the unique id of a user. This is useful for permissions.",
         process: function(args,bot,message) {
@@ -390,12 +390,12 @@ var commands = {
         }
     },
     "topic": {
-        usage: "[topic]",
+        usage: "topic [topic]",
         help: 'Sets the topic for the channel. No topic removes the topic.',
         process: function(args,bot,message) { message.channel.setTopic(compileArgs(args)); }
     },
     "msg": {
-        usage: "<user> <message to leave user>",
+        usage: "msg <user> <message to leave user>",
         help: "leaves a message for a user the next time they come online.",
         process: function(args,bot,message) {
             // Ignore the command
@@ -458,7 +458,7 @@ var commands = {
         }
     },
     "help": {
-        usage: "[<command>]",
+        usage: "help [<command>]",
         spammy: true,
         help: "Display help for this bot, or for specific commands, or plugins",
         process: function(args, bot, message) {
@@ -468,8 +468,12 @@ var commands = {
                 var cmd = findCommand(command);
                 if (cmd) {
                     var output = utils.bold(command);
+                    var prefix = "";
+                    if (config.COMMAND_PREFIX) {
+                        prefix = config.COMMAND_PREFIX;
+                    }
                     if (cmd.usage) {
-                        output += ("\t" + utils.italic(cmd.usage));
+                        output += ("\t" + utils.italic(prefix + cmd.usage));
                     }
                     if (cmd.extendedhelp) {
                         output += ("\n\n" + cmd.extendedhelp);

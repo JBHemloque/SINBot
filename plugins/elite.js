@@ -14,8 +14,15 @@ var gmp = require('./elite/gmp.js');
 var botcfg = null;
 var pmIfSpam = false;
 
-var regions;
+var cmdrs;
+try{
+    console.log('  - Loading ' + path.resolve(base.path, "cmdrs.json"));
+    cmdrs = require(path.resolve(base.path, "cmdrs.json"));
+} catch(e) {
+    cmdrs = {};
+}
 
+var regions;
 try{
     console.log('  - Loading ' + path.resolve(base.path, "plugins/elite/regions.json"));
     regions = require(path.resolve(base.path, "plugins/elite/regions.json"));
@@ -88,7 +95,9 @@ function writeCmdrAliases() {
     fs.writeFile(path.resolve(base.path, "cmdralias.json"),JSON.stringify(edsm.cmdraliases,null,2), null);
 }
 
-
+function writeCmdrs() {
+    fs.writeFile(path.resolve(base.path, "cmdrs.json"),JSON.stringify(cmdrs,null,2), null);
+}
 
 function getRegionName(location) {
     var names = location.split(/ [a-z][a-z]-[a-z] /i);
@@ -152,7 +161,61 @@ function showRegion(args, bot, msg) {
     }
 }
 
+function getAuthorId(msg) {
+    if (msg.author) {
+        return msg.author.id;
+    }
+    return undefined;
+}
+
+function getEdsmName(msg) {
+    var authorId = getAuthorId(msg);
+    if (authorId) {
+        return cmdrs[authorId];
+    }
+    return undefined;
+}
+
+function getCmdrName(args, msg) {
+    var name = utils.compileArgs(args);
+    if (!name) {
+        name = getEdsmName(msg);
+    }
+    return name;
+}
+
 var commands = {
+    "register": {
+        usage: "register <EDSM name>",
+        help: "Register your EDSM name as a default for commands that use it",
+        process: function(args, bot, msg) {
+            var edsmName = utils.compileArgs(args);
+            var authorId = getAuthorId(msg);
+            if (edsmName) {
+                if (authorId) {
+                    console.log('Register ' + authorId + ' as ' + edsmName);
+                    cmdrs[authorId] = edsmName;
+                    writeCmdrs();
+                    utils.sendMessage(bot, msg.channel, "Registered as " + edsmName);
+                } else {
+                    utils.sendMessage(bot, msg.channel, "Sorry, an error occurred attempting to register your name");
+                }
+            } else {
+                utils.displayUsage(bot,msg,this);
+            }
+        }
+    },
+    "showcmdr": {
+        help: "Show your EDSM name, if registered",
+        process: function(args, bot, msg) {
+            var edsmName = getEdsmName(msg);
+            if (edsmName) {
+                utils.sendMessage(bot, msg.channel, "You are registered with the EDSM name " + edsmName);
+            } else {
+                utils.sendMessage(bot, msg.channel, "You have not registered an EDSM name with the 'register' command");
+            }
+        }
+    },
     "refresh_gmp": {
         help: "Refresh the Galactic Mapping Project data from EDSM",
         adminOnly: true,
@@ -167,8 +230,8 @@ var commands = {
         }
     },
     "gmp": {
-        usage: "<galmap reference>",
-        help: "Displays the current data on a Galactic Mapping Project entry",
+        usage: "gmp <galmap reference>",
+        help: "Displays the current data on any Galactic Mapping Project entries matching the reference",
         process: function(args,bot,msg) {
             var query = utils.compileArgs(args).toUpperCase();
             if (query.length > 0) {
@@ -204,7 +267,7 @@ var commands = {
     },
     "gmp_list": {
         // @@todo - broken!
-        usage: "<optional distance in light years> -> <optional system to serve as a center>",
+        usage: "gmp_list <optional distance in light years> -> <optional system to serve as a center>",
         spammy: true,
         help: "Returns a list of galactic mapping data points of interest, optionally within a certain range of a point.",
         process: function(args,bot,msg) {
@@ -240,7 +303,7 @@ var commands = {
         }
     },
     "gmp_exceptions": {
-        usage: "<optional distance in light years> -> <optional system to serve as a center>",
+        usage: "gmp_exceptions <optional distance in light years> -> <optional system to serve as a center>",
         spammy: true,
         help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
         process: function(args,bot,msg) {
@@ -274,7 +337,7 @@ var commands = {
         }
     },
     "g": {
-        usage: "<planet mass in earth masses> <planet radius in km>",
+        usage: "g <planet mass in earth masses> <planet radius in km>",
         help: "Calculates surface gravity and likely planet types from a planet's mass and radius",
         process: function(args, bot, msg) {
             var displayUsage = true;
@@ -292,17 +355,17 @@ var commands = {
         }
     },
     "region": {
-        usage: "<region>",
+        usage: "region <region>",
         help: "Shows where a region is in the galaxy",
         process: showRegion
     },
     "show": {
-        usage: "<region or system>",
+        usage: "show <region or system>",
         help: "Shows where a region or named system is in the galaxy",
         process: showRegion
     },
     "route": {
-        usage: "<JumpRange> <SgrA distance in kly> [optional max plot in ly]",
+        usage: "route <JumpRange> <SgrA distance in kly> [optional max plot in ly]",
         help: "Calculate optimal core routing distance.",
         process: function(args, bot, msg) {
             var displayUsage = true;
@@ -331,12 +394,12 @@ var commands = {
         }
     },
     "showloc": {
-        usage: "<name>",
+        usage: "showloc <name>",
         help: 'Shows the location of a commander.',
         extendedhelp: "Shows the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
         process: function(args,bot,msg) {
-            if (args.length > 1) {
-                var name = utils.compileArgs(args);
+            var name = getCmdrName(args, msg);
+            if (name) {
                 edsm.getPositionString(name, function(posString, position) {
                     if (position) {
                         getRegionMap(position, function(data) {
@@ -362,19 +425,20 @@ var commands = {
         }
     },
     "loc": {
-        usage: "<name>",
+        usage: "loc <name>",
         help: 'Gets the location of a commander.',
         extendedhelp: "Gets the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
         process: function(args,bot,msg) {
-            if (args.length > 1) {
-                edsm.getPosition(utils.compileArgs(args), bot, msg);
+            var name = getCmdrName(args,msg);
+            if (name) {
+                edsm.getPosition(name, bot, msg);
             } else {
                 utils.displayUsage(bot,msg,this);
             }
         }
     },
     "syscoords": {
-        usage: "<system>",
+        usage: "syscoords <system>",
         help: 'Gets the galactic coordinates of a system.',
         extendedhelp: "Gets the galactic coordinates of a system. We use information from EDSM to do this. The system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
         process: function(args,bot,msg) {
@@ -386,42 +450,62 @@ var commands = {
         }
     },
     "cmdrcoords": {
-        usage: "<name>",
+        usage: "cmdrcoords <name>",
         help: "Gets the location of a commander, including system coordinates, if they are available.",
         extendedhelp: "Gets the location of a commander, including system coordinates. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public. In addition, the system they are in must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
         process: function(args,bot,msg) {
-            if (args.length > 1) {
-                edsm.getCmdrCoords(utils.compileArgs(args), bot, msg);
+            var name = getCmdrName(args,msg);
+            if (name) {
+                edsm.getCmdrCoords(name, bot, msg);
             } else {
                 utils.displayUsage(bot,msg,this);
             }
         }
     },
     "dist": {
-        usage: "<first> -> <second>",
-        help: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol.",
-        extendedhelp: "Gets the distance from one system or commander to another. If <second> is not given, gets the distance from first to Sol. We use information from EDSM to do this. In order to be findable, a commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public. In addition, the system they are in must have coordinates in EDSM. Likewise, for distance calculations, a system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
+        usage: "dist <optional first> -> <optional second>",
+        help: "Gets the distance from one system or commander to another. If only one system or commander is given, the second is assumed to be your EDSM name (if you've registered one), or Sol (if you have not). If none are given and you've registered an EDSM name, your distance from Sol is displayed.",
+        extendedhelp: "Gets the distance from one system or commander to another. If only one system or commander is given, the second is assumed to be your EDSM name (if you've registered one), or Sol (if you have not). If none are given and you've registered an EDSM name, your distance from Sol is displayed. We use information from EDSM to do this. In order to be findable, a commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public. In addition, the system they are in must have coordinates in EDSM. Likewise, for distance calculations, a system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
         process: function(args,bot,msg) {
             var query = utils.compileArgs(args).split(/->|:/);
+            var edsmName = getEdsmName(msg);
             if (query.length <= 2) {
                 query[0] = query[0].trim();
                 if (query.length == 1) {
-                    query[1] = "Sol";
+                    if (query[0].length == 0) {
+                        if (edsmName) {
+                            console.log("All defaults: dist " + edsmName + " -> Sol");
+                            query[0] = edsmName;
+                            query[1] = "Sol";
+                        }
+                    } else {
+                        if (edsmName) {
+                            console.log("One default: dist " + query[0] + " -> " + edsmName);
+                            query[1] = edsmName;
+                        } else {
+                            console.log("One default: dist " + query[0] + " -> Sol");
+                            query[1] = "Sol";
+                        }
+                    }
                 } else {
+                    console.log("No defaults: dist " + query[0] + " -> " + query[1]);
                     query[1] = query[1].trim();
                 }
                 if ((query[0].length > 0) && (query[1].length > 0)) {
+                    console.log("Displaying distance");
                     edsm.getDistance(query[0], query[1], bot, msg);
                 } else {
+                    console.log("Couldn't run, displaying usage");
                     utils.displayUsage(bot,msg,this);
                 }
             } else {
+                console.log("Pathological number of -> delimiters...");
                 utils.displayUsage(bot,msg,this);
             }
         }
     },
     "cmdralias": {
-        usage: "<alias> -> <commander> [-> <optional expedition>]",
+        usage: "cmdralias <alias> -> <commander> [-> <optional expedition>]",
         adminOnly: true,
         help: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel.",
         extendedhelp: "Creates or updates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel -- with an optional expedition. This is useful simply as a convenience.",
@@ -460,7 +544,7 @@ var commands = {
         }
     },
     "show_cmdralias": {
-        usage: "<alias>",
+        usage: "show_cmdralias <alias>",
         help: "Displays a CMDR alias.",
         process: function(args, bot, message) {
             if (args.length > 1) {
@@ -479,7 +563,7 @@ var commands = {
         }
     },
     "clear_cmdralias": {
-        usage: "<alias>",
+        usage: "clear_cmdralias <alias>",
         adminOnly: true,
         help: "Deletes a CMDR alias.",
         process: function(args, bot, message) {
@@ -521,7 +605,7 @@ var commands = {
         }
     },
     "sysalias": {
-        usage: "<alias> -> <system> [-> <optional expedition>]",
+        usage: "sysalias <alias> -> <system> [-> <optional expedition>]",
         adminOnly: true,
         help: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0.",
         extendedhelp: "Creates a system alias -- e.g. Beagle Point can alias CEECKIA ZQ-L C24-0 -- with an optional expedition. This is useful simply as a convenience. Many systems have several accepted designations (like Beagle Point, for instance, or RR Lyrae, which is another designation for HIP 95497).",
@@ -559,7 +643,7 @@ var commands = {
         }
     },
     "show_sysalias": {
-        usage: "<alias>",
+        usage: "show_sysalias <alias>",
         help: "Displays a system alias.",
         process: function(args, bot, message) {
             if (args.length > 1) {
@@ -581,7 +665,7 @@ var commands = {
         }
     },
     "clear_sysalias": {
-        usage: "<alias>",
+        usage: "clear_sysalias <alias>",
         adminOnly: true,
         help: "Deletes a system alias.",
         process: function(args, bot, message) {
@@ -623,7 +707,7 @@ var commands = {
         }
     },
     "expsa": {
-        usage: "<system alias> -> <expedition>",
+        usage: "expsa <system alias> -> <expedition>",
         adminOnly: true,
         help: "Assigns a system alias to an expedition, allowing it to be grouped with the explist command.",
         process: function(args, bot, msg) {
@@ -648,7 +732,7 @@ var commands = {
         }
     },
     "expa": {
-        usage: "<alias> -> <expedition>[ -> <optional alias>]",
+        usage: "expa <alias> -> <expedition>[ -> <optional alias>]",
         adminOnly: true,
         help: "Assigns an alias to an expedition, allowing it to be grouped with the explist command.",
         extendedhelp: "Assigns an alias to an expedition, allowing it to be grouped with the explist command. You can optionally include the full alias, allowing you to easily edit an alias attached to an expedition without having to reassign it to the expedition in another step.",
@@ -688,7 +772,7 @@ var commands = {
         }
     },
     "explist": {
-        usage: "<expedition>",
+        usage: "explist <expedition>",
         help: "Lists everything associated with an expedition.",
         process: function(args, bot, msg) {
             if (args.length > 1) {
@@ -808,7 +892,7 @@ var commands = {
         }
     },
     "waypoints": {
-        usage: "<origin> -> <destination> [-> <jump range>]",
+        usage: "waypoints <origin> -> <destination> [-> <jump range>]",
         help: "Get a list of waypoints between the origin and destination to help in-game plotting.",
         spammy: true,
         process: function(args, bot, msg) {
@@ -840,7 +924,7 @@ var commands = {
         }
     },
     "nearest": {
-        usage: "<x> <y> <z> [optional range]",
+        usage: "nearest <x> <y> <z> [optional range]",
         help: "Gets systems near a given point.",
         process: function(args, bot, msg) {
             // Get rid of the command

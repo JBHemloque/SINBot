@@ -12,7 +12,7 @@ var commands = {
         }
     },
     "jaques": {
-        usage: "<anything - just talk>",
+        usage: "jaques <anything - just talk>",
         help: "I'm Jaques, your cyborg bartender. Have a drink!",
         process: function(args, bot, message) {
             rsBridge.reply(args, bot, message);
