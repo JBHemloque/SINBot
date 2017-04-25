@@ -5,6 +5,7 @@ var Discord = require("discord.js");
 var config = require('../config.js');
 var utils = require('./utils.js');
 var base = require('../base.js');
+var healthcheck = require('./healthcheck.js');
 
 var options = {};
 if (config.DISCORD_OPTIONS) {
@@ -36,6 +37,7 @@ SINBot.on('disconnected', function() {
 });
 
 function startBot() {
+    healthcheck.startHealthCheck(SINBot);
     SINBot.login(config.TOKEN)
         .then(atoken => {
             console.log('logged in with token ' + atoken);
