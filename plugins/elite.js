@@ -147,7 +147,7 @@ function _showRegion(region, bot, msg) {
                 utils.sendMessage(bot, msg.channel, "Sorry, I have no map for " + regionString);
             }
         } else {
-            utils.sendMessage(bot, msg.channel, "Sorry, I have no information on " + region);
+            utils.sendMessage(bot, msg.channel, "Sorry, I have no information on " + orgRegion);
         }
     });
 }
@@ -400,23 +400,28 @@ var commands = {
         process: function(args,bot,msg) {
             var name = getCmdrName(args, msg);
             if (name) {
-                edsm.getPositionString(name, function(posString, position) {
+                edsm.getPositionString(name, function(posStringObj, position) {
                     if (position) {
                         getRegionMap(position, function(data) {
                             if (data) {
                                 if (data.map) {
                                     msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map);
-                                    utils.sendMessage(bot, msg.channel, posString);
+                                    utils.sendMessage(bot, msg.channel, posStringObj.message);
                                 } else {
-                                    utils.sendMessage(bot, msg.channel, posString);
+                                    utils.sendMessage(bot, msg.channel, posStringObj.message);
                                 }
                             } else {
-                                posString += "\nNo map data exists for " + position + " yet...";
-                                utils.sendMessage(bot, msg.channel, posString);
+                                posStringObj.message += "\nNo map data exists for " + position + " yet...";
+                                utils.sendMessage(bot, msg.channel, posStringObj.message);
                             }
                         });
                     } else {
-                        _showRegion(name, bot, msg);
+                        if (posStringObj.commanderExists) {
+                            // EDSM doesn't have position info on them
+                            utils.sendMessage(bot, msg.channel, posStringObj.message);
+                        } else {
+                            _showRegion(name, bot, msg);
+                        }
                     }                
                 });
             } else {

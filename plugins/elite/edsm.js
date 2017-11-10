@@ -64,20 +64,26 @@ var _getSystem = function(commander, callback) {
 }
 
 var _getPositionString = function(commander, data) {
-    var output = "Some error occurred";
+    var output = {
+        commanderExists: false,
+        message: "Some error occurred",
+        data: data
+    };
     if (data) {
         if (data.system) {
-            output = commander + " was last seen in " + data.system;
+            output.commanderExists = true;
+            output.message = commander + " was last seen in " + data.system;
             if (data.date) {
-                output += " at " + data.date;
+                output.message += " at " + data.date;
             }
         } else {
             switch (data.msgnum) {
                 case 100:
-                    output = "I have no idea where " + commander + " is. Perhaps they aren't sharing their position?";
+                    output.commanderExists = true;
+                    output.message = "I have no idea where " + commander + " is. Perhaps they aren't sharing their position?";
                     break;
                 case 203:
-                    output = "There is no known commander by the name " + commander;
+                    output.message = "There is no known commander by the name " + commander;
                     break;
                 default:
                     // Use the default error message
@@ -102,7 +108,7 @@ var getPositionString = function(commander, callback) {
  
 var getPosition = function(commander, bot, message) {
     getPositionString(commander, function(data) {
-        utils.sendMessage(bot, message.channel, data);
+        utils.sendMessage(bot, message.channel, data.message);
     });
 }
 
@@ -123,7 +129,6 @@ var _getSystemCoords = function(system, callback) {
 
 var _getCommanderCoords = function(commander, callback) {
     _getSystem(commander, function(data) {
-        var output = _getPositionString(commander, data);
         if (data) {
             if (data.system) {
                 _getSystemCoords(data.system, function(coords) {
@@ -227,14 +232,14 @@ var getCmdrCoords = function(commander, bot, message) {
                 _getSystemCoords(data.system, function(coords) {
                     if (coords) {
                         if (coords.coords) {
-                            output += " " + _getCoordString(coords);
+                            output.message += " " + _getCoordString(coords);
                         }
                     }
-                    utils.sendMessage(bot, message.channel, output);
+                    utils.sendMessage(bot, message.channel, output.message);
                 });
             }
         } else {
-            utils.sendMessage(bot, message.channel, output);
+            utils.sendMessage(bot, message.channel, output.message);
         }
     });
 }
