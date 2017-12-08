@@ -64,6 +64,9 @@ function makeAlias(alias, output, addExtrasCallback) {
 module.exports.makeAlias = makeAlias;
 
 function getAlias(id) {
+    console.log("Looking for alias " + id);
+    var alias = aliases[id];
+    console.log(JSON.stringify(alias));
 	return aliases[id];
 }
 module.exports.getAlias = getAlias;

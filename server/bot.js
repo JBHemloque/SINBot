@@ -10,8 +10,6 @@ var fs = require("fs");
 var _ = require("underscore");
 var base = require('../base.js');
 var path = require('path');
-var messagebox = require('./messagebox.js');
-var alias = require('./alias.js');
 var version;
 
 var config;
