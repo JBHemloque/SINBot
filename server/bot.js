@@ -120,12 +120,14 @@ var commands = {
         help: "Lists the aliases available.",
         spammy: true,
         process: function(args, bot, message) {
+            console.log("Dumping aliases...");
             var i = 0;
             var outputArray = [];
             outputArray[i++] = "Aliases:";
             var hasAliases = false;
             var key;
             var aliases = alias.getAliases();
+            console.log(JSON.stringify(aliases));
             for (key in aliases) {
                 outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
                 hasAliases = true;
@@ -541,7 +543,7 @@ function handleCommand(bot, res, message) {
             }
         }
     } else {
-        cmd = aliases[res.args[0].toLowerCase()];
+        cmd = alias.getAlias(res.args[0].toLowerCase());
         if (cmd) {
             procAlias(bot, message, cmd, compileArgs(res.args));
         } else {
