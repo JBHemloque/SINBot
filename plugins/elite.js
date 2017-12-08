@@ -10,6 +10,7 @@ var edsm = require('./elite/edsm.js');
 var alphanum = require("../server/alphanum.js");
 var regionjpg = require("./elite/regionjpg.js");
 var gmp = require('./elite/gmp.js');
+var regions = require('./elite/regions.js');
 
 var botcfg = null;
 var pmIfSpam = false;
@@ -20,23 +21,6 @@ try{
     cmdrs = require(path.resolve(base.path, "cmdrs.json"));
 } catch(e) {
     cmdrs = {};
-}
-
-var regions;
-try{
-    console.log('  - Loading ' + path.resolve(base.path, "plugins/elite/regions.json"));
-    regions = require(path.resolve(base.path, "plugins/elite/regions.json"));
-} catch(e) {
-    // Do nothing, we'll try to load the backup
-}
-
-if (regions === undefined) {
-    try {
-        console.log('  - Loading ' + path.resolve(base.path, "plugins/elite/bakregions.json"));
-        regions = require(path.resolve(base.path, "plugins/elite/bakregions.json"));
-    } catch (e) {
-        regions = {};
-    }
 }
 
 var NEW_THRESHHOLD = (7 * 24 * 60 * 60 * 1000);
@@ -99,29 +83,18 @@ function writeCmdrs() {
     fs.writeFile(path.resolve(base.path, "cmdrs.json"),JSON.stringify(cmdrs,null,2), null);
 }
 
-function getRegionName(location) {
-    var names = location.split(/ [a-z][a-z]-[a-z] /i);
-    var key = names[0].toLowerCase();
-    if (regions[key]) {
-        return regions[key].region;
-    }
-    return undefined;
-}
-
 function getRegionMap(location, callback) {
-    var region = getRegionName(location);
-    if (region) {
-        var key = region.toLowerCase();
+    regions.getRegionByKey(location, function(region) {
         if (region) {
-            regionjpg.fetchRegionMap(region.toLowerCase(), function() {
-                callback(regions[key]);
+            var name = region.region;
+            var key = name.toLowerCase();
+            regionjpg.fetchRegionMap(key, function() {
+                callback(region);
             });
         } else {
             callback(undefined);
-        }
-    } else {
-        callback(undefined);
-    }        
+        }  
+    });
 }
 
 function _showRegion(region, bot, msg) {
