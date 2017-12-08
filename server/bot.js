@@ -571,7 +571,7 @@ function startBot(bot, cfg, callback) {
 
     var botcfg = {
         sinBot: this,
-        aliases: aliases,
+        aliases: alias.getAliases,
         writeAliases: alias.writeAliases,
         makeAlias: alias.makeAlias,
         pmIfSpam: config.SPAMMY_PM
