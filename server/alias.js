@@ -7,9 +7,11 @@ var _ = require("underscore");
 
 var aliases;
 
+var aliasPath = path.resolve(base.path, "alias.json");
+
 try{
-    console.log('  - Loading ' + path.resolve(base.path, "alias.json"));
-    aliases = require(path.resolve(base.path, "alias.json"));
+    console.log('  - Loading ' + aliasPath);
+    aliases = require(aliasPath);
 } catch(e) {
     //No aliases defined
     console.log("Could not load aliases...");
@@ -30,7 +32,10 @@ function makeAliasStructFromArgs(args) {
 }
 
 function writeAliases() {
-    fs.writeFile(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
+    console.log("Writing aliases to " + aliasPath + "...");
+    fs.writeFile(aliasPath,JSON.stringify(aliases,null,2), null, function(err) {
+        console.log(err);
+    });
 }
 
 function makeAliasFromArgs(args, findCommand, addExtrasCallback) {
