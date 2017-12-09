@@ -8,7 +8,7 @@ client.on("error", function(err) {
 });
 
 function generateKey(prefix, id) {
-	return prefix + "__" + id;
+	return prefix + "__" + id.replace(/ /g,"_").toLowerCase();
 }
 
 function write(prefix, id, data) {
