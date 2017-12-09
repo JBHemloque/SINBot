@@ -84,7 +84,9 @@ function writeCmdrs() {
 }
 
 function getRegionMap(location, callback) {
-    regions.getRegionByKey(location, function(region) {
+    var names = location.split(/ [a-z][a-z]-[a-z] /i);
+    var key = names[0].toLowerCase();
+    regions.getRegionByKey(key, function(region) {
         if (region) {
             var name = region.region;
             var key = name.toLowerCase();
