@@ -35,4 +35,4 @@ function regionsToRedis(regionfile) {
 }
 module.exports.regionsToRedis = regionsToRedis;
 
-regionsToRedis(path.resolve(base.path, "plugins/elite/alias.json"));
+regionsToRedis(path.resolve(base.path, "plugins/elite/regions.json"));
