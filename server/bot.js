@@ -120,18 +120,7 @@ var commands = {
         help: "Lists the aliases available.",
         spammy: true,
         process: function(args, bot, message) {            
-            var i = 0;
-            var outputArray = [];
-            outputArray[i++] = "Aliases:";
-            var hasAliases = false;
-            var key;
-            for (key in aliases) {
-                outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
-                hasAliases = true;
-            }
-            if (!hasAliases) {
-                outputArray[0] += " None"
-            }
+            var outputArray = alias.getAliases();
             utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
         }
     },
@@ -570,7 +559,6 @@ function startBot(bot, cfg, callback) {
 
     var botcfg = {
         sinBot: this,
-        aliases: alias.getAliases(),
         writeAliases: alias.writeAliases,
         makeAlias: alias.makeAlias,
         pmIfSpam: config.SPAMMY_PM

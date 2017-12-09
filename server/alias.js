@@ -77,7 +77,20 @@ function getAlias(id) {
 module.exports.getAlias = getAlias;
 
 function getAliases() {
-	return aliases;
+    var i = 0;
+    var outputArray = [];
+    outputArray[i++] = "Aliases:";
+    var hasAliases = false;
+    var key;
+    for (key in aliases) {
+        outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
+        hasAliases = true;
+    }
+    if (!hasAliases) {
+        outputArray[0] += " None"
+    }
+    console.log(JSON.stringify(aliases));
+	return outputArray;
 }
 module.exports.getAliases = getAliases;
 
