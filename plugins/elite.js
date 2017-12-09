@@ -724,7 +724,7 @@ var commands = {
                 if ((query[0].length > 0) && (query[1].length > 0)) {
                     // If there is a third arg, then go through the full create-alias path:
                     if (query.length == 3) {
-                        var alias = botcfg.makeAlias(query[0], query[2].trim(), function(alias) {
+                        var alias = botcfg.makeAlias(query[0], query[2].trim(), botcfg.findCommand, function(alias) {
                             alias.expedition = query[1];
                         });
                         if (alias.displayUsage) {

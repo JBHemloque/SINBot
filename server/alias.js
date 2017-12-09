@@ -33,16 +33,16 @@ function writeAliases() {
     fs.writeFile(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
 }
 
-function makeAliasFromArgs(args, addExtrasCallback) {
+function makeAliasFromArgs(args, findCommand, addExtrasCallback) {
     // Get rid of the command
     args.shift();
     var alias = args.shift();
     var output = args.join(" ");
-    return makeAlias(alias, output, addExtrasCallback);
+    return makeAlias(alias, output, findCommand, addExtrasCallback);
 }
 module.exports.makeAliasFromArgs = makeAliasFromArgs;
 
-function makeAlias(alias, output, addExtrasCallback) {
+function makeAlias(alias, output, findCommand, addExtrasCallback) {
     var aliasStruct = makeAliasStruct(alias, output);
     if (aliasStruct.alias && aliasStruct.output) {
         var command = findCommand(aliasStruct.alias);

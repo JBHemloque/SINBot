@@ -88,7 +88,7 @@ var commands = {
         help: "Creates a command alias -- e.g. !ping can output Pong!",
         extendedhelp: "An alias is a simple text substitution. It creates or updates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
         process: function(args, bot, message) {
-            var cmdAlias = alias.makeAliasFromArgs(args);
+            var cmdAlias = alias.makeAliasFromArgs(args, findCommand);
             if (cmdAlias.displayUsage) {
                 displayUsage(bot, message, this);
             } else if (cmdAlias.error) {
@@ -558,6 +558,7 @@ function startBot(bot, cfg, callback) {
 
     var botcfg = {
         sinBot: this,
+        findCommand: findCommand,
         writeAliases: alias.writeAliases,
         makeAlias: alias.makeAlias,
         pmIfSpam: config.SPAMMY_PM
