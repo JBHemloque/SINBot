@@ -3,6 +3,7 @@
 var base = require('../base.js');
 var path = require('path');
 var utils = require('./utils.js');
+var _ = require("underscore");
 
 var aliases;
 
@@ -29,9 +30,7 @@ function makeAliasStructFromArgs(args) {
 }
 
 function writeAliases() {
-    config.log("Writing aliases...");
-    fs.writeFileSync(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
-    config.log("Done!");
+    fs.writeFile(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
 }
 
 function makeAliasFromArgs(args, addExtrasCallback) {
