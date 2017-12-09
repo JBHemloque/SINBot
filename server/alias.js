@@ -90,6 +90,7 @@ function getAliases() {
     if (!hasAliases) {
         outputArray[0] += " None"
     }
+    console.log(JSON.stringify(aliases));
 	return outputArray;
 }
 module.exports.getAliases;
