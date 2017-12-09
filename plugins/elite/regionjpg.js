@@ -49,7 +49,7 @@ var generateRegionMap = function(key, callback) {
                 region.map = key + ".jpg";
                 regions.writeRegionToRedis(region);
                 console.log("Generated " + region.map);
-                callback();
+                callback(region);
             }); 
         }        
     });
@@ -59,7 +59,7 @@ var fetchRegionMap = function(region, callback) {
     var key = region.toLowerCase();
     regions.getRegionByKey(key, function(rgn) {
         if (rgn.map) {
-            callback();
+            callback(rgn);
         } else {
             generateRegionMap(key, callback);
         }  

@@ -90,8 +90,8 @@ function getRegionMap(location, callback) {
         if (region) {
             var name = region.region;
             var key = name.toLowerCase();
-            regionjpg.fetchRegionMap(key, function() {
-                callback(region);
+            regionjpg.fetchRegionMap(key, function(rgn) {
+                callback(rgn);
             });
         } else {
             callback(undefined);
