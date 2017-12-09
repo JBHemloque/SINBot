@@ -2,6 +2,7 @@
 
 var base = require('../base.js');
 var path = require('path');
+var fs = require("fs");
 
 var messagebox;
 

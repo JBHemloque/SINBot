@@ -4,6 +4,7 @@ var base = require('../base.js');
 var path = require('path');
 var utils = require('./utils.js');
 var _ = require("underscore");
+var fs = require("fs");
 
 var aliases;
 
@@ -32,7 +33,6 @@ function makeAliasStructFromArgs(args) {
 }
 
 function writeAliases() {
-    console.log("Writing aliases to " + aliasPath + "...");
     fs.writeFile(aliasPath,JSON.stringify(aliases,null,2), null, function(err) {
         console.log(err);
     });
@@ -66,9 +66,7 @@ function makeAlias(alias, output, findCommand, addExtrasCallback) {
                 aliases[key] = aliasStruct;
             }
             //now save the new alias
-            console.log("Alias struct: " + JSON.stringify(aliasStruct) + ". Writing...");
-            writeAliases();
-            console.log("Done!");
+            writeAliases();        
             return aliasStruct;
         }
     } else {
