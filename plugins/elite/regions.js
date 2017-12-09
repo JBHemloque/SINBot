@@ -5,6 +5,7 @@ var data = require('../../server/data.js');
 const prefix = "regions";
 
 function getRegionByKey(key, cb) {
+	console.log("Looking for region " + key);
     data.read(prefix, key, cb);
 }
 module.exports.getRegionByKey = getRegionByKey;
