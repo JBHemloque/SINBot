@@ -2,7 +2,6 @@
 
 var base = require('../base.js');
 var path = require('path');
-var utils = require('./utils.js');
 
 var aliases;
 
@@ -78,22 +77,9 @@ function getAlias(id) {
 module.exports.getAlias = getAlias;
 
 function getAliases() {
-    var i = 0;
-    var outputArray = [];
-    outputArray[i++] = "Aliases:";
-    var hasAliases = false;
-    var key;
-    for (key in aliases) {
-        outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
-        hasAliases = true;
-    }
-    if (!hasAliases) {
-        outputArray[0] += " None"
-    }
-    console.log(JSON.stringify(aliases));
-	return outputArray;
+	return aliases;
 }
-module.exports.getAliases;
+module.exports.getAliases = getAliases;
 
 function clearAlias(alias) {
 	if (getAlias(alias.alias)) {
