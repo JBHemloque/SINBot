@@ -3,7 +3,6 @@
 var async = require('async');
 var Discord = require("discord.js");
 var search = require('../plugins/search.js');
-var elizabot = require('../plugins/elizabot.js');
 var utils = require('./utils.js');
 var package_json = require("../package.json");
 var fs = require("fs");

@@ -2,6 +2,7 @@
 
 var base = require('../base.js');
 var path = require('path');
+var utils = require('./utils.js');
 
 var aliases;
 
@@ -77,6 +78,7 @@ function getAlias(id) {
 module.exports.getAlias = getAlias;
 
 function getAliases() {
+    console.log("getting aliases...");
     var i = 0;
     var outputArray = [];
     outputArray[i++] = "Aliases:";
@@ -89,7 +91,7 @@ function getAliases() {
     if (!hasAliases) {
         outputArray[0] += " None"
     }
-    console.log(JSON.stringify(aliases));
+    console.log(JSON.stringify(outputArray));
 	return outputArray;
 }
 module.exports.getAliases = getAliases;
