@@ -61,7 +61,9 @@ function makeAlias(alias, output, findCommand, addExtrasCallback) {
                 aliases[key] = aliasStruct;
             }
             //now save the new alias
+            console.log("Alias struct: " + JSON.stringify(aliasStruct) + ". Writing...");
             writeAliases();
+            console.log("Done!");
             return aliasStruct;
         }
     } else {
