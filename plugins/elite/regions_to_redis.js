@@ -1,5 +1,7 @@
 'use strict';
 
+var base = require('../base.js');
+var path = require('path');
 var regions = require('./regions');
 
 function regionsToRedis(regionfile) {
@@ -28,3 +30,5 @@ function regionsToRedis(regionfile) {
 	}
 }
 module.exports.regionsToRedis = regionsToRedis;
+
+regionsToRedis(path.resolve(base.path, "plugins/elite/alias.json"));
