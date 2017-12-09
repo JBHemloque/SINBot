@@ -29,7 +29,9 @@ function makeAliasStructFromArgs(args) {
 }
 
 function writeAliases() {
-    fs.writeFile(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
+    config.log("Writing aliases...");
+    fs.writeFileSync(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
+    config.log("Done!");
 }
 
 function makeAliasFromArgs(args, addExtrasCallback) {
