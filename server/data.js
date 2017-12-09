@@ -24,6 +24,7 @@ module.exports.writeString = writeString;
 function read(prefix, id, cb) {
 	client.get(generateKey(prefix, id), function(err, reply) {
 		if (reply) {
+			console.log("Got data: " + reply);
 			var data = JSON.parse(reply);
 			cb(data);
 		} else {
