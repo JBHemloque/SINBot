@@ -20,6 +20,7 @@ if (!fs.existsSync(_sourceFile)) {
 
 var generateRegionMap = function(key, callback) {
     regions.getRegionByKey(key, function(region) {
+        console.log("Generating region map for " + JSON.stringify(region));
         if (region) {
             var x = region.coords.x;
             // coords.z is actually the y axis on our maps. Blame EDSM...
@@ -47,6 +48,8 @@ var generateRegionMap = function(key, callback) {
                     throw err;
                 }        
                 region.map = key + ".jpg";
+                regions.writeRegionToRedis(region);
+                console.log("Generated " + region.map);
                 callback();
             }); 
         }        
