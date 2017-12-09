@@ -120,14 +120,14 @@ var commands = {
         help: "Lists the aliases available.",
         spammy: true,
         process: function(args, bot, message) {
-            // console.log("Dumping aliases...");
+            console.log("Dumping aliases...");
             var i = 0;
             var outputArray = [];
             outputArray[i++] = "Aliases:";
             var hasAliases = false;
             var key;
             var aliases = alias.getAliases();
-            // console.log(JSON.stringify(aliases));
+            console.log(JSON.stringify(aliases));
             for (key in aliases) {
                 outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
                 hasAliases = true;
