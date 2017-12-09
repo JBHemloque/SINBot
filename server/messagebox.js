@@ -1,5 +1,8 @@
 'use strict';
 
+var base = require('../base.js');
+var path = require('path');
+
 var messagebox;
 
 try{

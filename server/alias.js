@@ -1,5 +1,8 @@
 'use strict';
 
+var base = require('../base.js');
+var path = require('path');
+
 var aliases;
 
 try{
@@ -7,8 +10,10 @@ try{
     aliases = require(path.resolve(base.path, "alias.json"));
 } catch(e) {
     //No aliases defined
+    console.log("Could not load aliases...");
     aliases = {};
 }
+
 
 function makeAliasStruct(alias, output) {
     return {alias: alias, output: output};
@@ -64,9 +69,9 @@ function makeAlias(alias, output, addExtrasCallback) {
 module.exports.makeAlias = makeAlias;
 
 function getAlias(id) {
-    console.log("Looking for alias " + id);
+    // console.log("Looking for alias " + id);
     var alias = aliases[id];
-    console.log(JSON.stringify(alias));
+    // console.log(JSON.stringify(alias));
 	return aliases[id];
 }
 module.exports.getAlias = getAlias;
