@@ -895,61 +895,7 @@ var commands = {
             }
             utils.sendMessages(bot,msg.channel,outputArray);
         }
-    },
-    "waypoints": {
-        usage: "waypoints <origin> -> <destination> [-> <jump range>]",
-        help: "Get a list of waypoints between the origin and destination to help in-game plotting.",
-        spammy: true,
-        process: function(args, bot, msg) {
-            var that = this;
-            var systems = utils.compileArgs(args).split(/->|:/);
-            if (systems.length >= 2) {
-                var origin = systems[0].trim();
-                var destination = systems[1].trim();
-
-                console.log(origin + ":" + destination + ":");
-
-                if (origin == destination) {
-                    utils.sendMessage(bot, msg.channel, origin + " = " + destination + ", which doesn't really make all that much sense.");
-                    return;
-                }
-
-                var jumpRange = undefined;
-                if (systems.length == 3) {
-                    jumpRange = +(systems[2]);
-                    if (jumpRange == NaN) {
-                        jumpRange = undefined;
-                    }
-                }
-
-                edsm.getWaypoints(origin, destination, 1000, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel), jumpRange);
-            } else {
-                utils.displayUsage(bot,msg,this);
-            }            
-        }
-    },
-    "nearest": {
-        usage: "nearest <x> <y> <z> [optional range]",
-        help: "Gets systems near a given point.",
-        process: function(args, bot, msg) {
-            // Get rid of the command
-            args.shift();
-            // Run through the args stripping out anything that's not a number. This takes care of things like "-8740 / -740 / 12820"
-            var coords = args.filter(function(value) {
-                return !isNaN(value);
-            });
-            if (coords.length >= 3) {
-                var range = undefined;
-                if (coords.length == 4) {
-                    range = coords[3].trim();
-                }
-                edsm.getNearbySystemsByCoordinates(coords[0].trim(),coords[1].trim(),coords[2].trim(), range, bot, msg.channel);
-            } else {
-                utils.displayUsage(bot,msg,this);
-            }
-        }
-    }
-};
+    };
 
 var normalizeSystem = function(system) {
     // We'll look in both the system alias list and the GMP database
