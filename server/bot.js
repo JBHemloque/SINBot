@@ -3,13 +3,14 @@
 var async = require('async');
 var Discord = require("discord.js");
 var search = require('../plugins/search.js');
-var elizabot = require('../plugins/elizabot.js');
 var utils = require('./utils.js');
 var package_json = require("../package.json");
 var fs = require("fs");
 var _ = require("underscore");
 var base = require('../base.js');
 var path = require('path');
+var messagebox = require('./messagebox.js');
+var alias = require('./alias.js');
 var version;
 
 var config;
@@ -34,68 +35,6 @@ function debugLog(message) {
     }
 }
 
-var messagebox;
-var aliases;
-
-try{
-    console.log('  - Loading ' + path.resolve(base.path, "messagebox.json"));
-    messagebox = require(path.resolve(base.path, "messagebox.json"));
-} catch(e) {
-    //no stored messages
-    messagebox = {};
-}
-try{
-    console.log('  - Loading ' + path.resolve(base.path, "alias.json"));
-    aliases = require(path.resolve(base.path, "alias.json"));
-} catch(e) {
-    //No aliases defined
-    aliases = {};
-}
-
-function updateMessagebox(){
-    fs.writeFile(path.resolve(base.path, "messagebox.json"),JSON.stringify(messagebox,null,2), null);
-}
-
-function checkForMessages(bot, user) {
-    try{
-        if(messagebox.hasOwnProperty(user.id)){
-            var message = messagebox[user.id];
-            var outputArray = [];
-            if (message.content) {
-                outputArray.push(message.content);
-            } else {
-                for (var i = 0; i < message.length; i++) {
-                    outputArray.push(message[i].content);
-                }
-            }
-            utils.sendMessages(bot, user, outputArray);
-            delete messagebox[user.id];
-            updateMessagebox();
-        }
-    }catch(e){
-        utils.logError("Error reading messagebox", e);
-        throw e;
-    }
-}
-
-function addMessage(targetId, message) {
-    var msg = messagebox[targetId];
-    if (msg) {
-        // Ensure it's a new-style message
-        if (msg.content) {
-            // Old style message... Turn it into an array
-            var msgArray = [];
-            msgArray.push(msg);
-            msg = msgArray;
-        }
-    } else {
-        msg = [];
-    }
-    msg.push(message);
-    messagebox[targetId] = msg;
-    updateMessagebox();
-}
-
 function userMentioned(text, user) {
     if (user) {
         return ((text.startsWith('<@' + user + '>')) || (text.startsWith('<@!' + user + '>')));
@@ -113,57 +52,6 @@ function stripUserDecorations(text) {
 
 function isAdmin(id) {
     return (config.ADMIN_IDS.indexOf(id) > -1);
-}
-
-function makeAliasStruct(alias, output) {
-    return {alias: alias, output: output};
-}
-
-function makeAliasStructFromArgs(args) {
-    // Get rid of the command
-    args.shift();
-    var alias = args.shift();
-    var output = args.join(" ");
-    return makeAliasStruct(alias, output);
-}
-
-function writeAliases() {
-    fs.writeFile(path.resolve(base.path, "alias.json"),JSON.stringify(aliases,null,2), null);
-}
-
-function makeAliasFromArgs(args, addExtrasCallback) {
-    // Get rid of the command
-    args.shift();
-    var alias = args.shift();
-    var output = args.join(" ");
-    return makeAlias(alias, output, addExtrasCallback);
-}
-
-function makeAlias(alias, output, addExtrasCallback) {
-    var aliasStruct = makeAliasStruct(alias, output);
-    if (aliasStruct.alias && aliasStruct.output) {
-        var command = findCommand(aliasStruct.alias);
-        if (command) {
-            return {error: true, message: "Sorry, " + aliasStruct.alias + " is a command."};
-        } else {
-            if (addExtrasCallback) {
-                addExtrasCallback(aliasStruct);
-            }
-            var key = aliasStruct.alias.toLowerCase();
-            if (aliases[key]) {
-                var item = aliases[key];
-                _.extend(item, aliasStruct);
-                aliases[key] = item;
-            } else {
-                aliases[key] = aliasStruct;
-            }
-            //now save the new alias
-            writeAliases();
-            return aliasStruct;
-        }
-    } else {
-        return {displayUsage: true};
-    }
 }
 
 var guildListCmd = {
@@ -200,13 +88,13 @@ var commands = {
         help: "Creates a command alias -- e.g. !ping can output Pong!",
         extendedhelp: "An alias is a simple text substitution. It creates or updates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%",
         process: function(args, bot, message) {
-            var alias = makeAliasFromArgs(args);
-            if (alias.displayUsage) {
+            var cmdAlias = alias.makeAliasFromArgs(args, findCommand);
+            if (cmdAlias.displayUsage) {
                 displayUsage(bot, message, this);
-            } else if (alias.error) {
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, alias.message);
+            } else if (cmdAlias.error) {
+                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, cmdAlias.message);
             } else {
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"Created alias " + alias.alias);
+                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"Created alias " + cmdAlias.alias);
             }
         }
     },
@@ -216,10 +104,10 @@ var commands = {
         extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%. This command shows the contents of an alias.",
         process: function(args, bot, message) {
             if (args.length > 1) {
-                var alias = aliases[args[1].toLowerCase()];
+                var cmdAlias = alias.getAlias(args[1].toLowerCase());
                 var output = args[1] + " is not an alias.";
-                if (alias) {
-                    output = alias.alias + " -> " + alias.output;
+                if (cmdAlias) {
+                    output = cmdAlias.alias + " -> " + cmdAlias.output;
                 }
                 utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
             } else {
@@ -230,19 +118,8 @@ var commands = {
     "aliases": {
         help: "Lists the aliases available.",
         spammy: true,
-        process: function(args, bot, message) {
-            var i = 0;
-            var outputArray = [];
-            outputArray[i++] = "Aliases:";
-            var hasAliases = false;
-            var key;
-            for (key in aliases) {
-                outputArray[i++] = "\t" + key + " -> " + utils.inBrief(aliases[key].output);
-                hasAliases = true;
-            }
-            if (!hasAliases) {
-                outputArray[0] += " None"
-            }
+        process: function(args, bot, message) {            
+            var outputArray = alias.getAliases();
             utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
         }
     },
@@ -251,14 +128,12 @@ var commands = {
         adminOnly: true,
         help: "Deletes an alias.",
         process: function(args, bot, message) {
-            var alias = makeAliasStructFromArgs(args);
-            if(alias.alias) {
-                if (aliases[alias.alias]) {
-                    delete aliases[alias.alias];
-                    writeAliases();
-                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Deleted alias " + alias.alias);
+            var cmdAlias = makeAliasStructFromArgs(args);
+            if(cmdAlias.alias) {
+                if (alias.clearAlias(cmdAlias)) {                    
+                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Deleted alias " + cmdAlias.alias);
                 } else {
-                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Sorry, " + alias.alias + " doesn't exist.");
+                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Sorry, " + cmdAlias.alias + " doesn't exist.");
                 }
             } else {
                 displayUsage(bot, message, this);
@@ -418,7 +293,7 @@ var commands = {
                             channel: message.channel.id,
                             content: msgtext
                         };
-                        addMessage(target.id, msgObj);
+                        messagebox.addMessage(target.id, msgObj);
                         utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"message saved.");
                     });
                 } else {
@@ -630,7 +505,7 @@ function procCommand(bot, message) {
         } else if (message.author != bot.user && message.isMentioned(bot.user)) {
             sendMessage(bot, message.channel,message.author + ", you called?");
         }
-        checkForMessages(bot, message.author);
+        messagebox.checkForMessages(bot, message.author);
     }
 }
 
@@ -653,7 +528,7 @@ function handleCommand(bot, res, message) {
             }
         }
     } else {
-        cmd = aliases[res.args[0].toLowerCase()];
+        cmd = alias.getAlias(res.args[0].toLowerCase());
         if (cmd) {
             procAlias(bot, message, cmd, compileArgs(res.args));
         } else {
@@ -668,7 +543,7 @@ function handleCommand(bot, res, message) {
 function procPresence(bot, user, status, gameId) {
     try{
         if(status != 'offline'){
-            checkForMessages(bot, user);
+            messagebox.checkForMessages(bot, user);
         }
     } catch(e){
         utils.logError("procPresence error", e);
@@ -683,9 +558,9 @@ function startBot(bot, cfg, callback) {
 
     var botcfg = {
         sinBot: this,
-        aliases: aliases,
-        writeAliases: writeAliases,
-        makeAlias: makeAlias,
+        findCommand: findCommand,
+        writeAliases: alias.writeAliases,
+        makeAlias: alias.makeAlias,
         pmIfSpam: config.SPAMMY_PM
     };
 
@@ -697,8 +572,7 @@ function startBot(bot, cfg, callback) {
 
     if (config.CLEAR_MESSAGEBOX) {
         debugLog("Clearing message box...");
-        messagebox = {};
-        updateMessagebox();
+        messagebox.clearMessageBox();
     }
 
     for (var i = 0; i < plugins.length; i += 1) {
@@ -751,6 +625,3 @@ exports.compileCommand = compileCommand;
 exports.handleCommand = handleCommand;
 exports.procCommand = procCommand;
 exports.procPresence = procPresence;
-exports.aliases = aliases;
-exports.makeAlias = makeAlias;
-exports.writeAliases = writeAliases;
