@@ -870,7 +870,8 @@ var commands = {
             }
             utils.sendMessages(bot,msg.channel,outputArray);
         }
-    };
+    },
+};
 
 var normalizeSystem = function(system) {
     // We'll look in both the system alias list and the GMP database
