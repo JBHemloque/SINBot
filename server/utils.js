@@ -149,7 +149,7 @@ var sendMessages = function(bot, channel, outputArray, tts, callback) {
     async.forEachSeries(compiledArray, function(output, callback) {
         var cb = callback;
         if (output) {
-            _sendMessage(bot, channel, msg, tts, cb);
+            _sendMessage(bot, channel, output, tts, cb);
         } else {
             cb();
         }
