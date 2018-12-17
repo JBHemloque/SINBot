@@ -51,6 +51,9 @@ function stripUserDecorations(text) {
 }
 
 function isAdmin(id) {
+    if (config.ADMIN_MODE) {
+        return true;
+    }
     return (config.ADMIN_IDS.indexOf(id) > -1);
 }
 
@@ -493,7 +496,22 @@ var procAlias = function(bot, message, cmd, extra) {
     output = output.replace(/%GUILD%/gi, message.guild);
     output = output.replace(/%CHANNEL_TOPIC%/gi, message.channel.topic);
     output = output.replace(/%EXTRA%/gi, extra);
-    utils.sendMessage(bot, message.channel, output);
+    var sendMessage = true;
+    if (config.ALLOW_COMMAND_ALIASES) {
+        // If this is a command, run it
+        var args = output.split(" ");
+        var cmd = findCommand(args[0]);
+        if (cmd) {
+            var res = {
+                args: args
+            }
+            handleCommand(bot, res, message);
+            sendMessage = false;
+        }
+    }
+    if (sendMessage) {
+        utils.sendMessage(bot, message.channel, output);
+    }
 }
 
 function procCommand(bot, message) {
