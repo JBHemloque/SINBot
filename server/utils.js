@@ -36,6 +36,37 @@ exports.inBrief = function(longstring) {
     return ret;
 }
 
+export.formatTimeDuration = function(diff) {
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -=  days * (1000 * 60 * 60 * 24);
+
+    var hours = Math.floor(diff / (1000 * 60 * 60));
+    diff -= hours * (1000 * 60 * 60);
+
+    var mins = Math.floor(diff / (1000 * 60));
+    diff -= mins * (1000 * 60);
+
+    var seconds = Math.floor(diff / (1000));
+    diff -= seconds * (1000);
+
+    var output = "";
+    if (days > 0) {
+        output += days;
+        output += " days, ";
+    }
+    if (hours > 0) {
+        output += hours;
+        output += " hours, ";
+    }
+    if (mins > 0) {
+        output += mins;
+        output += " minutes, ";
+    }
+    output += seconds;
+    output += " seconds";
+    return output;
+}
+
 const MESSAGE_LIMIT = 800;
 
 function _sendMessage(bot, channel, msg, tts, callback) {

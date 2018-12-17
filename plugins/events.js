@@ -124,37 +124,6 @@ function removeEvent(eventName) {
     return false;
 }
 
-function formatTimeDiff(diff) {
-    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    diff -=  days * (1000 * 60 * 60 * 24);
-
-    var hours = Math.floor(diff / (1000 * 60 * 60));
-    diff -= hours * (1000 * 60 * 60);
-
-    var mins = Math.floor(diff / (1000 * 60));
-    diff -= mins * (1000 * 60);
-
-    var seconds = Math.floor(diff / (1000));
-    diff -= seconds * (1000);
-
-    var output = "";
-    if (days > 0) {
-        output += days;
-        output += " days, ";
-    }
-    if (hours > 0) {
-        output += hours;
-        output += " hours, ";
-    }
-    if (mins > 0) {
-        output += mins;
-        output += " minutes, ";
-    }
-    output += seconds;
-    output += " seconds";
-    return output;
-}
-
 function timeUntilEvent(eventName) {
     if (events[eventName]) {
         var event = events[eventName];
@@ -163,7 +132,7 @@ function timeUntilEvent(eventName) {
             return "'" + eventName + "' has already happened.";
         } else {
             var diff = event.time - now;
-            return eventName + " will begin in " + formatTimeDiff(diff);
+            return eventName + " will begin in " + utils.formatTimeDuration(diff);
         }
     } else {
         return "Event '" + eventName + "' is not a valid event.";
