@@ -36,7 +36,7 @@ exports.inBrief = function(longstring) {
     return ret;
 }
 
-export.formatTimeDuration = function(diff) {
+exports.formatTimeDuration = function(diff) {
     var days = Math.floor(diff / (1000 * 60 * 60 * 24));
     diff -=  days * (1000 * 60 * 60 * 24);
 
