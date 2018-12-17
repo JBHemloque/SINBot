@@ -6,6 +6,10 @@ var config = require('../config.js');
 var utils = require('./utils.js');
 var base = require('../base.js');
 var healthcheck = require('./healthcheck.js');
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 var options = {};
 if (config.DISCORD_OPTIONS) {
@@ -52,4 +56,35 @@ function startBot() {
         .catch(console.error);
 }
 
-startBot();
+function consoleBotInput(consoleBot) {
+    bot.startBot(SINBot, config, function() {
+        console.log("Bot initialization complete!");
+        readline.question(`Bot: `, (input) => {
+      
+          var message = {
+            author: {username: 'User'},
+            channel: 'Channel',
+            sender: {username: 'Sender'},
+            content: input,
+            isMentioned: function(user) { return false; }
+        };
+
+            bot.procCommand(consoleBot, message);
+
+            readline.close();
+            consoleBotInput(bot);
+        });
+    });
+}
+
+function consoleBot() {
+    var botUser = {username: 'Console Bot'};
+    var consoleBot = {user: botUser};
+    consoleBotInput(consoleBot);
+}
+
+if (config.CONSOLE) {
+    consoleBot();
+} else {
+    startBot();
+}

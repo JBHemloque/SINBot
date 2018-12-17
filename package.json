@@ -12,6 +12,7 @@
     "gm": "^1.22.0",
     "googleapis": "^16.1.0",
     "iconv": "^2.2.1",
+    "libxmljs": "^0.19.5",
     "node-rest-client": "^2.5.0",
     "node-sumuparticles": "^0.1.4",
     "redis": "^2.8.0",

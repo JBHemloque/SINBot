@@ -36,12 +36,41 @@ exports.inBrief = function(longstring) {
     return ret;
 }
 
-const MESSAGE_LIMIT = 800
+const MESSAGE_LIMIT = 800;
+
+function _sendMessage(bot, channel, msg, tts, callback) {
+    if (config.CONSOLE) {
+        var output = "[";
+        output += channel;
+        output += "] ";
+        output += msg;
+        console.log(output);
+        if (callback) {
+            callback(undefined, output);
+        }
+    } else {
+        var options = {tts:false};
+        if (tts) {
+            options.tts = true;
+        }
+        channel.sendMessage(msg, options)
+            .then(message => {
+                if (callback) {
+                    callback(undefined, message);
+                }
+            })
+            .catch(error => { 
+                logError("Error sending message", error);
+                callback(error);
+            });
+    }
+}
 
 var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback){
     if (channel.startsWith("#")) {
         channel = channel.substr(1);
-    }
+    }    
+
     var channels = bot.channels;
     var ch = bot.channels.find("name",channel);
     if (server) {
@@ -52,17 +81,8 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
     }
 
     if (ch) {
-        console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        ch.sendMessage(msg)
-            .then(message => {
-                if (callback) {
-                    callback(undefined, message);
-                }
-            })
-            .catch(error => { 
-                logError("Error sending message", error);
-                callback(error);
-            });
+        // console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
+        _sendMessage(bot, channel, msg, false, callback);
     } else {
         console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
@@ -74,16 +94,7 @@ var sendMessage = function(bot, channel, message, callback) {
     if (message.length > MESSAGE_LIMIT) {
         sendMessages(bot, channel, message.split(/\r?\n/), callback);
     } else {
-        channel.sendMessage(message)
-            .then(message => {
-                if (callback) {
-                    callback(undefined, message);
-                }
-            })
-            .catch(error => { 
-                logError("Error sending message", error);
-                callback(error);
-            });
+        _sendMessage(bot, channel, message, false, callback);
     }
 }
 exports.sendMessage = sendMessage;
@@ -93,16 +104,7 @@ var ttsMessage = function(bot, channel, message, callback) {
     if (message.length > MESSAGE_LIMIT) {
         sendMessages(bot, channel, message.split(/\r?\n/), true, callback);
     } else {
-        channel.sendMessage(message, {tts:true})
-            .then(message => {
-                if (callback) {
-                    callback(undefined, message);
-                }
-            })
-            .catch(error => { 
-                logError("Error sending message", error);
-                callback(error);
-            });
+        _sendMessage(bot, channel, msg, true, callback);
     }
 }
 exports.ttsMessage = ttsMessage;
@@ -147,20 +149,7 @@ var sendMessages = function(bot, channel, outputArray, tts, callback) {
     async.forEachSeries(compiledArray, function(output, callback) {
         var cb = callback;
         if (output) {
-            if (tts) {
-                channel.sendMessage(output, {tts:true})
-                    .then(message => cb())
-                    .catch(error => {
-                        logError("Error sending message", error);
-                    });
-            } else {
-                channel.sendMessage(output)
-                    .then(message => cb())
-                    .catch(error => {
-                        logError("Error sending message", error);
-                        cb();
-                    });
-            }
+            _sendMessage(bot, channel, msg, tts, cb);
         } else {
             cb();
         }
