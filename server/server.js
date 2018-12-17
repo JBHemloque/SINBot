@@ -57,30 +57,30 @@ function startBot() {
 }
 
 function consoleBotInput(consoleBot) {
-    bot.startBot(SINBot, config, function() {
-        console.log("Bot initialization complete!");
-        readline.question(`Bot: `, (input) => {
-      
-          var message = {
-            author: {username: 'User'},
-            channel: 'Channel',
-            sender: {username: 'Sender'},
-            content: input,
-            isMentioned: function(user) { return false; }
-        };
+    readline.question(`Bot: `, (input) => {
+  
+      var message = {
+        author: {username: 'User'},
+        channel: 'Channel',
+        sender: {username: 'Sender'},
+        content: input,
+        isMentioned: function(user) { return false; }
+    };
 
-            bot.procCommand(consoleBot, message);
+        bot.procCommand(consoleBot, message);
 
-            readline.close();
-            consoleBotInput(bot);
-        });
+        // readline.close();
+        consoleBotInput(bot);
     });
 }
 
 function consoleBot() {
     var botUser = {username: 'Console Bot'};
     var consoleBot = {user: botUser};
-    consoleBotInput(consoleBot);
+    bot.startBot(SINBot, config, function() {
+        console.log("Bot initialization complete!");
+        consoleBotInput(consoleBot);
+    });
 }
 
 if (config.CONSOLE) {

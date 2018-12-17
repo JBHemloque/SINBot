@@ -368,6 +368,37 @@ var commands = {
             }
         }
     },
+    "traveltime": {
+        usage: "traveltime <JumpRange> <travelDistance> [optional time per jump in seconds - defaults to 60]",
+        help: "Estimate travel time",
+        process: function(args, bot, msg) {
+            var displayUsage = true;
+            if ((args.length === 4) || (args.length === 3)) {
+                displayUsage = false;
+                var jumpRange = +(args[1]);
+                var distance = +(args[2]);
+                var secondsPerJump = 60;
+                if (args.length === 4) {
+                    secondsPerJump = args[3];
+                    if (isNaN(secondsPerJump)) {
+                        displayUsage = true;
+                    }
+                }
+                if (isNaN(jumpRange) || isNaN(distance)) {
+                    displayUsage = true;
+                }
+                if (!displayUsage) {
+                    var tt = (distance / jumpRange) * (secondsPerJump) * 1.1 * 1000;
+                    var output = "Travel time should be approximately " + utils.formatTimeDuration(tt);
+                    utils.sendMessage(bot, msg.channel, output);
+                }
+            } 
+
+            if (displayUsage) {
+                utils.displayUsage(bot,msg,this);
+            }
+        }
+    },
     "showloc": {
         usage: "showloc <name>",
         help: 'Shows the location of a commander.',
