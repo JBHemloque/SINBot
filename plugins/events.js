@@ -7,28 +7,35 @@ var utils = require('../server/utils.js');
 
 var commands = {
     "add_event": {
-        usage: "add_event <event name> <event time>",
-        // adminOnly: true,
+        usage: "add_event <event> <event name> -> <event time>",
+        adminOnly: true,
         help: "Creates a timed event. Note: The format for <event time> is covered in RFC 2822 ('dd/Mon/yyyy HH:mm:ss' as a UTC date is safe)",
         process: function(args, bot, message) {            
             // Get rid of the command
             args.shift();
-            if (args.length > 1) {
+            var displayUsage = true;
+            if (args.length > 2) {
                 var eventName = args.shift();
-                var eventTime = args.join(" ");
-                if (addEvent(eventName, eventTime)) {
-                    utils.sendMessage(bot, message.channel, "Created event " + eventName + " at " + eventTime);
-                } else {
-                    utils.displayUsage(bot,message,this);
+                var extra = args.join(" ").split(" -> ");
+                console.log("Extra: " + JSON.stringify(extra));
+                var eventPrettyName = extra.shift();
+                var eventTime = extra.shift();
+                console.log(eventPrettyName + " : " + eventTime);
+                if (eventName && eventPrettyName && eventTime) {
+                    if (addEvent(eventName, eventPrettyName, eventTime)) {
+                        utils.sendMessage(bot, message.channel, "Created event " + eventName + " at " + eventTime);
+                    }
+                    displayUsage = false;
                 }
-            } else {
+            } 
+            if (displayUsage) {
                 utils.displayUsage(bot,message,this);
             }
         }
     },
     "remove_event": {
         usage: "remove_event <event name> <event time>",
-        // adminOnly: true,
+        adminOnly: true,
         help: "Removes a timed event.",
         process: function(args, bot, message) {
             // Get rid of the command
@@ -70,7 +77,7 @@ var commands = {
             outputArray[i++] = utils.bold("Events:");
             var hasEvents = false;
             for (key in events) {
-                outputArray[i++] = "\t" + key + ": " + (new Date(events[key].time).toISOString());
+                outputArray[i++] = "\t" + key + ": " + events[key].name + " at " + (new Date(events[key].time).toISOString());
                 hasEvents = true;
             }
             if (!hasEvents) {
@@ -101,11 +108,11 @@ function updateEvents() {
     fs.writeFile(path.resolve(base.path, "events.json"),JSON.stringify(events,null,2), null);
 }
 
-function addEvent(eventName, eventDateTime) {
+function addEvent(eventName, eventPrettyName, eventDateTime) {
     var eventTime = Date.parse(eventDateTime);
     if (eventTime != NaN) {
         var event = {
-            name: eventName,
+            name: eventPrettyName,
             time: eventTime
         }
         events[eventName] = event;
@@ -129,10 +136,10 @@ function timeUntilEvent(eventName) {
         var event = events[eventName];
         var now = new Date().getTime();
         if (now > event.time) {
-            return "'" + eventName + "' has already happened.";
+            return "'" + event.name + "' has already happened.";
         } else {
             var diff = event.time - now;
-            return eventName + " will begin in " + utils.formatTimeDuration(diff);
+            return event.name + " will begin in " + utils.formatTimeDuration(diff);
         }
     } else {
         return "Event '" + eventName + "' is not a valid event.";
