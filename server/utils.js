@@ -62,8 +62,13 @@ exports.formatTimeDuration = function(diff) {
         output += mins;
         output += " minutes, ";
     }
-    output += seconds;
-    output += " seconds";
+    if (seconds > 0) {
+        output += seconds;
+        output += " seconds";
+    }
+    if (output.length === 0) {
+        output = diff + " milliseconds";
+    }
     return output;
 }
 
@@ -216,7 +221,7 @@ exports.displayUsage = function(bot, message, command) {
         if (config.COMMAND_PREFIX) {
             prefix = config.COMMAND_PREFIX;
         }
-        channel.sendMessage("Usage: " + prefix + command.usage);
+        sendMessage(bot, channel, "Usage: " + prefix + command.usage);
     }
 }
 
