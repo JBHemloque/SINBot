@@ -49,27 +49,23 @@ exports.formatTimeDuration = function(diff) {
     var seconds = Math.floor(diff / (1000));
     diff -= seconds * (1000);
 
-    var output = "";
+    var output = [];
     if (days > 0) {
-        output += days;
-        output += " days, ";
+        output.push(days + " days");
     }
     if (hours > 0) {
-        output += hours;
-        output += " hours, ";
+        output.push(hours + " hours");
     }
     if (mins > 0) {
-        output += mins;
-        output += " minutes, ";
+        output.push(mins + " minutes");
     }
     if (seconds > 0) {
-        output += seconds;
-        output += " seconds";
+        output.push(seconds + " seconds");
     }
     if (output.length === 0) {
-        output = diff + " milliseconds";
+        output.push(diff + " milliseconds");
     }
-    return output;
+    return output.join(", ");
 }
 
 const MESSAGE_LIMIT = 800;
