@@ -71,6 +71,31 @@ function handleGravity(planetMass, planetRadius) {
     return ret;
 }
 
+/**
+Implements Jackie Silver's method of stellar density calculation
+
+To find the density, look at the navpanel. If there are more than 50 star systems within 20 light years, 
+only the first 50 systems will be shown. Otherwise, the navpanel will show all systems within 20 light years.
+
+This gives us two ways of finding the density:
+
+1) For dense areas where there are more than 50 star systems, look at the last star system in the list, 
+and see what its distance ("r") from your ship is. This lets us estimate the density as rho = 50 / ((4pi/3) * (r^3))
+
+2) For sparse areas where there are less than 50 star systems, count how many star systems ("n") are visible in 
+total in the navpanel. This lets us estimate the density as rho = n / ((4pi/3) * (20^3))
+
+This function prioritizes 1) over 2) - so it will perform method 1 if r is not undefined, otherwise 2
+**/
+function calcRho(r, n) {
+    if (r) {
+        return 50 / ((4 * Math.PI / 3) * Math.pow(r, 3));
+    } else if (n) {
+        return n / ((4 * Math.PI / 3) * Math.pow(20, 3));
+    }
+    return undefined;
+}
+
 function writeAliases() {
     fs.writeFile(path.resolve(base.path, "sysalias.json"),JSON.stringify(edsm.aliases,null,2), null);
 }
@@ -322,6 +347,44 @@ var commands = {
                 if(!isNaN(planetMass) && !isNaN(planetRadius)) {
                     displayUsage = false;
                     utils.sendMessage(bot, msg.channel, handleGravity(planetMass, planetRadius));
+                }
+            }
+            if (displayUsage) {
+                utils.displayUsage(bot,msg,this);
+            }
+        }
+    },
+    "rho_dense": {
+        usage: "rho_dense <distance>",
+        help: "Calculates stellar density for dense areas (50 star systems in the nav panel) using the distance to the last star in the list.",
+        extendedhelp: "IMPORTANT: This calculation is only accurate if there are 50 stars in your nav panel. Look at the last star system in the panel, and enter the distance from your ship.",
+        process: function(args, bot, msg) {
+            var displayUsage = true;
+            if (args.length === 2) {
+                var distance = args[1];
+                var density = calcRho(distance, undefined);
+                if(!isNaN(density)) {
+                    displayUsage = false;
+                    utils.sendMessage(bot, msg.channel, "rho = " + density);
+                }
+            }
+            if (displayUsage) {
+                utils.displayUsage(bot,msg,this);
+            }
+        }
+    },
+    "rho_sparse": {
+        usage: "rho_sparse <count>",
+        help: "Calculates stellar density for sparse areas ( < 50 star systems in the nav panel) using the count of star systems in the list.",
+        extendedhelp: "IMPORTANT: This calculation is only accurate if there are less than 50 stars in your nav panel. Count the number of star systems in the nav panel, and enter the count.",
+        process: function(args, bot, msg) {
+            var displayUsage = true;
+            if (args.length === 2) {
+                var count = args[1];
+                var density = calcRho(undefined, count);
+                if(!isNaN(density)) {
+                    displayUsage = false;
+                    utils.sendMessage(bot, msg.channel, "rho = " + density);
                 }
             }
             if (displayUsage) {
