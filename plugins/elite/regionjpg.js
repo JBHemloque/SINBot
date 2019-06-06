@@ -94,7 +94,7 @@ var fetchRegionMap = function(region, callback) {
 
 var fetchRegionMapByKey = function(key, callback) {
     regions.getRegionByKey(key, function(rgn) {
-        if (rgn.map && (fs.existsSync(_destDir + rgn.map))) {
+        if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
         } else {
             generateRegionMap(key, callback);
