@@ -43,17 +43,17 @@ var generateRegionMap = function(key, callback) {
             // coords.z is actually the y axis on our maps. Blame EDSM...
             var y = normalizeCoordY(region.coords.z);
 
-            generateRegionMapByCoords(x, y, region.region, region.region, callback);
+            generateRegionMapByCoords(x, y, region.region, callback);
         }        
     });
 }
 
-var generateRegionMapByCoords = function(x, y, name, filename, callback) {
+var generateRegionMapByCoords = function(x, y, filename, callback) {
+    var name = "";
     if (!filename) {
         filename = generateCoordFileName(x, y);
-    }
-    if (!name) {
-        name = "";
+    } else {
+        name = filename;
     }
 
     if (!fs.existsSync(_sourceFile)) {
@@ -90,7 +90,7 @@ var fetchRegionMapByCoords = function(x, y, callback) {
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
         } else {
-            generateRegionMapByCoords(x, y, undefined, filename, callback);
+            generateRegionMapByCoords(x, y, filename, callback);
         }
     });
 }
