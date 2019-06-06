@@ -82,6 +82,7 @@ var generateRegionMapByCoords = function(x, y, name, filename, callback) {
 }
 
 var fetchRegionMapByCoords = function(x, y, callback) {
+    console.log("fetchRegionMapByCoords(" + x + ", " + y + ", callback)");
     x = normalizeCoordX(x);
     y = normalizeCoordY(y);
     fetchRegionMapByKey(generateCoordFileName(x, y), callback);
