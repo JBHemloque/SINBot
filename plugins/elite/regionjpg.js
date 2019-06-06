@@ -85,22 +85,29 @@ var fetchRegionMapByCoords = function(x, y, callback) {
     console.log("fetchRegionMapByCoords(" + x + ", " + y + ", callback)");
     x = normalizeCoordX(x);
     y = normalizeCoordY(y);
-    fetchRegionMapByKey(generateCoordFileName(x, y), callback);
+    var filename = generateCoordFileName(x, y);
+    regions.getRegionByKey(filename, function(rgn) {
+        if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
+            callback(rgn);
+        } else {
+            generateRegionMapByCoords(x, y, undefined, filename, callback);
+        }
+    });
 }
 
 var fetchRegionMap = function(region, callback) {
     var key = region.toLowerCase();
-    fetchRegionMapByKey(key, callback);
-}
-
-var fetchRegionMapByKey = function(key, callback) {
     regions.getRegionByKey(key, function(rgn) {
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
         } else {
             generateRegionMap(key, callback);
-        }  
+        }
     });
+}
+
+var fetchRegionMapByKey = function(key, callback) {
+    
 }
 
 var setRegionFont = function(font) {
