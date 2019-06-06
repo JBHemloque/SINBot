@@ -84,12 +84,11 @@ var generateRegionMapByCoords = function(x, y, filename, callback) {
 var fetchRegionMapByCoords = function(x, y, callback) {
     x = normalizeCoordX(x);
     y = normalizeCoordY(y);
-    var filename = generateCoordFileName(x, y);
-    regions.getRegionByKey(filename, function(rgn) {
+    regions.getRegionByKey(generateCoordFileName(x, y), function(rgn) {
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
         } else {
-            generateRegionMapByCoords(x, y, filename, callback);
+            generateRegionMapByCoords(x, y, undefined, callback);
         }
     });
 }
