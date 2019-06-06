@@ -119,7 +119,16 @@ function getRegionMap(location, callback) {
                 callback(rgn);
             });
         } else {
-            callback(undefined);
+            edsm.getSystemCoords(location, function(coords) {
+                if (coords) {
+                    // z is the Y coordinate looking down at the map
+                    regionjpg.fetchRegionMapByCoords(coords.x, coords.z, function(rgn) {
+                        callback(rgn);
+                    });
+                } else {
+                    callback(undefined);
+                }
+            });            
         }  
     });
 }
