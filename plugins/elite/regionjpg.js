@@ -43,7 +43,7 @@ var generateRegionMap = function(key, callback) {
             // coords.z is actually the y axis on our maps. Blame EDSM...
             var y = normalizeCoordY(region.coords.z);
 
-            generateRegionMap(x, y, region.region, region.region, callback);
+            generateRegionMapByCoords(x, y, region.region, region.region, callback);
         }        
     });
 }
