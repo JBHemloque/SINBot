@@ -76,14 +76,11 @@ function normalizeName(location) {
 }
 
 function isProcGen(location) {
-    console.log("Checking if " + location + " is a procgen name...");
     location = normalizeName(location);
     var names = location.split(/ [a-z][a-z]-[a-z] /i);
     if (names.length > 1) {
-        console.log("YES!");
         return true;
     }
-    console.log("No...");
     return false;
 }
 
