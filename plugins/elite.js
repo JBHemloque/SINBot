@@ -38,10 +38,11 @@ function writeCmdrs() {
 
 function getRegionMap(location, callback) {
     var key = elitelib.getRegionName(location);
+    console.log("getRegionMap: Key = " + key);
     regions.getRegionByKey(key, function(region) {
         if (region) {
             var name = region.region;
-            var key = name.toLowerCase();
+            key = name.toLowerCase();
             regionjpg.fetchRegionMap(key, function(rgn) {
                 callback(rgn);
             });
