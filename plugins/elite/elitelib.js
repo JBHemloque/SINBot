@@ -71,12 +71,12 @@ function calcRho(r, n) {
     return undefined;
 }
 
-function isProcGen(sysname) {
-    var names = data.name.split(/ [a-z][a-z]-[a-z] /i);
+function isProcGen(location) {
+    var names = location.split(/ [a-z][a-z]-[a-z] /i);
     return (names.length > 1);
 }
 
-function getRegionName(sysname) {
+function getRegionName(location) {
     var names = location.split(/ [a-z][a-z]-[a-z] /i);
     return names[0].toLowerCase();
 }
