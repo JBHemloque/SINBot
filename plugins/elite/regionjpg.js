@@ -39,14 +39,16 @@ var generateCoordFileName = function(x, y) {
 
 var generateRegionMap = function(key, callback) {
     regions.getRegionByKey(key, function(region) {
-        if (region) {
+        if (region && region.coords) {
             var x = normalizeCoordX(region.coords.x);
             // coords.z is actually the y axis on our maps. Blame EDSM...
             var y = normalizeCoordY(region.coords.z);
 
-            generateRegionMapByCoords(x, y, region.region, region.region, callback);
+            generateRegionMapByCoords(x, y, region.region, region.region.toLowerCase(), callback);
+            return true;
         }        
     });
+    return false;
 }
 
 var generateRegionMapByCoords = function(x, y, name, filename, callback) {
