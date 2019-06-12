@@ -106,16 +106,15 @@ var fetchRegionMapByCoords = function(x, y, location, callback) {
 var fetchRegionMap = function(region, callback) {
     var key = region.toLowerCase();
     regions.getRegionByKey(key, function(rgn) {
+        var generateMap = true;
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
-        } else {
-            generateRegionMap(key, callback);
+            return true;
+        } 
+        if (generateMap) {
+            return generateRegionMap(key, callback);
         }
     });
-}
-
-var fetchRegionMapByKey = function(key, callback) {
-    
 }
 
 var setRegionFont = function(font) {

@@ -36,6 +36,20 @@ function writeCmdrs() {
     fs.writeFile(path.resolve(base.path, "cmdrs.json"),JSON.stringify(cmdrs,null,2), null);
 }
 
+function generateRegionMapByCoords(location, callback) {
+    edsm.getSystemCoordsAsync(location, function(sys) {
+        if (sys && sys.coords) {
+            var coords = sys.coords;
+            // z is the Y coordinate looking down at the map
+            regionjpg.fetchRegionMapByCoords(coords.x, coords.z, location, function(rgn) {
+                callback(rgn);
+            });
+        } else {
+            callback(undefined);
+        }
+    });
+}
+
 function getRegionMap(location, callback) {
     var key = elitelib.getRegionName(location);
     console.log("getRegionMap: Key = " + key);
@@ -43,21 +57,14 @@ function getRegionMap(location, callback) {
         if (region) {
             var name = region.region;
             key = name.toLowerCase();
-            regionjpg.fetchRegionMap(key, function(rgn) {
+            if (regionjpg.fetchRegionMap(key, function(rgn) {
                 callback(rgn);
-            });
+            }))
+            {
+                generateRegionMapByCoords(location, callback);
+            }
         } else {
-            edsm.getSystemCoordsAsync(location, function(sys) {
-                if (sys && sys.coords) {
-                    var coords = sys.coords;
-                    // z is the Y coordinate looking down at the map
-                    regionjpg.fetchRegionMapByCoords(coords.x, coords.z, location, function(rgn) {
-                        callback(rgn);
-                    });
-                } else {
-                    callback(undefined);
-                }
-            });            
+            generateRegionMapByCoords(location, callback);       
         }  
     });
 }
