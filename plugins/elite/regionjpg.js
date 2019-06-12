@@ -115,6 +115,7 @@ var fetchRegionMap = function(region, callback) {
             return generateRegionMap(key, callback);
         }
     });
+    return false;
 }
 
 var setRegionFont = function(font) {
