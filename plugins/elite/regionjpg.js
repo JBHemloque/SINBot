@@ -4,6 +4,7 @@ var fs = require("fs");
 var gm = require('gm');
 var imageMagick = gm.subClass({ imageMagick: true });
 var regions = require('./regions.js');
+var elitelib = require('./elitelib.js');
 
 // Magic numbers based on the source image, Galaxy.jpg
 const KLY_TO_PIXEL = 1000 / 12.5;
@@ -38,14 +39,16 @@ var generateCoordFileName = function(x, y) {
 
 var generateRegionMap = function(key, callback) {
     regions.getRegionByKey(key, function(region) {
-        if (region) {
+        if (region && region.coords) {
             var x = normalizeCoordX(region.coords.x);
             // coords.z is actually the y axis on our maps. Blame EDSM...
             var y = normalizeCoordY(region.coords.z);
 
-            generateRegionMapByCoords(x, y, region.region, region.region, callback);
+            generateRegionMapByCoords(x, y, region.region, region.region.toLowerCase(), callback);
+            return true;
         }        
     });
+    return false;
 }
 
 var generateRegionMapByCoords = function(x, y, name, filename, callback) {
@@ -81,16 +84,21 @@ var generateRegionMapByCoords = function(x, y, name, filename, callback) {
     });
 }
 
-var fetchRegionMapByCoords = function(x, y, callback) {
-    console.log("fetchRegionMapByCoords(" + x + ", " + y + ", callback)");
+var fetchRegionMapByCoords = function(x, y, location, callback) {
+    // console.log("fetchRegionMapByCoords(" + x + ", " + y + ", " + location + ", callback)");
     x = normalizeCoordX(x);
     y = normalizeCoordY(y);
     var filename = generateCoordFileName(x, y);
+    var name = undefined;    // This is only set for regions
+    if (elitelib.isProcGen(location)) {
+        name = elitelib.getRegionName(location);
+        filename = name.toLowerCase();
+    }
     regions.getRegionByKey(filename, function(rgn) {
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
         } else {
-            generateRegionMapByCoords(x, y, undefined, filename, callback);
+            generateRegionMapByCoords(x, y, name, filename, callback);
         }
     });
 }
@@ -98,16 +106,16 @@ var fetchRegionMapByCoords = function(x, y, callback) {
 var fetchRegionMap = function(region, callback) {
     var key = region.toLowerCase();
     regions.getRegionByKey(key, function(rgn) {
+        var generateMap = true;
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
-        } else {
-            generateRegionMap(key, callback);
+            return true;
+        } 
+        if (generateMap) {
+            return generateRegionMap(key, callback);
         }
     });
-}
-
-var fetchRegionMapByKey = function(key, callback) {
-    
+    return false;
 }
 
 var setRegionFont = function(font) {
