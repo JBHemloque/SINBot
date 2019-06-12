@@ -72,8 +72,14 @@ function calcRho(r, n) {
 }
 
 function isProcGen(location) {
+    console.log("Checking if " + location + " is a procgen name...");
     var names = location.split(/ [a-z][a-z]-[a-z] /i);
-    return (names.length > 1);
+    if (names.length > 1) {
+        console.log("YES!");
+        return true;
+    }
+    console.log("No...");
+    return false;
 }
 
 function getRegionName(location) {
