@@ -31,7 +31,7 @@ exports.commands = commands;
 exports.setup = function(config, bot, botcfg) {
     rsBridge.setup(config, bot, botcfg, undefined, [path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')])
     .then(function() {
-        console.log("Jaques is ready!");
+        utils.debugLog("Jaques is ready!");
     });
 }
 

@@ -36,19 +36,19 @@ RSHost.prototype.setup = function(rivescriptArray) {
         .then(function() {
             // All done!
             // Now the replies must be sorted!
-            console.log("Sorting...")
+            utils.debugLog("Sorting...")
             that.rsBot.sortReplies();
 
             that.botStarted = true;
-            console.log("Ready!");
+            utils.debugLog("Ready!");
             resolve();
         });
 
         function loadDirectory(rs, cb) {
-            console.log("Loading directory '" + rs + "'...");
+            utils.debugLog("Loading directory '" + rs + "'...");
             that.rsBot.loadDirectory(rs)
             .then(function() {
-                console.log("Batch loaded...");
+                utils.debugLog("Batch loaded...");
                 cb();
             })
             .catch(function(error) {
@@ -109,7 +109,6 @@ RSHost.prototype.getUservar = function(userid, varId) {
 // and persists user data to disk as a local file named "./$USERNAME.json"
 // where $USERNAME is the username.
 RSHost.prototype.getReply = function(userid, username, message) {
-    console.log("getReply(" + userid + ", " + username + ", " + message + ")");
     var that = this;
     return new Promise(function(resolve, reject) {
         var filename = that.userDataDir;
@@ -158,13 +157,13 @@ RSHost.prototype.getReply = function(userid, username, message) {
                         userData = that.rsBot.getUservars(userid);
                         fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
                             if (err) {
-                                console.error("Failed to write file", filename, err);
+                                utils.logError("Failed to write file", filename, err);
                             }
                         });
 
-                        that.rsBot.lastMatch(userid).then(function(match) {
-                            console.log("Last match: " + match);
-                        });
+                        // that.rsBot.lastMatch(userid).then(function(match) {
+                        //     console.log("Last match: " + match);
+                        // });
 
                         resolve(reply);
                     });

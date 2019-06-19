@@ -25,7 +25,6 @@ RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray
         // Get the last message sent by that user to jaques. That will be the context for this command.
         var message = this.messageCache[rs.currentUser()];
         // We'll use forceProcCommand to avoid having to deal with the command prefix...
-        console.log(JSON.stringify(input));
         message.content = input.join(" ").trim();
         var res = this.sinBot.compileCommand(true, input);
         this.sinBot.handleCommand(bot, res, message);
