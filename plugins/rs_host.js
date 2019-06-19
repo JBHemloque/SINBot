@@ -46,6 +46,7 @@ RSHost.prototype.setup = function(rivescriptArray, callback) {
     });
 
     function loadDirectory(rs, cb) {
+        console.log("Loading directory '" + rs + "'...");
         that.rsBot.loadDirectory(rs)
         .then(function() {
             console.log("Batch loaded...");
