@@ -48,7 +48,7 @@ RSBridge.prototype.reply = function(args, bot, message) {
         var statement = utils.compileArgs(args);
         var userid = message.author.id;
         that.messageCache[userid] = message;
-        that.RSHost.getReply(statement, message.author.name, userid)
+        that.RSHost.reply(statement, message.author.name, userid)
         .then(function(reply) {
             reply = that.RSHost.stripGarbage(reply); 
             var useTTS = false;
