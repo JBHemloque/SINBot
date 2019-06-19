@@ -28,35 +28,35 @@ function RSHost(userDataDir, memoryPrefix, options) {
     }
 }
 
-RSHost.prototype.setup = function(rivescriptArray, callback) {
+RSHost.prototype.setup = function(rivescriptArray) {
     var that = this;
-    // Now load the rivescript
-    async.eachSeries(rivescriptArray, loadDirectory)
-    .then(function() {
-        // All done!
-        // Now the replies must be sorted!
-        console.log("Sorting...")
-        that.rsBot.sortReplies();
-
-        that.botStarted = true;
-        if (callback) {
-            callback();
-        }
-        console.log("Ready!");
-    });
-
-    function loadDirectory(rs, cb) {
-        console.log("Loading directory '" + rs + "'...");
-        that.rsBot.loadDirectory(rs)
+    return new Promise(function(resolve, reject) {
+        // Now load the rivescript
+        async.eachSeries(rivescriptArray, loadDirectory)
         .then(function() {
-            console.log("Batch loaded...");
-            cb();
-        })
-        .catch(function(error) {
-            utils.logError("Error when loading files: " + error, error);
-            cb();
+            // All done!
+            // Now the replies must be sorted!
+            console.log("Sorting...")
+            that.rsBot.sortReplies();
+
+            that.botStarted = true;
+            console.log("Ready!");
+            resolve();
         });
-    }
+
+        function loadDirectory(rs, cb) {
+            console.log("Loading directory '" + rs + "'...");
+            that.rsBot.loadDirectory(rs)
+            .then(function() {
+                console.log("Batch loaded...");
+                cb();
+            })
+            .catch(function(error) {
+                utils.logError("Error when loading files: " + error, error);
+                cb();
+            });
+        }
+    });    
 }
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.

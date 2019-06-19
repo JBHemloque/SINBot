@@ -33,7 +33,7 @@ RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray
         // return "Return value!";
     });
 
-    this.RSHost.setup(rivescriptArray);
+    return this.RSHost.setup(rivescriptArray);
 }
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.

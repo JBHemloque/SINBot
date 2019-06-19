@@ -25,6 +25,7 @@ lineReader.on('line', function(line) {
 });
 
 bot = new rs_host.RSHost(path.resolve(base.path, 'userdata/'));
-bot.setup([path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')], function() {
-    console.log("Ready!");
+bot.setup([path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')])
+.then(function() {
+	console.log("Test environment ready!");
 });
