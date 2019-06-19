@@ -15,12 +15,14 @@ lineReader.on('line', function(line) {
     if (line === 'quit' || line === 'exit') {
         process.exit(0);
     }
-    var reply = bot.reply(line, "local-user", 666);
-    console.log(JSON.stringify(reply));
-    console.log("The bot says: " + bot.stripGarbage(reply));
+    bot.reply(line, "local-user", 666)
+    .then(function(reply) {
+    	console.log(JSON.stringify(reply));
+	    console.log("The bot says: " + bot.stripGarbage(reply));
+    });    
 });
 
 bot = new rs_host.RSHost('../userdata');
-bot.setup(['./rs/qohen', './rs/base'], function() {
+bot.setup(['./rs/jaques', './rs/base'], function() {
     console.log("Ready!");
 });

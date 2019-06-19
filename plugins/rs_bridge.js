@@ -18,6 +18,7 @@ RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray
         }
     }
 
+    // This hooks up the command path from the rivescript interpreter back out to the bot
     this.RSHost.setSubroutine("sinbot", function(rs, input) {
         // Get the last message sent by that user to jaques. That will be the context for this command.
         var message = this.messageCache[rs.currentUser()];
@@ -43,20 +44,22 @@ RSBridge.prototype.reply = function(args, bot, message) {
     var statement = utils.compileArgs(args);
     var userid = message.author.id;
     this.messageCache[userid] = message;
-    var reply = this.RSHost.reply(statement, message.author.name, userid);
-    reply = this.RSHost.stripGarbage(reply); 
-    var useTTS = false;
-    // Users can set usetts for themselves, or serverwide if we allow it
-    // if (allowTTS || message.channel.type === "dm") {
-    //     var ttsVar = this.RSHost.getUservar(userid, "usetts");
-    //     if (ttsVar == "true") {
-    //         useTTS = true;
-    //     }
-    // }
-    if (useTTS) {
-        utils.ttsMessage(bot, message.channel, reply);
-    } else {
-        utils.sendMessage(bot, message.channel, reply);
-    }
+    this.RSHost.getReply(statement, message.author.name, userid)
+    .then(function(reply) {
+        reply = this.RSHost.stripGarbage(reply); 
+        var useTTS = false;
+        // Users can set usetts for themselves, or serverwide if we allow it
+        // if (allowTTS || message.channel.type === "dm") {
+        //     var ttsVar = this.RSHost.getUservar(userid, "usetts");
+        //     if (ttsVar == "true") {
+        //         useTTS = true;
+        //     }
+        // }
+        if (useTTS) {
+            utils.ttsMessage(bot, message.channel, reply);
+        } else {
+            utils.sendMessage(bot, message.channel, reply);
+        }
+    });    
 }
 

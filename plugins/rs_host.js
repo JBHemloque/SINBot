@@ -29,7 +29,8 @@ function RSHost(userDataDir, memoryPrefix, options) {
 RSHost.prototype.setup = function(rivescriptArray, callback) {
     var that = this;
     // Now load the rivescript
-    async.eachSeries(rivescriptArray, loadDirectory, function() {
+    async.eachSeries(rivescriptArray, loadDirectory)
+    .then(function() {
         // All done!
         // Now the replies must be sorted!
         console.log("Sorting...")
@@ -43,10 +44,12 @@ RSHost.prototype.setup = function(rivescriptArray, callback) {
     });
 
     function loadDirectory(rs, cb) {
-        that.rsBot.loadDirectory(rs, function(batch_num) {
-            console.log("Batch #" + batch_num + " has finished loading!");
+        that.rsBot.loadDirectory(rs)
+        .then(function() {
+            console.log("Batch loaded...");
             cb();
-        }, function(error) {
+        })
+        .catch(function(error) {
             utils.logError("Error when loading files: " + error, error);
             cb();
         });
@@ -69,21 +72,26 @@ RSHost.prototype.gossip = function() {
 
 // Talk to the bot
 RSHost.prototype.reply = function(statement, name, userid) {
-    if (this.botStarted) {                            
-        var reply = this.getReply(userid, name, statement);
-        reply = this.stripGarbage(reply);                
-        var cache = {user: name, statement: statement, reply: reply};
-        if (reply.includes("undefined")) {
-            this.undefinedMessages.push(cache);   
+    var that = this;
+    return new Promise(function(resolve, reject) {
+        if (that.botStarted) {                            
+            that.getReply(userid, name, statement)
+            .then(function(reply) {
+                reply = that.stripGarbage(reply);                
+                var cache = {user: name, statement: statement, reply: reply};
+                if (reply.includes("undefined")) {
+                    that.undefinedMessages.push(cache);   
+                }
+                that.lastMessages.push(cache);
+                while (that.lastMessages.length > 10) {
+                    that.lastMessages.shift();
+                }
+                resolve(reply);
+            });            
+        } else {
+            resolve("Sorry I'm still waking up...");
         }
-        this.lastMessages.push(cache);
-        while (this.lastMessages.length > 10) {
-            this.lastMessages.shift();
-        }
-        return reply;
-    } else {
-        return "Sorry I'm still waking up...";
-    }
+    });    
 }
 
 RSHost.prototype.setSubroutine = function(identifier, callback) {
@@ -98,49 +106,64 @@ RSHost.prototype.getUservar = function(userid, varId) {
 // and persists user data to disk as a local file named "./$USERNAME.json"
 // where $USERNAME is the username.
 RSHost.prototype.getReply = function(userid, username, message) {
-    var filename = this.userDataDir;
-    if (this.memoryPrefix) {
-        filename += this.memoryPrefix;
-    }
-    filename += (userid + ".json");
-
-    // See if the bot knows this user yet (in its current memory).
-    var userData = this.rsBot.getUservars(userid);
-    if (!userData) {
-        // See if a local file exists for stored user variables.
-        try {
-            var stats = fs.statSync(filename);
-            if (stats) {
-                var jsonText = fs.readFileSync(filename);
-                userData = JSON.parse(jsonText);
-                this.rsBot.setUservars(userid, userData);
-            }
-        } catch(e) {}
-    }
-    // Ensure there's a memory
-    if (this.rsBot.getUservar(userid, "memory") == "undefined") {
-        this.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");
-    }
-    // Get a reply.
-    // We'll scope everything per-user...
-    if (this.rsBot.getUservar(userid, "name") == "undefined") {
-        this.rsBot.setUservar (userid, "name", username);
-    }
-    var reply = this.rsBot.reply(userid, message);
-    // Rarely do we have a reply that looks like this: "}"
-    if (reply == "}") {
-        reply = "...";
-    }
-
-    // Export user variables to disk.
-    userData = this.rsBot.getUservars(userid);
-    fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
-        if (err) {
-            console.error("Failed to write file", filename, err);
+    var that = this;
+    return new Promise(function(resolve, reject) {
+        var filename = that.userDataDir;
+        if (that.memoryPrefix) {
+            filename += that.memoryPrefix;
         }
-    });
+        filename += (userid + ".json");
 
-    return reply;
+        // See if the bot knows this user yet (in its current memory).
+        that.rsBot.getUservars(userid)
+        .then(function(userData) {
+            if (!userData) {
+                // See if a local file exists for stored user variables.
+                try {
+                    var stats = fs.statSync(filename);
+                    if (stats) {
+                        var jsonText = fs.readFileSync(filename);
+                        userData = JSON.parse(jsonText);
+                        that.rsBot.setUservars(userid, userData);
+                    }
+                } catch(e) {}
+            }           
+            // Ensure there's a memory
+            that.rsBot.getUservar(userid, "memory")
+            .then(function(memory) {
+                if (memory === "undefined") {
+                    that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");
+                }
+                
+                // We'll scope everything per-user...
+                that.rsBot.getUservar(userid, "name")
+                .then(function(memory) {
+                    if (memory === "undefined") {
+                        that.rsBot.setUservar (userid, "name", username);
+                    }
+
+                    // Get a reply.
+                    that.rsBot.reply(userid, message)
+                    .then(function(reply) {
+                        // Rarely do we have a reply that looks like this: "}"
+                        if (reply == "}") {
+                            reply = "...";
+                        }
+
+                        // Export user variables to disk.
+                        userData = that.rsBot.getUservars(userid);
+                        fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
+                            if (err) {
+                                console.error("Failed to write file", filename, err);
+                            }
+                        });
+
+                        resolve(reply);
+                    });
+                });
+            });
+        });        
+    });
 }
 
 // These functions are gross, but I don't know why I'm seeing garbage in the reply strings. This will take care of them for now...

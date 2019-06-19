@@ -15,6 +15,7 @@
     "node-rest-client": "^3.1.0",
     "redis": "^2.8.0",
     "request": "^2.88.0",
+    "rivescript": "^2.0.0",
     "underscore": "^1.9.1",
     "url": "^0.11.0"
   },
