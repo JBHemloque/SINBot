@@ -451,7 +451,7 @@ var commands = {
             var name = getCmdrName(args,msg);
             if (name) {
                 return new Promise(function(resolve, reject) {
-                    edsm.getPositionString(commander, function(data) {
+                    edsm.getPositionString(name, function(data) {
                         utils.sendMessage(bot, message.channel, data.message).then(resolve);
                     });
                 });
