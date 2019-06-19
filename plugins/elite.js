@@ -452,7 +452,7 @@ var commands = {
             if (name) {
                 return new Promise(function(resolve, reject) {
                     edsm.getPositionString(name, function(data) {
-                        utils.sendMessage(bot, message.channel, data.message).then(resolve);
+                        utils.sendMessage(bot, msg.channel, data.message).then(resolve);
                     });
                 });
             }
