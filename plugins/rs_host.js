@@ -109,6 +109,7 @@ RSHost.prototype.getUservar = function(userid, varId) {
 // and persists user data to disk as a local file named "./$USERNAME.json"
 // where $USERNAME is the username.
 RSHost.prototype.getReply = function(userid, username, message) {
+    console.log("getReply(" + userid + ", " + username + ", " + message + ")");
     var that = this;
     return new Promise(function(resolve, reject) {
         var filename = that.userDataDir;
