@@ -1,8 +1,10 @@
 // Rivescript-Discordbot bridge
 'use strict';
 
-var rs_host = require('./rs_host.js');
-var utils = require('../server/utils.js');
+var path = require('path');
+var base = require(path.resolve(__dirname, '../base.js'));
+var utils = require(path.resolve(base.path, 'server/utils.js'));
+var rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 
 exports.RSBridge = RSBridge;
 function RSBridge(userDataDir, memoryPrefix, options) {

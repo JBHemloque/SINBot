@@ -1,7 +1,9 @@
 'uses strict';
 
 var RiveScript = require("rivescript");
-var rs_host = require("./rs_host.js");
+var path = require('path');
+var base = require(path.resolve(__dirname, '../base.js'));
+var rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 
 var prompt = "You: ";
 
@@ -22,7 +24,7 @@ lineReader.on('line', function(line) {
     });    
 });
 
-bot = new rs_host.RSHost('../userdata');
-bot.setup(['./rs/jaques', './rs/base'], function() {
+bot = new rs_host.RSHost(path.resolve(base.path, 'userdata/'));
+bot.setup([path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')], function() {
     console.log("Ready!");
 });

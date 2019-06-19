@@ -1,11 +1,13 @@
 // This is a generic rivescript host. It manages its own state and memory.
 'use strict';
 
-var utils = require('../server/utils.js');
+var path = require('path');
 var RiveScript = require("rivescript");
 var fs = require("fs");
 var async = require('async');
 var _ = require('underscore');
+var base = require(path.resolve(__dirname, '../base.js'));
+var utils = require(path.resolve(base.path, 'server/utils.js'));
 
 exports.RSHost = RSHost;
 function RSHost(userDataDir, memoryPrefix, options) {
