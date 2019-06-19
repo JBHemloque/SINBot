@@ -27,7 +27,11 @@ async.forEachSeries(compiled, function(data, callback) {
         console.log("Error generating map:");
         console.log(err);
     }
-    fs.writeFile("./regions.json",JSON.stringify(compiled,null,2), null);
+    fs.writeFile("./regions.json",JSON.stringify(compiled,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 
     console.log("Created " + images + " maps. Done!");
 });

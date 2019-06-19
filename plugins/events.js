@@ -23,14 +23,11 @@ var commands = {
                 console.log(eventPrettyName + " : " + eventTime);
                 if (eventName && eventPrettyName && eventTime) {
                     if (addEvent(eventName, eventPrettyName, eventTime)) {
-                        utils.sendMessage(bot, message.channel, "Created event " + eventName + " at " + eventTime);
+                        return utils.sendMessage(bot, message.channel, "Created event " + eventName + " at " + eventTime);
                     }
-                    displayUsage = false;
                 }
             } 
-            if (displayUsage) {
-                utils.displayUsage(bot,message,this);
-            }
+            return utils.displayUsage(bot,message,this);
         }
     },
     "remove_event": {
@@ -43,12 +40,12 @@ var commands = {
             if (args.length == 1) {
                 var eventName = args.shift();
                 if (removeEvent(eventName)) {
-                    utils.sendMessage(bot, message.channel, "Removed event " + eventName);
+                    return utils.sendMessage(bot, message.channel, "Removed event " + eventName);
                 } else {
-                    utils.displayUsage(bot,message,this);
+                    return utils.displayUsage(bot,message,this);
                 }
             } else {
-                utils.displayUsage(bot,message,this);
+                return utils.displayUsage(bot,message,this);
             }
         }
     },
@@ -61,9 +58,9 @@ var commands = {
             if (args.length == 1) {
                 var eventName = args.shift();
                 var output = timeUntilEvent(eventName);
-                utils.sendMessage(bot, message.channel, output);
+                return utils.sendMessage(bot, message.channel, output);
             } else {
-                utils.displayUsage(bot, message, this);
+                return utils.displayUsage(bot, message, this);
             }
         }
     },
@@ -83,7 +80,7 @@ var commands = {
             if (!hasEvents) {
                 outputArray[0] += " None";
             }
-            utils.sendMessages(bot, message.channel, outputArray);
+            return utils.sendMessages(bot, message.channel, outputArray);
         }
     },
 };
@@ -97,7 +94,7 @@ exports.findCommand = function(command) {
 var events;
 
 try{
-    console.log('  - Loading ' + path.resolve(base.path, "events.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "events.json"));
     events = require(path.resolve(base.path, "events.json"));
 } catch(e) {
     console.log('  - No events');
@@ -105,7 +102,11 @@ try{
 }
 
 function updateEvents() {
-    fs.writeFile(path.resolve(base.path, "events.json"),JSON.stringify(events,null,2), null);
+    fs.writeFile(path.resolve(base.path, "events.json"),JSON.stringify(events,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 function addEvent(eventName, eventPrettyName, eventDateTime) {

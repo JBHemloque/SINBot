@@ -8,7 +8,7 @@ var client = new Client();
 var aliases = {};
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    console.log('  - Loading ' + path.resolve(base.path, "sysalias.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "sysalias.json"));
     aliases = require(path.resolve(base.path, "sysalias.json"));
 } catch(e) {
     //No aliases defined
@@ -18,7 +18,7 @@ try{
 var cmdraliases = {};
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    console.log('  - Loading ' + path.resolve(base.path, "cmdralias.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "cmdralias.json"));
     cmdraliases = require(path.resolve(base.path, "cmdralias.json"));
 } catch(e) {
     //No aliases defined
@@ -105,12 +105,6 @@ var getPositionString = function(commander, callback) {
         callback(_getPositionString(commander, data), system);
     });
 }
- 
-var getPosition = function(commander, bot, message) {
-    getPositionString(commander, function(data) {
-        utils.sendMessage(bot, message.channel, data.message);
-    });
-}
 
 var _getSystemCoords = function(system, callback) {
     var url = "https://www.edsm.net/api-v1/system?systemName=" + normalizeSystem(system) + "&coords=1";
@@ -169,16 +163,21 @@ var _getCoordString = function(coords) {
 }
 
 var getSystemCoords = function(system, bot, message) {
-    _getSystemCoords(system, function(coords) {
-        var output = "Sorry, " + system + " is not in EDSM";
-        if (coords) {
-            if (coords.coords) {
-                output = "System: " + coords.name + " " + _getCoordString(coords);
-            } else {
-                output = "Sorry, " + system + " doesn't have coordinates in EDSM";
+    return new Promise(function(response, reject) {
+        _getSystemCoords(system, function(coords) {
+            var output = "Sorry, " + system + " is not in EDSM";
+            if (coords) {
+                if (coords.coords) {
+                    output = "System: " + coords.name + " " + _getCoordString(coords);
+                } else {
+                    output = "Sorry, " + system + " doesn't have coordinates in EDSM";
+                }
             }
-        }
-        utils.sendMessage(bot, message.channel, output);
+            utils.sendMessage(bot, message.channel, output)
+            .then(function() {
+                response();
+            });
+        });
     });
 }
 
@@ -225,22 +224,30 @@ var _calcDistance = function(a, b) {
 }
 
 var getCmdrCoords = function(commander, bot, message) {
-    _getSystem(commander, function(data) {
-        var output = _getPositionString(commander, data);
-        if (data) {
-            if (data.system) {
-                _getSystemCoords(data.system, function(coords) {
-                    if (coords) {
-                        if (coords.coords) {
-                            output.message += " " + _getCoordString(coords);
+    return new Promise(function(response, reject) {
+        _getSystem(commander, function(data) {
+            var output = _getPositionString(commander, data);
+            if (data) {
+                if (data.system) {
+                    _getSystemCoords(data.system, function(coords) {
+                        if (coords) {
+                            if (coords.coords) {
+                                output.message += " " + _getCoordString(coords);
+                            }
                         }
-                    }
-                    utils.sendMessage(bot, message.channel, output.message);
+                        utils.sendMessage(bot, message.channel, output.message)
+                        .then(function() {
+                            response();
+                        });
+                    });
+                }
+            } else {
+                utils.sendMessage(bot, message.channel, output.message)
+                .then(function() {
+                    response();
                 });
             }
-        } else {
-            utils.sendMessage(bot, message.channel, output.message);
-        }
+        });
     });
 }
 
@@ -253,36 +260,46 @@ function getNoCoordString(item, isCmdr) {
 }
 
 var getDistance = function(first, second, bot, message) {
-    console.log('getDistance(' + first + ', ' + second + ', bot, message)');
-    // Each query item could be a system or a commander...
-    _getSystemOrCmdrCoords(first, function(firstCoords, firstIsCmdr) {
-        console.log(firstCoords);
-        if (firstCoords) {
-            console.log('Got coords for ' + first);
-            _getSystemOrCmdrCoords(second, function(secondCoords, secondIsCmdr) {
-                console.log(secondCoords);
-                if (secondCoords) {
-                    console.log('got coords for ' + second);
-                    if (firstCoords.coords && secondCoords.coords) {
-                        var dist = _calcDistance(firstCoords.coords, secondCoords.coords);
-                        utils.sendMessage(bot, message.channel, "Distance between " + first + " and " + second + " is " + dist.toFixed(2) + " ly");
+    return new Promise(function(response, reject) {
+        // Each query item could be a system or a commander...
+        _getSystemOrCmdrCoords(first, function(firstCoords, firstIsCmdr) {
+            console.log(firstCoords);
+            if (firstCoords) {
+                console.log('Got coords for ' + first);
+                _getSystemOrCmdrCoords(second, function(secondCoords, secondIsCmdr) {
+                    console.log(secondCoords);
+                    if (secondCoords) {
+                        console.log('got coords for ' + second);
+                        if (firstCoords.coords && secondCoords.coords) {
+                            var dist = _calcDistance(firstCoords.coords, secondCoords.coords);
+                            utils.sendMessage(bot, message.channel, "Distance between " + first + " and " + second + " is " + dist.toFixed(2) + " ly");
+                        } else {
+                            var output = "Sorry, could not calculate the distance from " + first + " to " + second + ".";
+                            if (firstCoords.coords == undefined) {
+                                output += "\n" + getNoCoordString(first, firstIsCmdr);
+                            }
+                            if (secondCoords.coords == undefined) {
+                                output += "\n" + getNoCoordString(second, secondIsCmdr);
+                            }
+                            utils.sendMessage(bot, message.channel, output)
+                            .then(function() {
+                                response();
+                            });
+                        }
                     } else {
-                        var output = "Sorry, could not calculate the distance from " + first + " to " + second + ".";
-                        if (firstCoords.coords == undefined) {
-                            output += "\n" + getNoCoordString(first, firstIsCmdr);
-                        }
-                        if (secondCoords.coords == undefined) {
-                            output += "\n" + getNoCoordString(second, secondIsCmdr);
-                        }
-                        utils.sendMessage(bot, message.channel, output);
+                        utils.sendMessage(bot, message.channel, "Sorry, " + second + " could not be located")
+                        .then(function() {
+                            response();
+                        });
                     }
-                } else {
-                    utils.sendMessage(bot, message.channel, "Sorry, " + second + " could not be located");
-                }
-            });
-        } else {
-            utils.sendMessage(bot, message.channel, "Sorry, " + first + " could not be located");
-        }
+                });
+            } else {
+                utils.sendMessage(bot, message.channel, "Sorry, " + first + " could not be located")
+                .then(function() {
+                    response();
+                });
+            }
+        });
     });
 }
 
@@ -433,215 +450,6 @@ function getNearbySystemsByCoordinates(x,y,z, range, bot, channel) {
     _getNearbySystemsByCoordinates(coords.coords, range, nearbySystemsResponseHandler);
 }
 
-function getWaypoints(origin, destination, range, bot, channel, jumpRange) {
-    var orgRange = range;
-
-    var outputArray = [];
-
-    const includeCoords = false;
-
-    function originCoordsResponseHandler(coords, isSystem) {
-        if (coords) {
-            if (coords.coords == undefined) {
-                var name = origin;
-
-                if (coords.name) {
-                    name = coords.name;
-                }
-
-                utils.sendMessage(bot, channel, "Coodinates for " + name + " are unknown.");
-                return;
-            }
-
-            originSystem = coords;
-            _getSystemOrCmdrCoords(destination, destinationCoordsResponseHandler);
-        } else {
-            utils.sendMessage(bot, channel, "Sorry, " + origin + " could not be located.");
-        }
-    }
-
-    function destinationCoordsResponseHandler(coords, isSystem) {
-        if (coords) {
-            if (coords.coords == undefined) {
-                var name = destination;
-
-                if (coords.name) {
-                    name = coords.name;
-                }
-
-                utils.sendMessage(bot, channel, "Coordinates for " + name + " are unknown.");
-                return;
-            }
-
-            utils.sendMessage(bot, channel, "This may take a while...");
-            destinationSystem = coords;
-            var distance = _calcDistance(originSystem.coords, destinationSystem.coords);
-            currentOriginCoords = originSystem.coords;
-
-            // If we have a jumpRange, then calculate the range based on distance to sagA
-            if (jumpRange) {
-                var sagAkly = Math.round(_calcDistance(originSystem.coords, sagACoords.coords) / 1000);
-                if (sagAkly <= 12) {
-                    var res = _calcJumpRange(jumpRange, sagAkly, orgRange);
-                    range = res.estRange + res.marginOfError;
-                } else {
-                    range = orgRange;
-                }
-            }
-
-            currentCoords = _calculateStep(currentOriginCoords, destinationSystem.coords, range);
-            waypointNo = 0;
-            outputArray.push("#0\t" + originSystem.name + "\t(Distance: 0ly)\t(Distance from " + destinationSystem.name + ": " + Number(distance).toFixed(2) + " ly)");
-            if (includeCoords) {
-                outputArray.push("\t\t" + JSON.stringify(currentCoords));
-            }
-
-            if (currentCoords == destinationSystem.coords) {
-                utils.sendMessages(bot, channel, outputArray);
-            } else {
-                _getNearbySystemsByCoordinates(currentCoords, searchRadius, nearbySystemsResponseHandler);
-            }
-        } else {
-            utils.sendMessage(bot, channel, "Sorry, " + destination + " could not be located.");
-        }
-    }
-
-    function nearbySystemsResponseHandler(data) {
-        if (data) {
-            var bestSystem = null;
-            var bestSystemDistance = null;
-
-            for (var index=0; index<data.length; index++) {
-                if (data[index].coords == undefined) {
-                    continue;
-                }
-
-                var distance = _calcDistance(currentOriginCoords, data[index].coords);
-
-                if (distance > range) {
-                    continue;
-                }
-
-                if (bestSystemDistance == null || distance > bestSystemDistance) {
-                    bestSystem = data[index];
-                    bestSystemDistance = distance;
-                }
-            }
-
-            waypointNo++;
-
-            var output = "";
-
-            if (bestSystem == null) {
-                var distance = _calcDistance(currentOriginCoords, currentCoords);
-                output = "#" + waypointNo + "\tX: " + Number(currentCoords.x).toFixed(2) + ", Y: " + Number(currentCoords.y).toFixed(2) + ", Z: " + Number(currentCoords.z).toFixed(2) + "\t(Distance: " + Number(distance).toFixed(2) + " ly)";
-            } else {
-                currentCoords = bestSystem.coords;
-                output = "#" + waypointNo + "\t" + bestSystem.name + "\t(Distance: " + Number(bestSystemDistance).toFixed(2) + " ly)";
-            }
-
-            var destinationDistance = _calcDistance(currentCoords, destinationSystem.coords);
-            output += "\t(Distance to " + destinationSystem.name + ": " + Number(destinationDistance).toFixed(2) + " ly)";
-
-            outputArray.push(output);
-            if (includeCoords) {
-                outputArray.push("\t\t" + JSON.stringify(currentCoords));
-            }
-
-            currentOriginCoords = currentCoords;
-
-            // If we have a jumpRange, then calculate the range based on distance to sagA
-            if (jumpRange) {
-                var sagAkly = Math.round(_calcDistance(currentCoords, sagACoords.coords) / 1000);
-                if (sagAkly <= 12) {
-                    var res = _calcJumpRange(jumpRange, sagAkly, orgRange);
-                    range = res.estRange + res.marginOfError;
-                } else {
-                    range = orgRange;
-                }
-            }
-
-            currentCoords = _calculateStep(currentOriginCoords, destinationSystem.coords, range);
-
-            if (currentCoords == destinationSystem.coords) {
-                waypointNo++;
-
-                outputArray.push("#" + waypointNo + "\t" + destinationSystem.name + "\t(Distance: " + Number(destinationDistance).toFixed(2) + " ly)");
-                if (includeCoords) {
-                    outputArray.push("\t\t" + JSON.stringify(destinationSystem.coords));
-                }
-                utils.sendMessages(bot, channel, outputArray);
-                outputArray = [];
-            } else {
-                _getNearbySystemsByCoordinates(currentCoords, searchRadius, nearbySystemsResponseHandler);
-            }
-        } else {
-            outputArray.push("Something's wrong...");
-            utils.sendMessages(bot, channel, outputArray);
-            outputArray = [];
-        }
-    }
-
-    var originSystem = null;
-    var destinationSystem = null;
-    var currentOriginCoords = null;
-    var currentCoords = null;
-    var output = "";
-    var waypointNo = null;
-    var searchRadius = 50;
-    var sagACoords = {name: "Sagittarius A*", coords: {x: 25.21875, y: -20.90625, z: 25899.96875 }};
-
-    _getSystemOrCmdrCoords(origin, originCoordsResponseHandler);
-}
-
-function __calcJumpRange(jumpRange, distSagA, distMax) {
-    var N = Math.floor(distMax / jumpRange);
-    var M = N * jumpRange;
-    return M - ((N/4) + (distSagA * 2));
-}
-
-function _calcJumpRange(jumpRange, distSagA, distMax) {
-    if ((!distMax) || (distMax > 1000.0)) {
-        distMax = 1000.0;
-    } 
-
-    if (distSagA > 100.0) {
-        // Assume we've mistakenly gotten a distance in ly, not kly
-        distSagA /= 1000.0;
-    }
-
-    var estRange = __calcJumpRange(jumpRange, distSagA, distMax);
-    if (estRange <= 0) {
-        return "Error: Calculation resulted in a negative distance. Please check your input.";
-    }
-    if (distMax < 1000) {
-        var maxRange = distMax;
-        while(true) {
-            distMax += jumpRange;
-            var improvement = __calcJumpRange(jumpRange, distSagA, distMax);
-            if (improvement > maxRange) {
-                break;
-            }
-            estRange = improvement;
-        }
-    }
-    var marginOfError = estRange * 0.0055;
-    return {estRange: estRange, marginOfError: marginOfError};
-}
-
-function calcJumpRange(jumpRange, distSagA, distMax) {
-    var res = _calcJumpRange(jumpRange, distSagA, distMax);
-    var output = "Estimated plot range should be around **";
-    output += res.estRange.toFixed(2);
-    output += "ly** - check range *";
-    output += (res.estRange - res.marginOfError).toFixed(2);
-    output += " to ";
-    output += (res.estRange + res.marginOfError).toFixed(2);
-    output += " ly*";
-    return output;
-}
-
-exports.getPosition = getPosition;
 exports.getPositionString = getPositionString;
 exports.getSystemCoords = getSystemCoords;
 exports.getCmdrCoords = getCmdrCoords;
@@ -653,5 +461,3 @@ exports.calcDistance = _calcDistance;
 exports.getSystemCoordsAsync = _getSystemCoords;
 exports.getNearbySystems = getNearbySystems;
 exports.getNearbySystemsByCoordinates = getNearbySystemsByCoordinates;
-exports.getWaypoints = getWaypoints;
-exports.calcJumpRange = calcJumpRange;

@@ -4,36 +4,47 @@ var fs = require("fs");
 var _ = require("underscore");
 var request = require('request');
 var path = require('path');
-var base = require('../base.js');
-var utils = require('../server/utils.js');
-var edsm = require('./elite/edsm.js');
-var alphanum = require("../server/alphanum.js");
-var regionjpg = require("./elite/regionjpg.js");
-var gmp = require('./elite/gmp.js');
-var regions = require('./elite/regions.js');
-var elitelib = require('./elite/elitelib.js');
+var base = require(path.resolve(__dirname, '../base.js'));
+var utils = require(path.resolve(base.path, 'server/utils.js'));
+var edsm = require(path.resolve(base.path, 'plugins/elite/edsm.js'));
+var regionjpg = require(path.resolve(base.path, 'plugins/elite/regionjpg.js'));
+var gmp = require(path.resolve(base.path, 'plugins/elite/gmp.js'));
+var regions;
+var elitelib = require(path.resolve(base.path, 'plugins/elite/elitelib.js'));
 
 var botcfg = null;
 var pmIfSpam = false;
 
 var cmdrs;
 try{
-    console.log('  - Loading ' + path.resolve(base.path, "cmdrs.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "cmdrs.json"));
     cmdrs = require(path.resolve(base.path, "cmdrs.json"));
 } catch(e) {
     cmdrs = {};
 }
 
 function writeAliases() {
-    fs.writeFile(path.resolve(base.path, "sysalias.json"),JSON.stringify(edsm.aliases,null,2), null);
+    fs.writeFile(path.resolve(base.path, "sysalias.json"),JSON.stringify(edsm.aliases,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 function writeCmdrAliases() {
-    fs.writeFile(path.resolve(base.path, "cmdralias.json"),JSON.stringify(edsm.cmdraliases,null,2), null);
+    fs.writeFile(path.resolve(base.path, "cmdralias.json"),JSON.stringify(edsm.cmdraliases,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 function writeCmdrs() {
-    fs.writeFile(path.resolve(base.path, "cmdrs.json"),JSON.stringify(cmdrs,null,2), null);
+    fs.writeFile(path.resolve(base.path, "cmdrs.json"),JSON.stringify(cmdrs,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 function generateRegionMapByCoords(location, callback) {
@@ -50,10 +61,17 @@ function generateRegionMapByCoords(location, callback) {
     });
 }
 
+var regionsLib = function() {
+    if (!regions) {
+        regions = require(path.resolve(base.path, 'plugins/elite/regions.js'));
+    }
+    return regions;
+}
+
 function getRegionMap(location, callback) {
     var key = elitelib.getRegionName(location);
     console.log("getRegionMap: Key = " + key);
-    regions.getRegionByKey(key, function(region) {
+    regionsLib().getRegionByKey(key, function(region) {
         if (region) {
             var name = region.region;
             key = name.toLowerCase();
@@ -70,24 +88,35 @@ function getRegionMap(location, callback) {
 }
 
 function _showRegion(region, bot, msg) {
-    var orgRegion = region;
-    region = edsm.normalizeSystem(region);
-    // EDSM wants spaces => %20, but our region map leaves them spaces, so...
-    region = region.replace('%20', ' ');
-    getRegionMap(region, function(data) {
-        if (data) {
-            var regionString = region;
-            if (orgRegion !== region) {
-                regionString = orgRegion + " (" + region + ")";
-            }
-            if (data.map) {
-                msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map, regionString);
+    return new Promise(function(resolve, reject) {
+        var orgRegion = region;
+        region = edsm.normalizeSystem(region);
+        // EDSM wants spaces => %20, but our region map leaves them spaces, so...
+        region = region.replace('%20', ' ');
+        getRegionMap(region, function(data) {
+            if (data) {
+                var regionString = region;
+                if (orgRegion !== region) {
+                    regionString = orgRegion + " (" + region + ")";
+                }
+                if (data.map) {
+                    msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map, regionString)
+                    .then(function() {
+                        resolve();
+                    });
+                } else {
+                    utils.sendMessage(bot, msg.channel, "Sorry, I have no map for " + regionString)
+                    .then(function() {
+                        resolve();
+                    });
+                }
             } else {
-                utils.sendMessage(bot, msg.channel, "Sorry, I have no map for " + regionString);
+                utils.sendMessage(bot, msg.channel, "Sorry, I have no information on " + orgRegion)
+                .then(function() {
+                    resolve();
+                });
             }
-        } else {
-            utils.sendMessage(bot, msg.channel, "Sorry, I have no information on " + orgRegion);
-        }
+        });
     });
 }
 
@@ -135,13 +164,12 @@ var commands = {
                     console.log('Register ' + authorId + ' as ' + edsmName);
                     cmdrs[authorId] = edsmName;
                     writeCmdrs();
-                    utils.sendMessage(bot, msg.channel, "Registered as " + edsmName);
+                    return utils.sendMessage(bot, msg.channel, "Registered as " + edsmName);
                 } else {
-                    utils.sendMessage(bot, msg.channel, "Sorry, an error occurred attempting to register your name");
+                    return utils.sendMessage(bot, msg.channel, "Sorry, an error occurred attempting to register your name");
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
             }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "showcmdr": {
@@ -149,9 +177,9 @@ var commands = {
         process: function(args, bot, msg) {
             var edsmName = getEdsmName(msg);
             if (edsmName) {
-                utils.sendMessage(bot, msg.channel, "You are registered with the EDSM name " + edsmName);
+                return utils.sendMessage(bot, msg.channel, "You are registered with the EDSM name " + edsmName);
             } else {
-                utils.sendMessage(bot, msg.channel, "You have not registered an EDSM name with the 'register' command");
+                return utils.sendMessage(bot, msg.channel, "You have not registered an EDSM name with the 'register' command");
             }
         }
     },
@@ -161,9 +189,9 @@ var commands = {
         process: function(args,bot,msg) {
             gmp.refreshGmpData(function(error) {
                 if (error) {
-                    utils.sendMessage(bot, msg.channel, "Error refreshing GMP data: " + JSON.stringify(error));
+                    return utils.sendMessage(bot, msg.channel, "Error refreshing GMP data: " + JSON.stringify(error));
                 } else {
-                    utils.sendMessage(bot, msg.channel, "GMP Data Refreshed!");
+                    return utils.sendMessage(bot, msg.channel, "GMP Data Refreshed!");
                 }
             });
         }
@@ -192,105 +220,100 @@ var commands = {
                         msgs.push(" ");
                     }
                     if (msgs.length > 0) {
-                        utils.sendMessages(bot,msg.channel,msgs);
+                        return utils.sendMessages(bot,msg.channel,msgs);
                     } else {
-                        utils.sendMessage(bot, msg.channel, "No GMP point of interest matches that query.");
+                        return utils.sendMessage(bot, msg.channel, "No GMP point of interest matches that query.");
                     }
                 } else {
-                    utils.sendMessage(bot, msg.channel, "No GMP data in system. Please refresh.");
+                    return utils.sendMessage(bot, msg.channel, "No GMP data in system. Please refresh.");
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
             }
+            return utils.displayUsage(bot,msg,this);
         }
     },
-    "gmp_list": {
-        // @@todo - broken!
-        usage: "gmp_list <optional distance in light years> -> <optional system to serve as a center>",
-        spammy: true,
-        help: "Returns a list of galactic mapping data points of interest, optionally within a certain range of a point.",
-        process: function(args,bot,msg) {
-            console.log("gmp_list...");
-            var that = this;
-            var query = utils.compileArgs(args).split(/->|:/);
-            if ((query[0].length > 0) && (query.length <= 2)) {
-                query[0] = query[0].trim();
-                var dist = parseFloat(query[0]);
-                if (query.length == 1) {
-                    query[1] = "Sol";
-                } else {
-                    query[1] = query[1].trim();
-                }
-                // We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
-                if ((dist != NaN) && (query[1].length > 0)) {
-                    // Radius report.
-                    edsm.getSystemOrCmdrCoords(query[1], function(coords) {
-                        if (coords && coords.coords) {
-                            gmp.gmpPoiList(query[1], coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
-                        } else {
-                            utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
-                        }
-                    });
-                } else {
-                    utils.displayUsage(bot,msg,that);
-                }
-            } else {
-                // Do everything
-                console.log("Running gmpPoiList on everything...");
-                gmp.gmpPoiList(undefined, undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
-            }
-        }
-    },
-    "gmp_exceptions": {
-        usage: "gmp_exceptions <optional distance in light years> -> <optional system to serve as a center>",
-        spammy: true,
-        help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
-        process: function(args,bot,msg) {
-            var that = this;
-            var query = utils.compileArgs(args).split(/->|:/);
-            if ((query[0].length > 0) && (query.length <= 2)) {
-                query[0] = query[0].trim();
-                var dist = parseFloat(query[0]);
-                if (query.length == 1) {
-                    query[1] = "Sol";
-                } else {
-                    query[1] = query[1].trim();
-                }
-                // We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
-                if ((dist != NaN) && (query[1].length > 0)) {
-                    // Radius report.
-                    edsm.getSystemOrCmdrCoords(query[1], function(coords) {
-                        if (coords && coords.coords) {
-                            gmp.gmpExceptionReport(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
-                        } else {
-                            utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
-                        }
-                    });
-                } else {
-                    utils.displayUsage(bot,msg,that);
-                }
-            } else {
-                // Do everything
-                gmp.gmpExceptionReport(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
-            }
-        }
-    },
+    // @@TODO - These are broken
+    // "gmp_list": {
+    //     usage: "gmp_list <optional distance in light years> -> <optional system to serve as a center>",
+    //     spammy: true,
+    //     help: "Returns a list of galactic mapping data points of interest, optionally within a certain range of a point.",
+    //     process: function(args,bot,msg) {
+    //         console.log("gmp_list...");
+    //         var that = this;
+    //         var query = utils.compileArgs(args).split(/->|:/);
+    //         if ((query[0].length > 0) && (query.length <= 2)) {
+    //             query[0] = query[0].trim();
+    //             var dist = parseFloat(query[0]);
+    //             if (query.length == 1) {
+    //                 query[1] = "Sol";
+    //             } else {
+    //                 query[1] = query[1].trim();
+    //             }
+    //             // We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
+    //             if ((dist != NaN) && (query[1].length > 0)) {
+    //                 // Radius report.
+    //                 edsm.getSystemOrCmdrCoords(query[1], function(coords) {
+    //                     if (coords && coords.coords) {
+    //                         gmp.gmpPoiList(query[1], coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
+    //                     } else {
+    //                         utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
+    //                     }
+    //                 });
+    //             } else {
+    //                 utils.displayUsage(bot,msg,that);
+    //             }
+    //         } else {
+    //             // Do everything
+    //             console.log("Running gmpPoiList on everything...");
+    //             gmp.gmpPoiList(undefined, undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
+    //         }
+    //     }
+    // },
+    // "gmp_exceptions": {
+    //     usage: "gmp_exceptions <optional distance in light years> -> <optional system to serve as a center>",
+    //     spammy: true,
+    //     help: "Analyzes the current Galactic Mapping Project data and determines what exceptions there are",
+    //     process: function(args,bot,msg) {
+    //         var that = this;
+    //         var query = utils.compileArgs(args).split(/->|:/);
+    //         if ((query[0].length > 0) && (query.length <= 2)) {
+    //             query[0] = query[0].trim();
+    //             var dist = parseFloat(query[0]);
+    //             if (query.length == 1) {
+    //                 query[1] = "Sol";
+    //             } else {
+    //                 query[1] = query[1].trim();
+    //             }
+    //             // We have two options: No args, in which case we do everything, or two args, in which case we do a radius report
+    //             if ((dist != NaN) && (query[1].length > 0)) {
+    //                 // Radius report.
+    //                 edsm.getSystemOrCmdrCoords(query[1], function(coords) {
+    //                     if (coords && coords.coords) {
+    //                         gmp.gmpExceptionReport(coords.coords, dist, bot, utils.pmOrSendChannel(that, pmIfSpam, msg.author, msg.channel));
+    //                     } else {
+    //                         utils.pmOrSend(bot, that, pmIfSpam, msg.author, msg.channel, "Could not get coordinates for " + query[1]);
+    //                     }
+    //                 });
+    //             } else {
+    //                 utils.displayUsage(bot,msg,that);
+    //             }
+    //         } else {
+    //             // Do everything
+    //             gmp.gmpExceptionReport(undefined, undefined, bot, utils.pmOrSendChannel(cmd, pmIfSpam, msg.author, msg.channel));
+    //         }
+    //     }
+    // },
     "g": {
         usage: "g <planet mass in earth masses> <planet radius in km>",
         help: "Calculates surface gravity and likely planet types from a planet's mass and radius",
         process: function(args, bot, msg) {
-            var displayUsage = true;
             if (args.length === 3) {
                 var planetMass = +(args[1]);
                 var planetRadius = +(args[2]);
                 if(!isNaN(planetMass) && !isNaN(planetRadius)) {
-                    displayUsage = false;
-                    utils.sendMessage(bot, msg.channel, elitelib.handleGravity(planetMass, planetRadius));
+                    return utils.sendMessage(bot, msg.channel, elitelib.handleGravity(planetMass, planetRadius));
                 }
             }
-            if (displayUsage) {
-                utils.displayUsage(bot,msg,this);
-            }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "rho_dense": {
@@ -298,18 +321,14 @@ var commands = {
         help: "Calculates stellar density for dense areas (50 star systems in the nav panel) using the distance to the last star in the list.",
         extendedhelp: "IMPORTANT: This calculation is only accurate if there are 50 stars in your nav panel. Look at the last star system in the panel, and enter the distance from your ship.",
         process: function(args, bot, msg) {
-            var displayUsage = true;
             if (args.length === 2) {
                 var distance = args[1];
                 var density = elitelib.calcRho(distance, undefined);
                 if(!isNaN(density)) {
-                    displayUsage = false;
-                    utils.sendMessage(bot, msg.channel, "rho = " + density);
+                    return utils.sendMessage(bot, msg.channel, "rho = " + density);
                 }
             }
-            if (displayUsage) {
-                utils.displayUsage(bot,msg,this);
-            }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "rho_sparse": {
@@ -317,18 +336,15 @@ var commands = {
         help: "Calculates stellar density for sparse areas ( < 50 star systems in the nav panel) using the count of star systems in the list.",
         extendedhelp: "IMPORTANT: This calculation is only accurate if there are less than 50 stars in your nav panel. Count the number of star systems in the nav panel, and enter the count.",
         process: function(args, bot, msg) {
-            var displayUsage = true;
             if (args.length === 2) {
                 var count = args[1];
                 var density = elitelib.calcRho(undefined, count);
                 if(!isNaN(density)) {
                     displayUsage = false;
-                    utils.sendMessage(bot, msg.channel, "rho = " + density);
+                    return utils.sendMessage(bot, msg.channel, "rho = " + density);
                 }
             }
-            if (displayUsage) {
-                utils.displayUsage(bot,msg,this);
-            }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "region": {
@@ -340,35 +356,6 @@ var commands = {
         usage: "show <region or system>",
         help: "Shows where a region or named system is in the galaxy",
         process: showRegion
-    },
-    "route": {
-        usage: "route <JumpRange> <SgrA distance in kly> [optional max plot in ly]",
-        help: "Calculate optimal core routing distance.",
-        process: function(args, bot, msg) {
-            var displayUsage = true;
-            if ((args.length === 4) || (args.length === 3)) {
-                displayUsage = false;
-                var jumpRange = +(args[1]);
-                var distSagA = +(args[2]);
-                var distMax = undefined;
-                if (args.length === 4) {
-                    distMax = +(args[3]);
-                    if (isNaN(distMax)) {
-                        displayUsage = true;
-                    }
-                }
-                if (isNaN(jumpRange) || isNaN(distSagA)) {
-                    displayUsage = true;
-                }
-                if (!displayUsage) {
-                    utils.sendMessage(bot, msg.channel, edsm.calcJumpRange(jumpRange, distSagA, distMax));
-                }
-            } 
-
-            if (displayUsage) {
-                utils.displayUsage(bot,msg,this);
-            }
-        }
     },
     "traveltime": {
         usage: "traveltime <JumpRange> <travelDistance> [optional time per jump in seconds - defaults to 60]",
@@ -392,13 +379,11 @@ var commands = {
                 if (!displayUsage) {
                     var tt = (distance / jumpRange) * (secondsPerJump) * 1.1 * 1000;
                     var output = "Travel time should be approximately " + utils.formatTimeDuration(tt);
-                    utils.sendMessage(bot, msg.channel, output);
+                    return utils.sendMessage(bot, msg.channel, output);
                 }
             } 
 
-            if (displayUsage) {
-                utils.displayUsage(bot,msg,this);
-            }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "showloc": {
@@ -406,48 +391,72 @@ var commands = {
         help: 'Shows the location of a commander.',
         extendedhelp: "Shows the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
         process: function(args,bot,msg) {
-            var name = getCmdrName(args, msg);
-            if (name) {
-                edsm.getPositionString(name, function(posStringObj, position) {
-                    if (position) {
-                        getRegionMap(position, function(data) {
-                            if (data) {
-                                if (data.map) {
-                                    msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map);
-                                    utils.sendMessage(bot, msg.channel, posStringObj.message);
+            var thisCmd = this;
+            return new Promise(function(response, reject) {
+                var name = getCmdrName(args, msg);
+                if (name) {
+                    edsm.getPositionString(name, function(posStringObj, position) {
+                        if (position) {
+                            getRegionMap(position, function(data) {
+                                if (data) {
+                                    if (data.map) {
+                                        msg.channel.sendFile(path.resolve(base.path, "plugins/elite/maps/" + data.map), data.map);
+                                        utils.sendMessage(bot, msg.channel, posStringObj.message)
+                                        .then(function() {
+                                            response();                          
+                                        });                                       
+                                    } else {
+                                        utils.sendMessage(bot, msg.channel, posStringObj.message)
+                                        .then(function() {
+                                            response();                          
+                                        });
+                                    }
                                 } else {
-                                    utils.sendMessage(bot, msg.channel, posStringObj.message);
+                                    posStringObj.message += "\nNo map data exists for " + position + " yet...";
+                                    utils.sendMessage(bot, msg.channel, posStringObj.message)
+                                    .then(function() {
+                                        response();                          
+                                    });
                                 }
-                            } else {
-                                posStringObj.message += "\nNo map data exists for " + position + " yet...";
-                                utils.sendMessage(bot, msg.channel, posStringObj.message);
-                            }
-                        });
-                    } else {
-                        if (posStringObj.commanderExists) {
-                            // EDSM doesn't have position info on them
-                            utils.sendMessage(bot, msg.channel, posStringObj.message);
+                            });
                         } else {
-                            _showRegion(name, bot, msg);
-                        }
-                    }                
-                });
-            } else {
-                utils.displayUsage(bot,msg,this);
-            }
+                            if (posStringObj.commanderExists) {
+                                // EDSM doesn't have position info on them
+                                utils.sendMessage(bot, msg.channel, posStringObj.message)
+                                .then(function() {
+                                    response();                          
+                                });
+                            } else {
+                                _showRegion(name, bot, msg)
+                                .then(function() {
+                                    response();
+                                });
+                            }
+                        }                
+                    });
+                } else {
+                    utils.displayUsage(bot,msg,thisCmd)
+                    .then(function() {
+                        response();
+                    })
+                }                
+            });
         }
     },
     "loc": {
         usage: "loc <name>",
         help: 'Gets the location of a commander.',
         extendedhelp: "Gets the location of a commander. We use information from EDSM to do this. In order to be findable, the commander must be sharing their flight logs with EDSM, and they must have set their profile to make the flight logs public.",
-        process: function(args,bot,msg) {
+        process: function(args,bot,msg,cmd) {
             var name = getCmdrName(args,msg);
             if (name) {
-                edsm.getPosition(name, bot, msg);
-            } else {
-                utils.displayUsage(bot,msg,this);
+                return new Promise(function(resolve, reject) {
+                    edsm.getPositionString(name, function(data) {
+                        utils.sendMessage(bot, msg.channel, data.message).then(resolve);
+                    });
+                });
             }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "syscoords": {
@@ -456,10 +465,9 @@ var commands = {
         extendedhelp: "Gets the galactic coordinates of a system. We use information from EDSM to do this. The system must have coordinates in EDSM. Applications such as EDDiscovery make this easy to do.",
         process: function(args,bot,msg) {
             if (args.length > 1) {
-                edsm.getSystemCoords(utils.compileArgs(args), bot, msg);
-            } else {
-                utils.displayUsage(bot,msg,this);
+                return edsm.getSystemCoords(utils.compileArgs(args), bot, msg);
             }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "cmdrcoords": {
@@ -469,10 +477,9 @@ var commands = {
         process: function(args,bot,msg) {
             var name = getCmdrName(args,msg);
             if (name) {
-                edsm.getCmdrCoords(name, bot, msg);
-            } else {
-                utils.displayUsage(bot,msg,this);
+                return edsm.getCmdrCoords(name, bot, msg);
             }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "dist": {
@@ -487,34 +494,26 @@ var commands = {
                 if (query.length == 1) {
                     if (query[0].length == 0) {
                         if (edsmName) {
-                            console.log("All defaults: dist " + edsmName + " -> Sol");
                             query[0] = edsmName;
                             query[1] = "Sol";
                         }
                     } else {
                         if (edsmName) {
-                            console.log("One default: dist " + query[0] + " -> " + edsmName);
                             query[1] = edsmName;
                         } else {
-                            console.log("One default: dist " + query[0] + " -> Sol");
                             query[1] = "Sol";
                         }
                     }
                 } else {
-                    console.log("No defaults: dist " + query[0] + " -> " + query[1]);
                     query[1] = query[1].trim();
                 }
                 if ((query[0].length > 0) && (query[1].length > 0)) {
-                    console.log("Displaying distance");
-                    edsm.getDistance(query[0], query[1], bot, msg);
+                    return edsm.getDistance(query[0], query[1], bot, msg);
                 } else {
-                    console.log("Couldn't run, displaying usage");
-                    utils.displayUsage(bot,msg,this);
+                    return utils.displayUsage(bot,msg,this);
                 }
-            } else {
-                console.log("Pathological number of -> delimiters...");
-                utils.displayUsage(bot,msg,this);
             }
+            return utils.displayUsage(bot,msg,this);
         }
     },
     "cmdralias": {
@@ -523,20 +522,20 @@ var commands = {
         help: "Creates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel.",
         extendedhelp: "Creates or updates a CMDR alias -- e.g. Falafel Expedition Leader can alias CMDR Falafel -- with an optional expedition. This is useful simply as a convenience.",
         process: function(args, bot, msg) {
-            var systems = utils.compileArgs(args).split(/->|:/);
-            if (systems.length >= 2) {
-                systems[0] = systems[0].trim();
-                systems[1] = systems[1].trim();
-                if ((systems[0].length > 0) && (systems[1].length > 0)) {
-                    var key = systems[0].toLowerCase();
-                    var output = "created CMDR alias from " + systems[0] + " -> " + systems[1];
-                    var cmdralias = {alias: systems[0], cmdr: systems[1]}; 
+            var names = utils.compileArgs(args).split(/->|:/);
+            if (names.length >= 2) {
+                names[0] = names[0].trim();
+                names[1] = names[1].trim();
+                if ((names[0].length > 0) && (names[1].length > 0)) {
+                    var key = names[0].toLowerCase();
+                    var output = "created CMDR alias from " + names[0] + " -> " + names[1];
+                    var cmdralias = {alias: names[0], cmdr: names[1]}; 
                     var item = edsm.cmdraliases[key];
                     // Optional expedition
-                    if (systems.length == 3) {
-                        systems[2] = systems[2].trim();
-                        cmdralias.expedition = systems[2];
-                        output += " for " + systems[2];
+                    if (names.length == 3) {
+                        names[2] = names[2].trim();
+                        cmdralias.expedition = names[2];
+                        output += " for " + names[2];
                     }
                     if (item) {
                         _.extend(item, cmdralias);
@@ -547,19 +546,18 @@ var commands = {
                     
                     //now save the new alias
                     writeCmdrAliases();
-                    utils.sendMessage(bot, msg.channel,output);
+                    return utils.sendMessage(bot, msg.channel,output);
                 } else {
-                    utils.displayUsage(bot,msg,this);
+                    return utils.displayUsage(bot,msg,this);
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
-            }
+            }            
+            return utils.displayUsage(bot, msg, this);
         }
     },
     "show_cmdralias": {
         usage: "show_cmdralias <alias>",
         help: "Displays a CMDR alias.",
-        process: function(args, bot, message) {
+        process: function(args, bot, msg) {
             if (args.length > 1) {
                 var alias = edsm.cmdraliases[args[1].toLowerCase()];
                 var output = args[1] + " is not a CMDR alias.";
@@ -569,29 +567,27 @@ var commands = {
                         output += " for " + alias.expedition;
                     } 
                 }
-                utils.sendMessage(bot, message.channel, output);
-            } else {
-                displayUsage(bot, message, this);
-            }        
+                return utils.sendMessage(bot, msg.channel, output);
+            }
+            return utils.displayUsage(bot, msg, this);       
         }
     },
     "clear_cmdralias": {
         usage: "clear_cmdralias <alias>",
         adminOnly: true,
         help: "Deletes a CMDR alias.",
-        process: function(args, bot, message) {
+        process: function(args, bot, msg) {
             var alias = args[1].toLowerCase();
             if(alias) {
                 if (edsm.cmdraliases[alias]) {
                     delete edsm.cmdraliases[alias];
                     writeCmdrAliases();
-                    utils.sendMessage(bot, message.channel, "Deleted CMDR alias " + alias);
+                    return utils.sendMessage(bot, msg.channel, "Deleted CMDR alias " + alias);
                 } else {
-                    utils.sendMessage(bot, message.channel, "Sorry, " + alias + " doesn't exist.");
+                    return utils.sendMessage(bot, msg.channel, "Sorry, " + alias + " doesn't exist.");
                 }
-            } else {
-                displayUsage(bot, message, this);
             }
+            return utils.displayUsage(bot, msg, this);
         }
     },
     "cmdraliases": {
@@ -614,7 +610,7 @@ var commands = {
             if (!hasAliases) {
                 outputArray[0] += " None";
             }
-            utils.sendMessages(bot,msg.channel,outputArray);
+            return utils.sendMessages(bot,msg.channel,outputArray);
         }
     },
     "sysalias": {
@@ -646,19 +642,18 @@ var commands = {
                     edsm.aliases[key] = item;
                     //now save the new alias
                     writeAliases();
-                    utils.sendMessage(bot, msg.channel,output);
+                    return utils.sendMessage(bot, msg.channel,output);
                 } else {
-                    utils.displayUsage(bot,msg,this);
+                    return utils.displayUsage(bot,msg,this);
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
             }
+            return utils.displayUsage(bot, msg, this);
         }
     },
     "show_sysalias": {
         usage: "show_sysalias <alias>",
         help: "Displays a system alias.",
-        process: function(args, bot, message) {
+        process: function(args, bot, msg) {
             if (args.length > 1) {
                 var system = utils.compileArgs(args);
                 var output = system + " is not a system alias.";
@@ -671,29 +666,27 @@ var commands = {
                         }
                     }
                 }
-                utils.sendMessage(bot, message.channel, output);
-            } else {
-                displayUsage(bot, message, this);
-            }        
+                return utils.sendMessage(bot, msg.channel, output);
+            }
+            return utils.displayUsage(bot, msg, this);       
         }
     },
     "clear_sysalias": {
         usage: "clear_sysalias <alias>",
         adminOnly: true,
         help: "Deletes a system alias.",
-        process: function(args, bot, message) {
+        process: function(args, bot, msg) {
             var system = utils.compileArgs(args);
             if(system) {
                 if (edsm.aliases[system.toLowerCase()]) {
                     delete edsm.aliases[system.toLowerCase()];
                     writeAliases();
-                    utils.sendMessage(bot, message.channel, "Deleted system alias " + system);
+                    return utils.sendMessage(bot, msg.channel, "Deleted system alias " + system);
                 } else {
-                    utils.sendMessage(bot, message.channel, "Sorry, " + system + " doesn't exist.");
+                    return utils.sendMessage(bot, msg.channel, "Sorry, " + system + " doesn't exist.");
                 }
-            } else {
-                displayUsage(bot, message, this);
             }
+            return utils.displayUsage(bot, msg, this);
         }
     },
     "sysaliases": {
@@ -716,7 +709,7 @@ var commands = {
             if (!hasAliases) {
                 outputArray[0] += " None";
             }
-            utils.sendMessages(bot,msg.channel,outputArray);
+            return utils.sendMessages(bot,msg.channel,outputArray);
         }
     },
     "expsa": {
@@ -732,16 +725,13 @@ var commands = {
                     if (edsm.aliases[query[0].toLowerCase()]) {
                         edsm.aliases[query[0].toLowerCase()].expedition = query[1];
                         writeAliases();
-                        utils.sendMessage(bot, msg.channel, "Assigned " + query[0] + " to " + query[1]);
+                        return utils.sendMessage(bot, msg.channel, "Assigned " + query[0] + " to " + query[1]);
                     } else {
-                        utils.sendMessage(bot, msg.channel, query[0] + " is not in my records.")
+                        return utils.sendMessage(bot, msg.channel, query[0] + " is not in my records.")
                     }
-                } else {
-                    utils.displayUsage(bot,msg,this);
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
             }
+            return utils.displayUsage(bot, msg, this);
         }
     },
     "expa": {
@@ -761,27 +751,24 @@ var commands = {
                             alias.expedition = query[1];
                         });
                         if (alias.displayUsage) {
-                            displayUsage(bot, msg, this);
+                            return utils.displayUsage(bot, msg, this);
                         } else if (alias.error) {
-                            utils.sendMessage(bot, msg.channel, alias.message);
+                            return utils.sendMessage(bot, msg.channel, alias.message);
                         } else {
-                            utils.sendMessage(bot, msg.channel,"Created alias " + alias.alias + " in expedition " + query[1]);
+                            return utils.sendMessage(bot, msg.channel,"Created alias " + alias.alias + " in expedition " + query[1]);
                         }
                     } else {
                         if (botcfg.aliases[query[0].toLowerCase()]) {
                             botcfg.aliases[query[0].toLowerCase()].expedition = query[1];
                             botcfg.writeAliases();
-                            utils.sendMessage(bot, msg.channel, "Assigned " + query[0] + " to " + query[1]);
+                            return utils.sendMessage(bot, msg.channel, "Assigned " + query[0] + " to " + query[1]);
                         } else {
-                            utils.sendMessage(bot, msg.channel, query[0] + " is not in my records.")
+                            return utils.sendMessage(bot, msg.channel, query[0] + " is not in my records.")
                         }
                     }
-                } else {
-                    utils.displayUsage(bot,msg,this);
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
             }
+            return utils.displayUsage(bot, msg, this);
         }
     },
     "explist": {
@@ -801,7 +788,7 @@ var commands = {
                     }
                 }
                 if (aliasArray.length > 0) {
-                    aliasArray.sort(alphanum.alphanumCase);
+                    aliasArray.sort();
                 }
 
 
@@ -813,7 +800,7 @@ var commands = {
                     }                
                 }                
                 if (cmdrAliasArray.length > 0) {
-                    cmdrAliasArray.sort(alphanum.alphanumCase);
+                    cmdrAliasArray.sort();
                 }
                 
 
@@ -825,7 +812,7 @@ var commands = {
                     }                
                 }
                 if (sysaliasArray.length > 0) {
-                    sysaliasArray.sort(alphanum.alphanumCase);
+                    sysaliasArray.sort();
                 }
 
                 if (aliasArray.length + cmdrAliasArray.length + sysaliasArray.length > 0) {
@@ -852,13 +839,12 @@ var commands = {
                         }
                     }
 
-                    utils.sendMessages(bot,msg.channel,outputArray);
+                    return utils.sendMessages(bot,msg.channel,outputArray);
                 } else {
-                    utils.sendMessage(bot, msg.channel, expedtition + " is an empty expedition");
+                    return utils.sendMessage(bot, msg.channel, expedtition + " is an empty expedition");
                 }
-            } else {
-                utils.displayUsage(bot,msg,this);
-            }    
+            }
+            return utils.displayUsage(bot, msg, this);    
         }
     },
     "expeditions": {
@@ -890,7 +876,7 @@ var commands = {
                     explist[i++] = expeditions[key];
                 }
             }
-            explist.sort(alphanum.alphanumCase);
+            explist.sort();
             i = 0;
             outputArray[i++] = utils.bold("Active expeditions:");
             var hasExpeditions = false;
@@ -901,7 +887,7 @@ var commands = {
             if(!hasExpeditions) {
                 outputArray[0] += " None";
             }
-            utils.sendMessages(bot,msg.channel,outputArray);
+            return utils.sendMessages(bot,msg.channel,outputArray);
         }
     },
 };

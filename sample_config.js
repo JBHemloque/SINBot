@@ -24,34 +24,6 @@ const PLUGINS = [
 		}
 	},
 	{
-		name: "Trello",
-		path: "../plugins/trello.js",
-		config: {
-			key: "TRELLO_KEY",
-			token: "TRELLO_TOKEN",
-			boards: [
-				{
-					id:'BOARD_ID',
-					channel:'#operations'
-				},
-				{
-					id:'BOARD_ID',
-					channel:'#operations'
-				}
-			]
-		}
-	},
-	{
-		name: "Search",
-		path: "../plugins/search.js",
-		config: {
-			apikey: "GOOGLE_CUSTOM_SEARCH_API_KEY",
-			lodestone_cx: "LODESTONE_CUSTOM_SEARCH_CX",
-			lodestone_server: "LODESTONE_SERVER_YOURE_ON",
-			wiki_cx: "RPC_WIKI_CUSTOM_SEARCH_CX"
-		}
-	},
-	{
 		name: "Dice",
 		path: "../plugins/dice.js"
 	},

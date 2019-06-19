@@ -22,43 +22,34 @@ var mocks = require('./mocks.js');
 // 		}
 
 function handleUsage(command, user) {
-    if (!user) {
-        user = mocks.nonAdminUser;
-    }
-    // Usage always comes in via PM, so we need to account for that...
-    var oldUserSendMessage = user.sendMessage;
-    user.sendMessage = function(message) {
-        if (message.includes("Usage: ")) {
-            handledCommand = true;
-        } else {
-            console.log("Unexpected usage reply: " + message);
+    return new Promise(function(response, reject) {
+        if (!user) {
+            user = mocks.nonAdminUser;
         }
-    };
-    var handledCommand = false;
-    var client = mocks.makeClient();
-    bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
-    bot.procCommand(client, mocks.makeMessage(command, user));
-    user.sendMessage = oldUserSendMessage;
-    return handledCommand;
-}
-
-function handleAdminCheck(command) {
-    var handledCommand = false;
-    var client = mocks.makeClient();
-    bot.startBot(client, mocks.makeConfig());
-    bot.procCommand(client, mocks.makeMessage(command, mocks.nonAdminUser, function(message) {
-        if (message.includes("you are not allowed to do that")) {
-            handledCommand = true;
-        }
-    }));
-    return handledCommand;
+        var sendMessage = function(message) {
+            if (message.includes("Usage: ")) {
+                handledCommand = true;
+            } else {
+                console.log("Unexpected usage reply: " + message);
+            }
+        };
+        var handledCommand = false;
+        var client = mocks.makeClient();
+        bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
+        bot.procCommand(client, mocks.makeMessage(command, user, sendMessage))
+        .then(function() {
+            assert(handledCommand);
+            response(true);
+        });
+    });
 }
 
 function createBot(client, bot) {
     bot.startBot(client, mocks.makeConfig([{ name: "Elite", path: "./plugins/elite.js" }]));
 }
 
-describe('edsm', function(){
+// elite tests are broken atm
+describe('elite', function(){
     it('should export a commands object', function(){
         assert(typeof(bot.commands) == 'object');
     });
@@ -68,108 +59,128 @@ describe('edsm', function(){
     });
 
     it("should display usage for an incomplete loc", function() {
-    	assert(handleUsage("!loc", mocks.adminUser));
+    	handleUsage("!loc", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for an incomplete syscoords", function() {
-    	assert(handleUsage("!syscoords", mocks.adminUser));
+    	handleUsage("!syscoords", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for an incomplete cmdrcoords", function() {
-    	assert(handleUsage("!cmdrcoords", mocks.adminUser));
+    	handleUsage("!cmdrcoords", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for an incomplete dist", function() {
-    	assert(handleUsage("!dist", mocks.adminUser));
-    	assert(handleUsage("!dist foo ->", mocks.adminUser));
+    	handleUsage("!dist", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+            handleUsage("!dist foo ->", mocks.adminUser)
+            .then(function(val) {
+                assert(val);
+            });
+        });
     });
 
     it("should display usage for an incomplete cmdralias", function() {
-        assert(handleUsage("!cmdralias", mocks.adminUser));
-        assert(handleUsage("!cmdralias foo", mocks.adminUser));
-        assert(handleUsage("!cmdralias foo ->", mocks.adminUser));
+        handleUsage("!cmdralias", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+            handleUsage("!cmdralias foo", mocks.adminUser)
+            .then(function(val) {
+                assert(val);
+                handleUsage("!cmdralias foo ->", mocks.adminUser)
+                .then(function(val) {
+                    assert(val);
+                });
+            });
+        });
     });
 
     it("should display usage for an incomplete sysalias", function() {
-    	assert(handleUsage("!sysalias", mocks.adminUser));
-    	assert(handleUsage("!sysalias foo", mocks.adminUser));
-    	assert(handleUsage("!sysalias foo ->", mocks.adminUser));
+    	handleUsage("!sysalias", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        	handleUsage("!sysalias foo", mocks.adminUser)
+            .then(function(val) {
+                assert(val);
+            	handleUsage("!sysalias foo ->", mocks.adminUser)
+                .then(function(val) {
+                    assert(val);
+                });
+            });
+        });
     });
 
     it("should display usage for an incomplete expsa", function() {
-    	assert(handleUsage("!expsa", mocks.adminUser));
-    	assert(handleUsage("!expsa foo", mocks.adminUser));
-    	assert(handleUsage("!expsa foo ->", mocks.adminUser));
+    	handleUsage("!expsa", mocks.adminUser).then(function(val) {
+            assert(val);
+        	handleUsage("!expsa foo", mocks.adminUser)
+            .then(function(val) {
+                assert(val);                
+            	handleUsage("!expsa foo ->", mocks.adminUser)
+                .then(function(val) {
+                    assert(val);
+                });
+            });
+        });
     });
 
     it("should display usage for an incomplete expa", function() {
-    	assert(handleUsage("!expsa", mocks.adminUser));
-    	assert(handleUsage("!expa foo", mocks.adminUser));
-    	assert(handleUsage("!expa foo ->", mocks.adminUser));
+    	handleUsage("!expsa", mocks.adminUser).then(function(val) {
+            assert(val);
+        	handleUsage("!expa foo", mocks.adminUser)
+            .then(function(val) {
+                assert(val);
+            	handleUsage("!expa foo ->", mocks.adminUser)
+                .then(function(val) {
+                    assert(val);
+                });
+            });
+        });
     });
 
     it("should display usage for an incomplete explist", function() {
-    	assert(handleUsage("!explist", mocks.adminUser));
-    });
-
-    it("should display usage for an incomplete route", function() {
-        assert(handleUsage("!route", mocks.adminUser));
-    });
-
-    it("should display usage for a route with just one value", function() {
-        assert(handleUsage("!route 33.06", mocks.adminUser));
-    });
-
-    it("should display usage for a route with a non-numeric jump", function() {
-        assert(handleUsage("!route foo 8", mocks.adminUser));
-    });
-
-    it("should display usage for a route with a non-numeric sagA distance", function() {
-        assert(handleUsage("!route 33.06 foo", mocks.adminUser));
-    });
-
-    it("should display usage for a route with a non-numeric max distance", function() {
-        assert(handleUsage("!route 33.06 8 foo", mocks.adminUser));
-    });
-
-    it("should calculate a route properly", function() {
-        var handledCommand = false;
-        var client = mocks.makeClient();
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!route 33.06 8", mocks.nonAdminUser, function(message) {
-            if (message == "Estimated plot range should be around **968.30ly** - check range *962.97 to 973.63 ly*") {
-                handledCommand = true;
-            }
-        }));
-        assert(handledCommand);
-    });
-
-    it("should calculate a route properly with a max distance", function() {
-        var handledCommand = false;
-        var client = mocks.makeClient();
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!route 34.54 9 980", mocks.nonAdminUser, function(message) {
-            if (message == "Estimated plot range should be around **976.41ly** - check range *971.04 to 981.78 ly*") {
-                handledCommand = true;
-            }
-        }));
-        assert(handledCommand);
+    	handleUsage("!explist", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for an incomplete g", function() {
-        assert(handleUsage("!g", mocks.adminUser));
+        handleUsage("!g", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for a g with only a planet mass", function() {
-        assert(handleUsage("!g 1", mocks.adminUser));
+        handleUsage("!g 1", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for a g with a non-numeric mass", function() {
-        assert(handleUsage("!g foo 6368", mocks.adminUser));
+        handleUsage("!g foo 6368", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should display usage for a g with a non-numeric radius", function() {
-        assert(handleUsage("!g 1 foo", mocks.adminUser));
+        handleUsage("!g 1 foo", mocks.adminUser)
+        .then(function(val) {
+            assert(val);
+        });
     });
 
     it("should calculate g properly for earth", function() {
@@ -180,8 +191,10 @@ describe('edsm', function(){
             if (message == "The gravity for a planet with 1 Earth masses and a radius of 6371 km is **9.83** m/s^2 or **1.00** g. It has a density of **5.52e+3** kg/m^3.\n**Likely**: AW, HMC, WW\n**Possible**: ELW, MR") {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should calculate g properly for a near earth", function() {
@@ -192,8 +205,10 @@ describe('edsm', function(){
             if (message == "The gravity for a planet with 1.1 Earth masses and a radius of 6371.2 km is **10.81** m/s^2 or **1.10** g. It has a density of **6.07e+3** kg/m^3.\n**Likely**: AW, ELW, HMC, WW\n**Possible**: MR") {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should calculate g properly for a sub earth", function() {
@@ -204,8 +219,10 @@ describe('edsm', function(){
             if (message == "The gravity for a planet with 0.25 Earth masses and a radius of 3456 km is **8.35** m/s^2 or **0.85** g. It has a density of **8.65e+3** kg/m^3.\n**Likely**: MR\n**Possible**: AW, HMC, WW") {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should calculate g properly for a super earth", function() {
@@ -216,7 +233,9 @@ describe('edsm', function(){
             if (message == "The gravity for a planet with 3.64 Earth masses and a radius of 8245 km is **21.36** m/s^2 or **2.17** g. It has a density of **9.27e+3** kg/m^3.\n**Likely**: MR\n**Possible**: AW, HMC, WW") {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 })

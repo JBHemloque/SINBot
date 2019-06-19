@@ -24,6 +24,14 @@ function makeServer(memlist) {
     };
 }
 
+function arrFromDict(dict) {
+    var arr = [];
+    for (var key in dict) {
+        arr.push(dict[key]);
+    }
+    return arr;
+}
+
 function makeTextChannel(name, sendMessage, setTopic) {
     return {
         name: name,
@@ -36,7 +44,7 @@ function makeTextChannel(name, sendMessage, setTopic) {
         toString: function() {
             return this.name;
         },
-        guild: makeServer(userList)
+        guild: makeServer(arrFromDict(userList))
     };
 }
 
@@ -53,16 +61,22 @@ function makePMChannel(name, rec, sendMessage) {
         toString: function() {
             return this.name;
         },
-        guild: makeServer([adminUser, nonAdminUser])
+        guild: makeServer(arrFromDict(userList))
     }; 
 }
 
-function makeUser(userName, userId) {
-    return {
+function _makeUser(userName, userId, sendMessage) {
+    var user =  {
         id: userId,
         name: userName,
         username: userName,
-        sendMessage: function(message) {
+        sendMessage: function(message, options) {
+            if (sendMessage) {
+                sendMessage(message, options);
+            }
+            return new Promise(function(resolve, reject) {
+                resolve(message, options);
+            });
         },
         user: {username: userName},
         'user.username': userName,
@@ -70,6 +84,12 @@ function makeUser(userName, userId) {
             return this.name;
         }
     };
+    userList[user.id] = user;
+    return user;
+}
+
+function makeUser(userName, sendMessage) {
+    return _makeUser(userName, nextUserId++, sendMessage);
 }
 
 function _makeMessage(message, user, channel) {
@@ -104,8 +124,8 @@ function makeMessage(message, user, sendMessage, setTopic) {
         makeTextChannel(
             "Text", 
             function(message, options) {
-                return new Promise(function(resolve, reject) {
-                    sm(message, options);
+                sm(message, options);
+                return new Promise(function(resolve, reject) {                  
                     resolve(message, options);
                 });
             },
@@ -140,14 +160,13 @@ function makeClient(sendMessageCallback, plugins, setChannelTopicCallback) {
         guilds: {array: function() {return [{id: "Server ID", name:"Server Name"}]}},
         channels: ["Channel\nList"],
         fetchUser: function(id) {
-            // Return a promise
-            for (i = 0; i < userList.length; i++) {
-                if (userList[i].id.toString() === id) {
-                    return new Promise(function(resolve, reject) {
-                        resolve(userList[i]);
-                    });
-                }
-            }
+            return new Promise(function(resolve, reject) {
+                if (userList[id]) {
+                    resolve(userList[id]);
+                } else {
+                    reject();
+                }                
+            });       
         }
     };
 }
@@ -169,22 +188,26 @@ function _makeConfig(prefix, plugins) {
         COMMAND_PREFIX: prefix,
         PLUGINS: plugins,
         CLEAR_MESSAGEBOX: true,
-        ADMIN_IDS: [adminId]
+        // DEBUG: true,
+        ADMIN_IDS: [adminId],
+        // DEBUG: true
     };
 }
 
 var nonAdminId = 987987987;
 var adminId = 42;
+var nextUserId = nonAdminId + 1;
 
-var nonAdminUser = makeUser("Non-admin user", nonAdminId);
-var adminUser = makeUser("Admin user", adminId);
+var userList = {};
 
-var userList = [adminUser, nonAdminUser];
+var nonAdminUser = _makeUser("Non-admin user", nonAdminId);
+var adminUser = _makeUser("Admin user", adminId);
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+exports.makeUser = makeUser;
 exports.makeMessage = makeMessage;
 exports.makePrivateMessage = makePrivateMessage;
 exports.makeTextChannel = makeTextChannel;

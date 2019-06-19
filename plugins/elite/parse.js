@@ -57,7 +57,11 @@ function postproc() {
 
     console.log("Writing " + (regions-nonStandardCount).toString() + " regions and " + nonStandardCount + " non-standard regions...");
 
-    fs.writeFile("./regions.json",JSON.stringify(compiled,null,2), null);
+    fs.writeFile("./regions.json",JSON.stringify(compiled,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 var nonStandardCount = 0;

@@ -1,7 +1,9 @@
 'uses strict';
 
 var RiveScript = require("rivescript");
-var rs_host = require("./rs_host.js");
+var path = require('path');
+var base = require(path.resolve(__dirname, '../base.js'));
+var rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 
 var prompt = "You: ";
 
@@ -15,12 +17,15 @@ lineReader.on('line', function(line) {
     if (line === 'quit' || line === 'exit') {
         process.exit(0);
     }
-    var reply = bot.reply(line, "local-user", 666);
-    console.log(JSON.stringify(reply));
-    console.log("The bot says: " + bot.stripGarbage(reply));
+    bot.reply(line, "local-user", 666)
+    .then(function(reply) {
+    	console.log(JSON.stringify(reply));
+	    console.log("The bot says: " + bot.stripGarbage(reply));
+    });    
 });
 
-bot = new rs_host.RSHost('../userdata');
-bot.setup(['./rs/qohen', './rs/base'], function() {
-    console.log("Ready!");
+bot = new rs_host.RSHost(path.resolve(base.path, 'userdata/'));
+bot.setup([path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')])
+.then(function() {
+	console.log("Test environment ready!");
 });

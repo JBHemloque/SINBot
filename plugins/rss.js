@@ -13,7 +13,7 @@ var discord;
 
 var old_guids;
 try{
-    console.log('  - Loading ' + path.resolve(base.path, "old_rss_guids.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "old_rss_guids.json"));
     old_guids = require(path.resolve(base.path, "old_rss_guids.json"));
     console.log("Read old guids:");
     console.log(JSON.stringify(old_guids));
@@ -26,7 +26,11 @@ try{
 function addGuid(guid){
     old_guids[guid] = guid;
     // This path differs from the one above because the context it's run from is different
-    fs.writeFile(path.resolve(base.path, "old_rss_guids.json"),JSON.stringify(old_guids,null,2), null);
+    fs.writeFile(path.resolve(base.path, "old_rss_guids.json"),JSON.stringify(old_guids,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 exports.findCommand = function(command) {
@@ -94,11 +98,12 @@ function fetch(feed, server, channel, message, prefix, suffix) {
                             msg += suffix;
                         }
                     }
-                    utils.sendMessageToServerAndChannel(discord, server, channel, msg, function(err, msg) {
-                        if (!err) {
-                            addGuid(guid);
-                        }
-                    });
+                    utils.sendMessageToServerAndChannel(discord, server, channel, msg)
+                        .then(function(result, error) {
+                            if (!error) {
+                                addGuid(guid);
+                            }
+                        });
                 }
             } else {
                 console.log("Oops, no guid for this item: " + post.link);

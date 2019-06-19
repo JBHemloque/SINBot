@@ -3,8 +3,11 @@
 var fs = require("fs");
 var gm = require('gm');
 var imageMagick = gm.subClass({ imageMagick: true });
-var regions = require('./regions.js');
-var elitelib = require('./elitelib.js');
+var path = require('path');
+var base = require(path.resolve(__dirname, '../../base.js'));
+// Lazy load the regions library because it tries to connect to redis and that messes up unit tests
+var regions;
+var elitelib = require(path.resolve(base.path, 'plugins/elite/elitelib.js'));
 
 // Magic numbers based on the source image, Galaxy.jpg
 const KLY_TO_PIXEL = 1000 / 12.5;
@@ -37,8 +40,15 @@ var generateCoordFileName = function(x, y) {
     return "COORD_" + x.toString() + "_" + y.toString();
 }
 
+var regionsLib = function() {
+    if (!regions) {
+        regions = require(path.resolve(base.path, 'plugins/elite/regions.js'));
+    }
+    return regions;
+}
+
 var generateRegionMap = function(key, callback) {
-    regions.getRegionByKey(key, function(region) {
+    regionsLib().getRegionByKey(key, function(region) {
         if (region && region.coords) {
             var x = normalizeCoordX(region.coords.x);
             // coords.z is actually the y axis on our maps. Blame EDSM...
@@ -78,7 +88,7 @@ var generateRegionMapByCoords = function(x, y, name, filename, callback) {
             map: filename + ".jpg",
             region: filename
         }
-        regions.writeRegionToRedis(region);
+        regionsLib().writeRegionToRedis(region);
         console.log("Generated " + region.map);
         callback(region);
     });
@@ -94,7 +104,7 @@ var fetchRegionMapByCoords = function(x, y, location, callback) {
         name = elitelib.getRegionName(location);
         filename = name.toLowerCase();
     }
-    regions.getRegionByKey(filename, function(rgn) {
+    regionsLib().getRegionByKey(filename, function(rgn) {
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);
         } else {
@@ -105,7 +115,7 @@ var fetchRegionMapByCoords = function(x, y, location, callback) {
 
 var fetchRegionMap = function(region, callback) {
     var key = region.toLowerCase();
-    regions.getRegionByKey(key, function(rgn) {
+    regionsLib().getRegionByKey(key, function(rgn) {
         var generateMap = true;
         if (rgn && rgn.map && (fs.existsSync(_destDir + rgn.map))) {
             callback(rgn);

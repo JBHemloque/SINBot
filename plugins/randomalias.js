@@ -49,12 +49,12 @@ var commands = {
                     addOrReplace(cat, query[1]);
                     randomaliases[query[0].toLowerCase()] = cat;
                     writeRandomAliases();
-                    utils.sendMessage(bot, msg.channel, output);
+                    return utils.sendMessage(bot, msg.channel, output);
                 } else {
-                    utils.displayUsage(bot,msg,this);
+                    return utils.displayUsage(bot,msg,this);
                 }
             } else {
-                utils.displayUsage(bot,msg,this);
+                return utils.displayUsage(bot,msg,this);
             }
         }
     },
@@ -78,14 +78,14 @@ var commands = {
                             cat.splice(index, 1);
                             randomaliases[category.toLowerCase()] = cat;
                             writeRandomAliases();
-                            utils.sendMessage(bot, msg.channel, "Removed item " + index + " from " + category);
+                            return utils.sendMessage(bot, msg.channel, "Removed item " + index + " from " + category);
                         }
                     } else {
-                        utils.sendMessage(bot, msg.channel, category + " is an empty category");
+                        return utils.sendMessage(bot, msg.channel, category + " is an empty category");
                     }
                 }
             } else {
-                utils.displayUsage(bot,msg,this);
+                return utils.displayUsage(bot,msg,this);
             }    
         }
     },
@@ -105,12 +105,12 @@ var commands = {
                     for (var j = 0; j < cat.length; j++) {
                         outputArray[i++] = "\t" + cat[j];
                     }
-                    utils.sendMessages(bot,msg.channel,outputArray);
+                    return utils.sendMessages(bot,msg.channel,outputArray);
                 } else {
-                    utils.sendMessage(bot, msg.channel, category + " is an empty category");
+                    return utils.sendMessage(bot, msg.channel, category + " is an empty category");
                 }
             } else {
-                utils.displayUsage(bot,msg,this);
+                return utils.displayUsage(bot,msg,this);
             }    
         }
     },
@@ -135,7 +135,7 @@ var commands = {
             } else {
                 outputArray[0] += " None";
             }
-            utils.sendMessages(bot,msg.channel,outputArray);
+            return utils.sendMessages(bot,msg.channel,outputArray);
         }
     },
     "random": {
@@ -151,13 +151,13 @@ var commands = {
                     if (cat[i]) {
                         utils.sendMessage(bot, msg.channel, cat[i]);
                     } else {
-                        utils.sendMessage(bot, msg.channel, "Error: Invalid item " + i + " in category " + category);
+                        return utils.sendMessage(bot, msg.channel, "Error: Invalid item " + i + " in category " + category);
                     }
                 } else {
-                    utils.sendMessage(bot, msg.channel, category + " is an empty category");
+                    return utils.sendMessage(bot, msg.channel, category + " is an empty category");
                 }
             } else {
-                utils.displayUsage(bot,msg,this);
+                return utils.displayUsage(bot,msg,this);
             }
         }
     }
@@ -179,5 +179,9 @@ try{
 }
 
 function writeRandomAliases() {
-    fs.writeFile("../randomalias.json",JSON.stringify(randomaliases,null,2));
+    fs.writeFile("../randomalias.json",JSON.stringify(randomaliases,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }

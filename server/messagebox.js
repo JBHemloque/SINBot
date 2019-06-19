@@ -3,11 +3,12 @@
 var base = require('../base.js');
 var path = require('path');
 var fs = require("fs");
+var utils = require('./utils.js');
 
 var messagebox;
 
 try{
-    console.log('  - Loading ' + path.resolve(base.path, "messagebox.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "messagebox.json"));
     messagebox = require(path.resolve(base.path, "messagebox.json"));
 } catch(e) {
     //no stored messages
@@ -15,7 +16,11 @@ try{
 }
 
 function updateMessagebox(){
-    fs.writeFile(path.resolve(base.path, "messagebox.json"),JSON.stringify(messagebox,null,2), null);
+    fs.writeFile(path.resolve(base.path, "messagebox.json"),JSON.stringify(messagebox,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 
 function clearMessageBox() {
@@ -25,25 +30,33 @@ function clearMessageBox() {
 module.exports.clearMessageBox = clearMessageBox;
 
 function checkForMessages(bot, user) {
-    try{
-        if(messagebox.hasOwnProperty(user.id)){
-            var message = messagebox[user.id];
-            var outputArray = [];
-            if (message.content) {
-                outputArray.push(message.content);
-            } else {
-                for (var i = 0; i < message.length; i++) {
-                    outputArray.push(message[i].content);
+    return new Promise(function(resolve, reject) {
+        try{
+            if(messagebox.hasOwnProperty(user.id)){
+                var message = messagebox[user.id];
+                var outputArray = [];
+                if (message.content) {
+                    outputArray.push(message.content);
+                } else {
+                    for (var i = 0; i < message.length; i++) {
+                        outputArray.push(message[i].content);
+                    }
                 }
+                delete messagebox[user.id];
+                updateMessagebox();
+                utils.sendMessages(bot, user, outputArray)
+                .then(function() {
+                    resolve();
+                });
+            } else {
+                resolve();
             }
-            utils.sendMessages(bot, user, outputArray);
-            delete messagebox[user.id];
-            updateMessagebox();
+        } catch(e){
+            utils.logError("Error reading messagebox", e);
+            // We won't crash the bot for this...
+            resolve();
         }
-    }catch(e){
-        utils.logError("Error reading messagebox", e);
-        throw e;
-    }
+    });
 }
 module.exports.checkForMessages = checkForMessages;
 

@@ -7,7 +7,7 @@ var commands = {
     usage: "roll <dice notation>",
     help: "Dice rolling command. Supports standard dice notation, including F-5/Fudge dice (e.g.: 4dF+2).",
     process: function(args, bot, message) {
-      utils.sendMessage(bot, message.channel, roll(utils.compileArgs(args))); 
+      return utils.sendMessage(bot, message.channel, roll(utils.compileArgs(args))); 
     }
   },
 };

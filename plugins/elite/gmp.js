@@ -10,14 +10,18 @@ var edsm = require(path.resolve(base.path, 'plugins/elite/edsm.js'));
 var gmpData = [];
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    console.log('  - Loading ' + path.resolve(base.path, "gmp-edd.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "gmp-edd.json"));
     gmpData = require(path.resolve(base.path, 'gmp-edd.json'));
 } catch(e) {
     //No aliases defined
     gmpData = [];
 }
 var writeGmpData = function() {
-    fs.writeFile(path.resolve(base.path, "gmp-edd.json"),JSON.stringify(gmpData,null,2), null);
+    fs.writeFile(path.resolve(base.path, "gmp-edd.json"),JSON.stringify(gmpData,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
 }
 exports.writeGmpData = writeGmpData;
 
@@ -221,11 +225,11 @@ var findGMPItems = function(query) {
 exports.findGMPItems = findGMPItems;
 
 // Always refresh the gmp data on load. We can also use this to refresh with a cron job...
-console.log('  - Refreshing GMP data...');
+utils.debugLog('  - Refreshing GMP data...');
 refreshGmpData(function(msg) {
     if (msg) {
-        console.log('  - Error refreshing GMP data: ' + msg);
+        utils.debugLog('  - Error refreshing GMP data: ' + msg);
     } else {
-        console.log('  - Refreshing GMP data done!');
+        utils.debugLog('  - Refreshing GMP data done!');
     }
 })
