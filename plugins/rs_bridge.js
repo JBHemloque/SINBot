@@ -45,10 +45,10 @@ RSBridge.prototype.reply = function(args, bot, message) {
     return new Promise(function(resolve, reject) {
         var statement = utils.compileArgs(args);
         var userid = message.author.id;
-        this.messageCache[userid] = message;
-        this.RSHost.getReply(statement, message.author.name, userid)
+        that.messageCache[userid] = message;
+        that.RSHost.getReply(statement, message.author.name, userid)
         .then(function(reply) {
-            reply = this.RSHost.stripGarbage(reply); 
+            reply = that.RSHost.stripGarbage(reply); 
             var useTTS = false;
             // Users can set usetts for themselves, or serverwide if we allow it
             // if (allowTTS || message.channel.type === "dm") {
