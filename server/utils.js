@@ -88,7 +88,7 @@ function _sendMessage(bot, channel, msg, tts) {
         output += channel;
         output += "] ";
         output += msg;
-        console.log(output);
+        debugLog(output);
         return emptyPromise();
     } else {
         var options = {tts:false};
@@ -114,10 +114,10 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
     }
 
     if (ch) {
-        // console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
+        // debugLog("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
         _sendMessage(bot, channel, msg, false).then(callback);
     } else {
-        console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
+        debugLog("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
 }
 exports.sendMessageToServerAndChannel = sendMessageToServerAndChannel;
