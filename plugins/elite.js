@@ -357,33 +357,6 @@ var commands = {
         help: "Shows where a region or named system is in the galaxy",
         process: showRegion
     },
-    "route": {
-        usage: "route <JumpRange> <SgrA distance in kly> [optional max plot in ly]",
-        help: "Calculate optimal core routing distance.",
-        process: function(args, bot, msg) {
-            var displayUsage = true;
-            if ((args.length === 4) || (args.length === 3)) {
-                displayUsage = false;
-                var jumpRange = +(args[1]);
-                var distSagA = +(args[2]);
-                var distMax = undefined;
-                if (args.length === 4) {
-                    distMax = +(args[3]);
-                    if (isNaN(distMax)) {
-                        displayUsage = true;
-                    }
-                }
-                if (isNaN(jumpRange) || isNaN(distSagA)) {
-                    displayUsage = true;
-                }
-                if (!displayUsage) {
-                    return utils.sendMessage(bot, msg.channel, edsm.calcJumpRange(jumpRange, distSagA, distMax));
-                }
-            } 
-
-            return utils.displayUsage(bot,msg,this);
-        }
-    },
     "traveltime": {
         usage: "traveltime <JumpRange> <travelDistance> [optional time per jump in seconds - defaults to 60]",
         help: "Estimate travel time",
@@ -477,7 +450,11 @@ var commands = {
         process: function(args,bot,msg,cmd) {
             var name = getCmdrName(args,msg);
             if (name) {
-                return edsm.getPosition(name, bot, this);
+                return new Promise(function(resolve, reject) {
+                    getPositionString(commander, function(data) {
+                        utils.sendMessage(bot, message.channel, data.message).then(resolve);
+                    });
+                });
             }
             return utils.displayUsage(bot,msg,this);
         }

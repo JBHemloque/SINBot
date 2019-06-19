@@ -155,65 +155,6 @@ describe('elite', function(){
         });
     });
 
-    it("should display usage for an incomplete route", function() {
-        handleUsage("!route", mocks.adminUser)
-        .then(function(val) {
-            assert(val);
-        });
-    });
-
-    it("should display usage for a route with just one value", function() {
-        handleUsage("!route 33.06", mocks.adminUser)
-        .then(function(val) {
-            assert(val);
-        });
-    });
-
-    it("should display usage for a route with a non-numeric jump", function() {
-        handleUsage("!route foo 8", mocks.adminUser)
-        .then(function(val) {
-            assert(val);
-        });
-    });
-
-    it("should display usage for a route with a non-numeric sagA distance", function() {
-        handleUsage("!route 33.06 foo", mocks.adminUser)
-        .then(function(val) {
-            assert(val);
-        });
-    });
-
-    it("should display usage for a route with a non-numeric max distance", function() {
-        handleUsage("!route 33.06 8 foo", mocks.adminUser)
-        .then(function(val) {
-            assert(val);
-        });
-    });
-
-    it("should calculate a route properly", function() {
-        var handledCommand = false;
-        var client = mocks.makeClient();
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!route 33.06 8", mocks.nonAdminUser, function(message) {
-            if (message == "Estimated plot range should be around **968.30ly** - check range *962.97 to 973.63 ly*") {
-                handledCommand = true;
-            }
-        }));
-        assert(handledCommand);
-    });
-
-    it("should calculate a route properly with a max distance", function() {
-        var handledCommand = false;
-        var client = mocks.makeClient();
-        createBot(client, bot);
-        bot.procCommand(client, mocks.makeMessage("!route 34.54 9 980", mocks.nonAdminUser, function(message) {
-            if (message == "Estimated plot range should be around **976.41ly** - check range *971.04 to 981.78 ly*") {
-                handledCommand = true;
-            }
-        }));
-        assert(handledCommand);
-    });
-
     it("should display usage for an incomplete g", function() {
         handleUsage("!g", mocks.adminUser)
         .then(function(val) {
