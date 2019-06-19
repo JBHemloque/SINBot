@@ -19,7 +19,7 @@ var commands = {
             if (!elizaStarted) {
                 elizaStarted = true;
             }
-            utils.sendMessage(bot, message.channel, elizabot.reply(utils.compileArgs(args)));
+            return utils.sendMessage(bot, message.channel, elizabot.reply(utils.compileArgs(args)));
         }
     },
 };
@@ -36,11 +36,11 @@ var startEliza = function(args, bot, message) {
     if (elizaStarted) {
         utils.sendMessage(bot, message.channel, elizabot.bye());
     }
-    utils.sendMessage(bot, message.channel, elizabot.start());
+    return utils.sendMessage(bot, message.channel, elizabot.start());
     elizaStarted = true;
 }
 
 var endEliza = function(args, bot, message) {
-    utils.sendMessage(bot, message.channel, elizabot.bye());
+    return utils.sendMessage(bot, message.channel, elizabot.bye());
     elizaStarted = false;
 }

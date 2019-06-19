@@ -8,7 +8,7 @@ var client = new Client();
 var aliases = {};
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    console.log('  - Loading ' + path.resolve(base.path, "sysalias.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "sysalias.json"));
     aliases = require(path.resolve(base.path, "sysalias.json"));
 } catch(e) {
     //No aliases defined
@@ -18,7 +18,7 @@ try{
 var cmdraliases = {};
 try{
     // We're in the plugin directory, but this is written in the context of the server, one directory down...
-    console.log('  - Loading ' + path.resolve(base.path, "cmdralias.json"));
+    utils.debugLog('  - Loading ' + path.resolve(base.path, "cmdralias.json"));
     cmdraliases = require(path.resolve(base.path, "cmdralias.json"));
 } catch(e) {
     //No aliases defined
@@ -107,8 +107,13 @@ var getPositionString = function(commander, callback) {
 }
  
 var getPosition = function(commander, bot, message) {
-    getPositionString(commander, function(data) {
-        utils.sendMessage(bot, message.channel, data.message);
+    return new Promise(function(response, reject) {
+        getPositionString(commander, function(data) {
+            utils.sendMessage(bot, message.channel, data.message)
+            .then(function() {
+                response();
+            });
+        });
     });
 }
 
@@ -169,16 +174,21 @@ var _getCoordString = function(coords) {
 }
 
 var getSystemCoords = function(system, bot, message) {
-    _getSystemCoords(system, function(coords) {
-        var output = "Sorry, " + system + " is not in EDSM";
-        if (coords) {
-            if (coords.coords) {
-                output = "System: " + coords.name + " " + _getCoordString(coords);
-            } else {
-                output = "Sorry, " + system + " doesn't have coordinates in EDSM";
+    return new Promise(function(response, reject) {
+        _getSystemCoords(system, function(coords) {
+            var output = "Sorry, " + system + " is not in EDSM";
+            if (coords) {
+                if (coords.coords) {
+                    output = "System: " + coords.name + " " + _getCoordString(coords);
+                } else {
+                    output = "Sorry, " + system + " doesn't have coordinates in EDSM";
+                }
             }
-        }
-        utils.sendMessage(bot, message.channel, output);
+            utils.sendMessage(bot, message.channel, output)
+            .then(function() {
+                response();
+            });
+        });
     });
 }
 
@@ -225,22 +235,30 @@ var _calcDistance = function(a, b) {
 }
 
 var getCmdrCoords = function(commander, bot, message) {
-    _getSystem(commander, function(data) {
-        var output = _getPositionString(commander, data);
-        if (data) {
-            if (data.system) {
-                _getSystemCoords(data.system, function(coords) {
-                    if (coords) {
-                        if (coords.coords) {
-                            output.message += " " + _getCoordString(coords);
+    return new Promise(function(response, reject) {
+        _getSystem(commander, function(data) {
+            var output = _getPositionString(commander, data);
+            if (data) {
+                if (data.system) {
+                    _getSystemCoords(data.system, function(coords) {
+                        if (coords) {
+                            if (coords.coords) {
+                                output.message += " " + _getCoordString(coords);
+                            }
                         }
-                    }
-                    utils.sendMessage(bot, message.channel, output.message);
+                        utils.sendMessage(bot, message.channel, output.message)
+                        .then(function() {
+                            response();
+                        });
+                    });
+                }
+            } else {
+                utils.sendMessage(bot, message.channel, output.message)
+                .then(function() {
+                    response();
                 });
             }
-        } else {
-            utils.sendMessage(bot, message.channel, output.message);
-        }
+        });
     });
 }
 
@@ -253,36 +271,46 @@ function getNoCoordString(item, isCmdr) {
 }
 
 var getDistance = function(first, second, bot, message) {
-    console.log('getDistance(' + first + ', ' + second + ', bot, message)');
-    // Each query item could be a system or a commander...
-    _getSystemOrCmdrCoords(first, function(firstCoords, firstIsCmdr) {
-        console.log(firstCoords);
-        if (firstCoords) {
-            console.log('Got coords for ' + first);
-            _getSystemOrCmdrCoords(second, function(secondCoords, secondIsCmdr) {
-                console.log(secondCoords);
-                if (secondCoords) {
-                    console.log('got coords for ' + second);
-                    if (firstCoords.coords && secondCoords.coords) {
-                        var dist = _calcDistance(firstCoords.coords, secondCoords.coords);
-                        utils.sendMessage(bot, message.channel, "Distance between " + first + " and " + second + " is " + dist.toFixed(2) + " ly");
+    return new Promise(function(response, reject) {
+        // Each query item could be a system or a commander...
+        _getSystemOrCmdrCoords(first, function(firstCoords, firstIsCmdr) {
+            console.log(firstCoords);
+            if (firstCoords) {
+                console.log('Got coords for ' + first);
+                _getSystemOrCmdrCoords(second, function(secondCoords, secondIsCmdr) {
+                    console.log(secondCoords);
+                    if (secondCoords) {
+                        console.log('got coords for ' + second);
+                        if (firstCoords.coords && secondCoords.coords) {
+                            var dist = _calcDistance(firstCoords.coords, secondCoords.coords);
+                            utils.sendMessage(bot, message.channel, "Distance between " + first + " and " + second + " is " + dist.toFixed(2) + " ly");
+                        } else {
+                            var output = "Sorry, could not calculate the distance from " + first + " to " + second + ".";
+                            if (firstCoords.coords == undefined) {
+                                output += "\n" + getNoCoordString(first, firstIsCmdr);
+                            }
+                            if (secondCoords.coords == undefined) {
+                                output += "\n" + getNoCoordString(second, secondIsCmdr);
+                            }
+                            utils.sendMessage(bot, message.channel, output)
+                            .then(function() {
+                                response();
+                            });
+                        }
                     } else {
-                        var output = "Sorry, could not calculate the distance from " + first + " to " + second + ".";
-                        if (firstCoords.coords == undefined) {
-                            output += "\n" + getNoCoordString(first, firstIsCmdr);
-                        }
-                        if (secondCoords.coords == undefined) {
-                            output += "\n" + getNoCoordString(second, secondIsCmdr);
-                        }
-                        utils.sendMessage(bot, message.channel, output);
+                        utils.sendMessage(bot, message.channel, "Sorry, " + second + " could not be located")
+                        .then(function() {
+                            response();
+                        });
                     }
-                } else {
-                    utils.sendMessage(bot, message.channel, "Sorry, " + second + " could not be located");
-                }
-            });
-        } else {
-            utils.sendMessage(bot, message.channel, "Sorry, " + first + " could not be located");
-        }
+                });
+            } else {
+                utils.sendMessage(bot, message.channel, "Sorry, " + first + " could not be located")
+                .then(function() {
+                    response();
+                });
+            }
+        });
     });
 }
 

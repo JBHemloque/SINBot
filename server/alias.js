@@ -11,7 +11,7 @@ var aliases;
 var aliasPath = path.resolve(base.path, "alias.json");
 
 try{
-    console.log('  - Loading ' + aliasPath);
+    utils.debugLog('  - Loading ' + aliasPath);
     aliases = require(aliasPath);
 } catch(e) {
     //No aliases defined
@@ -34,7 +34,9 @@ function makeAliasStructFromArgs(args) {
 
 function writeAliases() {
     fs.writeFile(aliasPath,JSON.stringify(aliases,null,2), null, function(err) {
-        console.log(err);
+        if (err) {
+            console.log("Error writing alias file: " + err);
+        }
     });
 }
 
@@ -108,3 +110,4 @@ function clearAlias(alias) {
 	}
 	return false;
 }
+module.exports.clearAlias = clearAlias;

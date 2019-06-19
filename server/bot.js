@@ -2,7 +2,6 @@
 
 var async = require('async');
 var Discord = require("discord.js");
-var search = require('../plugins/search.js');
 var utils = require('./utils.js');
 var package_json = require("../package.json");
 var fs = require("fs");
@@ -17,8 +16,6 @@ var config;
 var plugins = {};
 
 var startTime = Date.now();
-var compileArgs = utils.compileArgs;
-var displayUsage = utils.displayUsage;
 
 var enumerate = function(obj) {
     var key;
@@ -26,12 +23,6 @@ var enumerate = function(obj) {
         if (typeof obj[key] !== 'function') {
             console.log(key + ": " + obj[key]);
         }
-    }
-}
-
-function debugLog(message) {
-    if (config.DEBUG) {
-        console.log(message);
     }
 }
 
@@ -66,7 +57,7 @@ var guildListCmd = {
         for (var i = 0; i < serverList.length; i++) {
             servers.push(serverList[i].name + " [" + serverList[i].id + "]");
         }
-        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,servers);
+        return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,servers);
     }
 };
 
@@ -93,11 +84,11 @@ var commands = {
         process: function(args, bot, message) {
             var cmdAlias = alias.makeAliasFromArgs(args, findCommand);
             if (cmdAlias.displayUsage) {
-                displayUsage(bot, message, this);
+                return utils.displayUsage(bot, message, this);
             } else if (cmdAlias.error) {
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, cmdAlias.message);
+                return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, cmdAlias.message);
             } else {
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"Created alias " + cmdAlias.alias);
+                return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"Created alias " + cmdAlias.alias);
             }
         }
     },
@@ -105,16 +96,16 @@ var commands = {
         usage: "show_alias <alias>",
         help: "Displays an alias.",
         extendedhelp: "An alias is a simple text substitution. It creates a command that sends some text when that command is entered. You can include the name of the person who sent the alias command with %SENDER%, the name of the channel with %CHANNEL%, the name of the server with %SERVER%, and the channel topic with %CHANNEL_TOPIC%. Commands can be one word, and additional lines inserted into the output with %EXTRA%. This command shows the contents of an alias.",
-        process: function(args, bot, message) {
+        process: function(args, bot, message) {            
             if (args.length > 1) {
                 var cmdAlias = alias.getAlias(args[1].toLowerCase());
                 var output = args[1] + " is not an alias.";
                 if (cmdAlias) {
                     output = cmdAlias.alias + " -> " + cmdAlias.output;
                 }
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
+                return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
             } else {
-                displayUsage(bot, message, this);
+                return utils.displayUsage(bot, message, this);
             }
         }
     },
@@ -123,7 +114,7 @@ var commands = {
         spammy: true,
         process: function(args, bot, message) {            
             var outputArray = alias.getAliases();
-            utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
+            return utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
         }
     },
     "clear_alias": {
@@ -131,25 +122,30 @@ var commands = {
         adminOnly: true,
         help: "Deletes an alias.",
         process: function(args, bot, message) {
-            var cmdAlias = makeAliasStructFromArgs(args);
-            if(cmdAlias.alias) {
-                if (alias.clearAlias(cmdAlias)) {                    
-                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Deleted alias " + cmdAlias.alias);
-                } else {
-                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Sorry, " + cmdAlias.alias + " doesn't exist.");
+            var displayUsage = true;
+            if (args.length > 1) {
+                var cmdAlias = alias.getAlias(args[1].toLowerCase());
+                if(cmdAlias.alias) {
+                    displayUsage = false;
+                    if (alias.clearAlias(cmdAlias)) {
+                        return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Deleted alias " + cmdAlias.alias);
+                    } else {
+                        return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Sorry, " + cmdAlias.alias + " doesn't exist.");
+                    }
                 }
-            } else {
-                displayUsage(bot, message, this);
+            }
+            if (displayUsage) {
+                return utils.displayUsage(bot, message, this);
             }
         }
     },
     "ping": {
         help: "Returns pong. Useful for determining if the bot is alive.",
-        process: function(args, bot, message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Pong!"); }
+        process: function(args, bot, message) { return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "Pong!"); }
     },
     "version": {
         help: "Display version information for this bot.",
-        process: function(args, bot, message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, version); }
+        process: function(args, bot, message) { return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, version); }
     },
     "plugins": {
         help: "List the plugins loaded on this bot.",
@@ -159,7 +155,7 @@ var commands = {
             for (var i = 0; i < plugins.length; i++) {
                 output += "\n\t" + plugins[i].name;
             }
-            utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
+            return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, output);
         }
     },
     "servers": guildListCmd,
@@ -167,21 +163,21 @@ var commands = {
     "channels": {
         help: "Lists channels bot is connected to.",
         adminOnly: true,
-        process: function(args, bot, message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,bot.channels); }
+        process: function(args, bot, message) { return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,bot.channels); }
     },
     "myid": {
         help: "Returns the user id of the sender.",
-        process: function(args, bot, message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,message.author.id); }
+        process: function(args, bot, message) { return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,message.author.id); }
     },
     "say": {
         usage: "say <message>",
         help: "Bot says message.",
         process: function(args, bot, message) {
-            var msg = compileArgs(args);
+            var msg = utils.compileArgs(args);
             if (msg) {
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,msg);
+                return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,msg);
             } else {
-                displayUsage(bot, message, this);
+                return utils.displayUsage(bot, message, this);
             }
         }
     },
@@ -189,11 +185,11 @@ var commands = {
         usage: "announce <message>",
         help: "Bot says message with text to speech.",
         process: function(args, bot, message) {
-            var msg = compileArgs(args);
+            var msg = utils.compileArgs(args);
             if (msg) {
-                utils.ttsMessage(bot, message.channel,msg);
+                return utils.ttsMessage(bot, message.channel,msg);
             } else {
-                displayUsage(bot, message, this);
+                return utils.displayUsage(bot, message, this);
             }
         }
     },
@@ -206,14 +202,14 @@ var commands = {
             for (var i = 0; i < users.length; i += 1) {
                 output += "\n    " + utils.userName(users[i]) + " [" + users[i].id + "]";
             }
-            utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,output);
+            return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,output);
         }
     },
     "exit": {
         help: "Shuts down the bot.",
         adminOnly: true,
         process: function(args, bot, message) {
-            utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, version + " is going down NOW!", function(error, message) {
+            return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, version + " is going down NOW!", function(error, message) {
                 process.exit(0);
             });
         }
@@ -229,82 +225,105 @@ var commands = {
                     output += "\n    " + utils.userName(users[i]) + " [" + users[i].id + "]";
                 }
             }
-            utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,output);
+            return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,output);
         }
     },
     "isadmin": {
         help: "Returns true if the sender is a bot admin",
-        process: function(args,bot,message) { utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,isAdmin(message.author.id).toString()); }
+        process: function(args,bot,message) { return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,isAdmin(message.author.id).toString()); }
     },
     "userid": {
         usage: "userid <user to get id of, or blank for your own>",
         adminOnly: true,
         help: "Returns the unique id of a user. This is useful for permissions.",
         process: function(args,bot,message) {
-            var suffix = compileArgs(args);
+            var suffix = utils.compileArgs(args);
             if(suffix){
                 var server = message.channel.guild;
                 if (server) {
                     var users = server.members.findAll("nickname",suffix);
                     var users = users.concat(server.members.findAll("user.username",suffix));
                     if(users.length == 1){
-                        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "The id of " + users[0] + " is " + users[0].id)
+                        return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "The id of " + users[0] + " is " + users[0].id)
                     } else if(users.length > 1){
                         var response = "multiple users found:";
                         for(var i=0;i<users.length;i++){
                             var user = users[i];
                             response += "\nThe id of " + user + " is " + user.id;
                         }
-                        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,response);
+                        return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,response);
                     } else {
-                        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"No user " + suffix + " found!");
+                        return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"No user " + suffix + " found!");
                     }
                 } else {
-                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "userid can only be run from a server channel, not a private message.");
+                    return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "userid can only be run from a server channel, not a private message.");
                 }
             } else {
-                utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "The id of " + message.author + " is " + message.author.id);
+                return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, "The id of " + message.author + " is " + message.author.id);
             }
         }
     },
     "topic": {
         usage: "topic [topic]",
         help: 'Sets the topic for the channel. No topic removes the topic.',
-        process: function(args,bot,message) { message.channel.setTopic(compileArgs(args)); }
+        process: function(args,bot,message) { 
+            return new Promise(function(resolve, reject) {
+                message.channel.setTopic(utils.compileArgs(args)); 
+                resolve();
+            });
+        }
     },
     "msg": {
         usage: "msg <user> <message to leave user>",
         help: "leaves a message for a user the next time they come online.",
         process: function(args,bot,message) {
-            // Ignore the command
-            args.shift();
-            var user = args.shift();
-            if (user) {
-                var msg = args.join(' ');
-                if (msg) {
-                    // Just look to see if the user field is actually a user
-                    if (userMentioned(user)) {
-                        user = stripUserDecorations(user);
-                    }
-                    bot.fetchUser(user).then(function(target) {
-                        var msgtext = target + ", " + message.author + " left you a message";
-                        if (message.timestamp) {
-                            msgtext += " at " + new Date(message.timestamp).toUTCString();
+            var thisCmd = this;
+            return new Promise(function(resolve, reject) {            
+                // Ignore the command
+                args.shift();
+                var user = args.shift();
+                if (user) {
+                    var msg = args.join(' ');
+                    if (msg) {
+                        // Just look to see if the user field is actually a user
+                        if (userMentioned(user)) {
+                            user = stripUserDecorations(user);
                         }
-                        msgtext += (":\n" + msg);
-                        var msgObj = {
-                            channel: message.channel.id,
-                            content: msgtext
-                        };
-                        messagebox.addMessage(target.id, msgObj);
-                        utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"message saved.");
-                    });
+                        bot.fetchUser(user)
+                        .then(function(target) {
+                            var msgtext = target + ", " + message.author + " left you a message";
+                            if (message.timestamp) {
+                                msgtext += " at " + new Date(message.timestamp).toUTCString();
+                            }
+                            msgtext += (":\n" + msg);
+                            var msgObj = {
+                                channel: message.channel.id,
+                                content: msgtext
+                            };
+                            messagebox.addMessage(target.id, msgObj);
+                            utils.pmOrSend(bot, thisCmd, config.SPAMMY_PM, message.author, message.channel,"message saved.")
+                            .then(function() {
+                                resolve();
+                            });
+                        }, function() {
+                            utils.pmOrSend(bot, thisCmd, config.SPAMMY_PM, message.author, message.channel, "No such user " + user)
+                            .then(function() {
+                                resolve();
+                            });
+                        });
+                    } else {
+                        utils.displayUsage(bot, message, thisCmd)
+                        .then(function() {
+                            resolve();
+                        });
+                    }
                 } else {
-                    displayUsage(bot, message, this);
+                    utils.displayUsage(bot, message, thisCmd)
+                    .then(function() {
+                        resolve();
+                    });
                 }
-            } else {
-                displayUsage(bot, message, this);
-            }
+            });
         }
     },
     "uptime": {
@@ -332,7 +351,7 @@ var commands = {
             if(secs > 0) {
                 timestr += secs + " seconds ";
             }
-            utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"Uptime: " + timestr);
+            return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel,"Uptime: " + timestr);
         }
     },
     "help": {
@@ -340,7 +359,7 @@ var commands = {
         spammy: true,
         help: "Display help for this bot, or for specific commands, or plugins",
         process: function(args, bot, message) {
-            var command = compileArgs(args).toLowerCase();
+            var command = utils.compileArgs(args).toLowerCase();
             if (command) {
                 var outputArray = [];
                 var cmd = findCommand(command);
@@ -369,9 +388,9 @@ var commands = {
                     }
                 }
                 if (outputArray.length > 0) {
-                    utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
+                    return utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
                 } else {
-                    utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, command + " is not a valid command or plugin");
+                    return utils.pmOrSend(bot, this, config.SPAMMY_PM, message.author, message.channel, command + " is not a valid command or plugin");
                 }
             } else {
                 var includeAdmin = isAdmin(message.author.id);
@@ -381,7 +400,7 @@ var commands = {
                         outputArray = outputArray.concat(helpForCommands(plugins[i].name, plugins[i].plugin.commands, includeAdmin));
                     }
                 }
-                utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
+                return utils.pmOrSendArray(bot, this, config.SPAMMY_PM, message.author, message.channel, outputArray);
             }
         }
     },
@@ -481,9 +500,16 @@ function botShouldHandleCommand(bot, message) {
 }
 
 var defaultCommandHandler = function(args, bot, message) {
-    if(config.respondToInvalid){
-        utils.sendMessage(bot, message.channel, "Invalid command " + message.content);
-    }
+    return new Promise(function(resolve, reject) {
+        if(config.respondToInvalid){
+            utils.sendMessage(bot, message.channel, "Invalid command " + message.content)
+            .then(function() {
+                resolve();
+            });
+        } else {
+            resolve();
+        }
+    });
 }
 
 var procAlias = function(bot, message, cmd, extra) {
@@ -496,7 +522,6 @@ var procAlias = function(bot, message, cmd, extra) {
     output = output.replace(/%GUILD%/gi, message.guild);
     output = output.replace(/%CHANNEL_TOPIC%/gi, message.channel.topic);
     output = output.replace(/%EXTRA%/gi, extra);
-    var sendMessage = true;
     if (config.ALLOW_COMMAND_ALIASES) {
         // If this is a command, run it
         var args = output.split(" ");
@@ -505,26 +530,36 @@ var procAlias = function(bot, message, cmd, extra) {
             var res = {
                 args: args
             }
-            handleCommand(bot, res, message);
-            sendMessage = false;
+            return handleCommand(bot, res, message)
         }
     }
-    if (sendMessage) {
-        utils.sendMessage(bot, message.channel, output);
-    }
+    return utils.sendMessage(bot, message.channel, output)
 }
 
 function procCommand(bot, message) {
-    debugLog(message.author.username + ": " + message.content);
-    if (message.author !== bot.user) {
-        var res = botShouldHandleCommand(bot, message);
-        if (res.handleCommand) {
-            handleCommand(bot, res, message);
-        } else if (message.author != bot.user && message.isMentioned(bot.user)) {
-            sendMessage(bot, message.channel,message.author + ", you called?");
+    return new Promise(function(resolve, reject) {
+        utils.debugLog(message.author.username + ": " + message.content);
+        if (message.author !== bot.user) {
+            var res = botShouldHandleCommand(bot, message);
+            if (res.handleCommand) {
+                handleCommand(bot, res, message)
+                .then(function() {
+                    messagebox.checkForMessages(bot, message.author)
+                    .then(function() {
+                        resolve();    
+                    });
+                });
+            } else if (message.author != bot.user && message.isMentioned(bot.user)) {
+                sendMessage(bot, message.channel,message.author + ", you called?")
+                .then(function() {
+                    messagebox.checkForMessages(bot, message.author)
+                    .then(function() {
+                        resolve();    
+                    });
+                });
+            }
         }
-        messagebox.checkForMessages(bot, message.author);
-    }
+    });
 }
 
 function compileCommand(handleCommand, args) {
@@ -535,27 +570,29 @@ function handleCommand(bot, res, message) {
     var cmd = findCommand(res.args[0]);
     if(cmd) {
         if (cmd.hasOwnProperty("adminOnly") && cmd.adminOnly && !isAdmin(message.author.id)) {
-            utils.sendMessage(bot, message.channel, "Hey " + message.sender + ", you are not allowed to do that!");
+            return utils.sendMessage(bot, message.channel, "Hey " + message.sender + ", you are not allowed to do that!");
         } else {
             try{
-                cmd.process(res.args, bot, message);
+                return cmd.process(res.args, bot, message, cmd);
             } catch(e){
                 if(config.debug){
-                    utils.sendMessage(bot, message.channel, "command " + message.content + " failed :(\n" + e.stack);
+                    return utils.sendMessage(bot, message.channel, "command " + message.content + " failed :(\n" + e.stack);
                 }
             }
         }
-    } else {
+    }
+    // Couldn't process so far. Is in an alias?
+    if (res.args.length > 0) {
         cmd = alias.getAlias(res.args[0].toLowerCase());
         if (cmd) {
-            procAlias(bot, message, cmd, compileArgs(res.args));
-        } else {
-            // We don't know what the command is, so we need to push the original command to the
-            // start, to account for the one that will be stripped later. Ew, I know.
-            res.args.unshift(res.args[0]);
-            defaultCommandHandler(res.args, bot, message);
+            return procAlias(bot, message, cmd, utils.compileArgs(res.args));
         }
     }
+
+    // We don't know what the command is, so we need to push the original command to the
+    // start, to account for the one that will be stripped later. Ew, I know.
+    res.args.unshift(res.args[0]);
+    return defaultCommandHandler(res.args, bot, message);
 }
 
 function procPresence(bot, user, status, gameId) {
@@ -583,13 +620,13 @@ function startBot(bot, cfg, callback) {
     };
 
     if (config.COMMAND_PREFIX) {
-        debugLog("Command prefix: " + config.COMMAND_PREFIX);
+        utils.debugLog("Command prefix: " + config.COMMAND_PREFIX);
     } else {
-        debugLog("Starting in direct-mention mode...");
+        utils.debugLog("Starting in direct-mention mode...");
     }
 
     if (config.CLEAR_MESSAGEBOX) {
-        debugLog("Clearing message box...");
+        utils.debugLog("Clearing message box...");
         messagebox.clearMessageBox();
     }
 
@@ -597,7 +634,7 @@ function startBot(bot, cfg, callback) {
         try {
             plugins[i].plugin = require(path.resolve(base.path, plugins[i].path));
 
-            debugLog("Loaded plugin " + plugins[i].name);
+            utils.debugLog("Loaded plugin " + plugins[i].name);
         } catch(e) {
             utils.logError("Couldn't load " + plugins[i].name, e);
             if (config.DEBUG) {
@@ -606,7 +643,7 @@ function startBot(bot, cfg, callback) {
         }
         try {
             if (plugins[i].plugin.setup) {
-                debugLog("Running setup for " + plugins[i].name);
+                utils.debugLog("Running setup for " + plugins[i].name);
                 plugins[i].plugin.setup(plugins[i].config, bot, botcfg);
             }
         } catch(e) {
@@ -619,7 +656,7 @@ function startBot(bot, cfg, callback) {
             if (plugins[i].defaultCommandHandler) {
                 var dch = plugins[i].plugin.findCommand(plugins[i].defaultCommandHandler);
                 if (dch) {
-                    debugLog("Setting default command handler to " + plugins[i].defaultCommandHandler);
+                    utils.debugLog("Setting default command handler to " + plugins[i].defaultCommandHandler);
                     defaultCommandHandler = dch.process;
                 }
             }

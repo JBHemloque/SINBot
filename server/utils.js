@@ -4,6 +4,18 @@ var async = require('async');
 var fs = require('fs');
 var config = require('../config.js');
 
+exports.debugLog = function(message) {
+    if (config.DEBUG) {
+        console.log(message);
+    }
+}
+
+exports.emptyPromise = function() {
+    return new Promise(function(resolve, reject) {
+        resolve();
+    });
+}
+
 exports.compileArgs = function(args) {
     args.splice(0,1);
     return args.join(" ").trim();
@@ -70,31 +82,20 @@ exports.formatTimeDuration = function(diff) {
 
 const MESSAGE_LIMIT = 800;
 
-function _sendMessage(bot, channel, msg, tts, callback) {
+function _sendMessage(bot, channel, msg, tts) {
     if (config.CONSOLE) {
         var output = "[";
         output += channel;
         output += "] ";
         output += msg;
         console.log(output);
-        if (callback) {
-            callback(undefined, output);
-        }
+        return emptyPromise();
     } else {
         var options = {tts:false};
         if (tts) {
             options.tts = true;
         }
-        channel.sendMessage(msg, options)
-            .then(message => {
-                if (callback) {
-                    callback(undefined, message);
-                }
-            })
-            .catch(error => { 
-                logError("Error sending message", error);
-                callback(error);
-            });
+        return channel.sendMessage(msg, Object.assign(options, channel));
     }
 }
 
@@ -114,29 +115,29 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
 
     if (ch) {
         // console.log("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        _sendMessage(bot, channel, msg, false, callback);
+        _sendMessage(bot, channel, msg, false).then(callback);
     } else {
         console.log("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
 }
 exports.sendMessageToServerAndChannel = sendMessageToServerAndChannel;
 
-var sendMessage = function(bot, channel, message, callback) {
+var sendMessage = function(bot, channel, message) {    
     // If the message is too big, let's split it...
     if (message.length > MESSAGE_LIMIT) {
-        sendMessages(bot, channel, message.split(/\r?\n/), callback);
+        return sendMessages(bot, channel, message.split(/\r?\n/), false);
     } else {
-        _sendMessage(bot, channel, message, false, callback);
+        return _sendMessage(bot, channel, message, false);
     }
 }
 exports.sendMessage = sendMessage;
 
-var ttsMessage = function(bot, channel, message, callback) {
+var ttsMessage = function(bot, channel, message) {
     // If the message is too big, let's split it...
     if (message.length > MESSAGE_LIMIT) {
-        sendMessages(bot, channel, message.split(/\r?\n/), true, callback);
+        return sendMessages(bot, channel, message.split(/\r?\n/), true);
     } else {
-        _sendMessage(bot, channel, msg, true, callback);
+        return _sendMessage(bot, channel, message, true);
     }
 }
 exports.ttsMessage = ttsMessage;
@@ -151,11 +152,11 @@ exports.pmOrSendChannel = pmOrSendChannel;
 
 // Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
 var pmOrSend = function(bot, command, pmIfSpam, user, channel, message) {
-    sendMessage(bot, pmOrSendChannel(command, pmIfSpam, user, channel), message);
+    return sendMessage(bot, pmOrSendChannel(command, pmIfSpam, user, channel), message);
 }
 exports.pmOrSend = pmOrSend;
 
-var sendMessages = function(bot, channel, outputArray, tts, callback) {
+var sendMessages = function(bot, channel, outputArray, tts) {
     // We've got an array of messages, but we might be able to compile them together.
     // Discord has a message size limit of about 2k, so we'll compile them together
     // in chunks no bigger than MESSAGE_LIMIT characters, for grins.
@@ -178,31 +179,22 @@ var sendMessages = function(bot, channel, outputArray, tts, callback) {
     }
     compiledArray[i++] = buffer;
 
-    async.forEachSeries(compiledArray, function(output, callback) {
-        var cb = callback;
+    return async.forEachSeries(compiledArray, function(output, cb) {
         if (output) {
             _sendMessage(bot, channel, output, tts, cb);
         } else {
             cb();
         }
-    }, function(err) {
-        if (err) {
-            logError("Error sending messages - forEachSeries error", err);
-        }
     });
-    if (callback) {
-        callback();
-    }
 }
 exports.sendMessages = sendMessages;
 
 // Send the message to the channel, or via PM if both command.spammy and pmIfSpam are true
 var pmOrSendArray = function(bot, command, pmIfSpam, user, channel, messages) {
-    sendMessages(bot, pmOrSendChannel(command, pmIfSpam, user, channel), messages, function(error, message) {
-        if (error) {
-            logError("Error sending message", e);
-        }
-    });
+    return sendMessages(bot, pmOrSendChannel(command, pmIfSpam, user, channel), messages, false)
+        .then(function(response) {}, function(error) {
+            logError("Error sending message: " + error);
+        });
 }
 exports.pmOrSendArray = pmOrSendArray;
 
@@ -217,11 +209,13 @@ exports.displayUsage = function(bot, message, command) {
         if (config.COMMAND_PREFIX) {
             prefix = config.COMMAND_PREFIX;
         }
-        sendMessage(bot, channel, "Usage: " + prefix + command.usage);
+        return sendMessage(bot, channel, "Usage: " + prefix + command.usage);
+    } else {
+        resolve();
     }
 }
 
-exports.logError = function(header, error, callback, debug) {
+var logError = function(header, error, callback, debug) {
     var errors;
     try{
         errors = require("./errors.json");
@@ -241,7 +235,11 @@ exports.logError = function(header, error, callback, debug) {
     };
     errors[now] = err;
 
-    fs.writeFile("./errors.json",JSON.stringify(errors,null,2), null);
+    fs.writeFile("./errors.json",JSON.stringify(errors,null,2), function(err) {
+        if (err) {
+            console.error("Failed to write file", filename, err);
+        }
+    });
     debug(now);
     debug(header);
     debug(error);
@@ -249,6 +247,7 @@ exports.logError = function(header, error, callback, debug) {
         callback(err);
     }
 }
+exports.logError = logError;
 
 exports.sanitizeString = function(input) {
     return input.replace(/ /g, "%20").replace(/\+/g, "%2B").replace(/\'/g, "%27");

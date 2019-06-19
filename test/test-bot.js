@@ -8,9 +8,7 @@ function handleUsage(command, user) {
     if (!user) {
         user = mocks.nonAdminUser;
     }
-    // Usage always comes in via PM, so we need to account for that...
-    var oldUserSendMessage = user.sendMessage;
-    user.sendMessage = function(message) {
+    var sendMessage = function(message) {
         if (message.includes("Usage: ")) {
             handledCommand = true;
         } else {
@@ -20,8 +18,7 @@ function handleUsage(command, user) {
     var handledCommand = false;
     var client = mocks.makeClient();
     bot.startBot(client, mocks.makeConfig());
-    bot.procCommand(client, mocks.makeMessage(command, user));
-    user.sendMessage = oldUserSendMessage;
+    bot.procCommand(client, mocks.makeMessage(command, user, sendMessage));
     return handledCommand;
 }
 
@@ -83,7 +80,6 @@ describe('bot', function(){
         var client = mocks.makeClient();
         bot.startBot(client, mocks.makeDirectConfig());
         var message = mocks.makePrivateMessage("ping", mocks.nonAdminUser, bot.user, function(message) {
-            console.log("Message: " + message);
             if (message == "Pong!") {
                 handledCommand = true;
             }
@@ -180,8 +176,9 @@ describe('bot', function(){
             if (message.includes(mocks.adminUser.name && mocks.adminUser.id.toString())) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("shouldn't let non-admin users call userlist", function() {
@@ -198,8 +195,9 @@ describe('bot', function(){
                 mocks.nonAdminUser.username && mocks.nonAdminUser.id.toString())) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should return a string for the version", function() {
@@ -208,8 +206,9 @@ describe('bot', function(){
         bot.startBot(client, mocks.makeConfig());
         bot.procCommand(client, mocks.makeMessage("!version", function(message) {
             handledCommand = true;
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should return a string for help", function() {
@@ -218,8 +217,9 @@ describe('bot', function(){
         bot.startBot(client, mocks.makeConfig());
         bot.procCommand(client, mocks.makeMessage("!help", function(message) {
             handledCommand = true;
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should return a string for the uptime", function() {
@@ -228,8 +228,9 @@ describe('bot', function(){
         bot.startBot(client, mocks.makeConfig());
         bot.procCommand(client, mocks.makeMessage("!uptime", function(message) {
             handledCommand = true;
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("shouldn't let non-admin users call channels", function() {
@@ -242,8 +243,9 @@ describe('bot', function(){
         bot.startBot(client, mocks.makeConfig());
         bot.procCommand(client, mocks.makeMessage("!channels", mocks.adminUser, function(message) {
             handledCommand = true;
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("shouldn't let non-admin users call servers", function() {
@@ -256,8 +258,9 @@ describe('bot', function(){
         bot.startBot(client, mocks.makeConfig());
         bot.procCommand(client, mocks.makeMessage("!servers", mocks.adminUser, function(message) {
             handledCommand = true;
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should return my id for myid", function() {
@@ -268,8 +271,9 @@ describe('bot', function(){
             if (message == mocks.adminUser.id.toString()) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("shouldn't let non-admin users call plugins", function() {
@@ -284,8 +288,9 @@ describe('bot', function(){
             if (message.includes("Plugins:")) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should include a loaded plugin for the plugins", function() {
@@ -296,8 +301,9 @@ describe('bot', function(){
             if (message.includes("Simple Commands")) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should display a string for the aliases list", function() {
@@ -306,13 +312,13 @@ describe('bot', function(){
         bot.startBot(client, mocks.makeConfig());
         bot.procCommand(client, mocks.makeMessage("!aliases", function(message) {
             handledCommand = true;
-        }));
-        assert(handledCommand);
+        })).then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should display usage for an incomplete alias", function() {
         assert(handleUsage("!alias", mocks.adminUser));
-        assert(handleUsage("!alias foo", mocks.adminUser));
     });
 
     it("shouldn't let non-admin users call alias", function() {
@@ -328,9 +334,13 @@ describe('bot', function(){
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!foo", sm));
-        assert(handledCommand);
+        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!foo", sm))
+            .then(function() {
+                assert(handledCommand);
+            });
+        });
     });
 
     it("should treat aliases case-insensitively", function() {
@@ -342,9 +352,13 @@ describe('bot', function(){
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!FOO", sm));
-        assert(handledCommand);
+        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!FOO", sm))
+            .then(function() {        
+                assert(handledCommand);
+            });
+        });
     });
 
     it("should allow an alias to use variables", function() {
@@ -358,9 +372,14 @@ describe('bot', function(){
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!alias foo %SENDER% %CHANNEL%, %SERVER% -- %CHANNEL_TOPIC%, %EXTRA% %EXTRA% %SERVER% SERVER CHANNEL_TOPIC %CHANNEL_TOPIC% %SENDER% %EXTRA% foo %CHANNEL%", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!foo here are some extras...", sm));
-        assert(handledCommand);
+        bot.procCommand(client, mocks.makeMessage("!alias foo %SENDER% %CHANNEL%, %SERVER% -- %CHANNEL_TOPIC%, %EXTRA% %EXTRA% "
+            + "%SERVER% SERVER CHANNEL_TOPIC %CHANNEL_TOPIC% %SENDER% %EXTRA% foo %CHANNEL%", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!foo here are some extras...", sm))
+            .then(function() {
+                assert(handledCommand);
+            });
+        });
     });
 
     it("should allow an alias to be rewritten", function() {
@@ -372,10 +391,16 @@ describe('bot', function(){
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!alias foo baz", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!foo", sm));
-        assert(handledCommand);
+        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!alias foo baz", mocks.adminUser, sm))
+            .then(function() {                
+                bot.procCommand(client, mocks.makeMessage("!foo", sm))
+                .then(function() {
+                    assert(handledCommand);
+                });
+            });
+        });
     });
 
     it("should display usage for an incomplete clear_alias", function() {
@@ -396,10 +421,16 @@ describe('bot', function(){
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!clear_alias foo", mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!foo", sm));
-        assert(handledCommand);
+        bot.procCommand(client, mocks.makeMessage("!alias foo bar", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!clear_alias foo", mocks.adminUser, sm))
+            .then(function() {
+                bot.procCommand(client, mocks.makeMessage("!foo", sm))
+                .then(function() {
+                    assert(handledCommand);
+                });
+            });
+        });
     });
 
     it("should display usage for an incomplete show_alias", function() {
@@ -417,9 +448,13 @@ describe('bot', function(){
         };
         bot.startBot(client, mocks.makeConfig());
         // Make the alias long
-        bot.procCommand(client, mocks.makeMessage("!alias foo " + lorem, mocks.adminUser, sm));
-        bot.procCommand(client, mocks.makeMessage("!show_alias foo", sm));
-        assert(handledCommand);
+        bot.procCommand(client, mocks.makeMessage("!alias foo " + lorem, mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!show_alias foo", sm))
+            .then(function() {
+                assert(handledCommand);
+            });
+        });
     });
 
     it("should display usage for an incomplete say", function() {
@@ -434,8 +469,10 @@ describe('bot', function(){
             if (message == "Foo") {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should display usage for an incomplete announce", function() {
@@ -450,8 +487,10 @@ describe('bot', function(){
             if (message == "Foo" && tts && tts.tts) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it('should set a topic', function() {
@@ -462,8 +501,10 @@ describe('bot', function(){
             if (topic == "Foo") {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("shouldn't let non-admin users call userid", function() {
@@ -478,8 +519,10 @@ describe('bot', function(){
             if (message.includes(mocks.nonAdminUser.id)) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should return my user id for a blank userid", function() {
@@ -490,8 +533,10 @@ describe('bot', function(){
             if (message.includes(mocks.adminUser.id)) {
                 handledCommand = true;
             }
-        }));
-        assert(handledCommand);
+        }))
+        .then(function() {
+            assert(handledCommand);
+        });
     });
 
     it("should display usage for an incomplete msg", function() {
@@ -502,56 +547,63 @@ describe('bot', function(){
     it("should deliver a msg", function() {
         var handledCommand = false;
         var client = mocks.makeClient();
-        var sm = function(message) {
-            console.log(message);
-            if (message.includes(mocks.nonAdminUser.name + ", ") && message.includes("left you a message:\nHello!")) {
+        var sm = function(message, options) {
+            if (message.includes("Bob Dobbs, ") && message.includes("left you a message:\nHello!")) {
                 handledCommand = true;
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!msg <@" + mocks.nonAdminUser.id + "> Hello!", mocks.adminUser, sm));
-        // msg is async, but the bot currently doesn't export a promise to let you wait for a message to send, so we'll do this crap...
-        sleep(2000).then(() => {
-            bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser, sm));
-            assert(handledCommand);
+        var user = mocks.makeUser("Bob Dobbs", sm);
+        bot.procCommand(client, mocks.makeMessage("!msg <@" + user.id + "> Hello!", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!ping", user, sm))
+            .then(function() {
+                assert(handledCommand);
+            });
         });
     });
 
     it("should deliver a msg via PM", function() {
         var handledCommand = false;
         var client = mocks.makeClient();
-        var sm = function(message) {
+        var sm = function(message, channel) {
             // This is a mock callback of sendMessage, so it hasn't set up the channel properly, yet.
             // Instead, we'll simply look to see that the channel is the name of the user getting
             // the message.
-            if (channel === mocks.nonAdminUser) {
+            if (channel.id === user.id) {
                 handledCommand = true;
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Hello!", mocks.adminUser, sm));
-        // msg is async, but the bot currently doesn't export a promise to let you wait for a message to send, so we'll do this crap...
-        sleep(2000).then(() => {
-            bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser, sm));
-            assert(handledCommand);
-        });
+        var user = mocks.makeUser("Doug Dobbs", sm);
+        bot.procCommand(client, mocks.makeMessage("!msg <@" + user.id + "> Hello!", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!ping", user, sm))
+            .then(function() {
+                assert(handledCommand);
+            });
+        })
     });
 
     it("should clear a msg after delivering it.", function() {
         var count = 0;
         var client = mocks.makeClient();
         var sm = function(message) {
-            if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nHello!")) {
+            if (message.includes("Joe Dobbs, ") && message.includes("left you a message:\nHello!")) {
                 count++;
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Hello!", mocks.adminUser, sm));
-        // msg is async, but the bot currently doesn't export a promise to let you wait for a message to send, so we'll do this crap...
-        sleep(2000).then(() => {
-            bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser, sm));
-            bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser, sm));
-            assert(count == 1);
+        var user = mocks.makeUser("Joe Dobbs", sm);
+        bot.procCommand(client, mocks.makeMessage("!msg <@" + user.id + "> Hello!", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!ping", user, sm))
+            .then(function() {
+                bot.procCommand(client, mocks.makeMessage("!ping", user, sm))
+                .then(function() {
+                    assert(count == 1);
+                });
+            });
         });
     });
 
@@ -559,22 +611,47 @@ describe('bot', function(){
         var count = 0;
         var client = mocks.makeClient();
         var sm = function(message) {
-            if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nHello!")) {
+            if (message.includes("Frank Dobbs, ") && message.includes("left you a message:\nHello!")) {
                 count++;
             }
-            if (message.includes(mocks.nonAdminUser + ", ") && message.includes("left you a message:\nFoo!")) {
+            if (message.includes("Frank Dobbs, ") && message.includes("left you a message:\nFoo!")) {
                 count++;
             }
         };
         bot.startBot(client, mocks.makeConfig());
-        bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Hello!", mocks.adminUser, sm));
-        // msg is async, but the bot currently doesn't export a promise to let you wait for a message to send, so we'll do this crap...
-        sleep(2000).then(() => {
-            // msg is async, but the bot currently doesn't export a promise to let you wait for a message to send, so we'll do this crap...
-            bot.procCommand(client, mocks.makeMessage("!msg " + mocks.nonAdminUser.id + " Foo!", mocks.adminUser, sm));
-            sleep(2000).then(() => {
-                bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser, sm));
-                assert(count == 2);
+        var user = mocks.makeUser("Frank Dobbs", sm);
+        bot.procCommand(client, mocks.makeMessage("!msg <@" + user.id + "> Hello!", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!msg <@" + user.id + "> Foo!", mocks.adminUser, sm))
+            .then(function() {
+                bot.procCommand(client, mocks.makeMessage("!ping", user, sm))
+                .then(function() {
+                    assert(count = 2)
+                });
+            });
+        });
+    });
+
+    it("shouldn't deliver a msg to a different user", function() {
+        var handledCommand = false;
+        var client = mocks.makeClient();
+        var sm = function(message, options) {
+            if (message.includes("Marco Dobbs, ") && message.includes("left you a message:\nHello!")) {
+                handledCommand = true;
+            }
+        };
+        bot.startBot(client, mocks.makeConfig());
+        var user = mocks.makeUser("Marco Dobbs", sm);
+        bot.procCommand(client, mocks.makeMessage("!msg <@" + user.id + "> Hello!", mocks.adminUser, sm))
+        .then(function() {
+            bot.procCommand(client, mocks.makeMessage("!ping", mocks.nonAdminUser, sm))
+            .then(function() {
+                assert(!handledCommand);
+                // Clear the message
+                bot.procCommand(client, mocks.makeMessage("!ping", user, sm))
+                .then(function() {
+                    assert(handledCommand);
+                });
             });
         });
     });

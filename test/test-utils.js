@@ -45,9 +45,7 @@ describe('utils', function(){
     it('should display usage', function() {
         var command = {usage: "This is a test"};
         var user = mocks.nonAdminUser;
-        // Usage always comes in via PM, so we need to account for that...
-        var oldUserSendMessage = user.sendMessage;
-        user.sendMessage = function(message) {
+        var sendMessage = function(message, options) {
             if (message.includes("Usage: ")) {
                 handledCommand = true;
             } else {
@@ -58,10 +56,8 @@ describe('utils', function(){
         var client = mocks.makeClient();
         bot.startBot(client, mocks.makeConfig());
 
-        utils.displayUsage(client, mocks.makeMessage("", user), command);
+        utils.displayUsage(client, mocks.makeMessage("", user, sendMessage), command);
         assert(handledCommand);
-
-        user.sendMessage = oldUserSendMessage;
     });
 
     it('should display the first sentence inBrief', function() {
@@ -113,12 +109,11 @@ describe('utils', function(){
         var handledCommand = false;
         var client = mocks.makeClient();
         bot.startBot(client, mocks.makeConfig());
-        utils.sendMessage(client, mocks.makeMessage("", function(message, callback) {
+        utils.sendMessage(client, mocks.makeMessage("", function(message) {
             buffer += message;
             if (buffer === expectedResults) {
                 handledCommand = true;
             }
-            callback();
         }).channel, message);
         assert(handledCommand);
     });
@@ -136,7 +131,7 @@ describe('utils', function(){
         var handledCommand = false;
         var client = mocks.makeClient();
         bot.startBot(client, mocks.makeConfig());
-        utils.sendMessage(client, mocks.makeMessage("", function(message, callback) {
+        utils.sendMessage(client, mocks.makeMessage("", function(message) {
             if (buffer.length > 0) {
                 buffer += "\n";
             }
@@ -144,7 +139,6 @@ describe('utils', function(){
             if (buffer === expectedResults) {
                 handledCommand = true;
             }
-            callback();
         }).channel, message, function() {
             assert(handledCommand);
         });
@@ -171,7 +165,7 @@ describe('utils', function(){
             if (buffer === expectedResults) {
                 handledCommand = true;
             }
-        }).channel, messageArray, function() {
+        }).channel, messageArray, false, function() {
             assert(handledCommand);
         });
     });
