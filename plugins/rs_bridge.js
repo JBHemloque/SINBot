@@ -36,30 +36,33 @@ RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.
 RSBridge.prototype.gossip = function(args, bot, message) {
-    utils.sendMessages(bot, message.author, rs_host.gossip());
+    return utils.sendMessages(bot, message.author, rs_host.gossip());
 }
 
 // Talk to the bot
-RSBridge.prototype.reply = function(args, bot, message) {                
-    var statement = utils.compileArgs(args);
-    var userid = message.author.id;
-    this.messageCache[userid] = message;
-    this.RSHost.getReply(statement, message.author.name, userid)
-    .then(function(reply) {
-        reply = this.RSHost.stripGarbage(reply); 
-        var useTTS = false;
-        // Users can set usetts for themselves, or serverwide if we allow it
-        // if (allowTTS || message.channel.type === "dm") {
-        //     var ttsVar = this.RSHost.getUservar(userid, "usetts");
-        //     if (ttsVar == "true") {
-        //         useTTS = true;
-        //     }
-        // }
-        if (useTTS) {
-            utils.ttsMessage(bot, message.channel, reply);
-        } else {
-            utils.sendMessage(bot, message.channel, reply);
-        }
-    });    
+RSBridge.prototype.reply = function(args, bot, message) {
+    var that = this;
+    return new Promise(function(resolve, reject) {
+        var statement = utils.compileArgs(args);
+        var userid = message.author.id;
+        this.messageCache[userid] = message;
+        this.RSHost.getReply(statement, message.author.name, userid)
+        .then(function(reply) {
+            reply = this.RSHost.stripGarbage(reply); 
+            var useTTS = false;
+            // Users can set usetts for themselves, or serverwide if we allow it
+            // if (allowTTS || message.channel.type === "dm") {
+            //     var ttsVar = this.RSHost.getUservar(userid, "usetts");
+            //     if (ttsVar == "true") {
+            //         useTTS = true;
+            //     }
+            // }
+            if (useTTS) {
+                utils.ttsMessage(bot, message.channel, reply).then(resolve);
+            } else {
+                utils.sendMessage(bot, message.channel, reply).then(resolve);
+            }
+        });
+    });       
 }
 
