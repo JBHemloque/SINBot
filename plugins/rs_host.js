@@ -120,11 +120,13 @@ RSHost.prototype.getReply = function(userid, username, message) {
         filename += (userid + ".json");
 
         // See if the bot knows this user yet (in its current memory).
+        console.log("Looking for user in memory...");
         that.rsBot.getUservars(userid)
         .then(function(userData) {
+            console.log("Found user data: " + JSON.stringify(userData));
             if (!userData) {
                 // See if a local file exists for stored user variables.
-                try {
+                try {                    
                     var stats = fs.statSync(filename);
                     if (stats) {
                         var jsonText = fs.readFileSync(filename);
@@ -137,6 +139,7 @@ RSHost.prototype.getReply = function(userid, username, message) {
             that.rsBot.getUservar(userid, "memory")
             .then(function(memory) {
                 if (memory === "undefined") {
+                    console.log("No memory...");
                     that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");
                 }
                 
@@ -144,12 +147,14 @@ RSHost.prototype.getReply = function(userid, username, message) {
                 that.rsBot.getUservar(userid, "name")
                 .then(function(memory) {
                     if (memory === "undefined") {
+                        console.log("Setting name...");
                         that.rsBot.setUservar (userid, "name", username);
                     }
 
                     // Get a reply.
                     that.rsBot.reply(userid, message)
                     .then(function(reply) {
+                        console.log("Got a reply - raw = " + reply);
                         // Rarely do we have a reply that looks like this: "}"
                         if (reply == "}") {
                             reply = "...";
