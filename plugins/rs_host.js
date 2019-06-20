@@ -16,7 +16,7 @@ function RSHost(userDataDir, memoryPrefix, options, redishost, redisport, redisp
     this.undefinedMessages = [];
     this.memoryPrefix = normalizePath(memoryPrefix);    // A scoping prefix for memory management
     this.botStarted = false;
-    this.useSessionManager = options.sessionManager;
+    this.useSessionManager = (options && options.sessionManager) ? true : false;
 
     this.rsBot = new RiveScript(options);
 
@@ -156,7 +156,7 @@ RSHost.prototype.getReply = function(userid, username, message) {
                         }
 
                         // Export user variables to disk if we're not using a session manager
-                        if (!this.useSessionManager) {
+                        if (!that.useSessionManager) {
                             userData = that.rsBot.getUservars(userid);
                             fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
                                 if (err) {
