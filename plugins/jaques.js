@@ -35,7 +35,7 @@ exports.setup = function(config, bot, botcfg) {
     var options = {
         utf8: true
     };
-    if (config.redishost) {
+    if (config && config.redishost) {
         options['sessionManager'] = new RedisSessionManager({
             host: config.redishost,
             port: config.redisport,
