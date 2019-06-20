@@ -16,6 +16,7 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 ///////////////////////////////////////////////////////////////////////////////
 
 var messageCache = {};    // Global message cache for callback purposes
+var sinBot;
 
 exports.RSBridge = RSBridge;
 function RSBridge() {
@@ -26,7 +27,7 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.userDataDir = userDataDir;
     this.memoryPrefix = memoryPrefix;
     this.rsOptions = rsOptions;
-    this.sinBot = botcfg.sinBot;
+    sinBot = botcfg.sinBot;
 
     this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);    
 
@@ -41,8 +42,8 @@ RSBridge.prototype.subroutineHandler = function(rs, input) {
     var message = messageCache[rs.currentUser()];
     // We'll use forceProcCommand to avoid having to deal with the command prefix...
     message.content = input.join(" ").trim();
-    var res = this.sinBot.compileCommand(true, input);
-    this.sinBot.handleCommand(bot, res, message);
+    var res = sinBot.compileCommand(true, input);
+    sinBot.handleCommand(bot, res, message);
     // We can return something to Jaques, but we aren't doing that here.
     // return "Return value!";
 }
