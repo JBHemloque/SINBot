@@ -16,15 +16,14 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 ///////////////////////////////////////////////////////////////////////////////
 
 exports.RSBridge = RSBridge;
-function RSBridge(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions) {
+
+RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions, rivescriptArray) {
     this.config = config;
     this.userDataDir = userDataDir;
     this.memoryPrefix = memoryPrefix;
     this.rsOptions = rsOptions;
     this.sinBot = botcfg.sinBot;
-}
 
-RSBridge.prototype.setup = function(rivescriptArray) {
     this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);
     this.messageCache = {}; // For callback purposes
 
