@@ -11,14 +11,14 @@ var commands = {
         adminOnly: true,
         help: "PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.",
         process: function(args, bot, message) {            
-            return this.rsBridge ? this.rsBridge.gossip(args, bot, message) : utils.emptyPromise();
+            return this.rsBridge.gossip(args, bot, message);
         }
     },
     "jaques": {
         usage: "jaques <anything - just talk>",
         help: "I'm Jaques, your cyborg bartender. Have a drink!",
         process: function(args, bot, message) {
-            return this.rsBridge ? this.rsBridge.reply(args, bot, message) : utils.emptyPromise();
+            return this.rsBridge.reply(args, bot, message);
         }
     },
 };
