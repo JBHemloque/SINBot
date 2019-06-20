@@ -10,12 +10,23 @@ var base = require(path.resolve(__dirname, '../base.js'));
 var utils = require(path.resolve(base.path, 'server/utils.js'));
 
 exports.RSHost = RSHost;
-function RSHost(userDataDir, memoryPrefix, options) {
+function RSHost(userDataDir, memoryPrefix, options, redishost, redisport, redisprefix) {
     this.userDataDir = normalizePath(userDataDir);
     this.lastMessages = [];
     this.undefinedMessages = [];
     this.memoryPrefix = normalizePath(memoryPrefix);    // A scoping prefix for memory management
     this.botStarted = false;
+    this.redis = redishost ? true : false;
+
+    if (this.redis) {
+        var RedisSessionManager = require("rivescript-redis");
+        options['sessionManager'] = new RedisSessionManager({
+            host: redishost,
+            port: redisport,
+            prefix: redisprefix
+        });
+    }
+
     this.rsBot = new RiveScript(options);
 
     function normalizePath(path) {
@@ -101,13 +112,13 @@ RSHost.prototype.setSubroutine = function(identifier, callback) {
     this.rsBot.setSubroutine(identifier, callback);
 }
 
-RSHost.prototype.getUservar = function(userid, varId) {
-    return this.rsBot.getUservar(userid, varId);
-}
-
-// The meat of the logic is in here. This function gets a reply from the bot,
-// and persists user data to disk as a local file named "./$USERNAME.json"
-// where $USERNAME is the username.
+///////////////////////////////////////////////////////////////////////////////
+// The meat of the logic is in here. This function gets a reply from the bot.
+// Pre 2.7.1, user data was persisted to disk as a local file named "./$USERNAME.json"
+// where $USERNAME is the username, but from 2.7.1+ we're allowing the option of using 
+// the redis session manager to store user data, with the understanding that 
+// redis will be configured to persist the data. 
+///////////////////////////////////////////////////////////////////////////////
 RSHost.prototype.getReply = function(userid, username, message) {
     var that = this;
     return new Promise(function(resolve, reject) {
@@ -153,13 +164,15 @@ RSHost.prototype.getReply = function(userid, username, message) {
                             reply = "...";
                         }
 
-                        // Export user variables to disk.
-                        userData = that.rsBot.getUservars(userid);
-                        fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
-                            if (err) {
-                                utils.logError("Failed to write file", filename, err);
-                            }
-                        });
+                        // Export user variables to disk if we're not using redis
+                        if (!this.redis) {
+                            userData = that.rsBot.getUservars(userid);
+                            fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
+                                if (err) {
+                                    utils.logError("Failed to write file", filename, err);
+                                }
+                            });
+                        }
 
                         // that.rsBot.lastMatch(userid).then(function(match) {
                         //     console.log("Last match: " + match);

@@ -50,19 +50,7 @@ RSBridge.prototype.reply = function(args, bot, message) {
         that.RSHost.reply(statement, message.author.name, userid)
         .then(function(reply) {
             reply = that.RSHost.stripGarbage(reply); 
-            var useTTS = false;
-            // Users can set usetts for themselves, or serverwide if we allow it
-            // if (allowTTS || message.channel.type === "dm") {
-            //     var ttsVar = this.RSHost.getUservar(userid, "usetts");
-            //     if (ttsVar == "true") {
-            //         useTTS = true;
-            //     }
-            // }
-            if (useTTS) {
-                utils.ttsMessage(bot, message.channel, reply).then(resolve);
-            } else {
-                utils.sendMessage(bot, message.channel, reply).then(resolve);
-            }
+            utils.sendMessage(bot, message.channel, reply).then(resolve);
         });
     });       
 }
