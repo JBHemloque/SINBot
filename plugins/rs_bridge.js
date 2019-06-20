@@ -15,6 +15,10 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 // }
 ///////////////////////////////////////////////////////////////////////////////
 
+var messageCache = {};    // Global message cache for callback purposes
+var sinBot;
+var discordBot;
+
 exports.RSBridge = RSBridge;
 function RSBridge() {
 }
@@ -24,24 +28,26 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.userDataDir = userDataDir;
     this.memoryPrefix = memoryPrefix;
     this.rsOptions = rsOptions;
-    this.sinBot = botcfg.sinBot;
-
-    this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);
-    this.messageCache = {}; // For callback purposes
+    sinBot = botcfg.sinBot;
+    discordBot = bot;
+    
+    this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);    
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
-    this.RSHost.setSubroutine("sinbot", function(rs, input) {
-        // Get the last message sent by that user to jaques. That will be the context for this command.
-        var message = this.messageCache[rs.currentUser()];
-        // We'll use forceProcCommand to avoid having to deal with the command prefix...
-        message.content = input.join(" ").trim();
-        var res = this.sinBot.compileCommand(true, input);
-        this.sinBot.handleCommand(bot, res, message);
-        // We can return something to Jaques, but we aren't doing that here.
-        // return "Return value!";
-    });
+    this.RSHost.setSubroutine("sinbot", this.subroutineHandler);
 
     return this.RSHost.setup(rivescriptArray);
+}
+
+RSBridge.prototype.subroutineHandler = function(rs, input) {
+    // Get the last message sent by that user to jaques. That will be the context for this command.
+    var message = messageCache[rs.currentUser()];
+    // We'll use forceProcCommand to avoid having to deal with the command prefix...
+    message.content = input.join(" ").trim();
+    var res = sinBot.compileCommand(true, input);
+    sinBot.handleCommand(discordBot, res, message);
+    // We can return something to Jaques, but we aren't doing that here.
+    // return "Return value!";
 }
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.
@@ -55,7 +61,7 @@ RSBridge.prototype.reply = function(args, bot, message) {
     return new Promise(function(resolve, reject) {
         var statement = utils.compileArgs(args);
         var userid = message.author.id;
-        that.messageCache[userid] = message;
+        messageCache[userid] = message;
         that.RSHost.reply(statement, message.author.username, userid)
         .then(function(reply) {
             utils.sendMessage(bot, message.channel, reply).then(resolve);
