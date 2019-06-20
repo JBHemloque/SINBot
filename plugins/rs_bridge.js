@@ -33,7 +33,7 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.RSHost.setSubroutine("sinbot", function(rs, input) {
         console.log("subroutine: " + JSON.stringify(input));
         // Get the last message sent by that user to jaques. That will be the context for this command.
-        var message = this.messageCache[rs.currentUser()];
+        var message = messageCache[rs.currentUser()];
         // We'll use forceProcCommand to avoid having to deal with the command prefix...
         message.content = input.join(" ").trim();
         var res = this.sinBot.compileCommand(true, input);
