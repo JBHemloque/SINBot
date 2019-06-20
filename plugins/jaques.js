@@ -6,21 +6,19 @@ const utils = require(path.resolve(base.path, 'server/utils.js'));
 const rs_bridge = require(path.resolve(base.path, 'plugins/rs_bridge.js'));
 const RedisSessionManager = require("rivescript-redis");
 
-var ready = false;
-
 var commands = {
     "gossip": {
         adminOnly: true,
         help: "PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.",
         process: function(args, bot, message) {            
-            return this.ready ? this.rsBridge.gossip(args, bot, message) : utils.emptyPromise();
+            return this.rsBridge ? this.rsBridge.gossip(args, bot, message) : utils.emptyPromise();
         }
     },
     "jaques": {
         usage: "jaques <anything - just talk>",
         help: "I'm Jaques, your cyborg bartender. Have a drink!",
         process: function(args, bot, message) {
-            return this.ready ? this.rsBridge.reply(args, bot, message) : utils.emptyPromise();
+            return this.rsBridge ? this.rsBridge.reply(args, bot, message) : utils.emptyPromise();
         }
     },
 };
@@ -53,7 +51,6 @@ exports.setup = function(config, bot, botcfg) {
     );
     this.rsBridge.setup([path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')])
     .then(function() {
-        this.ready = true;
         utils.debugLog("Jaques is ready!");
     });
 }
