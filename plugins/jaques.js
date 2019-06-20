@@ -43,7 +43,7 @@ exports.setup = function(config, bot, botcfg) {
         });
     }
 
-    this.rsBridge.setup(
+    rsBridge.setup(
         config, 
         bot, 
         botcfg, 
