@@ -11,14 +11,14 @@ var commands = {
         adminOnly: true,
         help: "PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.",
         process: function(args, bot, message) {            
-            return this.rsBridge.gossip(args, bot, message);
+            return rsBridge.gossip(args, bot, message);
         }
     },
     "jaques": {
         usage: "jaques <anything - just talk>",
         help: "I'm Jaques, your cyborg bartender. Have a drink!",
         process: function(args, bot, message) {
-            return this.rsBridge.reply(args, bot, message);
+            return rsBridge.reply(args, bot, message);
         }
     },
 };
@@ -52,7 +52,7 @@ exports.setup = function(config, bot, botcfg) {
         options        
     );
 
-    
+
     this.rsBridge.setup([path.resolve(base.path, 'plugins/rs/jaques'), path.resolve(base.path, 'plugins/rs/base')])
     .then(function() {
         utils.debugLog("Jaques is ready!");
