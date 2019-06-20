@@ -137,12 +137,12 @@ RSHost.prototype.getReply = function(userid, username, message) {
             }           
 
             // Ensure there's a memory
-            if (!userData.memory) {
+            if (userData && !userData.memory) {
                 console.log("No memory...");
                 that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");    
             }
             // And a name, if possible
-            if (!userData.name && username) {
+            if (userData && !userData.name && username) {
                 console.log("Setting name to " + username);
                 that.rsBot.setUservar (userid, "name", username);
             }
