@@ -30,7 +30,7 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);    
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
-    this.RSHost.setSubroutine("sinbot", subroutine);
+    this.RSHost.setSubroutine("sinbot", this.subroutine);
 
     return this.RSHost.setup(rivescriptArray);
 }
