@@ -165,9 +165,9 @@ RSHost.prototype.getReply = function(userid, username, message) {
                             });
                         }
 
-                        // that.rsBot.lastMatch(userid).then(function(match) {
-                        //     console.log("Last match: " + match);
-                        // });
+                        that.rsBot.lastMatch(userid).then(function(match) {
+                            console.log("Last match: " + match);
+                        });
 
                         resolve(reply);
                     });
