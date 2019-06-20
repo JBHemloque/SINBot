@@ -30,20 +30,22 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);    
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
-    this.RSHost.setSubroutine("sinbot", function(rs, input) {
-        console.log("subroutine: " + JSON.stringify(input));
-        console.log("this: " + JSON.stringify(this));
-        // Get the last message sent by that user to jaques. That will be the context for this command.
-        var message = this.messageCache[rs.currentUser()];
-        // We'll use forceProcCommand to avoid having to deal with the command prefix...
-        message.content = input.join(" ").trim();
-        var res = this.sinBot.compileCommand(true, input);
-        this.sinBot.handleCommand(bot, res, message);
-        // We can return something to Jaques, but we aren't doing that here.
-        // return "Return value!";
-    });
+    this.RSHost.setSubroutine("sinbot", subroutine);
 
     return this.RSHost.setup(rivescriptArray);
+}
+
+RSBridge.prototype.subroutine = function(rs, input) {
+    console.log("subroutine: " + JSON.stringify(input));
+    console.log("this: " + JSON.stringify(this));
+    // Get the last message sent by that user to jaques. That will be the context for this command.
+    var message = this.messageCache[rs.currentUser()];
+    // We'll use forceProcCommand to avoid having to deal with the command prefix...
+    message.content = input.join(" ").trim();
+    var res = this.sinBot.compileCommand(true, input);
+    this.sinBot.handleCommand(bot, res, message);
+    // We can return something to Jaques, but we aren't doing that here.
+    // return "Return value!";
 }
 
 // PMs the last few snippets of conversation between people and Jaques to the caller. For debugging the bot.
