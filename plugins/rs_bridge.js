@@ -31,7 +31,7 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
     this.RSHost.setSubroutine("sinbot", function(rs, input) {
-        console.log("subroutine: " + input);
+        console.log("subroutine: " + JSON.stringify(input));
         // Get the last message sent by that user to jaques. That will be the context for this command.
         var message = this.messageCache[rs.currentUser()];
         // We'll use forceProcCommand to avoid having to deal with the command prefix...
