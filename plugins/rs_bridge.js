@@ -16,16 +16,17 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 ///////////////////////////////////////////////////////////////////////////////
 
 exports.RSBridge = RSBridge;
-function RSBridge(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions, rivescriptArray) {
-    this.RSHost = new rs_host.RSHost(userDataDir, memoryPrefix, rsOptions);
-    this.messageCache = {}; // For callback purposes
-
+function RSBridge(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions) {
+    this.config = config;
+    this.userDataDir = userDataDir;
+    this.memoryPrefix = memoryPrefix;
+    this.rsOptions = rsOptions;
     this.sinBot = botcfg.sinBot;
-    if (config) {
-        if (config.allowTTS) {
-            allowTTS = config.allowTTS;
-        }
-    }
+}
+
+RSBridge.prototype.setup = function(rivescriptArray) {
+    this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);
+    this.messageCache = {}; // For callback purposes
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
     this.RSHost.setSubroutine("sinbot", function(rs, input) {
@@ -38,9 +39,7 @@ function RSBridge(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions, riv
         // We can return something to Jaques, but we aren't doing that here.
         // return "Return value!";
     });
-}
 
-RSBridge.prototype.setup = function(rivescriptArray) {
     return this.RSHost.setup(rivescriptArray);
 }
 
