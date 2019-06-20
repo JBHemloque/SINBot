@@ -146,7 +146,7 @@ RSHost.prototype.getReply = function(userid, username, message) {
                 // We'll scope everything per-user...
                 that.rsBot.getUservar(userid, "name")
                 .then(function(memory) {
-                    if (memory === "undefined") {
+                    if ((memory === "undefined") && username) {
                         console.log("Setting name to " + username);
                         that.rsBot.setUservar (userid, "name", username);
                     }
