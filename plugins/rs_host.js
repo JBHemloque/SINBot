@@ -18,6 +18,12 @@ function RSHost(userDataDir, memoryPrefix, options, redishost, redisport, redisp
     this.botStarted = false;
     this.useSessionManager = (options && options.sessionManager) ? true : false;
 
+    if (!options) {
+        options = {
+            utf8: true
+        }
+    }
+
     this.rsBot = new RiveScript(options);
 
     function normalizePath(path) {
