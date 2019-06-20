@@ -1,21 +1,23 @@
 // This is a generic rivescript host. It manages its own state and memory.
 'use strict';
 
-var path = require('path');
-var RiveScript = require("rivescript");
-var fs = require("fs");
-var async = require('async');
-var _ = require('underscore');
-var base = require(path.resolve(__dirname, '../base.js'));
-var utils = require(path.resolve(base.path, 'server/utils.js'));
+const path = require('path');
+const RiveScript = require("rivescript");
+const fs = require("fs");
+const async = require('async');
+const _ = require('underscore');
+const base = require(path.resolve(__dirname, '../base.js'));
+const utils = require(path.resolve(base.path, 'server/utils.js'));
 
 exports.RSHost = RSHost;
-function RSHost(userDataDir, memoryPrefix, options) {
+function RSHost(userDataDir, memoryPrefix, options, redishost, redisport, redisprefix) {
     this.userDataDir = normalizePath(userDataDir);
     this.lastMessages = [];
     this.undefinedMessages = [];
     this.memoryPrefix = normalizePath(memoryPrefix);    // A scoping prefix for memory management
     this.botStarted = false;
+    this.useSessionManager = (options && options.sessionManager) ? true : false;
+
     this.rsBot = new RiveScript(options);
 
     function normalizePath(path) {
@@ -101,13 +103,13 @@ RSHost.prototype.setSubroutine = function(identifier, callback) {
     this.rsBot.setSubroutine(identifier, callback);
 }
 
-RSHost.prototype.getUservar = function(userid, varId) {
-    return this.rsBot.getUservar(userid, varId);
-}
-
-// The meat of the logic is in here. This function gets a reply from the bot,
-// and persists user data to disk as a local file named "./$USERNAME.json"
-// where $USERNAME is the username.
+///////////////////////////////////////////////////////////////////////////////
+// The meat of the logic is in here. This function gets a reply from the bot.
+// Pre 2.7.2, user data was persisted to disk as a local file named "./$USERNAME.json"
+// where $USERNAME is the username, but from 2.7.2+ we're allowing the option of using 
+// a session manager to store user data, with the understanding that 
+// it will be configured to persist the data. 
+///////////////////////////////////////////////////////////////////////////////
 RSHost.prototype.getReply = function(userid, username, message) {
     var that = this;
     return new Promise(function(resolve, reject) {
@@ -122,7 +124,7 @@ RSHost.prototype.getReply = function(userid, username, message) {
         .then(function(userData) {
             if (!userData) {
                 // See if a local file exists for stored user variables.
-                try {
+                try {                    
                     var stats = fs.statSync(filename);
                     if (stats) {
                         var jsonText = fs.readFileSync(filename);
@@ -131,43 +133,38 @@ RSHost.prototype.getReply = function(userid, username, message) {
                     }
                 } catch(e) {}
             }           
+
             // Ensure there's a memory
-            that.rsBot.getUservar(userid, "memory")
-            .then(function(memory) {
-                if (memory === "undefined") {
-                    that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");
+            if (userData && !userData.memory) {
+                that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");    
+            }
+            // And a name, if possible
+            if (userData && !userData.name && username) {
+                that.rsBot.setUservar (userid, "name", username);
+            }
+            // Now we're ready to get a reply
+            that.rsBot.reply(userid, message)
+            .then(function(reply) {
+                // Rarely do we have a reply that looks like this: "}"
+                if (reply == "}") {
+                    reply = "...";
                 }
-                
-                // We'll scope everything per-user...
-                that.rsBot.getUservar(userid, "name")
-                .then(function(memory) {
-                    if (memory === "undefined") {
-                        that.rsBot.setUservar (userid, "name", username);
-                    }
 
-                    // Get a reply.
-                    that.rsBot.reply(userid, message)
-                    .then(function(reply) {
-                        // Rarely do we have a reply that looks like this: "}"
-                        if (reply == "}") {
-                            reply = "...";
+                // Export user variables to disk if we're not using a session manager
+                if (!that.useSessionManager) {
+                    userData = that.rsBot.getUservars(userid);
+                    fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
+                        if (err) {
+                            utils.logError("Failed to write file", filename, err);
                         }
-
-                        // Export user variables to disk.
-                        userData = that.rsBot.getUservars(userid);
-                        fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
-                            if (err) {
-                                utils.logError("Failed to write file", filename, err);
-                            }
-                        });
-
-                        // that.rsBot.lastMatch(userid).then(function(match) {
-                        //     console.log("Last match: " + match);
-                        // });
-
-                        resolve(reply);
                     });
-                });
+                }
+
+                // that.rsBot.lastMatch(userid).then(function(match) {
+                //     console.log("Last match: " + match);
+                // });
+
+                resolve(reply);
             });
         });        
     });

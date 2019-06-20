@@ -20,7 +20,7 @@ lineReader.on('line', function(line) {
     bot.reply(line, "local-user", 666)
     .then(function(reply) {
     	console.log(JSON.stringify(reply));
-	    console.log("The bot says: " + bot.stripGarbage(reply));
+	    console.log("The bot says: " + reply);
     });    
 });
 
