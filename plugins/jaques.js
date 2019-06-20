@@ -41,6 +41,8 @@ exports.setup = function(config, bot, botcfg) {
         });
     }
 
+    console.log("Setting up RSBridge with config: " + JSON.stringify(config));
+
     this.rsBridge = new rs_bridge.RSBridge(
         config, 
         bot, 
