@@ -20,7 +20,6 @@ var commands = {
         usage: "jaques <anything - just talk>",
         help: "I'm Jaques, your cyborg bartender. Have a drink!",
         process: function(args, bot, message) {
-            utils.enumerate(message.author);
             return rsBridge.reply(args, bot, message);
         }
     },

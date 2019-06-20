@@ -120,10 +120,8 @@ RSHost.prototype.getReply = function(userid, username, message) {
         filename += (userid + ".json");
 
         // See if the bot knows this user yet (in its current memory).
-        console.log("Looking for user in memory...");
         that.rsBot.getUservars(userid)
         .then(function(userData) {
-            console.log("Found user data: " + JSON.stringify(userData));
             if (!userData) {
                 // See if a local file exists for stored user variables.
                 try {                    
@@ -138,18 +136,15 @@ RSHost.prototype.getReply = function(userid, username, message) {
 
             // Ensure there's a memory
             if (userData && !userData.memory) {
-                console.log("No memory...");
                 that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");    
             }
             // And a name, if possible
             if (userData && !userData.name && username) {
-                console.log("Setting name to " + username);
                 that.rsBot.setUservar (userid, "name", username);
             }
             // Now we're ready to get a reply
             that.rsBot.reply(userid, message)
             .then(function(reply) {
-                console.log("Got a reply - raw = " + reply);
                 // Rarely do we have a reply that looks like this: "}"
                 if (reply == "}") {
                     reply = "...";
@@ -165,9 +160,9 @@ RSHost.prototype.getReply = function(userid, username, message) {
                     });
                 }
 
-                that.rsBot.lastMatch(userid).then(function(match) {
-                    console.log("Last match: " + match);
-                });
+                // that.rsBot.lastMatch(userid).then(function(match) {
+                //     console.log("Last match: " + match);
+                // });
 
                 resolve(reply);
             });

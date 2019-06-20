@@ -56,7 +56,7 @@ RSBridge.prototype.reply = function(args, bot, message) {
         var statement = utils.compileArgs(args);
         var userid = message.author.id;
         that.messageCache[userid] = message;
-        that.RSHost.reply(statement, message.author.name, userid)
+        that.RSHost.reply(statement, message.author.username, userid)
         .then(function(reply) {
             utils.sendMessage(bot, message.channel, reply).then(resolve);
         });
