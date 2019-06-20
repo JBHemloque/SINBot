@@ -1,13 +1,13 @@
 // This is a generic rivescript host. It manages its own state and memory.
 'use strict';
 
-var path = require('path');
-var RiveScript = require("rivescript");
-var fs = require("fs");
-var async = require('async');
-var _ = require('underscore');
-var base = require(path.resolve(__dirname, '../base.js'));
-var utils = require(path.resolve(base.path, 'server/utils.js'));
+const path = require('path');
+const RiveScript = require("rivescript");
+const fs = require("fs");
+const async = require('async');
+const _ = require('underscore');
+const base = require(path.resolve(__dirname, '../base.js'));
+const utils = require(path.resolve(base.path, 'server/utils.js'));
 
 exports.RSHost = RSHost;
 function RSHost(userDataDir, memoryPrefix, options, redishost, redisport, redisprefix) {
@@ -16,16 +16,7 @@ function RSHost(userDataDir, memoryPrefix, options, redishost, redisport, redisp
     this.undefinedMessages = [];
     this.memoryPrefix = normalizePath(memoryPrefix);    // A scoping prefix for memory management
     this.botStarted = false;
-    this.redis = redishost ? true : false;
-
-    if (this.redis) {
-        var RedisSessionManager = require("rivescript-redis");
-        options['sessionManager'] = new RedisSessionManager({
-            host: redishost,
-            port: redisport,
-            prefix: redisprefix
-        });
-    }
+    this.useSessionManager = options.sessionManager;
 
     this.rsBot = new RiveScript(options);
 
@@ -114,10 +105,10 @@ RSHost.prototype.setSubroutine = function(identifier, callback) {
 
 ///////////////////////////////////////////////////////////////////////////////
 // The meat of the logic is in here. This function gets a reply from the bot.
-// Pre 2.7.1, user data was persisted to disk as a local file named "./$USERNAME.json"
-// where $USERNAME is the username, but from 2.7.1+ we're allowing the option of using 
-// the redis session manager to store user data, with the understanding that 
-// redis will be configured to persist the data. 
+// Pre 2.7.2, user data was persisted to disk as a local file named "./$USERNAME.json"
+// where $USERNAME is the username, but from 2.7.2+ we're allowing the option of using 
+// a session manager to store user data, with the understanding that 
+// it will be configured to persist the data. 
 ///////////////////////////////////////////////////////////////////////////////
 RSHost.prototype.getReply = function(userid, username, message) {
     var that = this;
@@ -164,8 +155,8 @@ RSHost.prototype.getReply = function(userid, username, message) {
                             reply = "...";
                         }
 
-                        // Export user variables to disk if we're not using redis
-                        if (!this.redis) {
+                        // Export user variables to disk if we're not using a session manager
+                        if (!this.useSessionManager) {
                             userData = that.rsBot.getUservars(userid);
                             fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
                                 if (err) {

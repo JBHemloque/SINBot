@@ -1,18 +1,25 @@
 // Rivescript-Discordbot bridge
 'use strict';
 
-var path = require('path');
-var base = require(path.resolve(__dirname, '../base.js'));
-var utils = require(path.resolve(base.path, 'server/utils.js'));
-var rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
+const path = require('path');
+const base = require(path.resolve(__dirname, '../base.js'));
+const utils = require(path.resolve(base.path, 'server/utils.js'));
+const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
+
+///////////////////////////////////////////////////////////////////////////////
+//
+// Options: {
+//     userDataDir: string,
+//     memoryPrefix: string,
+//     rsOptions: string
+// }
+///////////////////////////////////////////////////////////////////////////////
 
 exports.RSBridge = RSBridge;
-function RSBridge(userDataDir, memoryPrefix, options) {
-    this.RSHost = new rs_host.RSHost(userDataDir, memoryPrefix, options);
+function RSBridge(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions, rivescriptArray) {
+    this.RSHost = new rs_host.RSHost(userDataDir, memoryPrefix, rsOptions);
     this.messageCache = {}; // For callback purposes
-}
 
-RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray) {
     this.sinBot = botcfg.sinBot;
     if (config) {
         if (config.allowTTS) {
@@ -31,7 +38,9 @@ RSBridge.prototype.setup = function(config, bot, botcfg, prefix, rivescriptArray
         // We can return something to Jaques, but we aren't doing that here.
         // return "Return value!";
     });
+}
 
+RSBridge.prototype.setup = function(rivescriptArray) {
     return this.RSHost.setup(rivescriptArray);
 }
 
