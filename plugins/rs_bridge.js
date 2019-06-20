@@ -17,6 +17,7 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 
 var messageCache = {};    // Global message cache for callback purposes
 var sinBot;
+var discordBot;
 
 exports.RSBridge = RSBridge;
 function RSBridge() {
@@ -28,7 +29,8 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.memoryPrefix = memoryPrefix;
     this.rsOptions = rsOptions;
     sinBot = botcfg.sinBot;
-
+    discordBot = bot;
+    
     this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);    
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
@@ -43,7 +45,7 @@ RSBridge.prototype.subroutineHandler = function(rs, input) {
     // We'll use forceProcCommand to avoid having to deal with the command prefix...
     message.content = input.join(" ").trim();
     var res = sinBot.compileCommand(true, input);
-    sinBot.handleCommand(bot, res, message);
+    sinBot.handleCommand(discordBot, res, message);
     // We can return something to Jaques, but we aren't doing that here.
     // return "Return value!";
 }
