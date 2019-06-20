@@ -135,48 +135,41 @@ RSHost.prototype.getReply = function(userid, username, message) {
                     }
                 } catch(e) {}
             }           
+
             // Ensure there's a memory
-            that.rsBot.getUservar(userid, "memory")
-            .then(function(memory) {
-                if (memory === "undefined") {
-                    console.log("No memory...");
-                    that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");
+            if (!userData.memory) {
+                console.log("No memory...");
+                that.rsBot.setUservar(userid, "memory", "But you haven't taught me anything memorable.");    
+            }
+            // And a name, if possible
+            if (!userData.name && username) {
+                console.log("Setting name to " + username);
+                that.rsBot.setUservar (userid, "name", username);
+            }
+            // Now we're ready to get a reply
+            that.rsBot.reply(userid, message)
+            .then(function(reply) {
+                console.log("Got a reply - raw = " + reply);
+                // Rarely do we have a reply that looks like this: "}"
+                if (reply == "}") {
+                    reply = "...";
                 }
-                
-                // We'll scope everything per-user...
-                that.rsBot.getUservar(userid, "name")
-                .then(function(memory) {
-                    if ((memory === "undefined") && username) {
-                        console.log("Setting name to " + username);
-                        that.rsBot.setUservar (userid, "name", username);
-                    }
 
-                    // Get a reply.
-                    that.rsBot.reply(userid, message)
-                    .then(function(reply) {
-                        console.log("Got a reply - raw = " + reply);
-                        // Rarely do we have a reply that looks like this: "}"
-                        if (reply == "}") {
-                            reply = "...";
+                // Export user variables to disk if we're not using a session manager
+                if (!that.useSessionManager) {
+                    userData = that.rsBot.getUservars(userid);
+                    fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
+                        if (err) {
+                            utils.logError("Failed to write file", filename, err);
                         }
-
-                        // Export user variables to disk if we're not using a session manager
-                        if (!that.useSessionManager) {
-                            userData = that.rsBot.getUservars(userid);
-                            fs.writeFile(filename, JSON.stringify(userData, null, 2), function(err) {
-                                if (err) {
-                                    utils.logError("Failed to write file", filename, err);
-                                }
-                            });
-                        }
-
-                        that.rsBot.lastMatch(userid).then(function(match) {
-                            console.log("Last match: " + match);
-                        });
-
-                        resolve(reply);
                     });
+                }
+
+                that.rsBot.lastMatch(userid).then(function(match) {
+                    console.log("Last match: " + match);
                 });
+
+                resolve(reply);
             });
         });        
     });
