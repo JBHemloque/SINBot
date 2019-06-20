@@ -16,6 +16,8 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 ///////////////////////////////////////////////////////////////////////////////
 
 exports.RSBridge = RSBridge;
+function RSBridge() {
+}
 
 RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions, rivescriptArray) {
     this.config = config;
