@@ -58,7 +58,6 @@ RSBridge.prototype.reply = function(args, bot, message) {
         that.messageCache[userid] = message;
         that.RSHost.reply(statement, message.author.name, userid)
         .then(function(reply) {
-            reply = that.RSHost.stripGarbage(reply); 
             utils.sendMessage(bot, message.channel, reply).then(resolve);
         });
     });       
