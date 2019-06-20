@@ -59,6 +59,7 @@ RSBridge.prototype.reply = function(args, bot, message) {
     return new Promise(function(resolve, reject) {
         var statement = utils.compileArgs(args);
         var userid = message.author.id;
+        console.log((that.messageCache) ? "Have a messageCache" : "No messageCache...");
         that.messageCache[userid] = message;
         that.RSHost.reply(statement, message.author.username, userid)
         .then(function(reply) {
