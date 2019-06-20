@@ -17,6 +17,7 @@ const rs_host = require(path.resolve(base.path, 'plugins/rs_host.js'));
 
 exports.RSBridge = RSBridge;
 function RSBridge() {
+    this.messageCache = {}; // For callback purposes
 }
 
 RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPrefix, rsOptions, rivescriptArray) {
@@ -26,15 +27,14 @@ RSBridge.prototype.setup = function(config, bot, botcfg, userDataDir, memoryPref
     this.rsOptions = rsOptions;
     this.sinBot = botcfg.sinBot;
 
-    this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);
-    this.messageCache = {}; // For callback purposes
+    this.RSHost = new rs_host.RSHost(this.userDataDir, this.memoryPrefix, this.rsOptions);    
 
     // This hooks up the command path from the rivescript interpreter back out to the bot
     this.RSHost.setSubroutine("sinbot", function(rs, input) {
         console.log("subroutine: " + JSON.stringify(input));
         console.log("this: " + JSON.stringify(this));
         // Get the last message sent by that user to jaques. That will be the context for this command.
-        var message = messageCache[rs.currentUser()];
+        var message = this.messageCache[rs.currentUser()];
         // We'll use forceProcCommand to avoid having to deal with the command prefix...
         message.content = input.join(" ").trim();
         var res = this.sinBot.compileCommand(true, input);
