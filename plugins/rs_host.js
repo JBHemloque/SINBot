@@ -147,7 +147,7 @@ RSHost.prototype.getReply = function(userid, username, message) {
                 that.rsBot.getUservar(userid, "name")
                 .then(function(memory) {
                     if (memory === "undefined") {
-                        console.log("Setting name...");
+                        console.log("Setting name to " + username);
                         that.rsBot.setUservar (userid, "name", username);
                     }
 
