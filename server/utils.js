@@ -124,7 +124,9 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
 
     if (ch) {
         // debugLog("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        _sendMessage(bot, channel, msg, false).then(callback);
+        _sendMessage(bot, channel, msg, false).then(function() {
+            callback();
+        });
     } else {
         debugLog("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
@@ -190,7 +192,9 @@ var sendMessages = function(bot, channel, outputArray, tts) {
 
     return async.forEachSeries(compiledArray, function(output, cb) {
         if (output) {
-            _sendMessage(bot, channel, output, tts, cb);
+            _sendMessage(bot, channel, output, tts).then(function() {
+                cb();
+            });
         } else {
             cb();
         }
