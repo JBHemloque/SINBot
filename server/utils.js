@@ -179,8 +179,11 @@ var sendMessages = function(bot, channel, outputArray, tts) {
     }
     compiledArray[i++] = buffer;
 
+    console.log("Sending " + i + " messages...");
+
     return async.forEachSeries(compiledArray, function(output, cb) {
         if (output) {
+            console.log(output);
             _sendMessage(bot, channel, output, tts, cb);
         } else {
             cb();
