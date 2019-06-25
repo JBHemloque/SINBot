@@ -2479,7 +2479,7 @@
 - Actually I am really a computer.
 
 + it is a *
-- <get it> is a <person>. I suppose that makes sense.
+- <set it=<person>><get it> is a <person>. I suppose that makes sense.
 
 + it is a search *
 - Does it find what you are looking for?
