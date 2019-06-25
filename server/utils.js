@@ -124,7 +124,9 @@ var sendMessageToServerAndChannel = function(bot, server, channel, msg, callback
 
     if (ch) {
         // debugLog("sendMessageToServerAndChannel(" + ch.name + " [" + ch.id + "], " + msg);
-        _sendMessage(bot, channel, msg, false).then(callback);
+        _sendMessage(bot, channel, msg, false).then(function() {
+            callback();
+        });
     } else {
         debugLog("sendMessageToServerAndChannel() couldn't find a channel called #" + channel);
     }
