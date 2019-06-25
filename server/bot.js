@@ -17,15 +17,6 @@ var plugins = {};
 
 var startTime = Date.now();
 
-var enumerate = function(obj) {
-    var key;
-    for (key in obj) {
-        if (typeof obj[key] !== 'function') {
-            console.log(key + ": " + obj[key]);
-        }
-    }
-}
-
 function userMentioned(text, user) {
     if (user) {
         return ((text.startsWith('<@' + user + '>')) || (text.startsWith('<@!' + user + '>')));

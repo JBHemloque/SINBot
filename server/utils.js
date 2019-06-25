@@ -10,6 +10,15 @@ exports.debugLog = function(message) {
     }
 }
 
+exports.enumerate = function(obj) {
+    var key;
+    for (key in obj) {
+        if (typeof obj[key] !== 'function') {
+            console.log(key + ": " + obj[key]);
+        }
+    }
+}
+
 exports.emptyPromise = function() {
     return new Promise(function(resolve, reject) {
         resolve();
