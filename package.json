@@ -13,7 +13,7 @@
     "iconv": "^2.3.4",
     "libxmljs": "^0.19.5",
     "node-rest-client": "^3.1.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.88.0",
     "rivescript": "^2.0.0",
     "rivescript-redis": "^1.0.0",
