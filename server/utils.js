@@ -211,7 +211,7 @@ var pmOrSendArray = function(bot, command, pmIfSpam, user, channel, messages) {
 }
 exports.pmOrSendArray = pmOrSendArray;
 
-exports.displayUsage = function(bot, message, command) {
+var displayUsage = function(bot, message, command) {
     // Usage is always spammy
     if (command.usage) {
         var channel = message.channel;
@@ -227,6 +227,7 @@ exports.displayUsage = function(bot, message, command) {
         resolve();
     }
 }
+exports.displayUsage = displayUsage;
 
 var logError = function(header, error, callback, debug) {
     var errors;

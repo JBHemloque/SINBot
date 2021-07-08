@@ -340,7 +340,6 @@ var commands = {
                 var count = args[1];
                 var density = elitelib.calcRho(undefined, count);
                 if(!isNaN(density)) {
-                    displayUsage = false;
                     return utils.sendMessage(bot, msg.channel, "rho = " + density);
                 }
             }
