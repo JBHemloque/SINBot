@@ -1,7 +1,7 @@
 'use strict';
 
 var bot = require('./bot.js');
-var Discord = require("discord.js");
+const { Client, Events, GatewayIntentBits } = require('discord.js');
 var config = require('../config.js');
 var utils = require('./utils.js');
 var base = require('../base.js');
@@ -11,12 +11,15 @@ const readline = require('readline').createInterface({
   output: process.stdout
 });
 
-var options = {};
-if (config.DISCORD_OPTIONS) {
-    options = config.DISCORD_OPTIONS;
-}
-console.log("Using discord options: " + JSON.stringify(options));
-var SINBot = new Discord.Client(options);
+
+var SINBot = new Client(
+    { 
+        intents: [
+            GatewayIntentBits.Guilds,
+            GatewayIntentBits.MessageContent
+        ]
+    }
+);
 
 console.log('Bot base directory: ' + base.path);
 
