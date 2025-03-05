@@ -21,7 +21,7 @@
     "url": "^0.11.4"
   },
   "devDependencies": {
-    "mocha": "^6.1.4"
+    "mocha": "^11.1.0"
   },
   "scripts": {
     "test": "mocha test -R nyan"
