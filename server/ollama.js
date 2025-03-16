@@ -16,11 +16,6 @@ function makeHistoryFilepath(user) {
     return path.resolve(base.path, `server/history/${user}.json`);
 }
 
-function readJsonFile(filepath) {
-    let data = 
-    return JSON.parse(data); 
-}
-
 function fetchHistory(user) {
     if (user) {
         let filepath = makeHistoryFilepath(user);
@@ -33,6 +28,7 @@ function fetchHistory(user) {
                 return history.history;
             }
         } catch(e) {
+            console.log(e);
             // No history, no-op
         }
     }
