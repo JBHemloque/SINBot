@@ -11,16 +11,6 @@ const ollama = new Ollama({url:'http://localhost:11434'});
 
 const MAX_HISTORY = 50; // We'll truncte history at 50 items
 
-function removeItem(array, itemToRemove) {
-    const index = array.indexOf(itemToRemove);
-
-    if (index !== -1) {
-        array.splice(index, 1);
-    }
-
-    console.log("Updated Array: ", array);
-}
-
 function makeHistoryFilepath(user) {
     return path.resolve(base.path, `history/${user}.json`);
 }
