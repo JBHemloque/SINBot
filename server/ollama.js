@@ -20,7 +20,6 @@ function fetchHistory(user) {
     if (user) {
         let filepath = makeHistoryFilepath(user);
         try{
-            utils.debugLog(`  - loading ${filepath}`);
             let data = fs.readFileSync(filepath);
             let history = JSON.parse(data);
             if (history) {
