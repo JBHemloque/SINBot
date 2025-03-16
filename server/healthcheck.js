@@ -1,7 +1,7 @@
 'use strict';
 
 var http = require("http");
-var config = require('../config.js');
+var config = require('../config.json');
 
 var PORT = config.HEALTHCHECK_PORT || 8081;
 
