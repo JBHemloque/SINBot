@@ -49,7 +49,7 @@ function saveHistory(user, history) {
         let obj = {
             history: history
         };
-        fs.writeFile(filepath,JSON.stringify(messagebox,null,2), function(err) {
+        fs.writeFile(filepath,JSON.stringify(obj,null,2), function(err) {
             if (err) {
                 console.error("Failed to write file", filename, err);
             }
