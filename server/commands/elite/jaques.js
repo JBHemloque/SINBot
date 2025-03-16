@@ -3,7 +3,7 @@ const path = require('node:path');
 const base = require(path.resolve(__dirname, '../../../base.js'));
 const utils = require(path.resolve(base.path, 'server/utils.js'));
 
-import ollama from 'ollama'
+const ollama = require('ollama');
 
 module.exports = {
     data: new SlashCommandBuilder()
