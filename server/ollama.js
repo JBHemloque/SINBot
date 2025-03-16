@@ -13,7 +13,7 @@ const MAX_HISTORY = 50; // We'll truncte history at 50 items
 const DEBUG_HISTORY = true;
 
 function makeHistoryFilepath(user) {
-    return path.resolve(base.path, `history/${user}.json`);
+    return path.resolve(base.path, `server/history/${user}.json`);
 }
 
 function fetchHistory(user) {
@@ -42,7 +42,7 @@ function saveHistory(user, history) {
         };
         fs.writeFile(filepath,JSON.stringify(obj,null,2), function(err) {
             if (err) {
-                console.error("Failed to write file", filename, err);
+                console.error("Failed to write file", filepath, err);
             }
         });
     }

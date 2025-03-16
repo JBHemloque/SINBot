@@ -15,3 +15,4 @@ userdata/**
 gmp-edd.json
 regions.json
 config.json
+server/history/*.json
