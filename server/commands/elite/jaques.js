@@ -3,7 +3,9 @@ const path = require('node:path');
 const base = require(path.resolve(__dirname, '../../../base.js'));
 const utils = require(path.resolve(base.path, 'server/utils.js'));
 
-const ollama = require('ollama');
+const { Ollama} = require('ollama');
+
+const ollama = new Ollama({url:'http://localhost:11434'});
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -24,6 +26,7 @@ module.exports = {
 
         await utils.deferAttachment(interaction, ephemeral);
 
+	console.log(JSON.stringify(ollama));
         const response = await ollama.chat({
           model: 'jaques',
           keep_alive: "24h",
