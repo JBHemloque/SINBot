@@ -35,15 +35,15 @@ module.exports = {
                             utils.attachFile(data.attachment, interaction);
                         }
                     } else {
-                        utils.sendDeferredText(`No map data exists for ${position} yet...`, interaction);
+                        utils.sendDeferredText(`No map data exists for ${position} yet...`, interaction, ephemeral);
                     }
-                    utils.sendDeferredText(posStringObj.message, interaction);
+                    utils.sendDeferredText(posStringObj.message, interaction, ephemeral);
                 });
             } else {
                 console.log('No position data');
                 if (posStringObj.commanderExists) {
                     // EDSM doesn't have position info on them
-                    utils.sendDeferredText(posStringObj.message, interaction);
+                    utils.sendDeferredText(posStringObj.message, interaction, ephemeral);
                 } else {
                     console.log('Todo: showRegion');
                     // @@ Todo: showRegion

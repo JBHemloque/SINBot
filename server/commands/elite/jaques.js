@@ -22,6 +22,8 @@ module.exports = {
         let text = interaction.options.getString('text');
         let ephemeral = interaction.options.getBoolean('ephemeral');
 
+        await utils.deferAttachment(interaction, ephemeral);
+
         const response = await ollama.chat({
           model: 'jaques',
           keep_alive: "24h",
@@ -29,6 +31,6 @@ module.exports = {
         })
         console.log(response.message.content)
 
-        await utils.sendText(response.message.content, interaction, ephemeral);
+        await utils.sendDeferredText(response.message.content, interaction, ephemeral);
     },
 };

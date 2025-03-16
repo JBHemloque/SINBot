@@ -88,8 +88,12 @@ exports.sendText = async function(text, interaction, ephemeral) {
     }
 }
 
-exports.sendDeferredText = async function(text, interaction) {
-    _sendDeferredReply(text, interaction);
+exports.sendDeferredText = async function(text, interaction, ephemeral) {
+    let chunks = chunkText(text);
+    _sendDeferredReply(chunks[0], interaction);
+    for (let i = 1; i < chunks.length; i++) {
+        await _sendText(chunks[i], interaction, false, ephemeral);
+    }
 }
 
 exports.deferAttachment = async function(interaction, ephemeral) {

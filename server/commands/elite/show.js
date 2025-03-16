@@ -30,7 +30,7 @@ module.exports = {
                     utils.attachFile(data.attachment, interaction);
                 }
             } else {
-                utils.sendDeferredText(`No map data exists for ${name} yet...`, interaction);
+                utils.sendDeferredText(`No map data exists for ${name} yet...`, interaction, ephemeral);
             }
         });
     },
