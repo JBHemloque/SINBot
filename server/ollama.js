@@ -16,13 +16,25 @@ function makeHistoryFilepath(user) {
     return path.resolve(base.path, `server/history/${user}.json`);
 }
 
+function readJsonFile(filepath) {
+    fs.readFile(filepath, function(err, data) { 
+
+        if (err) throw err; 
+
+        return JSON.parse(data); 
+    });
+    return null;
+}
+
 function fetchHistory(user) {
     if (user) {
         let filepath = makeHistoryFilepath(user);
         try{
             utils.debugLog(`  - loading ${filepath}`);
-            let history = require(filepath);
-            return history.history;
+            let history = readJsonFile(filepath);
+            if (history) {
+                return history.history;
+            }
         } catch(e) {
             // No history, no-op
         }
