@@ -24,7 +24,7 @@ module.exports = {
 
         await utils.deferAttachment(interaction, ephemeral);
 
-        const response = await.ollama.chat(text, elite.getAuthorId(interaction));
+        const response = await ollama.chat(text, elite.getAuthorId(interaction));
 
         await utils.sendDeferredText(response, interaction, ephemeral);
     },
