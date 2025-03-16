@@ -17,7 +17,7 @@ function makeHistoryFilepath(user) {
 }
 
 function readJsonFile(filepath) {
-    let data = fs.readFileSync(filepath) { 
+    let data = fs.readFileSync(filepath);
     return JSON.parse(data); 
 }
 
