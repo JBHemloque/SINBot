@@ -17,7 +17,7 @@ function makeHistoryFilepath(user) {
 }
 
 function readJsonFile(filepath) {
-    let data = fs.readFileSync(filepath);
+    let data = 
     return JSON.parse(data); 
 }
 
@@ -26,8 +26,10 @@ function fetchHistory(user) {
         let filepath = makeHistoryFilepath(user);
         try{
             utils.debugLog(`  - loading ${filepath}`);
-            let history = readJsonFile(filepath);
+            let data = fs.readFileSync(filepath);
+            let history = JSON.parse(data);
             if (history) {
+                console.log('Got history!');
                 return history.history;
             }
         } catch(e) {
