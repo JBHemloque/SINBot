@@ -1,42 +1,46 @@
 'use strict';
 
-var redis = require("redis");
-var client = redis.createClient();
+const redis = require('redis');
+
+const client = redis.createClient();
 
 client.on("error", function(err) {
 	console.log("Redis data error " + err);
 });
 
+client.connect();
+
 function generateKey(prefix, id) {
 	return prefix + "__" + id.replace(/ /g,"_").toLowerCase();
 }
 
-function write(prefix, id, data) {
+async function write(prefix, id, data) {
 	client.set(generateKey(prefix, id), JSON.stringify(data));
 }
 module.exports.write = write;
 
-function writeString(prefix, id, data) {
+async function writeString(prefix, id, data) {
 	client.set(generateKey(prefix, id, data));
 }
 module.exports.writeString = writeString;
 
-function read(prefix, id, cb) {
-	client.get(generateKey(prefix, id), function(err, reply) {
-		if (reply) {
-			console.log("Got data: " + reply);
-			var data = JSON.parse(reply);
-			cb(data);
-		} else {
-			cb(undefined);
-		}
-	});
+async function read(prefix, id, cb) {
+	console.log('await client.connect()');
+	console.log('get ' + generateKey(prefix, id));
+	let reply = await client.get(generateKey(prefix, id));
+	if (reply) {
+		console.log("Got data: " + reply);
+		var data = JSON.parse(reply);
+		cb(data);
+	} else {
+		console.log('Got no data');
+		cb(undefined);
+	}
 }
 module.exports.read = read;
 
-function readString(prefix, id, cb) {
-	client.get(generateKey(prefix, id), function(err, reply) {
-		cb(reply);
-	});
+async function readString(prefix, id, cb) {
+	let reply = await client.get(generateKey(prefix, id));
+	cb(reply);
 }
-module.exports.readString = read;
+module.exports.readString = readString;
