@@ -10,6 +10,7 @@ const { Ollama} = require('ollama');
 const ollama = new Ollama({url:'http://localhost:11434'});
 
 const MAX_HISTORY = 50; // We'll truncte history at 50 items
+const DEBUG_HISTORY = true;
 
 function makeHistoryFilepath(user) {
     return path.resolve(base.path, `history/${user}.json`);
@@ -49,6 +50,10 @@ function saveHistory(user, history) {
 
 exports.chat = async function(input, user) {
     let history = fetchHistory(user);
+    if (DEBUG_HISTORY) {
+        console.log(`History for ${user}:`);
+        console.log(JSON.stringify(history,null,2));
+    }
     history.push({
         role: 'user',
         content: input
