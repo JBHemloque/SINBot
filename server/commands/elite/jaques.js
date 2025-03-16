@@ -3,6 +3,7 @@ const path = require('node:path');
 const base = require(path.resolve(__dirname, '../../../base.js'));
 const utils = require(path.resolve(base.path, 'server/utils.js'));
 const ollama = require(path.resolve(base.path, 'server/ollama.js'));
+const elite = require(path.resolve(base.path, 'server/elite/elite.js'));
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,14 +24,8 @@ module.exports = {
 
         await utils.deferAttachment(interaction, ephemeral);
 
-	console.log(JSON.stringify(ollama));
-        const response = await ollama.chat({
-          model: 'jaques',
-          keep_alive: "24h",
-          messages: [{ role: 'user', content: text }],
-        })
-        console.log(response.message.content)
+        const response = await.ollama.chat(text, elite.getAuthorId(interaction));
 
-        await utils.sendDeferredText(response.message.content, interaction, ephemeral);
+        await utils.sendDeferredText(response, interaction, ephemeral);
     },
 };

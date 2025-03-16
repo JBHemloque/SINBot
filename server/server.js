@@ -5,6 +5,7 @@ var config = require('../config.json');
 const fs = require('node:fs');
 const path = require('node:path');
 var healthcheck = require('./healthcheck.js');
+const ollama = require('./ollama.js');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds]});
 
