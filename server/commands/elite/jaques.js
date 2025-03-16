@@ -2,10 +2,7 @@ const { SlashCommandBuilder } = require('discord.js');
 const path = require('node:path');
 const base = require(path.resolve(__dirname, '../../../base.js'));
 const utils = require(path.resolve(base.path, 'server/utils.js'));
-
-const { Ollama} = require('ollama');
-
-const ollama = new Ollama({url:'http://localhost:11434'});
+const ollama = require(path.resolve(base.path, 'server/ollama.js'));
 
 module.exports = {
     data: new SlashCommandBuilder()
