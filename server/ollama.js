@@ -9,11 +9,19 @@ const { Ollama} = require('ollama');
 
 const ollama = new Ollama({url:'http://localhost:11434'});
 
-const MAX_HISTORY = 50; // We'll truncte history at 50 items
+const MAX_HISTORY = 5; // We'll truncte history at 5 items
 const DEBUG_HISTORY = true;
+const INCLUDE_INTRODUCTION = true;
 
 function makeHistoryFilepath(user) {
     return path.resolve(base.path, `server/history/${user}.json`);
+}
+
+function makeIntroduction(user) {
+    return {
+        role: 'user',
+        content: 'Your name is Jaques. My name is ' + user
+    }
 }
 
 function fetchHistory(user) {
@@ -23,7 +31,6 @@ function fetchHistory(user) {
             let data = fs.readFileSync(filepath);
             let history = JSON.parse(data);
             if (history) {
-                console.log('Got history!');
                 return history.history;
             }
         } catch(e) {
@@ -31,14 +38,23 @@ function fetchHistory(user) {
             // No history, no-op
         }
     }
-    return [];
+    let history =[];
+    if (INCLUDE_INTRODUCTION) {
+        history = [makeIntroduction(user)];
+    }
+    return history;
 }
 
 function saveHistory(user, history) {
     if (user) {
         // Remove from the head until history.length <= MAX_HISTORY
-        while(history.length > MAX_HISTORY) {
+        let truncated = false;
+        while(history.length >= MAX_HISTORY) {
             history.splice(0, 1);
+            truncated = true;
+        }
+        if (truncated && INCLUDE_INTRODUCTION) {
+             history.unshift(makeIntroduction(user));
         }
         let filepath = makeHistoryFilepath(user);
         let obj = {
@@ -54,17 +70,16 @@ function saveHistory(user, history) {
 
 exports.chat = async function(input, user) {
     let history = fetchHistory(user);
-    if (DEBUG_HISTORY) {
-        console.log(`History for ${user}:`);
-        console.log(JSON.stringify(history,null,2));
-    }
     history.push({
         role: 'user',
         content: input
     });
+    if (DEBUG_HISTORY) {
+        console.log(`History for ${user}`);
+        console.log(JSON.stringify(history,null,2));
+    }
     let response = await ollama.chat({
           model: 'jaques',
-          keep_alive: "24h",
           messages: history,
         });
     history.push(response.message);
