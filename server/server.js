@@ -1,93 +1,61 @@
 'use strict';
 
-var bot = require('./bot.js');
-const { Client, Events, GatewayIntentBits } = require('discord.js');
-var config = require('../config.js');
-var utils = require('./utils.js');
-var base = require('../base.js');
+const { Client, Collection, Events, GatewayIntentBits, SlashCommandBuilder } = require('discord.js');
+var config = require('../config.json');
+const fs = require('node:fs');
+const path = require('node:path');
 var healthcheck = require('./healthcheck.js');
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+const ollama = require('./ollama.js');
 
+const client = new Client({ intents: [GatewayIntentBits.Guilds]});
 
-var SINBot = new Client(
-    { 
-        intents: [
-            GatewayIntentBits.Guilds,
-            GatewayIntentBits.MessageContent
-        ]
+client.commands = new Collection();
+
+const foldersPath = path.join(__dirname, 'commands');
+console.log(`foldersPath: ${foldersPath}`);
+const commandFolders = fs.readdirSync(foldersPath);
+
+for (const folder of commandFolders) {
+    const commandsPath = path.join(foldersPath, folder);
+    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+    for (const file of commandFiles) {
+        const filePath = path.join(commandsPath, file);
+        const command = require(filePath);
+        // Set a new item in the Collection with the key as the command name and the value as the exported module
+        if ('data' in command && 'execute' in command) {
+            console.log(`Setting up ${command.data.name}...`);
+            client.commands.set(command.data.name, command);
+        } else {
+            console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+        }
     }
-);
-
-console.log('Bot base directory: ' + base.path);
-
-// the ready event is vital, it means that your bot will only start reacting to information
-// from Discord _after_ ready is emitted.
-SINBot.on('ready', function() {
-      console.log('I am ready!');
-});
-
-SINBot.on("message", function(message){
-    bot.procCommand(SINBot, message);
-});
-
-//Log user status changes
-SINBot.on("presence", function(user,status,gameId) {
-    bot.procPresence(SINBot, user, status, gameId);
-});
-
-SINBot.on('disconnected', function() {
-    utils.logError("Disconnected", "Attempting restart...");
-    startBot();
-});
-
-function startBot() {
-    healthcheck.startHealthCheck(SINBot);
-    SINBot.login(config.TOKEN)
-        .then(atoken => {
-            console.log('logged in with token ' + atoken);
-            try {
-                bot.startBot(SINBot, config, function() {
-                    console.log("Bot initialization complete!");
-                });
-            } catch (e) {
-                utils.logError("startBot error", e);
-            }
-        })
-        .catch(console.error);
 }
 
-function consoleBotInput(consoleBot) {
-    readline.question(`Bot: `, (input) => {
-  
-      var message = {
-        author: {username: 'User'},
-        channel: 'Channel',
-        sender: {username: 'Sender'},
-        content: input,
-        isMentioned: function(user) { return false; }
-    };
+client.once(Events.ClientReady, readyClient => {
+    healthcheck.startHealthCheck(this);
+    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
 
-        bot.procCommand(consoleBot, message);
+client.on(Events.InteractionCreate, async interaction => {
+    if(!interaction.isChatInputCommand()) return;
 
-        // readline.close();
-        consoleBotInput(bot);
-    });
-}
+    const command = interaction.client.commands.get(interaction.commandName);
 
-function consoleBot() {
-    var botUser = {username: 'Console Bot'};
-    var consoleBot = {user: botUser};
-    bot.startBot(SINBot, config, function() {
-        console.log("Bot initialization complete!");
-        consoleBotInput(consoleBot);
-    });
-}
+    if (!command) {
+        console.error(`No command matching ${interaction.commandName} was found.`);
+        return;
+    }
 
-if (config.CONSOLE) {
-    consoleBot();
-} else {
-    startBot();
-}
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
+        } else {
+            await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
+        }
+    }
+});
+
+client.login(config.token);

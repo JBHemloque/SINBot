@@ -1,0 +1,1 @@
+// This directory holds ollama chat history files.

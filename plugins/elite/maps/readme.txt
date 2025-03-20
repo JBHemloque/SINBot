@@ -1,1 +1,0 @@
-The maps that will appear in here are procedurally generated on demand by the bot. This directory serves as a cache for them.

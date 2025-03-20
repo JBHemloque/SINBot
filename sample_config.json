@@ -1,0 +1,12 @@
+{
+    "token": "YOUR_TOKEN_HERE",
+    "clientId": "YOUR_CLIENT_ID_HERE",
+    "guildId": "YOUR_GUILD_ID_HERE__ONLY_NEEDED_FOR_GUILD_SCOPED_COMMANDS",
+    "ollama": {
+        "addr": "http://localhost:11434",
+        "model": "jaques",
+        "debugHistory": false,
+        "maxHistory": 5,
+        "includeIntroduction": true
+    }
+}

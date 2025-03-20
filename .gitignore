@@ -14,3 +14,5 @@ userdata/**
 .DS_Store
 gmp-edd.json
 regions.json
+config.json
+server/history/*.json
