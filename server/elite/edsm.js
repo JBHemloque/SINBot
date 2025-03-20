@@ -44,7 +44,7 @@ var normalizeCmdr = function(cmdr) {
     if (cmdraliases[key]) {
         if (cmdraliases[key].cmdr) {
             return cmdraliases[key].cmdr;
-        }        
+        }
     }
     return cmdr;
 }

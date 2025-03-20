@@ -4,14 +4,13 @@ var base = require('../base.js');
 var path = require('path');
 var fs = require("fs");
 var utils = require('./utils.js');
+var config = require('../config.json');
 
 const { Ollama} = require('ollama');
 
-const ollama = new Ollama({url:'http://localhost:11434'});
+const ollama = new Ollama({url:config.ollamaAddr});
 
-const MAX_HISTORY = 5; // We'll truncte history at 5 items
-const DEBUG_HISTORY = false;
-const INCLUDE_INTRODUCTION = true;
+let ollamaConfig = config.ollama;
 
 function makeHistoryFilepath(user) {
     return path.resolve(base.path, `server/history/${user}.json`);
@@ -39,7 +38,7 @@ function fetchHistory(user) {
         }
     }
     let history =[];
-    if (INCLUDE_INTRODUCTION) {
+    if (ollamaConfig.includeIntroduction) {
         history = [makeIntroduction(user)];
     }
     return history;
@@ -47,13 +46,13 @@ function fetchHistory(user) {
 
 function saveHistory(user, history) {
     if (user) {
-        // Remove from the head until history.length <= MAX_HISTORY
+        // Remove from the head until history.length <= ollamaConfig.maxHistory
         let truncated = false;
-        while(history.length >= MAX_HISTORY) {
+        while(history.length >= ollamaConfig.maxHistory) {
             history.splice(0, 1);
             truncated = true;
         }
-        if (truncated && INCLUDE_INTRODUCTION) {
+        if (truncated && ollamaConfig.includeIntroduction) {
              history.unshift(makeIntroduction(user));
         }
         let filepath = makeHistoryFilepath(user);
@@ -74,12 +73,12 @@ exports.chat = async function(input, user) {
         role: 'user',
         content: input
     });
-    if (DEBUG_HISTORY) {
+    if (ollamaConfig.debugHistory) {
         console.log(`History for ${user}`);
         console.log(JSON.stringify(history,null,2));
     }
     let response = await ollama.chat({
-          model: 'jaques',
+          model: config.ollamaModel,
           messages: history,
         });
     history.push(response.message);
