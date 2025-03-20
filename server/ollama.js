@@ -10,7 +10,7 @@ const { Ollama} = require('ollama');
 const ollama = new Ollama({url:'http://localhost:11434'});
 
 const MAX_HISTORY = 5; // We'll truncte history at 5 items
-const DEBUG_HISTORY = true;
+const DEBUG_HISTORY = false;
 const INCLUDE_INTRODUCTION = true;
 
 function makeHistoryFilepath(user) {

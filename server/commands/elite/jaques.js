@@ -11,7 +11,7 @@ module.exports = {
         .setDescription('Talk to Jaques, your friendly cybernetic bartender.')
         .addStringOption(option =>
             option
-                .setName('text')
+                .setName('say')
                 .setDescription('What do you want to say to him?'))
         .addBooleanOption(option => 
             option
@@ -19,7 +19,7 @@ module.exports = {
                 .setDescription('Set to true if only you should see this message'))
         ,
     async execute(interaction) {
-        let text = interaction.options.getString('text');
+        let text = interaction.options.getString('say');
         let ephemeral = interaction.options.getBoolean('ephemeral');
 
         await utils.deferAttachment(interaction, ephemeral);
