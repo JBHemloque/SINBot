@@ -8,9 +8,9 @@ var config = require('../config.json');
 
 const { Ollama} = require('ollama');
 
-const ollama = new Ollama({url:config.ollamaAddr});
-
 let ollamaConfig = config.ollama;
+
+const ollama = new Ollama({url:ollamaConfig.addr});
 
 function makeHistoryFilepath(user) {
     return path.resolve(base.path, `server/history/${user}.json`);
@@ -78,7 +78,7 @@ exports.chat = async function(input, user) {
         console.log(JSON.stringify(history,null,2));
     }
     let response = await ollama.chat({
-          model: config.ollamaModel,
+          model: ollamaConfig.model,
           messages: history,
         });
     history.push(response.message);
