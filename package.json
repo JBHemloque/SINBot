@@ -1,7 +1,7 @@
 {
   "name": "SINBot",
   "type": "commonjs",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Discord bot appropriate for Elite Dangerous",
   "main": "server/server.js",
   "dependencies": {

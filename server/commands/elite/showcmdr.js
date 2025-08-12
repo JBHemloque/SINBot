@@ -7,7 +7,12 @@ const elite = require(path.resolve(base.path, 'server/elite/elite.js'));
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('showcmdr')
-        .setDescription('Show your EDSM name, if registered'),
+        .setDescription('Show your EDSM name, if registered')
+        .addStringOption(option => 
+            option
+                .setName('edsm_name')
+                .setDescription('Your CMDRs name on EDSM')
+                .setRequired(true)),
     async execute(interaction) {
         var edsmName = elite.getEdsmName(interaction);
          if (edsmName) {
